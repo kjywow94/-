@@ -17,7 +17,9 @@ contract Ownable {
   constructor() public {
     owner = msg.sender;
   }
-
+  /*
+ owner = msg.sender;
+   */
 
   /**
    * @dev Throws if called by any account other than the owner.
