@@ -25,7 +25,7 @@ function createAuctionContract(web3, contractAddress) {
 function createAuction(options, walletAddress, privateKey, onConfirm) {
     var web3 = createWeb3();
     var contract = createFactoryContract(web3);
-    contract.methods.createAuction(options.workId, options.minValue, options.startTime, options.endTime).encodeABI();
+    // contract.methods.createAuction(options.workId, options.minValue, options.startTime, options.endTime).encodeABI();
 
     var createAuctionCall = contract.methods.createAuction(options.workId, options.minValue, options.startTime, options.endTime); // 함수 호출 Object 초기화
     var encodedABI = createAuctionCall.encodeABI();
@@ -42,9 +42,9 @@ function createAuction(options, walletAddress, privateKey, onConfirm) {
      */
     web3.eth.accounts.signTransaction(tx, privateKey).then(response => {
         web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
-            contract.methods.allAuctions().call().then(response =>{
-                var responseAddress = response[response.length-1];
-                console.log(responseAddress);
+            contract.methods.allAuctions().call().then(response => {
+                var responseAddress = response[response.length - 1];
+                // console.log(responseAddress);
                 onConfirm(responseAddress);
             });
         });
@@ -57,7 +57,36 @@ function createAuction(options, walletAddress, privateKey, onConfirm) {
  * 경매 컨트랙트 주소: options.contractAddress
  *  */
 function auction_bid(options, onConfirm) {
+    var web3 = createWeb3();
+    var contract = createAuctionContract(web3, options.contractAddress);
+    var bidCall = contract.methods.bid();
+    var encodedABI = bidCall.encodeABI();
 
+    // var options = {
+    //     amount: this.input.price,
+    //     contractAddress: this.auction['경매컨트랙트주소'],
+    //     walletAddress: this.wallet['주소'],
+    //     privateKey: this.input.privateKey
+    // };
+    console.log("auction_bid option");
+    console.log(options);
+    console.log("Convert toWei");
+    console.log(web3.utils.toWei(options.amount, "ether"));
+    var tx = {
+        from: options.walletAddress,
+        to: options.contractAddress,
+        value: web3.utils.toWei(options.amount, "ether"),
+        gas: 2000000,
+        data: encodedABI
+    }
+
+    web3.eth.accounts.signTransaction(tx, options.privateKey).then(response => {
+        web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
+            console.log("transaction response");
+            console.log(response);
+            onConfirm(response);
+        });
+    });
 }
 
 /**

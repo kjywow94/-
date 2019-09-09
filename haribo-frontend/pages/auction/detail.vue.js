@@ -120,6 +120,8 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
 
         // 경매 정보 조회
         auctionService.findById(auctionId, function(auction){
+            console.log("auction log");
+            console.log(auction);
             var amount = Number(auction['최소금액']).toLocaleString().split(",").join("")
             auction['최소금액'] = web3.utils.fromWei(amount, 'ether');
 
@@ -141,7 +143,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                 var amount = Number(auction['최고입찰액']).toLocaleString().split(",").join("")
                 auction['최고입찰액'] = web3.utils.fromWei(amount, 'ether');
                 var bidderId = auction['최고입찰자id'];
-
+                console.log("bidderID : " + bidderId);
                 userService.findById(bidderId, function(user){
                     scope.bidder = user;
                 });

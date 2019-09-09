@@ -1,7 +1,6 @@
-/**
+ /**
  * 화면: 경매 입찰하기
  */
-
 var auctionBidView = Vue.component('AuctionBidView', {
     template: `
         <div>
@@ -80,7 +79,7 @@ var auctionBidView = Vue.component('AuctionBidView', {
                 walletAddress: this.wallet['주소'],
                 privateKey: this.input.privateKey
             };
-            console.log(options);
+            // console.log(options);
             this.bidding = true;
 
             // 컨트랙트 bid 함수를 호출합니다.
@@ -115,6 +114,8 @@ var auctionBidView = Vue.component('AuctionBidView', {
 
         // 내 지갑 정보 조회
         walletService.findById(scope.sharedStates.user.id, function(wallet){
+            wallet = wallet.responseJSON;
+            console.log(wallet);
             wallet['잔액'] = Number(wallet['잔액']) / (10 ** 18);
             scope.wallet = wallet;
         });
