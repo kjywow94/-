@@ -1,0 +1,5 @@
+browser/AuctionFactory.sol : 
+bzz-raw://b4def475185e7718a09c08445995e4cf2adb2020a85082e026c299d32a866eef
+
+metadata.json : 
+bzz-raw://b0b5df3fcb8f53e6f73def27f0544607e471ceadd297af741874ec9731213bf5

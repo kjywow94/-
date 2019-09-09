@@ -1,0 +1,60 @@
+- sudo apt update : 설치는 apt를 이용해서 설치할 것임.
+- sudo apt install apt-transport-https
+- sudo apt install ca-certificates
+- sudo apt install curl : 컬은 특정한 웹사이트에서 데이터를 다운받을때 사용.
+- sudo apt install software-properties-common
+
+//Docker 공식 GPG 키 등록
+-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
+
+//저장소 설정
+- sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+- sudo apt update
+
+//도커 설치
+- apt-cache policy docker-ce
+- sudo apt install docker-ce 
+
+// 도커는 설치하면 자동으로 시스템 서비스로 등록돼서 언제 어디서나 편하게 부를 수 있음.
+- sudo systemctl status docker
+
+//TEST로 hello-world 띄어줌.
+- sudo docker pull hello-world
+// 실제로 컨테이너로 만들어 띄어보는 것.
+곧바로 우리 서버위에 하나의 서버가 별도로 생성되어
+- sudo docker run hello-world
+
+// 어떤 컨테이너가 동작했는지 확인
+- sudo docker ps -a
+
+//해당 도커 컨테이너 삭제
+- sudo docker rm 7c4d1bf58537
+
+//이미지 파일 확인
+- sudo docker images
+
+* 하리보 mysql 실행
+- 어드민 아이디와 비번 = root/hariboadmin
+- 사용자 아이디와 비번 = haribo/haribo
+
+//pull
+- sudo docker pull emblockit/haribo-mysql
+
+//컨테이너 실행
+- sudo docker run -d -p 3306:3306 --name haribo-mysql emblockit/haribo-mysql
+
+//docker container의 세부정보로 아이피 주소 확인
+- sudo docker inspect 6f83c1840f9d
+
+//mysql client  설치 후 접속
+- sudo apt install mysql-client-core-5.7
+- mysql -u root -p --host 172.17.0.2 --port 3306
+
+// 컨테이너의 데이터를 호스트 OS에 저장하기
+- 컨테이너를 제거하면 데이터도 함께 제거된다.
+- 그래서 컨테이너의 데이터를 호스트 OS에 저장하기
+- 도커는 컨테이너를 docker run 명령어로 생성할 때 컨테이너의 특정 디렉터리와 호스트 OS의 특정 디렉터리를 서로 공유할 수 있도록 -v [호스트의 디렉터리]:[컨테이너의 디렉터리] (또는 --volume)옵션을 제공
+
+//aws 우분투에 폴더만들고, 기존 컨테이너를 종료 후 -v 옵션을 추가해 마운트 시킨다.( 컨테이너와 호스트가 디렉터리를 공유한다 라는 말이 맞을 수 있지만 그보다는 호스트의 특정 디렉터리(지정해준)를 컨테이너의 특정 경로에 마운트 시킨다 라고 할 수 있다.)
+sudo docker run -d -p 3306:3306 -v /home/ubuntu/boraCoin/mysql:/var/lib/mysql --name boraCoin-mysql emblockit/haribo-mysql

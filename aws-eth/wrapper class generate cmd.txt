@@ -1,0 +1,1 @@
+./web3j solidity generate  --javaTypes --solidityTypes -a=AuctionContract_sol_Auction.abi -b=AuctionContract_sol_Auction.bin -o=. -p=com.bcauction.domain.wrapper
