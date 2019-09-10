@@ -3,7 +3,7 @@
 - sudo apt install ca-certificates
 - sudo apt install curl : 컬은 특정한 웹사이트에서 데이터를 다운받을때 사용.
 - sudo apt install software-properties-common
-
+ 
 //Docker 공식 GPG 키 등록
 -  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
 
