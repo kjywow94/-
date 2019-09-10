@@ -43,7 +43,7 @@ contract Ownable {
 /// @title AuctionFactory
 contract AuctionFactory is Ownable {
 
-    // ìƒì„±ëœ ëª¨ë“  auction ë¦¬ìŠ¤íŠ¸ 
+    // »ı¼ºµÈ ¸ğµç auction ¸®½ºÆ® 
     address[] public auctions;
 
     event NewAuction(address auctionContract, address owner, uint workId, uint minValue, uint startTime, uint endTime);
@@ -53,11 +53,11 @@ contract AuctionFactory is Ownable {
     }
 
     /**
-     * @dev í•´ë‹¹ stateë¥¼ ê°€ì§€ëŠ” ìƒˆë¡œìš´ Auctionì„ ìƒì„±í•©ë‹ˆë‹¤. 
-     * @param workId ì‘í’ˆì˜ Idë¥¼ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.
-     * @param minValue ê²½ë§¤ì‹œ ì…ì°°í•  ìˆ˜ ìˆëŠ” ìµœê³ ê°€ë¥¼ ë§í•©ë‹ˆë‹¤.
-     * @param startTime ê²½ë§¤ ì‹œì‘ ì‹œê°ìœ¼ë¡œ timestamp í˜•íƒœë¡œ ë°›ìŠµë‹ˆë‹¤.
-     * @param endTime ê²½ë§¤ ì¢…ë£Œ ì‹œê°ìœ¼ë¡œ timestamp í˜•íƒœë¡œ ë°›ìŠµë‹ˆë‹¤.
+     * @dev ÇØ´ç state¸¦ °¡Áö´Â »õ·Î¿î AuctionÀ» »ı¼ºÇÕ´Ï´Ù. 
+     * @param workId ÀÛÇ°ÀÇ Id¸¦ ³ªÅ¸³À´Ï´Ù.
+     * @param minValue °æ¸Å½Ã ÀÔÂûÇÒ ¼ö ÀÖ´Â ÃÖ°í°¡¸¦ ¸»ÇÕ´Ï´Ù.
+     * @param startTime °æ¸Å ½ÃÀÛ ½Ã°¢À¸·Î timestamp ÇüÅÂ·Î ¹Ş½À´Ï´Ù.
+     * @param endTime °æ¸Å Á¾·á ½Ã°¢À¸·Î timestamp ÇüÅÂ·Î ¹Ş½À´Ï´Ù.
      */
     function createAuction(uint workId, uint minValue, uint startTime, uint endTime) public returns (address){
       // todo 
@@ -71,7 +71,7 @@ contract AuctionFactory is Ownable {
     }
 
     /**
-     * @dev ë‹¤ìŒê³¼ ê°™ì´ í•¨ìˆ˜ë¥¼ ì¶”ê°€í•´ë„ ì¢‹ìŠµë‹ˆë‹¤. 
+     * @dev ´ÙÀ½°ú °°ÀÌ ÇÔ¼ö¸¦ Ãß°¡ÇØµµ ÁÁ½À´Ï´Ù. 
      */
     function allAuctions() public constant returns (address[]) {
         return auctions;
@@ -81,14 +81,14 @@ contract AuctionFactory is Ownable {
 /// @title Auction
 contract Auction is Ownable {
 
-  // ìƒì„±ìì— ì˜í•´ ì •í•´ì§€ëŠ” ê°’
+  // »ı¼ºÀÚ¿¡ ÀÇÇØ Á¤ÇØÁö´Â °ª
   address public owner;
   uint public auctionStartTime;
   uint public auctionEndTime;
   uint public minValue;
   uint public digitalWorkId;
 
-  // í˜„ì¬ ìµœê³  ì…ì°° ìƒíƒœ
+  // ÇöÀç ÃÖ°í ÀÔÂû »óÅÂ
   address public highestBidder;
   uint public highestBid;
 
@@ -101,10 +101,11 @@ contract Auction is Ownable {
 
   event HighestBidIncereased(address bidder, uint amount);
   event AuctionEnded(address winner, uint amount);
+  event getBalance(uint highestBid, uint thisBalance);
 
   //**
-  //* @dev AuctionFactoryì˜ createAuctioní•¨ìˆ˜ì—ì„œ í˜¸ì¶œí•˜ëŠ” ìƒì„±ìì…ë‹ˆë‹¤.
-  //* ê²½ë§¤ì—ì„œ ê³ ë ¤í•´ì•¼í•˜ëŠ” ì œí•œì‚¬í•­ì„ ê³ ë ¤í•˜ì—¬ ìƒíƒœë³€ìˆ˜ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤. 
+  //* @dev AuctionFactoryÀÇ createAuctionÇÔ¼ö¿¡¼­ È£ÃâÇÏ´Â »ı¼ºÀÚÀÔ´Ï´Ù.
+  //* °æ¸Å¿¡¼­ °í·ÁÇØ¾ßÇÏ´Â Á¦ÇÑ»çÇ×À» °í·ÁÇÏ¿© »óÅÂº¯¼ö¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù. 
   //*/
   constructor(address _owner, uint workId, uint minimum, uint startTime, uint endTime) public {
     // todo 
@@ -116,16 +117,15 @@ contract Auction is Ownable {
   }
 
   //**
-  // * @dev ì…ì°°ì„ ìœ„í•œ í•¨ìˆ˜ì…ë‹ˆë‹¤. 
+  // * @dev ÀÔÂûÀ» À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù. 
   // */
   function bid() public onlyNotOwner payable {
     // todo 
-    require(startTime<= now , "ì•„ì§ ì‹œì‘ë˜ì§€ ì•Šì€ ê²½ë§¤ì…ë‹ˆë‹¤.");
-    require(now <= endTime, "ì´ë¯¸ ì¢…ë£Œëœ ê²½ë§¤ì…ë‹ˆë‹¤.");
-    // require(msg.sender!= owner, "ê²½ë§¤ ì¶œí’ˆìëŠ” ì…ì°°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
-    require(msg.sender!= highestBidder, "ìµœê³ ì…ì°°ìëŠ” ìƒìœ„ ì…ì°°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.")
-    require(msg.value >= minValue, "ì…ì°°ì•¡ì´ ìµœì € ì…ì°°ì•¡ë³´ë‹¤ ë‚®ìŠµë‹ˆë‹¤.");
-    require(msg.value >= highestBid, "ì…ì°°ì•¡ì´ ìµœê³  ì…ì°°ì•¡ë³´ë‹¤ ë‚®ìŠµë‹ˆë‹¤.");
+    require(auctionStartTime<= now , "¾ÆÁ÷ ½ÃÀÛµÇÁö ¾ÊÀº °æ¸ÅÀÔ´Ï´Ù.");
+    require(now <= auctionEndTime, "ÀÌ¹Ì Á¾·áµÈ °æ¸ÅÀÔ´Ï´Ù.");
+    require(msg.sender!= highestBidder, "ÃÖ°íÀÔÂûÀÚ´Â »óÀ§ ÀÔÂûÇÒ ¼ö ¾ø½À´Ï´Ù.");
+    require(msg.value >= minValue, "ÀÔÂû¾×ÀÌ ÃÖÀú ÀÔÂû¾×º¸´Ù ³·½À´Ï´Ù.");
+    require(msg.value >= highestBid, "ÀÔÂû¾×ÀÌ ÃÖ°í ÀÔÂû¾×º¸´Ù ³·½À´Ï´Ù.");
     
     if(!isBidders[msg.sender]){
         isBidders[msg.sender] = true;
@@ -143,15 +143,16 @@ contract Auction is Ownable {
   }
 
   //**
-  // * @dev í™˜ë¶ˆì„ ìœ„í•œ í•¨ìˆ˜ì…ë‹ˆë‹¤. 
+  // * @dev È¯ºÒÀ» À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù. 
   //*/
   function withdraw() public returns (bool) {
+    emit getBalance(highestBid, address(this).balance);
     for(uint i=0; i<bidders.length; i++) {
 
       if(pendingReturns[bidders[i]]!=0){
 
-        pendingReturns[bidders[i]]=0
         uint amount = pendingReturns[bidders[i]];
+        pendingReturns[bidders[i]]=0;
 
         if(!bidders[i].send(amount)){
           pendingReturns[bidders[i]] = amount;
@@ -159,13 +160,14 @@ contract Auction is Ownable {
         }
       }
     }
+    emit getBalance(highestBid, address(this).balance);
     return true;
   }
 
  //**
- //  * @dev ê²½ë§¤ ì¢…ë£Œë¥¼ ìœ„í•œ í•¨ìˆ˜ì…ë‹ˆë‹¤.
- //  * ê²½ë§¤ ìƒì„±ìë§Œì´ ê²½ë§¤ë¥¼ ì¢…ë£Œì‹œí‚¬ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
- //  * í˜„ì¬ê¹Œì§€ì˜ ì…ì°° ì¤‘ ìµœê³ ê°€ë¥¼ ì„ íƒí•˜ì—¬ ê²½ë§¤ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤. 
+ //  * @dev °æ¸Å Á¾·á¸¦ À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù.
+ //  * °æ¸Å »ı¼ºÀÚ¸¸ÀÌ °æ¸Å¸¦ Á¾·á½ÃÅ³ ¼ö ÀÖ½À´Ï´Ù.
+ //  * ÇöÀç±îÁöÀÇ ÀÔÂû Áß ÃÖ°í°¡¸¦ ¼±ÅÃÇÏ¿© °æ¸Å¸¦ Á¾·áÇÕ´Ï´Ù. 
  //  */
  
   function endAuction() public onlyOwner {
@@ -184,9 +186,9 @@ contract Auction is Ownable {
   }
 
   //**
-  // * @dev ê²½ë§¤ ì·¨ì†Œë¥¼ ìœ„í•œ í•¨ìˆ˜ì…ë‹ˆë‹¤. 
-  // * ê²½ë§¤ ìƒì„±ìë§Œì´ ê²½ë§¤ë¥¼ ì·¨ì†Œí•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
-  // * ëª¨ë“  ì…ì°°ì— ëŒ€í•´ í™˜ë¶ˆì„ ìˆ˜í–‰í•˜ê³  ê²½ë§¤ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤.  
+  // * @dev °æ¸Å Ãë¼Ò¸¦ À§ÇÑ ÇÔ¼öÀÔ´Ï´Ù. 
+  // * °æ¸Å »ı¼ºÀÚ¸¸ÀÌ °æ¸Å¸¦ Ãë¼ÒÇÒ ¼ö ÀÖ½À´Ï´Ù.
+  // * ¸ğµç ÀÔÂû¿¡ ´ëÇØ È¯ºÒÀ» ¼öÇàÇÏ°í °æ¸Å¸¦ Á¾·áÇÕ´Ï´Ù.  
   // */
   function cancelAuction() public onlyOwner {
     // todo 
@@ -201,14 +203,14 @@ contract Auction is Ownable {
   }
 
   //**
-  // * @dev ì´ì™€ ê°™ì´ ì¶”ê°€ í•¨ìˆ˜ë¥¼ êµ¬í˜„í•´ë³´ì•„ë„ ì¢‹ìŠµë‹ˆë‹¤.  
+  // * @dev ÀÌ¿Í °°ÀÌ Ãß°¡ ÇÔ¼ö¸¦ ±¸ÇöÇØº¸¾Æµµ ÁÁ½À´Ï´Ù.  
   // */
   function getPendingReturnsBy(address _address) view public returns (uint){
       return pendingReturns[_address];
   }
 
   //**
-  // * @dev ì´ì™€ ê°™ì´ ì¶”ê°€ modifierë¥¼ êµ¬í˜„í•´ë³´ì•„ë„ ì¢‹ìŠµë‹ˆë‹¤.  
+  // * @dev ÀÌ¿Í °°ÀÌ Ãß°¡ modifier¸¦ ±¸ÇöÇØº¸¾Æµµ ÁÁ½À´Ï´Ù.  
   // */
   modifier onlyNotOwner {
     require(msg.sender != owner);

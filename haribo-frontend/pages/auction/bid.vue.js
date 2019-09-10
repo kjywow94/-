@@ -116,7 +116,7 @@ var auctionBidView = Vue.component('AuctionBidView', {
         walletService.findById(scope.sharedStates.user.id, function(wallet){
             wallet = wallet.responseJSON;
             console.log(wallet);
-            wallet['잔액'] = Number(wallet['잔액']) / (10 ** 18);
+            wallet['잔액'] = Number(wallet['잔액']);
             scope.wallet = wallet;
         });
     }

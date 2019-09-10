@@ -78,7 +78,8 @@ public class AuctionRepository implements IAuctionRepository
 			paramMap.put("종료일시", 경매.get종료일시());
 			paramMap.put("최저가", 경매.get최저가());
 			paramMap.put("컨트랙트주소", 경매.get컨트랙트주소());
-
+			System.out.println("옥션 생성 DB 인풋 확인");
+			System.out.println(경매.toString());
 			this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
 					.withTableName("경매")
 					.usingGeneratedKeyColumns("id");
