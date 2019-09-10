@@ -35,9 +35,9 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
         return {
             isValid: true,
             fa: {
-                addr: "-"  
+                addr: "-"
+                
             },
-            transactions: [],
             timestamp:""
         }
     },
@@ -54,21 +54,8 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
             var ta = (address) => {
                 this.fa = address;
                 
-                console.log(this.fa.id);
-                
-     
-                var tr = (tran) => {
-                    var txView = {
-                       hash : tran.txHash,
-                       from : tran.from,
-                       to : tran.to
-                    }
-                    console.log(txView);
-                    
-                    this.$set(this.transactions, idx++, txView);   
-                }
-
-                ethereumService.findbyTrans(this.fa.id, tr);
+                console.log(this.fa
+                    );
                 
                 // var trans = this
 
