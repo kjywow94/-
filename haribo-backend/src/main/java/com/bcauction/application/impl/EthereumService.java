@@ -209,6 +209,7 @@ public class EthereumService implements IEthereumService {
 		try {
 			EthGetBalance ethBal = web3j.ethGetBalance(주소, DefaultBlockParameterName.LATEST).sendAsync().get();
 			EthGetTransactionCount counts = web3j.ethGetTransactionCount(주소, DefaultBlockParameterName.LATEST).sendAsync().get();
+//			web3j.eth
 			
 			addr.setId(주소);
 			addr.setBalance(ethBal.getBalance());
