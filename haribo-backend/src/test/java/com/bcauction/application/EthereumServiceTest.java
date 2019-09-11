@@ -98,7 +98,7 @@ public class EthereumServiceTest
 	@Test
 	public void test주소검색()
 	{
-		String 주소 = "0xef9b446E38Cb9982288439387faCEc7bFEc4A546";
+		String 주소 = "	0x70e53a511bbdf90203ebd028cdaf4ddeadc43ef4";
 		Address addr = this.ethereumService.주소검색(주소);
 
 		assert addr != null;
