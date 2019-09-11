@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import javax.json.JsonObject;
 
-import org.hyperledger.fabric.protos.peer.FabricTransaction.Transaction;
+import org.hyperledger.fabric.sdk.BlockEvent.TransactionEvent;
 import org.hyperledger.fabric.sdk.ChaincodeID;
 import org.hyperledger.fabric.sdk.Channel;
 import org.hyperledger.fabric.sdk.Enrollment;
@@ -17,7 +19,6 @@ import org.hyperledger.fabric.sdk.Peer;
 import org.hyperledger.fabric.sdk.ProposalResponse;
 import org.hyperledger.fabric.sdk.QueryByChaincodeRequest;
 import org.hyperledger.fabric.sdk.TransactionProposalRequest;
-import org.hyperledger.fabric.sdk.TransactionRequest;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.hyperledger.fabric.sdk.security.CryptoSuite;
@@ -34,8 +35,6 @@ import com.bcauction.domain.FabricUser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
-import io.netty.channel.ChannelException;
 
 @Service
 public class FabricCCService implements IFabricCCService {
@@ -204,32 +203,29 @@ public class FabricCCService implements IFabricCCService {
 		tpr.setArgs(args);
 		String res = "";
 		Collection<ProposalResponse> response = null;
+		CompletableFuture<TransactionEvent> tmp = null;
 		try {
 			response = channel.sendTransactionProposal(tpr);
 			for (ProposalResponse pr : response) {
-				while (res.length() == 0) {
-					res = new String(pr.getChaincodeActionResponsePayload());
-					System.out.println(res);
-				}
+				res = new String(pr.getChaincodeActionResponsePayload());
 			}
+			tmp = channel.sendTransaction(response);
+
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-		channel.sendTransaction(response);
-		boolean result = true;
-		for (ProposalResponse pr : response) {
-			try {
-				System.out.println(pr.getMessage());
-				System.out.println(pr.getChaincodeActionResponsePayload().length);
-				if (pr.getChaincodeActionResponseStatus() != 200)
-					result = false;
-			} catch (InvalidArgumentException e) {
-				e.printStackTrace();
-			}
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 		return result;
 	}
 
@@ -249,6 +245,7 @@ public class FabricCCService implements IFabricCCService {
 		tpr.setArgs(args);
 		String res = null;
 		Collection<ProposalResponse> response = null;
+
 		try {
 			response = channel.sendTransactionProposal(tpr);
 			for (ProposalResponse pr : response) {
@@ -261,7 +258,7 @@ public class FabricCCService implements IFabricCCService {
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-//		channel.sendTransaction(response);
+		channel.sendTransaction(response);
 
 		boolean result = true;
 		for (ProposalResponse pr : response) {
@@ -327,14 +324,14 @@ public class FabricCCService implements IFabricCCService {
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-//		Gson gson = new GsonBuilder().create();
-//		System.out.println(response);
-//		Object o = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
+		Gson gson = new GsonBuilder().create();
+		System.out.println(response);
+		Object o = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
 
-//		System.out.println(fa.getAssetId());
-//		System.out.println(fa.getOwner());
-//		System.out.println(fa.getCreatedAt());
-//		System.out.println(fa.getExpiredAt());
+		System.out.println(fa.getAssetId());
+		System.out.println(fa.getOwner());
+		System.out.println(fa.getCreatedAt());
+		System.out.println(fa.getExpiredAt());
 		return null;
 	}
 
