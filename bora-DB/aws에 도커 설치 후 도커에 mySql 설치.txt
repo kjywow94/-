@@ -1,4 +1,4 @@
-- sudo apt update : 설치는 apt를 이용해서 설치할 것임. 
+- sudo apt update : 설치는 apt를 이용해서 설치할 것임.
 - sudo apt install apt-transport-https
 - sudo apt install ca-certificates 
 - sudo apt install curl : 컬은 특정한 웹사이트에서 데이터를 다운받을때 사용.
