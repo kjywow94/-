@@ -29,7 +29,7 @@ function createAuction(options, walletAddress, privateKey, onConfirm) {
     var contract = createFactoryContract(web3);
     // contract.methods.createAuction(options.workId, options.minValue, options.startTime, options.endTime).encodeABI();
     var minValue = web3.utils.toWei(options.minValue, "ether");
-    console.log("minvalue :  " , minValue);
+    console.log("minvalue :  ", minValue);
     var createAuctionCall = contract.methods.createAuction(options.workId, minValue, options.startTime, options.endTime); // 함수 호출 Object 초기화
     var encodedABI = createAuctionCall.encodeABI();
 
@@ -103,7 +103,6 @@ function auction_withdraw(options) {
         data: encodedABI
     }
 
-    // 작성중
 }
 
 /**
@@ -113,6 +112,7 @@ function auction_withdraw(options) {
  *  */
 function auction_close(options, onConfirm) {
 
+
 }
 
 /**
@@ -121,7 +121,24 @@ function auction_close(options, onConfirm) {
  * 경매 컨트랙트 주소: options.contractAddress
  *  */
 function auction_cancel(options, onConfirm) {
+    console.log("auction_cancel In");
+    var web3 = createWeb3();
+    var contract = createAuctionContract(web3, options.contractAddress);
+    var cancelAuctionCall = contract.methods.cancelAuction();
+    var encodedABI = cancelAuctionCall.encodeABI();
 
+    var tx = {
+        from: options.walletAddress,
+        to: options.contractAddress,
+        gas: 3000000,
+        data: encodedABI
+    }
+
+    web3.eth.accounts.signTransaction(tx, options.privateKey).then(response => {
+        web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
+            onConfirm(response);
+        });
+    });
 }
 
 function auction_listener_getBalance(contractAddress) {
@@ -129,8 +146,8 @@ function auction_listener_getBalance(contractAddress) {
     var contract = createAuctionContract(web3, contractAddress);
     var listener = contract.getBalance();
     listener.watch(err, response => {
-        console.log("err : ",err);
-        console.log("response : ",response);
+        console.log("err : ", err);
+        console.log("response : ", response);
         //abi 변경해야됨
     });
 }

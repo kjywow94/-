@@ -83,7 +83,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
     data() {
         return {
             work: {},
-            creator: {id:0},
+            creator: { id: 0 },
             auction: {},
             sharedStates: store.state,
             bidder: {},
@@ -92,34 +92,59 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
         }
     },
     methods: {
-        closeAuction: function(){
+        closeAuction: function () {
             /**
              * 컨트랙트를 호출하여 경매를 종료하고
              * 경매 상태 업데이트를 위해 API를 호출합니다. 
              */
             var scope = this;
-            var privateKey = window.prompt("경매를 종료하시려면 지갑 비밀키를 입력해주세요.","");
-            
+            var privateKey = window.prompt("경매를 종료하시려면 지갑 비밀키를 입력해주세요.", "");
+
             // register.vue.js, bid.vue.js를 참조하여 완성해 봅니다. 
         },
-        cancelAuction: function(){
+        cancelAuction: async function () {
             /**
              * 컨트랙트를 호출하여 경매를 취소하고
              * 경매 상태 업데이트를 위해 API를 호출합니다. 
              */
             var scope = this;
-            var privateKey = window.prompt("경매를 취소하시려면 지갑 비밀키를 입력해주세요.","");
-            
+            var privateKey = window.prompt("경매를 취소하시려면 지갑 비밀키를 입력해주세요.", "");
+            console.log(privateKey);
+            console.log(scope.creator);
+            walletService.isValidPrivateKey(scope.creator.id, privateKey, (isValid, walletAddress) => {
+                console.log("isValid : ", isValid);
+                if (isValid) {
+                    console.log("auction : ", scope.auction);
+                    var options = {
+                        privateKey: privateKey,
+                        contractAddress: scope.auction['경매컨트랙트주소'],
+                        walletAddress: walletAddress
+                    }
+                    console.log("options : ", options);
+
+                    auction_cancel(options, response => {
+                        console.log("취소 콜백");
+                        console.log(response);
+                    });
+                }
+            });
+
+            // var onConfirm = (result) => {
+            //     console.log(result);
+            //     console.log("취소 콜백");
+            // }
+            // console.log("before auction_cancel call");
+            // auction_cancel(options, onConfirm);
             // register.vue.js, bid.vue.js를 참조하여 완성해 봅니다. 
         }
     },
-    mounted: async function(){
+    mounted: async function () {
         var auctionId = this.$route.params.id;
         var scope = this;
         var web3 = createWeb3();
 
         // 경매 정보 조회
-        auctionService.findById(auctionId, function(auction){
+        auctionService.findById(auctionId, function (auction) {
             console.log("auction log");
             console.log(auction);
             var amount = Number(auction['최소금액']).toLocaleString().split(",").join("")
@@ -128,23 +153,23 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             var workId = auction['작품id'];
 
             // 작품 정보 조회
-            workService.findById(workId, function(work){
+            workService.findById(workId, function (work) {
                 scope.work = work;
                 var creatorId = work['회원id'];
 
                 // 생성자 정보 조회
-                userService.findById(creatorId, function(user){
+                userService.findById(creatorId, function (user) {
                     scope.creator = user;
                 });
             });
 
             // 입찰자 조회
-            if(auction['최고입찰액'] > 0) {
+            if (auction['최고입찰액'] > 0) {
                 var amount = Number(auction['최고입찰액']).toLocaleString().split(",").join("")
                 auction['최고입찰액'] = web3.utils.fromWei(amount, 'ether');
                 var bidderId = auction['최고입찰자id'];
                 console.log("bidderID : " + bidderId);
-                userService.findById(bidderId, function(user){
+                userService.findById(bidderId, function (user) {
                     scope.bidder = user;
                 });
             }

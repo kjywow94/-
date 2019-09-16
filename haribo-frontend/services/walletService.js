@@ -23,8 +23,11 @@ var walletService = {
         var account = web3.eth.accounts.privateKeyToAccount(privateKey);
 
         this.findById(id, function (data) {
-            var address = data['주소'];
-            callback(account && account.address == address);
+            console.log("data : " , data);
+            var address = data.responseJSON['주소'];
+            console.log("account : ", account);
+            console.log("address : ", address);
+            callback(account && account.address == address, address);
         });
     },
     registerWallet: function (userId, walletAddress, callback) {
