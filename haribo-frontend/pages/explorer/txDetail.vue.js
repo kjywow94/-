@@ -17,7 +17,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>블록 넘버</th>
-                                        <td>{{ tx.blockNumber }}</td>
+                                        <td>{{ tx.blockId }}</td>
                                     </tr>
                                     <tr>
                                         <th>날짜</th>
@@ -33,7 +33,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>전송한 이더</th>
-                                        <td>{{ tx.value }} Ether</td>
+                                        <td>{{ tx.amount }} Ether</td>
                                     </tr>
                                     <tr>
                                         <th>Gas</th>
@@ -81,6 +81,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                 this.tx = tran;
                 console.log(this.tx);
                 
+                  
                 var blockNumber = this.tx.blockNumber;
                 var next = parseInt(blockNumber, 16); 
 
