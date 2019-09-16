@@ -324,14 +324,22 @@ public class FabricCCService implements IFabricCCService {
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-		Gson gson = new GsonBuilder().create();
-		System.out.println(response);
-		Object o = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
+//		Gson gson = new GsonBuilder().create();
+		Gson gson = new Gson();
+		
+		ArrayList<FabricAsset> list = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
+		System.out.println("Start list");
+		for(FabricAsset f : list)
+			System.out.println(f);
 
-		System.out.println(fa.getAssetId());
-		System.out.println(fa.getOwner());
-		System.out.println(fa.getCreatedAt());
-		System.out.println(fa.getExpiredAt());
+
+		System.out.println(response);
+//		Object o = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
+//		FabricAsset fa = 
+//		System.out.println(fa.getAssetId());
+//		System.out.println(fa.getOwner());
+//		System.out.println(fa.getCreatedAt());
+//		System.out.println(fa.getExpiredAt());
 		return null;
 	}
 

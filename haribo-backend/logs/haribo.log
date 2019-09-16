@@ -8533,3 +8533,5070 @@
 2019-09-11 13:19:23 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2019-09-11 13:19:23 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2019-09-11 13:19:23 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2019-09-11 13:28:45 [restartedMain] INFO  com.bcauction.Application - Starting Application on DESKTOP-KVCQHCD with PID 13432 (C:\Workspace\blockchain-sub3\haribo-backend\target\classes started by multicampus in C:\Workspace\blockchain-sub3\haribo-backend)
+2019-09-11 13:28:45 [restartedMain] DEBUG com.bcauction.Application - Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-09-11 13:28:45 [restartedMain] INFO  com.bcauction.Application - No active profile set, falling back to default profiles: default
+2019-09-11 13:28:45 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-11 13:28:45 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-11 13:28:46 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-09-11 13:28:46 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-09-11 13:28:46 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-09-11 13:28:46 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-09-11 13:28:46 [restartedMain] DEBUG o.s.web.context.ContextLoader - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-09-11 13:28:46 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1131 ms
+2019-09-11 13:28:47 [restartedMain] INFO  c.b.a.impl.EthBlockListeningService - New Block Subscribed Here
+2019-09-11 13:28:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-09-11 13:28:47 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**/favicon.ico] onto ResourceHttpRequestHandler [class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/], class path resource []]
+2019-09-11 13:28:47 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-09-11 13:28:47 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-11 13:28:47 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.AuctionController:
+	{GET /api/auctions/owner/{id}}: 사용자경매목록조회(int)
+	{PUT /api/auctions/{aid}/by/{mid}}: 경매종료(long,long)
+	{POST /api/auctions}: 생성(Auction)
+	{DELETE /api/auctions/{aid}/by/{mid}}: 경매취소(long,long)
+	{GET /api/auctions/{id}}: 조회(long)
+	{GET /api/auctions}: 목록조회()
+	{PUT /api/auctions/bid}: 입찰(Bid)
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.DigitalWorkController:
+	{GET /api/works/owner/{id}}: 사용자별작품목록조회(int)
+	{GET /api/works/history/{id}}: 작품이력조회(int)
+	{PUT /api/works}: 수정(DigitalWork)
+	{GET /api/works/{id}}: 조회(int)
+	{DELETE /api/works/{id}}: 삭제(int)
+	{GET /api/works}: 목록조회()
+	{POST /api/works}: 등록(DigitalWork)
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.EthereumController:
+	{GET /api/eth/blocks}: 최근블록조회()
+	{GET /api/eth/auctions}: 경매목록조회()
+	{GET /api/eth/txes}: 최근트랜잭션조회()
+	{GET /api/eth/txes/{id}}: 트랜잭션검색(String)
+	{GET /api/eth/auctions/{addr}}: 경매검색(String)
+	{GET /api/eth/block/{id}}: 블록검색(String)
+	{GET /api/eth/address/{addr}}: 주소검색(String)
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.MemberController:
+	{PUT /api/members}: 수정(Member)
+	{GET /api/members/{id}}: 조회(int)
+	{DELETE /api/members/{id}}: 삭제(int)
+	{GET /api/members}: 목록조회()
+	{POST /api/members}: 추가(Member)
+	{POST /api/members/login}: 로그인(Member)
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.WalletController:
+	{GET /api/wallets/of/{mid}}: 조회By소유자(long)
+	{GET /api/wallets/{address}}: 조회(String)
+	{GET /api/wallets}: 목록조회()
+	{POST /api/wallets}: 등록(Wallet)
+	{PUT /api/wallets/{address}}: 충전(String)
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.h.GlobalExceptionHandler:
+	
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2019-09-11 13:28:47 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 34 mappings in 'requestMappingHandlerMapping'
+2019-09-11 13:28:47 [restartedMain] DEBUG o.s.w.s.h.BeanNameUrlHandlerMapping - Detected 0 mappings in 'beanNameHandlerMapping'
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/webjars/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/webjars/"]
+2019-09-11 13:28:47 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2019-09-11 13:28:47 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-09-11 13:28:47 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-09-11 13:28:47 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-09-11 13:28:47 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-11 13:28:47 [restartedMain] INFO  com.bcauction.Application - Started Application in 2.706 seconds (JVM running for 4.65)
+2019-09-11 13:28:48 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:48 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@6b58d343
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No LocaleResolver 'localeResolver': using default [AcceptHeaderLocaleResolver]
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No ThemeResolver 'themeResolver': using default [FixedThemeResolver]
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No RequestToViewNameTranslator 'viewNameTranslator': using default [DefaultRequestToViewNameTranslator]
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No FlashMapManager 'flashMapManager': using default [SessionFlashMapManager]
+2019-09-11 13:28:48 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2019-09-11 13:28:48 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - OPTIONS "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-09-11 13:28:48 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:48 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:28:48 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:48 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-09-11 13:28:48 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.bcauction.domain.Member@2fce515c]
+2019-09-11 13:28:48 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.Member@2fce515c]
+2019-09-11 13:28:48 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:28:48 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@46ccc425]
+2019-09-11 13:28:48 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:48 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:28:48 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/of/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:48 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회By소유자(long)
+2019-09-11 13:28:48 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:28:49 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:28:49 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@6f2cf7ce]
+2019-09-11 13:28:49 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:49 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:28:49 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/0x49de5EEDfCbc6fFEB89760E1cC86101E7f85e8cA", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:49 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회(java.lang.String)
+2019-09-11 13:28:49 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0x49de5EEDfCbc6fFEB89760E1cC86101E7f85e8cA]
+2019-09-11 13:28:49 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:28:49 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@6c58ecc9]
+2019-09-11 13:28:49 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:49 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:28:50 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:50 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:28:50 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:28:50 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:28:50 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:28:50 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:50 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:28:53 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/125", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:53 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:28:53 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/125", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:53 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [125]
+2019-09-11 13:28:53 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:28:53 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [125]
+2019-09-11 13:28:53 [http-nio-8080-exec-7] WARN  o.h.fabric.sdk.helper.Config - Failed to load any configuration from: config.properties. Using toolkit defaults
+2019-09-11 13:28:53 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:28:53 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:28:53 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:53 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:28:53 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:28:53 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:28:53 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:28:53 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:28:53 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@682a584a]
+2019-09-11 13:28:53 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:53 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:28:53 [http-nio-8080-exec-7] INFO  com.bcauction.domain.CommonUtil - file| url=file:/C:/Workspace/blockchain-sub3/haribo-backend/target/classes/fabric-ca.pem
+2019-09-11 13:28:53 [http-nio-8080-exec-7] INFO  com.bcauction.domain.CommonUtil - C:\Workspace\blockchain-sub3\haribo-backend\target\classes\fabric-ca.pem
+2019-09-11 13:28:53 [http-nio-8080-exec-7] WARN  o.h.fabric_ca.sdk.helper.Config - Failed to load any configuration from: config.properties. Using toolkit defaults
+2019-09-11 13:28:55 [http-nio-8080-exec-7] INFO  org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: auctionchannel001} eventThread started shutdown: false  thread: null 
+2019-09-11 13:28:55 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:28:55 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-11 13:28:55 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-11 13:28:55 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:28:55 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:38:44 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-09-11 13:38:44 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-11 13:38:44 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2019-09-11 13:38:44 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2019-09-11 13:38:47 [restartedMain] INFO  com.bcauction.Application - Starting Application on DESKTOP-KVCQHCD with PID 11336 (C:\Workspace\blockchain-sub3\haribo-backend\target\classes started by multicampus in C:\Workspace\blockchain-sub3\haribo-backend)
+2019-09-11 13:38:47 [restartedMain] DEBUG com.bcauction.Application - Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-09-11 13:38:47 [restartedMain] INFO  com.bcauction.Application - No active profile set, falling back to default profiles: default
+2019-09-11 13:38:47 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-11 13:38:47 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-11 13:38:48 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-09-11 13:38:48 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-09-11 13:38:48 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-09-11 13:38:48 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-09-11 13:38:48 [restartedMain] DEBUG o.s.web.context.ContextLoader - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-09-11 13:38:48 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 948 ms
+2019-09-11 13:38:49 [restartedMain] INFO  c.b.a.impl.EthBlockListeningService - New Block Subscribed Here
+2019-09-11 13:38:49 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-09-11 13:38:49 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**/favicon.ico] onto ResourceHttpRequestHandler [class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/], class path resource []]
+2019-09-11 13:38:49 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-09-11 13:38:49 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-11 13:38:49 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.AuctionController:
+	{PUT /api/auctions/{aid}/by/{mid}}: 경매종료(long,long)
+	{POST /api/auctions}: 생성(Auction)
+	{GET /api/auctions}: 목록조회()
+	{PUT /api/auctions/bid}: 입찰(Bid)
+	{GET /api/auctions/{id}}: 조회(long)
+	{DELETE /api/auctions/{aid}/by/{mid}}: 경매취소(long,long)
+	{GET /api/auctions/owner/{id}}: 사용자경매목록조회(int)
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.DigitalWorkController:
+	{POST /api/works}: 등록(DigitalWork)
+	{GET /api/works}: 목록조회()
+	{GET /api/works/{id}}: 조회(int)
+	{PUT /api/works}: 수정(DigitalWork)
+	{DELETE /api/works/{id}}: 삭제(int)
+	{GET /api/works/owner/{id}}: 사용자별작품목록조회(int)
+	{GET /api/works/history/{id}}: 작품이력조회(int)
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.EthereumController:
+	{GET /api/eth/block/{id}}: 블록검색(String)
+	{GET /api/eth/address/{addr}}: 주소검색(String)
+	{GET /api/eth/auctions/{addr}}: 경매검색(String)
+	{GET /api/eth/auctions}: 경매목록조회()
+	{GET /api/eth/blocks}: 최근블록조회()
+	{GET /api/eth/txes}: 최근트랜잭션조회()
+	{GET /api/eth/txes/{id}}: 트랜잭션검색(String)
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.MemberController:
+	{GET /api/members}: 목록조회()
+	{GET /api/members/{id}}: 조회(int)
+	{POST /api/members}: 추가(Member)
+	{PUT /api/members}: 수정(Member)
+	{POST /api/members/login}: 로그인(Member)
+	{DELETE /api/members/{id}}: 삭제(int)
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.WalletController:
+	{GET /api/wallets/of/{mid}}: 조회By소유자(long)
+	{POST /api/wallets}: 등록(Wallet)
+	{GET /api/wallets}: 목록조회()
+	{GET /api/wallets/{address}}: 조회(String)
+	{PUT /api/wallets/{address}}: 충전(String)
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.h.GlobalExceptionHandler:
+	
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2019-09-11 13:38:49 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 34 mappings in 'requestMappingHandlerMapping'
+2019-09-11 13:38:49 [restartedMain] DEBUG o.s.w.s.h.BeanNameUrlHandlerMapping - Detected 0 mappings in 'beanNameHandlerMapping'
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/webjars/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/webjars/"]
+2019-09-11 13:38:49 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2019-09-11 13:38:49 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-09-11 13:38:49 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-09-11 13:38:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-09-11 13:38:49 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-11 13:38:49 [restartedMain] INFO  com.bcauction.Application - Started Application in 2.479 seconds (JVM running for 3.268)
+2019-09-11 13:39:07 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@1e728f7c
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No LocaleResolver 'localeResolver': using default [AcceptHeaderLocaleResolver]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No ThemeResolver 'themeResolver': using default [FixedThemeResolver]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No RequestToViewNameTranslator 'viewNameTranslator': using default [DefaultRequestToViewNameTranslator]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No FlashMapManager 'flashMapManager': using default [SessionFlashMapManager]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2019-09-11 13:39:07 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.bcauction.domain.Member@3f303b4c]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.Member@3f303b4c]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@77a8a3cb]
+2019-09-11 13:39:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:07 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:07 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/of/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:07 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회By소유자(long)
+2019-09-11 13:39:07 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:39:07 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:07 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@5dc8f34f]
+2019-09-11 13:39:07 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:07 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:07 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/0x49de5EEDfCbc6fFEB89760E1cC86101E7f85e8cA", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:07 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회(java.lang.String)
+2019-09-11 13:39:07 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0x49de5EEDfCbc6fFEB89760E1cC86101E7f85e8cA]
+2019-09-11 13:39:07 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:07 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@43a7ea1e]
+2019-09-11 13:39:07 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:07 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:08 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:08 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:39:08 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:39:08 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:08 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:39:08 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:08 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:11 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:11 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:39:11 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:39:11 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:11 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:39:11 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:11 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:12 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/4", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:12 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/4", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:12 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:39:12 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:39:12 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [4]
+2019-09-11 13:39:12 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [4]
+2019-09-11 13:39:12 [http-nio-8080-exec-9] WARN  o.h.fabric.sdk.helper.Config - Failed to load any configuration from: config.properties. Using toolkit defaults
+2019-09-11 13:39:13 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:13 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:39:13 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:13 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:13 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:13 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:39:13 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:39:13 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:13 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@242ca35e]
+2019-09-11 13:39:13 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:13 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:13 [http-nio-8080-exec-9] INFO  com.bcauction.domain.CommonUtil - file| url=file:/C:/Workspace/blockchain-sub3/haribo-backend/target/classes/fabric-ca.pem
+2019-09-11 13:39:13 [http-nio-8080-exec-9] INFO  com.bcauction.domain.CommonUtil - C:\Workspace\blockchain-sub3\haribo-backend\target\classes\fabric-ca.pem
+2019-09-11 13:39:13 [http-nio-8080-exec-9] WARN  o.h.fabric_ca.sdk.helper.Config - Failed to load any configuration from: config.properties. Using toolkit defaults
+2019-09-11 13:39:14 [http-nio-8080-exec-9] INFO  org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: auctionchannel001} eventThread started shutdown: false  thread: null 
+2019-09-11 13:39:15 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:39:15 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-11 13:39:15 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-11 13:39:15 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:15 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:39:18 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:18 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:39:18 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:39:18 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:18 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:39:18 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:18 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:21 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/121", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:21 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/121", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:21 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:39:21 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:39:21 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [121]
+2019-09-11 13:39:21 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [121]
+2019-09-11 13:39:21 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:21 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:39:21 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:21 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:21 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:39:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:39:22 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:39:22 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 44 path $[0].createdAt]
+2019-09-11 13:39:22 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:22 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 44 path $[0].createdAt"]
+2019-09-11 13:39:22 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 44 path $[0].createdAt]
+2019-09-11 13:39:22 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:22 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:39:22 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:22 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@62062312]
+2019-09-11 13:39:22 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:22 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:33 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:33 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:39:33 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:39:33 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:33 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:39:33 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:33 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:35 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/1", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:35 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/1", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:35 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:39:35 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:39:35 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [1]
+2019-09-11 13:39:35 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [1]
+2019-09-11 13:39:35 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:35 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }]
+2019-09-11 13:39:35 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:35 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:35 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/4", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:35 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:39:35 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [4]
+2019-09-11 13:39:35 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:39:35 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-11 13:39:35 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-11 13:39:35 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:35 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:39:35 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:35 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@4623079d]
+2019-09-11 13:39:35 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:35 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:42 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:42 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:39:42 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:39:42 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:42 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:39:42 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:42 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:46 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/125", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:46 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/125", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:46 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:39:46 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:39:46 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [125]
+2019-09-11 13:39:46 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [125]
+2019-09-11 13:39:46 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:46 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:39:46 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:46 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:46 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:46 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:39:46 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:39:46 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:39:46 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-11 13:39:46 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-11 13:39:46 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:46 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:39:46 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:46 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@3a6468d4]
+2019-09-11 13:39:46 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:46 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:50 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:50 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:39:50 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:39:50 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:50 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:39:50 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:50 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:53 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/121", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:53 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/121", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:53 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:39:53 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:39:53 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [121]
+2019-09-11 13:39:53 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [121]
+2019-09-11 13:39:53 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:39:53 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 44 path $[0].createdAt]
+2019-09-11 13:39:53 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:53 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 44 path $[0].createdAt"]
+2019-09-11 13:39:53 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 44 path $[0].createdAt]
+2019-09-11 13:39:53 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:53 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:39:53 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:53 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:39:53 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:53 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:39:53 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:39:53 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:39:53 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:39:53 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:39:53 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@35e4587d]
+2019-09-11 13:39:53 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:39:53 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:43:31 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:43:31 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:43:31 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:43:31 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:43:31 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:43:31 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:43:31 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:43:35 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/117", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:43:35 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/117", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:43:35 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:43:35 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:43:35 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [117]
+2019-09-11 13:43:35 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [117]
+2019-09-11 13:43:35 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:43:35 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:43:35 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:43:35 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:43:35 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:43:35 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-11 13:43:35 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-11 13:43:35 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:43:35 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:43:35 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:43:35 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:43:35 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:43:35 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:43:35 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@696b8607]
+2019-09-11 13:43:35 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:43:35 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:43:53 [Thread-10] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-11 13:43:53 [Thread-10] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2019-09-11 13:43:53 [Thread-10] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2019-09-11 13:43:54 [restartedMain] INFO  com.bcauction.Application - Starting Application on DESKTOP-KVCQHCD with PID 11336 (C:\Workspace\blockchain-sub3\haribo-backend\target\classes started by multicampus in C:\Workspace\blockchain-sub3\haribo-backend)
+2019-09-11 13:43:54 [restartedMain] DEBUG com.bcauction.Application - Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-09-11 13:43:54 [restartedMain] INFO  com.bcauction.Application - No active profile set, falling back to default profiles: default
+2019-09-11 13:43:54 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-09-11 13:43:54 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-09-11 13:43:54 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-09-11 13:43:54 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-09-11 13:43:54 [restartedMain] DEBUG o.s.web.context.ContextLoader - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-09-11 13:43:54 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 266 ms
+2019-09-11 13:43:54 [restartedMain] INFO  c.b.a.impl.EthBlockListeningService - New Block Subscribed Here
+2019-09-11 13:43:54 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2019-09-11 13:43:54 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**/favicon.ico] onto ResourceHttpRequestHandler [class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/], class path resource []]
+2019-09-11 13:43:54 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-09-11 13:43:54 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-11 13:43:54 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.AuctionController:
+	{PUT /api/auctions/{aid}/by/{mid}}: 경매종료(long,long)
+	{POST /api/auctions}: 생성(Auction)
+	{GET /api/auctions}: 목록조회()
+	{PUT /api/auctions/bid}: 입찰(Bid)
+	{GET /api/auctions/{id}}: 조회(long)
+	{DELETE /api/auctions/{aid}/by/{mid}}: 경매취소(long,long)
+	{GET /api/auctions/owner/{id}}: 사용자경매목록조회(int)
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.DigitalWorkController:
+	{POST /api/works}: 등록(DigitalWork)
+	{GET /api/works}: 목록조회()
+	{GET /api/works/{id}}: 조회(int)
+	{PUT /api/works}: 수정(DigitalWork)
+	{DELETE /api/works/{id}}: 삭제(int)
+	{GET /api/works/owner/{id}}: 사용자별작품목록조회(int)
+	{GET /api/works/history/{id}}: 작품이력조회(int)
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.EthereumController:
+	{GET /api/eth/block/{id}}: 블록검색(String)
+	{GET /api/eth/address/{addr}}: 주소검색(String)
+	{GET /api/eth/auctions/{addr}}: 경매검색(String)
+	{GET /api/eth/auctions}: 경매목록조회()
+	{GET /api/eth/blocks}: 최근블록조회()
+	{GET /api/eth/txes}: 최근트랜잭션조회()
+	{GET /api/eth/txes/{id}}: 트랜잭션검색(String)
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.MemberController:
+	{GET /api/members}: 목록조회()
+	{GET /api/members/{id}}: 조회(int)
+	{POST /api/members}: 추가(Member)
+	{PUT /api/members}: 수정(Member)
+	{POST /api/members/login}: 로그인(Member)
+	{DELETE /api/members/{id}}: 삭제(int)
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.WalletController:
+	{GET /api/wallets/of/{mid}}: 조회By소유자(long)
+	{POST /api/wallets}: 등록(Wallet)
+	{GET /api/wallets}: 목록조회()
+	{GET /api/wallets/{address}}: 조회(String)
+	{PUT /api/wallets/{address}}: 충전(String)
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.h.GlobalExceptionHandler:
+	
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2019-09-11 13:43:54 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 34 mappings in 'requestMappingHandlerMapping'
+2019-09-11 13:43:54 [restartedMain] DEBUG o.s.w.s.h.BeanNameUrlHandlerMapping - Detected 0 mappings in 'beanNameHandlerMapping'
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/webjars/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/webjars/"]
+2019-09-11 13:43:54 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2019-09-11 13:43:54 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-09-11 13:43:54 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-09-11 13:43:55 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-09-11 13:43:55 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-11 13:43:55 [restartedMain] INFO  com.bcauction.Application - Started Application in 0.662 seconds (JVM running for 308.309)
+2019-09-11 13:43:55 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2019-09-11 13:43:58 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:43:58 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@5ff37b3c
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No LocaleResolver 'localeResolver': using default [AcceptHeaderLocaleResolver]
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No ThemeResolver 'themeResolver': using default [FixedThemeResolver]
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No RequestToViewNameTranslator 'viewNameTranslator': using default [DefaultRequestToViewNameTranslator]
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No FlashMapManager 'flashMapManager': using default [SessionFlashMapManager]
+2019-09-11 13:43:58 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2019-09-11 13:43:58 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:43:58 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:43:58 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:43:58 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:44:01 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/22", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:44:01 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/22", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:44:01 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:44:01 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:44:01 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [22]
+2019-09-11 13:44:01 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [22]
+2019-09-11 13:44:01 [http-nio-8080-exec-3] INFO  com.bcauction.domain.CommonUtil - file| url=file:/C:/Workspace/blockchain-sub3/haribo-backend/target/classes/fabric-ca.pem
+2019-09-11 13:44:01 [http-nio-8080-exec-3] INFO  com.bcauction.domain.CommonUtil - C:\Workspace\blockchain-sub3\haribo-backend\target\classes\fabric-ca.pem
+2019-09-11 13:44:01 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:44:01 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:44:01 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:44:01 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:44:01 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:44:01 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:44:01 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:44:01 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:44:01 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@66f03970]
+2019-09-11 13:44:01 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:44:01 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:44:01 [http-nio-8080-exec-3] INFO  org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 6, name: auctionchannel001} eventThread started shutdown: false  thread: null 
+2019-09-11 13:44:01 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:44:01 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-11 13:44:01 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-11 13:44:01 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:44:01 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:44:08 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:44:08 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWork> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-11 13:44:08 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-11 13:44:08 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:44:08 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 3
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 4
+	이름: 123
+	설명: 123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 6
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 7
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 8
+	이름: test003
+	설명: 003의 작품
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 14
+	이름: 김선일
+	설명: 김선일
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 15
+	이름: 작품
+	설명: 작품
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 16
+	이름: 경매 생성을 테스트해보자
+	설명: 제발
+	공개여부: Y
+	상태: Y
+	회원id: 13 }, { id: 17
+	이름: 김선일
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 18
+	이름: hong
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 19
+	이름: asdasd
+	설명: asdasd
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 20
+	이름: 123412313123
+	설명: 123123123123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 21
+	이름: 이거다이거
+	설명: 이거다이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 22
+	이름: 진짜이거
+	설명: 이거이거이거
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 24
+	이름: 테스트의 작품
+	설명: 테테테
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 25
+	이름: GETSET METHOD
+	설명: ?METHOD
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 27
+	이름: 김준영
+	설명: 준영
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 28
+	이름: kim123
+	설명: 1234321
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 29
+	이름: boer
+	설명: BORA
+	공개여부: Y
+	상태: Y
+	회원id: 14 }, { id: 39
+	이름: zzxczxc
+	설명: zzzxcxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 40
+	이름: 공개
+	설명: 공개
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 41
+	이름: 김선일
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 42
+	이름: 마지막
+	설명: 기회
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 43
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 44
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 45
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 46
+	이름: 김선일
+	설명: ksl
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 51
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 52
+	이름: 111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 54
+	이름: 11111111111
+	설명: 111
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 55
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 56
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 57
+	이름: a
+	설명: a
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 58
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 59
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 60
+	이름: zzz
+	설명: zzz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 61
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 62
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 63
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 64
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 65
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 67
+	이름: cxz
+	설명: zcx
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 68
+	이름: asd
+	설명: asd
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 69
+	이름: zxc
+	설명: zxc
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 70
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 71
+	이름: czx
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 72
+	이름: s
+	설명: s
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 73
+	이름: z
+	설명: z
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 74
+	이름: x
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 75
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 78
+	이름: d
+	설명: d
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 79
+	이름: zz
+	설명: zz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 82
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 83
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 85
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 86
+	이름: 입찰할꺼
+	설명: 입찰한다
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 87
+	이름: test007의 작품
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 16 }, { id: 88
+	이름: test011 로로
+	설명: ㄹ
+	공개여부: Y
+	상태: Y
+	회원id: 17 }, { id: 89
+	이름: test012 작품
+	설명: 테스트 012
+	공개여부: Y
+	상태: Y
+	회원id: 19 }, { id: 90
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 91
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 92
+	이름: 2
+	설명: 2
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 93
+	이름: 3
+	설명: 3
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 94
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 95
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 96
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 97
+	이름: kim
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 98
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 99
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 100
+	이름: test
+	설명: etst
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 101
+	이름: tt
+	설명: tt
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 102
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 103
+	이름: aaa
+	설명: aaa
+	공개여부: Y
+	상태: Y
+	회원id: 11 }, { id: 105
+	이름: 입찰해보자
+	설명: 입찰해보자
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 106
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 107
+	이름: 22
+	설명: 22
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 108
+	이름: 09-10 13:42
+	설명: 09-10 13:42
+	공개여부: Y
+	상태: Y
+	회원id: 4 }, { id: 109
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 110
+	이름: 11
+	설명: 11
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 111
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 112
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 113
+	이름: 1
+	설명: 1
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 114
+	이름: 123
+	설명: 123
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 117
+	이름: z
+	설명: x
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 121
+	이름: cxz
+	설명: cxz
+	공개여부: Y
+	상태: Y
+	회원id: 3 }, { id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]]
+2019-09-11 13:44:08 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:44:08 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:44:11 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/125", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:44:11 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/125", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:44:11 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-11 13:44:11 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-11 13:44:11 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [125]
+2019-09-11 13:44:11 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [125]
+2019-09-11 13:44:11 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:44:11 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 125
+	이름: 1234
+	설명: 1234
+	공개여부: Y
+	상태: Y
+	회원id: 3 }]
+2019-09-11 13:44:11 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:44:11 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:44:11 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/3", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-11 13:44:11 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-11 13:44:11 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [3]
+2019-09-11 13:44:11 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-11 13:44:11 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-11 13:44:11 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-11 13:44:11 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:44:11 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-11 13:44:11 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-11 13:44:11 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@7fef3f22]
+2019-09-11 13:44:11 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-11 13:44:11 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-11 13:44:28 [Thread-14] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-11 13:44:28 [Thread-14] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2019-09-11 13:44:28 [Thread-14] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2019-09-11 13:44:29 [restartedMain] INFO  com.bcauction.Application - Starting Application on DESKTOP-KVCQHCD with PID 11336 (C:\Workspace\blockchain-sub3\haribo-backend\target\classes started by multicampus in C:\Workspace\blockchain-sub3\haribo-backend)
+2019-09-11 13:44:29 [restartedMain] DEBUG com.bcauction.Application - Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-09-11 13:44:29 [restartedMain] INFO  com.bcauction.Application - No active profile set, falling back to default profiles: default
+2019-09-11 13:44:29 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-09-11 13:44:29 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-09-11 13:44:29 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-09-11 13:44:29 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-09-11 13:44:29 [restartedMain] DEBUG o.s.web.context.ContextLoader - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-09-11 13:44:29 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 250 ms
+2019-09-11 13:44:29 [restartedMain] INFO  c.b.a.impl.EthBlockListeningService - New Block Subscribed Here
+2019-09-11 13:44:29 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2019-09-11 13:44:29 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**/favicon.ico] onto ResourceHttpRequestHandler [class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/], class path resource []]
+2019-09-11 13:44:29 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-09-11 13:44:29 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-11 13:44:29 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.AuctionController:
+	{PUT /api/auctions/{aid}/by/{mid}}: 경매종료(long,long)
+	{POST /api/auctions}: 생성(Auction)
+	{GET /api/auctions}: 목록조회()
+	{PUT /api/auctions/bid}: 입찰(Bid)
+	{GET /api/auctions/{id}}: 조회(long)
+	{DELETE /api/auctions/{aid}/by/{mid}}: 경매취소(long,long)
+	{GET /api/auctions/owner/{id}}: 사용자경매목록조회(int)
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.DigitalWorkController:
+	{POST /api/works}: 등록(DigitalWork)
+	{GET /api/works}: 목록조회()
+	{GET /api/works/{id}}: 조회(int)
+	{PUT /api/works}: 수정(DigitalWork)
+	{DELETE /api/works/{id}}: 삭제(int)
+	{GET /api/works/owner/{id}}: 사용자별작품목록조회(int)
+	{GET /api/works/history/{id}}: 작품이력조회(int)
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.EthereumController:
+	{GET /api/eth/block/{id}}: 블록검색(String)
+	{GET /api/eth/address/{addr}}: 주소검색(String)
+	{GET /api/eth/auctions/{addr}}: 경매검색(String)
+	{GET /api/eth/auctions}: 경매목록조회()
+	{GET /api/eth/blocks}: 최근블록조회()
+	{GET /api/eth/txes}: 최근트랜잭션조회()
+	{GET /api/eth/txes/{id}}: 트랜잭션검색(String)
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.MemberController:
+	{GET /api/members}: 목록조회()
+	{GET /api/members/{id}}: 조회(int)
+	{POST /api/members}: 추가(Member)
+	{PUT /api/members}: 수정(Member)
+	{POST /api/members/login}: 로그인(Member)
+	{DELETE /api/members/{id}}: 삭제(int)
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.WalletController:
+	{GET /api/wallets/of/{mid}}: 조회By소유자(long)
+	{POST /api/wallets}: 등록(Wallet)
+	{GET /api/wallets}: 목록조회()
+	{GET /api/wallets/{address}}: 조회(String)
+	{PUT /api/wallets/{address}}: 충전(String)
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.h.GlobalExceptionHandler:
+	
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2019-09-11 13:44:29 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 34 mappings in 'requestMappingHandlerMapping'
+2019-09-11 13:44:29 [restartedMain] DEBUG o.s.w.s.h.BeanNameUrlHandlerMapping - Detected 0 mappings in 'beanNameHandlerMapping'
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/webjars/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/webjars/"]
+2019-09-11 13:44:29 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2019-09-11 13:44:29 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-09-11 13:44:29 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-09-11 13:44:29 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-09-11 13:44:29 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-11 13:44:29 [restartedMain] INFO  com.bcauction.Application - Started Application in 0.637 seconds (JVM running for 343.13)
+2019-09-11 13:44:29 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
