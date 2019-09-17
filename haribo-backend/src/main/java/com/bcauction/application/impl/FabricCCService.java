@@ -1,5 +1,6 @@
 package com.bcauction.application.impl;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,7 +8,10 @@ import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 import org.hyperledger.fabric.sdk.BlockEvent.TransactionEvent;
 import org.hyperledger.fabric.sdk.ChaincodeID;
@@ -32,9 +36,6 @@ import com.bcauction.application.IFabricCCService;
 import com.bcauction.domain.CommonUtil;
 import com.bcauction.domain.FabricAsset;
 import com.bcauction.domain.FabricUser;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 @Service
 public class FabricCCService implements IFabricCCService {
@@ -245,29 +246,28 @@ public class FabricCCService implements IFabricCCService {
 		tpr.setArgs(args);
 		String res = null;
 		Collection<ProposalResponse> response = null;
-
+		CompletableFuture<TransactionEvent> tmp = null;
 		try {
 			response = channel.sendTransactionProposal(tpr);
 			for (ProposalResponse pr : response) {
 				res = new String(pr.getChaincodeActionResponsePayload());
-				System.out.println(res);
 			}
-
+			tmp = channel.sendTransaction(response);
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
 		channel.sendTransaction(response);
-
-		boolean result = true;
-		for (ProposalResponse pr : response) {
-			try {
-				if (pr.getChaincodeActionResponseStatus() != 200)
-					result = false;
-			} catch (InvalidArgumentException e) {
-				e.printStackTrace();
-			}
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return result;
@@ -282,7 +282,40 @@ public class FabricCCService implements IFabricCCService {
 	 */
 	private boolean expireAssetOwnership(final long 작품id, final long 소유자) {
 		// TODO
-		return false;
+
+		TransactionProposalRequest tpr = hfClient.newTransactionProposalRequest();
+		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
+		tpr.setChaincodeID(id);
+		tpr.setFcn("expireAssetOwnership");
+		String args[] = { Long.toString(작품id), Long.toString(소유자) };
+		tpr.setArgs(args);
+		String res = null;
+		Collection<ProposalResponse> response = null;
+		CompletableFuture<TransactionEvent> tmp = null;
+		try {
+			response = channel.sendTransactionProposal(tpr);
+			for (ProposalResponse pr : response) {
+				res = new String(pr.getChaincodeActionResponsePayload());
+			}
+			tmp = channel.sendTransaction(response);
+		} catch (InvalidArgumentException e) {
+			e.printStackTrace();
+		} catch (ProposalException e) {
+			e.printStackTrace();
+		}
+		channel.sendTransaction(response);
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	/**
@@ -294,7 +327,40 @@ public class FabricCCService implements IFabricCCService {
 	 */
 	private boolean updateAssetOwnership(final long 작품id, final long to) {
 		// TODO
-		return false;
+
+		TransactionProposalRequest tpr = hfClient.newTransactionProposalRequest();
+		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
+		tpr.setChaincodeID(id);
+		tpr.setFcn("updateAssetOwnership");
+		String args[] = { Long.toString(작품id), Long.toString(to) };
+		tpr.setArgs(args);
+		String res = null;
+		Collection<ProposalResponse> response = null;
+		CompletableFuture<TransactionEvent> tmp = null;
+		try {
+			response = channel.sendTransactionProposal(tpr);
+			for (ProposalResponse pr : response) {
+				res = new String(pr.getChaincodeActionResponsePayload());
+			}
+			tmp = channel.sendTransaction(response);
+		} catch (InvalidArgumentException e) {
+			e.printStackTrace();
+		} catch (ProposalException e) {
+			e.printStackTrace();
+		}
+		channel.sendTransaction(response);
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	/**
@@ -312,35 +378,28 @@ public class FabricCCService implements IFabricCCService {
 		qbcr.setChaincodeID(id);
 		qbcr.setFcn("getAssetHistory");
 		qbcr.setArgs(Long.toString(작품id));
-		String response = null;
+		JsonArray ja = null;
 		try {
 			Collection<ProposalResponse> res = channel.queryByChaincode(qbcr);
 			for (ProposalResponse pr : res) {
-				response = new String(pr.getChaincodeActionResponsePayload());
-				System.out.println(response);
+				ByteArrayInputStream bais = new ByteArrayInputStream(pr.getChaincodeActionResponsePayload());
+				JsonReader reader = Json.createReader(bais);
+				ja = reader.readArray();
 			}
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-//		Gson gson = new GsonBuilder().create();
-		Gson gson = new Gson();
-		
-		ArrayList<FabricAsset> list = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
-		System.out.println("Start list");
-		for(FabricAsset f : list)
-			System.out.println(f);
+		ArrayList<FabricAsset> list = new ArrayList<FabricAsset>();
+		System.out.println(ja.size());
+		for (int i = 0; i < ja.size(); i++) {
+			JsonObject jo = (JsonObject) ja.get(i);
+			FabricAsset fa = getAssetRecord(jo);
+			list.add(fa);
+		}
 
-
-		System.out.println(response);
-//		Object o = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
-//		FabricAsset fa = 
-//		System.out.println(fa.getAssetId());
-//		System.out.println(fa.getOwner());
-//		System.out.println(fa.getCreatedAt());
-//		System.out.println(fa.getExpiredAt());
-		return null;
+		return list;
 	}
 
 	/**
@@ -353,26 +412,27 @@ public class FabricCCService implements IFabricCCService {
 	public FabricAsset query(final long 작품id) {
 		if (this.hfClient == null || this.channel == null)
 			loadChannel();
-
 		QueryByChaincodeRequest qbcr = hfClient.newQueryProposalRequest();
 		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
 		qbcr.setChaincodeID(id);
 		qbcr.setFcn("query");
 		qbcr.setArgs(Long.toString(작품id));
-		String response = null;
+		JsonObject jo = null;
 		try {
 			Collection<ProposalResponse> res = channel.queryByChaincode(qbcr);
 			for (ProposalResponse pr : res) {
-				response = new String(pr.getChaincodeActionResponsePayload());
-
+				ByteArrayInputStream bais = new ByteArrayInputStream(pr.getChaincodeActionResponsePayload());
+				JsonReader reader = Json.createReader(bais);
+				jo = reader.readObject();
 			}
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-		System.out.println(response + "' : 리스폰>");
-		return new FabricAsset();
+		System.out.println(jo);
+		FabricAsset fa = getAssetRecord(jo);
+		return fa;
 	}
 
 	private static FabricAsset getAssetRecord(final JsonObject rec) {
