@@ -6,7 +6,7 @@
  
 //Docker 공식 GPG 키 등록
 -  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
-
+ 
 //저장소 설정
 - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 
