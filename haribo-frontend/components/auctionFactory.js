@@ -111,7 +111,22 @@ function auction_withdraw(options) {
  * 경매 컨트랙트 주소: options.contractAddress
  *  */
 function auction_close(options, onConfirm) {
+    var contract = createAuctionContract(web3, options.contractAddress);
+    var closeAuctionCall = contract.methods.endAuction();
+    var encodedABI = closeAuctionCall.encodeABI();
 
+    var tx = {
+        from: options.walletAddress,
+        to: options.contractAddress,
+        gas: 3000000,
+        data: encodedABI
+    }
+    
+    web3.eth.accounts.signTransaction(tx, options.privateKey).then(response => {
+        web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
+            onConfirm(response);
+        });
+    });
 
 }
 
@@ -121,7 +136,6 @@ function auction_close(options, onConfirm) {
  * 경매 컨트랙트 주소: options.contractAddress
  *  */
 function auction_cancel(options, onConfirm) {
-    console.log("auction_cancel In");
     var web3 = createWeb3();
     var contract = createAuctionContract(web3, options.contractAddress);
     var cancelAuctionCall = contract.methods.cancelAuction();
@@ -133,6 +147,7 @@ function auction_cancel(options, onConfirm) {
         gas: 3000000,
         data: encodedABI
     }
+    console.log("tx : " , tx);
 
     web3.eth.accounts.signTransaction(tx, options.privateKey).then(response => {
         web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {

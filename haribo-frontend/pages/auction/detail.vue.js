@@ -99,6 +99,34 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
              */
             var scope = this;
             var privateKey = window.prompt("경매를 종료하시려면 지갑 비밀키를 입력해주세요.", "");
+            walletService.isValidPrivateKey(scope.creator.id, privateKey, (isValid, walletAddress) => {
+                console.log("isValid : ", isValid);
+                if (isValid) {
+                    console.log("auction : ", scope.auction);
+                    var options = {
+                        privateKey: privateKey,
+                        contractAddress: scope.auction['경매컨트랙트주소'],
+                        walletAddress: walletAddress
+                    }
+                    console.log("options : ", options);
+
+                    auction_close(options, response => {
+                        console.log("취소 콜백, gasusesd : ");
+                        console.log(response.gasUsed);
+                        if (response.gasUsed == 3000000) {
+                            alert("경매 종료중 오류가 발생했습니다.");
+                        } else {
+                            auctionService.close(this.$route.params.id, scope.creator.id, () => {
+                                alert("경매가 종료되었습니다.");
+                            }, () => {
+                                alert("경매 종료후 데이터베이스 갱신에 실패했습니다");
+                            });
+
+                        }
+                        console.log(response);
+                    });
+                }
+            });
 
             // register.vue.js, bid.vue.js를 참조하여 완성해 봅니다. 
         },
@@ -123,19 +151,22 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                     console.log("options : ", options);
 
                     auction_cancel(options, response => {
-                        console.log("취소 콜백");
+                        console.log("취소 콜백, gasusesd : ");
+                        console.log(response.gasUsed);
+                        if (response.gasUsed == 3000000) {
+                            alert("경매 취소에 실패했습니다");
+                        } else {
+                            auctionService.cancel(this.$route.params.id, scope.creator.id, () => {
+                                alert("경매가 취소되었습니다.");
+                            }, () => {
+                                alert("경매 취소후 데이터베이스 갱신에 실패했습니다");
+                            });
+
+                        }
                         console.log(response);
                     });
                 }
             });
-
-            // var onConfirm = (result) => {
-            //     console.log(result);
-            //     console.log("취소 콜백");
-            // }
-            // console.log("before auction_cancel call");
-            // auction_cancel(options, onConfirm);
-            // register.vue.js, bid.vue.js를 참조하여 완성해 봅니다. 
         }
     },
     mounted: async function () {
@@ -160,6 +191,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                 // 생성자 정보 조회
                 userService.findById(creatorId, function (user) {
                     scope.creator = user;
+                    console.log("scope creator : ", scope.creator);
                 });
             });
 
