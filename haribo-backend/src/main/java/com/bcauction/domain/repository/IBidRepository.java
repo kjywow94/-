@@ -24,4 +24,5 @@ public interface IBidRepository
 
 	@Transactional
 	int 삭제(long id);
+	Bid 최고입잘조회(long id);
 }

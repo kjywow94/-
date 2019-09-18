@@ -111,7 +111,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                     console.log("options : ", options);
 
                     auction_close(options, response => {
-                        console.log("취소 콜백, gasusesd : ");
+                        console.log("종료 콜백, gasusesd : ");
                         console.log(response.gasUsed);
                         if (response.gasUsed == 3000000) {
                             alert("경매 종료중 오류가 발생했습니다.");
@@ -156,9 +156,10 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                         if (response.gasUsed == 3000000) {
                             alert("경매 취소에 실패했습니다");
                         } else {
-                            auctionService.cancel(this.$route.params.id, scope.creator.id, () => {
+                            auctionService.cancel(this.$route.params.id, scope.bidder.id, () => {
                                 alert("경매가 취소되었습니다.");
-                            }, () => {
+                            }, (errorResponse) => {
+                                console.log(errorResponse);
                                 alert("경매 취소후 데이터베이스 갱신에 실패했습니다");
                             });
 

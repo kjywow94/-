@@ -127,7 +127,6 @@ function auction_close(options, onConfirm) {
             onConfirm(response);
         });
     });
-
 }
 
 /**

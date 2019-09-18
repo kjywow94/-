@@ -102,7 +102,23 @@ public class AuctionService implements IAuctionService
 	public Auction 경매종료(final long 경매id, final long 회원id)
 	{
 		// TODO
-		return null;
+		System.out.println("auction 경매종료 경매id: " + 경매id );
+		System.out.println("auction 경매종료 회원id : " + 회원id );
+		Bid bid = this.bidRepository.최고입잘조회(경매id);
+		System.out.println("auction 조회");
+		System.out.println(bid.toString());
+		this.bidRepository.수정(경매id, bid.get경매참여자id(), bid.get입찰금액().toBigInteger());
+		System.out.println("경매 종료 수정 통과");
+		
+		Auction auction = this.auctionRepository.조회(경매id);
+		auction.set상태("E");
+		System.out.println("auction 경매 종료 set E");
+		System.out.println(auction.toString());
+		this.auctionRepository.수정(auction);
+		System.out.println("수정 통과");
+		// 소유권 이전 호출 추가 필요
+		
+		return auction;
 	}
 
 	/**
@@ -119,6 +135,14 @@ public class AuctionService implements IAuctionService
 	public Auction 경매취소(final long 경매id, final long 회원id)
 	{
 		// TODO
-		return null;
+		System.out.println("auctionService 경매id : " + 경매id);
+		System.out.println("auctionService 회원id : " + 회원id);
+		
+		Auction auction = this.auctionRepository.조회(경매id);
+		auction.set상태("C");
+		auction.set종료일시(LocalDateTime.now());
+		this.auctionRepository.수정(auction);
+		
+		return auction;
 	}
 }
