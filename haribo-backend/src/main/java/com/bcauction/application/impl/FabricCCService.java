@@ -1,12 +1,19 @@
 package com.bcauction.application.impl;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
+import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonReader;
 
+import org.hyperledger.fabric.sdk.BlockEvent.TransactionEvent;
 import org.hyperledger.fabric.sdk.ChaincodeID;
 import org.hyperledger.fabric.sdk.Channel;
 import org.hyperledger.fabric.sdk.Enrollment;
@@ -29,18 +36,14 @@ import com.bcauction.application.IFabricCCService;
 import com.bcauction.domain.CommonUtil;
 import com.bcauction.domain.FabricAsset;
 import com.bcauction.domain.FabricUser;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 @Service
-public class FabricCCService implements IFabricCCService
-{
+public class FabricCCService implements IFabricCCService {
 	private static final Logger logger = LoggerFactory.getLogger(FabricCCService.class);
 
 	private HFClient hfClient;
 	private Channel channel;
-	
+
 	/**
 	 * 패브릭 네트워크를 이용하기 위한 정보
 	 */
@@ -75,14 +78,11 @@ public class FabricCCService implements IFabricCCService
 	@Value("${fabric.channel.name}")
 	private String CHANNEL_NAME;
 
-
 	/**
-	 * 체인코드를 이용하기 위하여
-	 * 구축해놓은 패브릭 네트워크의 채널을 가져오는
-	 * 기능을 구현한다.
-	 * 여기에서 this.channel의 값을 초기화 한다
+	 * 체인코드를 이용하기 위하여 구축해놓은 패브릭 네트워크의 채널을 가져오는 기능을 구현한다. 여기에서 this.channel의 값을 초기화
+	 * 한다
 	 */
-	private void loadChannel(){
+	private void loadChannel() {
 		// TODO
 		hfClient = HFClient.createNewInstance();
 		try {
@@ -91,7 +91,7 @@ public class FabricCCService implements IFabricCCService
 			HFCAClient caClient = HFCAClient.createNewInstance(CA_SERVER_URL, p);
 			caClient.setCryptoSuite(cryptoSuite);
 			Enrollment adminEnrollment = caClient.enroll(USER_NAME, USER_SECRET);
-			FabricUser user = new FabricUser(USER_NAME,"org1", ORG_MSP_NAME, adminEnrollment);
+			FabricUser user = new FabricUser(USER_NAME, "org1", ORG_MSP_NAME, adminEnrollment);
 			hfClient.setCryptoSuite(cryptoSuite);
 			hfClient.setUserContext(user);
 			channel = hfClient.newChannel(CHANNEL_NAME);
@@ -100,8 +100,7 @@ public class FabricCCService implements IFabricCCService
 			channel.addPeer(peer);
 			channel.addOrderer(orderer);
 			channel.initialize();
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -117,20 +116,20 @@ public class FabricCCService implements IFabricCCService
 
 	/**
 	 * 소유권 등록을 위해 체인코드 함수를 차례대로 호출한다.
+	 * 
 	 * @param 소유자
 	 * @param 작품id
 	 * @return FabricAsset
 	 */
 	@Override
-	public FabricAsset registerOwnership(final long 소유자, final long 작품id){
-		if(this.channel == null)
+	public FabricAsset registerOwnership(final long 소유자, final long 작품id) {
+		if (this.channel == null)
 			loadChannel();
-		System.out.println(this.channel);
 		boolean res = registerAsset(작품id, 소유자);
-		if(!res)
+		if (!res)
 			return null;
 		res = confirmTimestamp(작품id);
-		if(!res)
+		if (!res)
 			return null;
 
 		return query(작품id);
@@ -138,6 +137,7 @@ public class FabricCCService implements IFabricCCService
 
 	/**
 	 * 소유권 이전을 위해 체인코드 함수를 차례대로 호출한다.
+	 * 
 	 * @param from
 	 * @param to
 	 * @param 작품id
@@ -145,20 +145,24 @@ public class FabricCCService implements IFabricCCService
 	 */
 	@Override
 	public List<FabricAsset> transferOwnership(final long from, final long to, final long 작품id) {
-		if(this.channel == null)
+		if (this.channel == null)
 			loadChannel();
 
 		List<FabricAsset> assets = new ArrayList<>();
 		boolean res = this.expireAssetOwnership(작품id, from);
-		if(!res) return null;
+		if (!res)
+			return null;
 		FabricAsset expired = query(작품id);
-		if(expired == null) return null;
+		if (expired == null)
+			return null;
 		assets.add(expired);
 
 		res = this.updateAssetOwnership(작품id, to);
-		if(!res) return null;
+		if (!res)
+			return null;
 		FabricAsset transferred = query(작품id);
-		if(transferred == null) return null;
+		if (transferred == null)
+			return null;
 		assets.add(transferred);
 
 		return assets;
@@ -166,23 +170,26 @@ public class FabricCCService implements IFabricCCService
 
 	/**
 	 * 소유권 소멸을 위해 체인코드 함수를 호출한다.
+	 * 
 	 * @param 작품id
 	 * @param 소유자id
 	 * @return FabricAsset
 	 */
 	@Override
 	public FabricAsset expireOwnership(final long 작품id, final long 소유자id) {
-		if(this.channel == null)
+		if (this.channel == null)
 			loadChannel();
 
 		boolean res = this.expireAssetOwnership(작품id, 소유자id);
-		if(!res) return null;
+		if (!res)
+			return null;
 
 		return query(작품id);
 	}
 
 	/**
 	 * 체인코드 registerAsset 함수를 호출하는 메소드
+	 * 
 	 * @param 작품id
 	 * @param 소유자
 	 * @return boolean
@@ -193,154 +200,242 @@ public class FabricCCService implements IFabricCCService
 		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
 		tpr.setChaincodeID(id);
 		tpr.setFcn("registerAsset");
-		String[] args = {Long.toString(작품id),Long.toString(소유자)};
+		String[] args = { Long.toString(작품id), Long.toString(소유자) };
 		tpr.setArgs(args);
-		String res = null;
+		String res = "";
 		Collection<ProposalResponse> response = null;
+		CompletableFuture<TransactionEvent> tmp = null;
 		try {
 			response = channel.sendTransactionProposal(tpr);
-			for(ProposalResponse pr : response) {
+			for (ProposalResponse pr : response) {
 				res = new String(pr.getChaincodeActionResponsePayload());
 			}
-				
+			tmp = channel.sendTransaction(response);
+
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-		channel.sendTransaction(response);
-		
-		
-		boolean result = true;
-		for(ProposalResponse pr : response) {
-			try {
-				if(pr.getChaincodeActionResponseStatus() != 200)
-					result = false;
-			} catch (InvalidArgumentException e) {
-				e.printStackTrace();
-			}
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return result;
 	}
 
 	/**
 	 * 체인코드 confirmTimestamp 함수를 호출하는 메소드
+	 * 
 	 * @param 작품id
 	 * @return
 	 */
-	private boolean confirmTimestamp(final long 작품id){
+	private boolean confirmTimestamp(final long 작품id) {
 		// TODO
-		
 		TransactionProposalRequest tpr = hfClient.newTransactionProposalRequest();
 		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
 		tpr.setChaincodeID(id);
 		tpr.setFcn("confirmTimestamp");
-		String args[] = {Long.toString(작품id)};
+		String args[] = { Long.toString(작품id) };
 		tpr.setArgs(args);
 		String res = null;
 		Collection<ProposalResponse> response = null;
+		CompletableFuture<TransactionEvent> tmp = null;
 		try {
 			response = channel.sendTransactionProposal(tpr);
-			for(ProposalResponse pr : response) {
+			for (ProposalResponse pr : response) {
 				res = new String(pr.getChaincodeActionResponsePayload());
 			}
-				
+			tmp = channel.sendTransaction(response);
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
 		channel.sendTransaction(response);
-		
-		
-		boolean result = true;
-		for(ProposalResponse pr : response) {
-			try {
-				if(pr.getChaincodeActionResponseStatus() != 200)
-					result = false;
-			} catch (InvalidArgumentException e) {
-				e.printStackTrace();
-			}
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
 	/**
 	 * 체인코드 expireAssetOwnership를 호출하는 메소드
+	 * 
 	 * @param 작품id
 	 * @param 소유자
 	 * @return
 	 */
 	private boolean expireAssetOwnership(final long 작품id, final long 소유자) {
 		// TODO
-		return false;
+
+		TransactionProposalRequest tpr = hfClient.newTransactionProposalRequest();
+		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
+		tpr.setChaincodeID(id);
+		tpr.setFcn("expireAssetOwnership");
+		String args[] = { Long.toString(작품id), Long.toString(소유자) };
+		tpr.setArgs(args);
+		String res = null;
+		Collection<ProposalResponse> response = null;
+		CompletableFuture<TransactionEvent> tmp = null;
+		try {
+			response = channel.sendTransactionProposal(tpr);
+			for (ProposalResponse pr : response) {
+				res = new String(pr.getChaincodeActionResponsePayload());
+			}
+			tmp = channel.sendTransaction(response);
+		} catch (InvalidArgumentException e) {
+			e.printStackTrace();
+		} catch (ProposalException e) {
+			e.printStackTrace();
+		}
+		channel.sendTransaction(response);
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	/**
 	 * 체인코드 updateAssetOwnership를 호출하는 메소드
+	 * 
 	 * @param 작품id
 	 * @param to
 	 * @return
 	 */
 	private boolean updateAssetOwnership(final long 작품id, final long to) {
 		// TODO
-		return false;
+
+		TransactionProposalRequest tpr = hfClient.newTransactionProposalRequest();
+		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
+		tpr.setChaincodeID(id);
+		tpr.setFcn("updateAssetOwnership");
+		String args[] = { Long.toString(작품id), Long.toString(to) };
+		tpr.setArgs(args);
+		String res = null;
+		Collection<ProposalResponse> response = null;
+		CompletableFuture<TransactionEvent> tmp = null;
+		try {
+			response = channel.sendTransactionProposal(tpr);
+			for (ProposalResponse pr : response) {
+				res = new String(pr.getChaincodeActionResponsePayload());
+			}
+			tmp = channel.sendTransaction(response);
+		} catch (InvalidArgumentException e) {
+			e.printStackTrace();
+		} catch (ProposalException e) {
+			e.printStackTrace();
+		}
+		channel.sendTransaction(response);
+		boolean result = false;
+		try {
+			result = tmp.get().isValid();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	/**
 	 * 체인코드 queryHistory 함수를 호출하는 메소드
+	 * 
 	 * @param 작품id
 	 * @return
 	 */
 	@Override
-	public List<FabricAsset> queryHistory(final long 작품id){
-		if(this.hfClient == null || this.channel == null)
+	public List<FabricAsset> queryHistory(final long 작품id) {
+		if (this.hfClient == null || this.channel == null)
 			loadChannel();
 		QueryByChaincodeRequest qbcr = hfClient.newQueryProposalRequest();
 		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
 		qbcr.setChaincodeID(id);
 		qbcr.setFcn("getAssetHistory");
 		qbcr.setArgs(Long.toString(작품id));
-		String response = null;
+		JsonArray ja = null;
 		try {
 			Collection<ProposalResponse> res = channel.queryByChaincode(qbcr);
-			for(ProposalResponse pr : res) {
-				response = new String(pr.getChaincodeActionResponsePayload());
-				
+			for (ProposalResponse pr : res) {
+				ByteArrayInputStream bais = new ByteArrayInputStream(pr.getChaincodeActionResponsePayload());
+				JsonReader reader = Json.createReader(bais);
+				ja = reader.readArray();
 			}
 		} catch (InvalidArgumentException e) {
 			e.printStackTrace();
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-//		Gson gson = new GsonBuilder().create();
-//		System.out.println(response);
-//		Object o = gson.fromJson( response , new TypeToken<ArrayList<FabricAsset>>(){}.getType() );
+		ArrayList<FabricAsset> list = new ArrayList<FabricAsset>();
+		System.out.println(ja.size());
+		for (int i = 0; i < ja.size(); i++) {
+			JsonObject jo = (JsonObject) ja.get(i);
+			FabricAsset fa = getAssetRecord(jo);
+			list.add(fa);
+		}
 
-
-
-//		System.out.println(fa.getAssetId());
-//		System.out.println(fa.getOwner());
-//		System.out.println(fa.getCreatedAt());
-//		System.out.println(fa.getExpiredAt());
-		return null;
+		return list;
 	}
 
 	/**
 	 * 체인코드 query 함수를 호출하는 메소드
+	 * 
 	 * @param 작품id
 	 * @return
 	 */
 	@Override
-	public FabricAsset query(final long 작품id){
-		if(this.hfClient == null || this.channel == null)
+	public FabricAsset query(final long 작품id) {
+		if (this.hfClient == null || this.channel == null)
 			loadChannel();
-		return null;
+		QueryByChaincodeRequest qbcr = hfClient.newQueryProposalRequest();
+		ChaincodeID id = ChaincodeID.newBuilder().setName("asset").build();
+		qbcr.setChaincodeID(id);
+		qbcr.setFcn("query");
+		qbcr.setArgs(Long.toString(작품id));
+		JsonObject jo = null;
+		try {
+			Collection<ProposalResponse> res = channel.queryByChaincode(qbcr);
+			for (ProposalResponse pr : res) {
+				ByteArrayInputStream bais = new ByteArrayInputStream(pr.getChaincodeActionResponsePayload());
+				JsonReader reader = Json.createReader(bais);
+				jo = reader.readObject();
+			}
+		} catch (InvalidArgumentException e) {
+			e.printStackTrace();
+		} catch (ProposalException e) {
+			e.printStackTrace();
+		}
+		System.out.println(jo);
+		FabricAsset fa = getAssetRecord(jo);
+		return fa;
 	}
 
-	private static FabricAsset getAssetRecord(final JsonObject rec)
-	{
+	private static FabricAsset getAssetRecord(final JsonObject rec) {
 		FabricAsset asset = new FabricAsset();
 
 		asset.setAssetId(rec.getString("assetID"));
@@ -348,8 +443,8 @@ public class FabricCCService implements IFabricCCService
 		asset.setCreatedAt(rec.getString("createdAt"));
 		asset.setExpiredAt(rec.getString("expiredAt"));
 
-		logger.info("Work " + rec.getString("assetID") + " by Owner " + rec.getString("owner") + ": "+
-				            rec.getString("createdAt") + " ~ " + rec.getString("expiredAt"));
+		logger.info("Work " + rec.getString("assetID") + " by Owner " + rec.getString("owner") + ": "
+				+ rec.getString("createdAt") + " ~ " + rec.getString("expiredAt"));
 
 		return asset;
 	}
