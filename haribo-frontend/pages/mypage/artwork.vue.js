@@ -83,6 +83,9 @@ var myArtworkView = Vue.component('MyArtworkView', {
         var scope = this;
         var userId = this.sharedStates.user.id;
 
+        workService.findWorksByOwner(userId, function(data){
+            scope.artworks = data;
+        });
         /**
          * TODO 1. 회원의 작품 목록을 가져옵니다.
          * Backend와 API 연동합니다.
