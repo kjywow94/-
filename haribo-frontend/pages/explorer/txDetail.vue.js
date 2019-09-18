@@ -8,7 +8,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card shadow-sm">
-                            <div class="card-header"><strong>{{ tx.hash }}</strong></div>
+                            <div class="card-header"><strong>{{ tx.txHash }}</strong></div>
                             <table class="table">
                                 <tbody>
                                     <tr>
@@ -25,11 +25,11 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>송신자 주소</th>
-                                        <td><router-link :to="{ name: 'address', params: { address: tx.from }}">{{ tx.from }}</router-link></td>
+                                        <td><router-link :to="{ name: 'explorer.tx.detail.from', params: { address: tx.from }}">{{ tx.from }}</router-link></td>
                                     </tr>
                                     <tr>
                                         <th>수신자 주소</th>
-                                        <td><router-link :to="{ name: 'address', params: { address: tx.to }}">{{ tx.to }}</router-link></td>
+                                        <td><router-link :to="{ name: 'explorer.tx.detail.to', params: { address: tx.to }}">{{ tx.to }}</router-link></td>
                                     </tr>
                                     <tr>
                                         <th>전송한 이더</th>
@@ -79,6 +79,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
              */
             var tn = (tran) => {
                 this.tx = tran;
+                console.log(this.tx);
                 
                 var blockNumber = this.tx.blockNumber;
                 var next = parseInt(blockNumber, 16); 
