@@ -81,7 +81,6 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                 this.tx = tran;
                 console.log(this.tx);
                 
-                  
                 var blockNumber = this.tx.blockNumber;
                 var next = parseInt(blockNumber, 16); 
 
