@@ -46,8 +46,6 @@ var auctionView = Vue.component('AuctionView', {
                 return "경매 마감";
             } else {
                 // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
-                console.log("diff : ", diff);
-                // var d = 
                 var days = endDate.getDate() - now.getDate();
                 var hours = endDate.getHours() - now.getHours();
                 var minutes = endDate.getMinutes() - now.getMinutes();
@@ -60,8 +58,6 @@ var auctionView = Vue.component('AuctionView', {
         var scope = this;
 
         auctionService.findAll(function (data) {
-            console.log("auction data : ");
-            console.log(data);
             var result = data;
 
             // 각 경매별 작품 정보를 불러온다.

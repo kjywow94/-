@@ -2,7 +2,7 @@
 const API_BASE_URL = "http://localhost:8080";
 
 // 배포한 옥션 컨트랙트 주소를 지정합니다. 
-const AUCTION_CONTRACT_ADDRESS = "0x88741528466D42bc9D045ccA11CEe5a57bE1A659";
+const AUCTION_CONTRACT_ADDRESS = "0xcE8A0663BB3fB942C6415D49099696a51C1dc7a8";
 // 이더리움 블록체인 네트워크의 URL을 설정합니다. 
 const BLOCKCHAIN_URL = "http://52.79.176.64:3300";
 // AuctionFactory.sol의 ABI를 설정합니다.
@@ -145,6 +145,20 @@ const AUCTION_FACTORY_CONTRACT_ABI = [
 // Auction.sol의 ABI를 설정합니다.
 const AUCTION_CONTRACT_ABI = [
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "ended",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [],
 		"name": "bid",
@@ -159,12 +173,110 @@ const AUCTION_CONTRACT_ABI = [
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "auctionEndTime",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "digitalWorkId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [],
 		"name": "cancelAuction",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "highestBidder",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "minValue",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "highestBid",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "auctionStartTime",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -215,6 +327,11 @@ const AUCTION_CONTRACT_ABI = [
 				"indexed": false,
 				"name": "amount",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
 		"name": "HighestBidIncereased",
@@ -232,9 +349,36 @@ const AUCTION_CONTRACT_ABI = [
 				"indexed": false,
 				"name": "amount",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "digitalWorkId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
 		"name": "AuctionEnded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "digitalWorkId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "AuctionCanceled",
 		"type": "event"
 	},
 	{
@@ -253,117 +397,5 @@ const AUCTION_CONTRACT_ABI = [
 		],
 		"name": "getBalance",
 		"type": "event"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "auctionEndTime",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "auctionStartTime",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "digitalWorkId",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "ended",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "highestBid",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "highestBidder",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "minValue",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ];

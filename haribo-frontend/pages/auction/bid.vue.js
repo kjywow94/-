@@ -79,26 +79,30 @@ var auctionBidView = Vue.component('AuctionBidView', {
                 walletAddress: this.wallet['주소'],
                 privateKey: this.input.privateKey
             };
-            // console.log(options);
-            this.bidding = true;
+            walletService.isValidPrivateKey(scope.sharedStates.user.id, this.input.privateKey, (isValid, walletAddress) => {
+                if(isValid){
+                    scope.bidding = true;
 
-            // 컨트랙트 bid 함수를 호출합니다.
-            // components/auctionFactory.js의 auction_bid 함수를 호출합니다.
-            // TODO auction_bid 함수의 내용을 완성합니다.             
-            auction_bid(options, function (receipt) {
-                if (receipt.gasUsed != 3000000) {
-
-                    var bidder = scope.sharedStates.user.id;
-                    var auctionId = scope.$route.params.id;
-
-                    // 입찰 정보 등록 요청 API를 호출합니다. 
-                    auctionService.saveBid(bidder, auctionId, options.amount, function (result) {
-                        alert("입찰이 완료되었습니다.");
-                        scope.bidding = false;
-                        scope.$router.go(-1);
+                    // 컨트랙트 bid 함수를 호출합니다.
+                    // components/auctionFactory.js의 auction_bid 함수를 호출합니다.
+                    auction_bid(options, function (receipt) {
+                        if (receipt.gasUsed != 3000000) {
+        
+                            var bidder = scope.sharedStates.user.id;
+                            var auctionId = scope.$route.params.id;
+        
+                            // 입찰 정보 등록 요청 API를 호출합니다. 
+                            auctionService.saveBid(bidder, auctionId, options.amount, function (result) {
+                                alert("입찰이 완료되었습니다.");
+                                scope.bidding = false;
+                                scope.$router.go(-1);
+                            });
+                        } else {
+                            alert("입찰에 실패했습니다. 새로고침을 눌러주세요");
+                        }
                     });
-                } else {
-                    alert("입찰에 실패했습니다. 새로고침을 눌러주세요");
+                }else{
+                    alert("비밀키를 다시 확인해주세요");
                 }
             });
         }
@@ -120,7 +124,6 @@ var auctionBidView = Vue.component('AuctionBidView', {
         // 내 지갑 정보 조회
         walletService.findById(scope.sharedStates.user.id, function (wallet) {
             wallet = wallet.responseJSON;
-            console.log(wallet);
             wallet['잔액'] = Number(wallet['잔액']);
             scope.wallet = wallet;
         });

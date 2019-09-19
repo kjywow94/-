@@ -66,7 +66,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                         <router-link :to="{ name: 'auction' }" class="btn btn-sm btn-outline-secondary">경매 리스트로 돌아가기</router-link>
                                     </div>
                                     <div class="col-md-6 text-right" v-if="sharedStates.user.id == work['회원id'] && auction['종료'] != true">
-                                        <button type="button" class="btn btn-sm btn-primary" v-on:click="closeAuction" v-bind:disabled="isCanceling || isClosing">{{ isClosing ? "낙찰중" : "낙찰하기" }}</button>
+                                        <button v-if="bidder.id" type="button" class="btn btn-sm btn-primary" v-on:click="closeAuction" v-bind:disabled="isCanceling || isClosing">{{ isClosing ? "낙찰중" : "낙찰하기" }}</button>
                                         <button type="button" class="btn btn-sm btn-danger" v-on:click="cancelAuction" v-bind:disabled="isCanceling || isClosing">{{ isCanceling ? "취소하는 중" : "경매취소하기" }}</button>
                                     </div>
                                     <div class="col-md-6 text-right" v-if="sharedStates.user.id != work['회원id'] && auction['종료'] != true">
@@ -100,19 +100,16 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             var scope = this;
             var privateKey = window.prompt("경매를 종료하시려면 지갑 비밀키를 입력해주세요.", "");
             walletService.isValidPrivateKey(scope.creator.id, privateKey, (isValid, walletAddress) => {
-                console.log("isValid : ", isValid);
                 if (isValid) {
-                    console.log("auction : ", scope.auction);
+                    scope.isClosing = true;
                     var options = {
                         privateKey: privateKey,
                         contractAddress: scope.auction['경매컨트랙트주소'],
                         walletAddress: walletAddress
                     }
-                    console.log("options : ", options);
 
                     auction_close(options, response => {
-                        console.log("종료 콜백, gasusesd : ");
-                        console.log(response.gasUsed);
+                        scope.isClosing = false;
                         if (response.gasUsed == 3000000) {
                             alert("경매 종료중 오류가 발생했습니다.");
                         } else {
@@ -121,14 +118,12 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                             }, () => {
                                 alert("경매 종료후 데이터베이스 갱신에 실패했습니다");
                             });
-
                         }
-                        console.log(response);
                     });
+                } else {
+                    alert("비밀키를 다시 확인해주세요.");
                 }
             });
-
-            // register.vue.js, bid.vue.js를 참조하여 완성해 봅니다. 
         },
         cancelAuction: async function () {
             /**
@@ -137,35 +132,29 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
              */
             var scope = this;
             var privateKey = window.prompt("경매를 취소하시려면 지갑 비밀키를 입력해주세요.", "");
-            console.log(privateKey);
-            console.log(scope.creator);
             walletService.isValidPrivateKey(scope.creator.id, privateKey, (isValid, walletAddress) => {
-                console.log("isValid : ", isValid);
                 if (isValid) {
-                    console.log("auction : ", scope.auction);
+                    scope.isCanceling = true;
                     var options = {
                         privateKey: privateKey,
                         contractAddress: scope.auction['경매컨트랙트주소'],
                         walletAddress: walletAddress
                     }
-                    console.log("options : ", options);
 
                     auction_cancel(options, response => {
-                        console.log("취소 콜백, gasusesd : ");
-                        console.log(response.gasUsed);
+                        scope.isCanceling = false;
                         if (response.gasUsed == 3000000) {
-                            alert("경매 취소에 실패했습니다");
+                            alert("경매 취소중 오류가 발생했습니다.");
                         } else {
                             auctionService.cancel(this.$route.params.id, scope.bidder.id, () => {
                                 alert("경매가 취소되었습니다.");
-                            }, (errorResponse) => {
-                                console.log(errorResponse);
+                            }, errorResponse => {
                                 alert("경매 취소후 데이터베이스 갱신에 실패했습니다");
                             });
-
                         }
-                        console.log(response);
                     });
+                } else {
+                    alert("비밀키를 다시 확인해주세요.");
                 }
             });
         }
@@ -177,8 +166,6 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
 
         // 경매 정보 조회
         auctionService.findById(auctionId, function (auction) {
-            console.log("auction log");
-            console.log(auction);
             var amount = Number(auction['최소금액']).toLocaleString().split(",").join("")
             auction['최소금액'] = web3.utils.fromWei(amount, 'ether');
 
@@ -192,7 +179,6 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                 // 생성자 정보 조회
                 userService.findById(creatorId, function (user) {
                     scope.creator = user;
-                    console.log("scope creator : ", scope.creator);
                 });
             });
 
@@ -201,7 +187,6 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                 var amount = Number(auction['최고입찰액']).toLocaleString().split(",").join("")
                 auction['최고입찰액'] = web3.utils.fromWei(amount, 'ether');
                 var bidderId = auction['최고입찰자id'];
-                console.log("bidderID : " + bidderId);
                 userService.findById(bidderId, function (user) {
                     scope.bidder = user;
                 });

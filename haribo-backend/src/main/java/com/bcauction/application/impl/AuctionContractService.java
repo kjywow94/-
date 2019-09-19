@@ -84,7 +84,6 @@ public class AuctionContractService implements IAuctionContractService {
 		try {
 			credentials = WalletUtils.loadCredentials(PASSWORD, WALLET_RESOURCE);
 		} catch (IOException | CipherException e) {
-			System.out.println("credential Error");
 			e.printStackTrace();
 		}
 		AuctionContract auctionContract = AuctionContract.load(컨트랙트주소, web3j, credentials, contractGasProvider);
@@ -92,17 +91,8 @@ public class AuctionContractService implements IAuctionContractService {
 		AuctionInfo auctionInfo = new AuctionInfo();
 		try {
 				auctionInfo.set경매컨트랙트주소(컨트랙트주소);
-				System.out.println("최고 입찰액 : " + new BigInteger(String.valueOf(auctionContract.highestBid().sendAsync().get().getValue())));
-				System.out.println("작품 id : " + Long.parseLong(String.valueOf(auctionContract.digitalWorkId().sendAsync().get().getValue())));
-				System.out.println("최고 입찰자 id : " + auctionContract.highestBidder().sendAsync().get().getValue());
-				System.out.println("경매시작시간 : " + auctionContract.auctionStartTime().sendAsync().get().getValue());
-				System.out.println("경매종료시간 : " + auctionContract.auctionEndTime().sendAsync().get().getValue());
-				System.out.println("최소 금액 : " + auctionContract.minValue().sendAsync().get().getValue());
-				System.out.println("종료 : " + auctionContract.ended().sendAsync().get().getValue());
 				
 				String 지갑주소 = auctionContract.highestBidder().sendAsync().get().getValue();
-				System.out.println("최고입찰자 디버깅 ");
-				System.out.println("최고입찰자 지갑 주소 : " + 지갑주소);
 				Wallet user = walletRepository.조회(지갑주소);
 				if(user != null) {
 					auctionInfo.set최고입찰자id(user.get소유자id());

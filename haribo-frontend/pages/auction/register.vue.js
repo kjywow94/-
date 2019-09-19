@@ -117,49 +117,46 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
             var scope = this;
             this.isCreatingContract = true;
 
-            // 1. 내 지갑 주소를 가져옵니다.
-            walletService.findAddressById(this.sharedStates.user.id, function (walletAddress) {
+            // 비밀키 확인
+            walletService.isValidPrivateKey(this.sharedStates.user.id, scope.before.input.privateKey, (isValid, walletAddress) => {
 
-                // 2. 경매 컨트랙트를 블록체인에 생성합니다.
-                // components/auctionFactory.js의 createAuction 함수를 호출합니다.
-                // TODO createAuction 함수의 내용을 완성합니다.
+                if (isValid) {
+                    createAuction({
+                        workId: scope.before.selectedWork,
+                        minValue: scope.before.input.minPrice,
+                        startTime: (new Date(scope.before.input.startDate).getTime()) / 1000,
+                        endTime: (new Date(scope.before.input.untilDate).getTime()) / 1000
+                    }, walletAddress, scope.before.input.privateKey, function (responseAddress) {
+                        var contractAddress = responseAddress;
+                        var data = {
+                            "경매생성자id": scope.sharedStates.user.id,
+                            "경매작품id": scope.before.selectedWork,
+                            "시작일시": new Date(scope.before.input.startDate),
+                            "종료일시": new Date(scope.before.input.untilDate),
+                            "최저가": Number(scope.before.input.minPrice),
+                            "컨트랙트주소": contractAddress,
+                        }
+                        data.시작일시.setHours(data.시작일시.getHours() + 9);
+                        data.종료일시.setHours(data.종료일시.getHours() + 9);
 
+                        // 3. 선택한 작업 정보를 가져옵니다.
+                        workService.findById(scope.before.selectedWork, function (result) {
+                            scope.after.work = result;
+                        });
 
-                createAuction({
-                    workId: scope.before.selectedWork,
-                    minValue: scope.before.input.minPrice,
-                    startTime: (new Date(scope.before.input.startDate).getTime()) / 1000,
-                    endTime: (new Date(scope.before.input.untilDate).getTime()) / 1000
-                }, walletAddress, scope.before.input.privateKey, function (responseAddress) {
-                    console.log(responseAddress);
-                    var contractAddress = responseAddress;
-                    var data = {
-                        "경매생성자id": scope.sharedStates.user.id,
-                        "경매작품id": scope.before.selectedWork,
-                        "시작일시": new Date(scope.before.input.startDate),
-                        "종료일시": new Date(scope.before.input.untilDate),
-                        "최저가": Number(scope.before.input.minPrice),
-                        "컨트랙트주소": contractAddress,
-                    }
-                    data.시작일시.setHours(data.시작일시.getHours() + 9);
-                    data.종료일시.setHours(data.종료일시.getHours() + 9);
-                    console.log("data test : ");
-                    console.log(data);
+                        // 4. 생성한 경매를 등록 요청 합니다.
+                        auctionService.register(data, function (result) {
+                            alert("경매가 등록되었습니다.");
+                            scope.registered = true;
+                            scope.after.result = data;
+                        });
 
-                    // 3. 선택한 작업 정보를 가져옵니다.
-                    workService.findById(scope.before.selectedWork, function (result) {
-                        scope.after.work = result;
+                        this.isCreatingContract = false;
                     });
 
-                    // 4. 생성한 경매를 등록 요청 합니다.
-                    auctionService.register(data, function (result) {
-                        alert("경매가 등록되었습니다.");
-                        scope.registered = true;
-                        scope.after.result = data;
-                    });
-
-                    this.isCreatingContract = false;
-                });
+                } else {
+                    alert("비밀키를 다시 확인해주세요.");
+                }
             });
         }
     },
