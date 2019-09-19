@@ -82,9 +82,9 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
             </div>
         </div>
     `,
-    data(){
+    data() {
         return {
-            isCreatingContract:false,
+            isCreatingContract: false,
             registered: false,
             sharedStates: store.state,
 
@@ -105,62 +105,65 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
         }
     },
     methods: {
-        goBack: function(){
+        goBack: function () {
             this.$router.go(-1);
         },
-        register: function(){
-           /**
-             * 컨트랙트를 호출하여 경매를 생성하고
-             * 경매 정보 등록 API를 호출합니다. 
-             */
-            
+        register: function () {
+            /**
+              * 컨트랙트를 호출하여 경매를 생성하고
+              * 경매 정보 등록 API를 호출합니다. 
+              */
+
             var scope = this;
             this.isCreatingContract = true;
 
-            // 1. 내 지갑 주소를 가져옵니다.
-            walletService.findAddressById(this.sharedStates.user.id, function(walletAddress){
-                
-                // 2. 경매 컨트랙트를 블록체인에 생성합니다.
-                // components/auctionFactory.js의 createAuction 함수를 호출합니다.
-                // TODO createAuction 함수의 내용을 완성합니다. 
-                createAuction({
-                    workId: scope.before.selectedWork,
-                    minValue: scope.before.input.minPrice,
-                    startTime: new Date(scope.before.input.startDate).getTime(),
-                    endTime: new Date(scope.before.input.untilDate).getTime()
-                }, walletAddress, scope.before.input.privateKey, function(responseAddress){
-                    console.log(responseAddress);
-                    var contractAddress = responseAddress;
-                    var data = {
-                        "경매생성자id": scope.sharedStates.user.id,
-                        "경매작품id": scope.before.selectedWork,
-                        "시작일시": new Date(scope.before.input.startDate),
-                        "종료일시": new Date(scope.before.input.untilDate),
-                        "최저가": Number(scope.before.input.minPrice),
-                        "컨트랙트주소": contractAddress,
-                    }
+            // 비밀키 확인
+            walletService.isValidPrivateKey(this.sharedStates.user.id, scope.before.input.privateKey, (isValid, walletAddress) => {
 
-                    // 3. 선택한 작업 정보를 가져옵니다.
-                    workService.findById(scope.before.selectedWork, function(result){
-                        scope.after.work = result;
-                    });
-                    
-                    // 4. 생성한 경매를 등록 요청 합니다.
-                    auctionService.register(data, function(result){
-                        alert("경매가 등록되었습니다.");
-                        scope.registered = true;
-                        scope.after.result = data;
+                if (isValid) {
+                    createAuction({
+                        workId: scope.before.selectedWork,
+                        minValue: scope.before.input.minPrice,
+                        startTime: (new Date(scope.before.input.startDate).getTime()) / 1000,
+                        endTime: (new Date(scope.before.input.untilDate).getTime()) / 1000
+                    }, walletAddress, scope.before.input.privateKey, function (responseAddress) {
+                        var contractAddress = responseAddress;
+                        var data = {
+                            "경매생성자id": scope.sharedStates.user.id,
+                            "경매작품id": scope.before.selectedWork,
+                            "시작일시": new Date(scope.before.input.startDate),
+                            "종료일시": new Date(scope.before.input.untilDate),
+                            "최저가": Number(scope.before.input.minPrice),
+                            "컨트랙트주소": contractAddress,
+                        }
+                        data.시작일시.setHours(data.시작일시.getHours() + 9);
+                        data.종료일시.setHours(data.종료일시.getHours() + 9);
+
+                        // 3. 선택한 작업 정보를 가져옵니다.
+                        workService.findById(scope.before.selectedWork, function (result) {
+                            scope.after.work = result;
+                        });
+
+                        // 4. 생성한 경매를 등록 요청 합니다.
+                        auctionService.register(data, function (result) {
+                            alert("경매가 등록되었습니다.");
+                            scope.registered = true;
+                            scope.after.result = data;
+                        });
+
+                        this.isCreatingContract = false;
                     });
 
-                    this.isCreatingContract = false;
-                }); 
+                } else {
+                    alert("비밀키를 다시 확인해주세요.");
+                }
             });
         }
     },
-    mounted: function(){
+    mounted: function () {
         var scope = this;
         // 내 작품 목록 가져오기
-        workService.findWorksByOwner(this.sharedStates.user.id, function(result){
+        workService.findWorksByOwner(this.sharedStates.user.id, function (result) {
             scope.before.works = result;
         });
     }

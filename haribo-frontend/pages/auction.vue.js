@@ -15,7 +15,7 @@ var auctionView = Vue.component('AuctionView', {
                             <div class="card-body">
                                 <img src="./assets/images/artworks/artwork1.jpg">
                                 <h4>{{ item['작품정보']['이름'] }}</h4>
-                                <p>{{ calculateDate(item['종료일시']) }}</p>
+                                <p>{{ calculateDate(item['시작일시'],item['종료일시']) }}</p>
                                 <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary">자세히보기</router-link>
                             </div>
                         </div>
@@ -30,40 +30,45 @@ var auctionView = Vue.component('AuctionView', {
         }
     },
     methods: {
-        calculateDate(date) {
+        calculateDate(start, end) {
             var now = new Date();
-            var endDate = new Date(date);
-            var diff = endDate.getTime() - now.getTime();
+            var startDate = new Date(start);
+            var endDate = new Date(end);
+
+            if (now < startDate) {
+                return "경매 대기";
+            }
+
+            var diff = (endDate - now);
 
             // 만약 종료일자가 지났다면 "경매 마감"을 표시한다.
-            if(diff < 0) {
+            if (diff < 0) {
                 return "경매 마감";
             } else {
                 // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
-                var d = new Date(diff);
-                var days = d.getDate();
-                var hours = d.getHours();
-                var minutes = d.getMinutes();
+                var days = endDate.getDate() - now.getDate();
+                var hours = endDate.getHours() - now.getHours();
+                var minutes = endDate.getMinutes() - now.getMinutes();
 
                 return "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분";
             }
         }
     },
-    mounted: function(){
+    mounted: function () {
         var scope = this;
 
-        auctionService.findAll(function(data){
+        auctionService.findAll(function (data) {
             var result = data;
 
             // 각 경매별 작품 정보를 불러온다.
-            function fetchData(start, end){
-                if(start == end) {
+            function fetchData(start, end) {
+                if (start == end) {
                     scope.auctions = result;
                 } else {
                     var id = result[start]['경매작품id'];
-                    workService.findById(id, function(work){
+                    workService.findById(id, function (work) {
                         result[start]['작품정보'] = work;
-                        fetchData(start+1, end);
+                        fetchData(start + 1, end);
                     });
                 }
             }

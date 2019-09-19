@@ -17,7 +17,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>블록 넘버</th>
-                                        <td>{{ tx.blockNumber }}</td>
+                                        <td>{{ tx.blockId }}</td>
                                     </tr>
                                     <tr>
                                         <th>날짜</th>
@@ -33,7 +33,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>전송한 이더</th>
-                                        <td>{{ tx.value }} Ether</td>
+                                        <td>{{ tx.amount }} Ether</td>
                                     </tr>
                                     <tr>
                                         <th>Gas</th>
@@ -68,9 +68,6 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
         }
     },
     mounted: async function () {
-        /**
-         *  TODO 트랜잭션 해시로 트랜잭션 상세 정보를 조회합니다.
-         */
         var hash = this.$route.params.hash; // 조회할 트랜잭션 해시를 초기화합니다. 
 
         if (hash) {

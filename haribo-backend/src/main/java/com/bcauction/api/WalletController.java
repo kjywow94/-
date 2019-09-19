@@ -1,6 +1,7 @@
 package com.bcauction.api;
 
 import com.bcauction.application.IWalletService;
+import com.bcauction.application.impl.AuctionContractService;
 import com.bcauction.domain.Wallet;
 import com.bcauction.domain.exception.EmptyListException;
 import com.bcauction.domain.exception.NotFoundException;
@@ -26,6 +27,9 @@ public class WalletController {
 		Assert.notNull(walletService, "walletService 개체가 반드시 필요!");
 		this.walletService = walletService;
 	}
+	@Autowired
+	private AuctionContractService auctionContractService;
+	
 
 	@RequestMapping(value = "/wallets", method = RequestMethod.POST)
 	public Wallet 등록(@Valid @RequestBody Wallet wallet) {
@@ -69,5 +73,10 @@ public class WalletController {
 		System.out.println("controll test, address :");
 		System.out.println(address);
 		return this.walletService.충전(address);
+	}
+	
+	@RequestMapping(value = "/withdraw/{address}", method = RequestMethod.GET)
+	public boolean doWithdraw(@PathVariable String address) {
+		return auctionContractService.doWithdraw(address);
 	}
 }
