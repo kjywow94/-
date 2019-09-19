@@ -37,6 +37,17 @@ public class AuctionRepository implements IAuctionRepository
 			throw new RepositoryException(e, e.getMessage());
 		}
 	}
+	
+//	public List<Auction> 사용자목록조회(int id)
+//	{
+//		StringBuilder sbSql =  new StringBuilder("select * from 경매 inner join 작품 on 경매.경매생성자id = 작품.회원id 경매.경매생성자id = ?");
+//		try {
+//			return this.jdbcTemplate.query(sbSql.toString(),
+//					new Object[] { id }, (rs, rowNum) -> AuctionFactory.생성(rs));
+//		} catch (Exception e) {
+//			throw new RepositoryException(e, e.getMessage());
+//		}
+//	}
 
 	@Override
 	public Auction 조회(final long id)

@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,7 +108,7 @@ public class OwnershipRepository implements IOwnershipRepository
 			Map<String, Object> paramMap = new HashMap<>();
 			paramMap.put("소유자id", 소유권.get소유자id());
 			paramMap.put("작품id", 소유권.get작품id());
-			paramMap.put("소유시작일자", 소유권.get소유시작일자());
+			paramMap.put("소유시작일자", (LocalDateTime)소유권.get소유시작일자());
 			paramMap.put("소유종료일자", 소유권.get소유종료일자());
 
 			this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
@@ -120,6 +122,24 @@ public class OwnershipRepository implements IOwnershipRepository
 			throw new RepositoryException(e, e.getMessage());
 		}
 	}
+	
+	/**
+	 * @Override
+	public long 생성(final Ownership 소유권) {
+		StringBuilder sbSql = new StringBuilder("INSERT INTO 작품소유(소유자id,작품id,소유시작일자,소유종료일자) VALUES(?,?,?,?)");
+		try {
+			return this.jdbcTemplate.update(sbSql.toString(),
+							new Object[] {
+									소유권.get소유자id(),
+									소유권.get작품id(),
+									소유권.get소유시작일자(),
+									소유권.get소유종료일자()
+							});
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
+	 */
 
 	@Override
 	public int 수정(final Ownership 소유권) {
@@ -127,9 +147,10 @@ public class OwnershipRepository implements IOwnershipRepository
 		sbSql.append("SET 소유종료일자=? ");
 		sbSql.append("where 소유자id=? AND 작품id=?");
 		try {
+			System.out.println(소유권.get소유종료일자());
 			return this.jdbcTemplate.update(sbSql.toString(),
 							new Object[] {
-									소유권.get소유종료일자(),
+									소유권.get소유종료일자().toString(),
 									소유권.get소유자id(),
 									소유권.get작품id()
 							});

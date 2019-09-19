@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -102,7 +103,11 @@ public class AuctionController
 	@RequestMapping(value = "/auctions/owner/{id}", method = RequestMethod.GET)
 	public List<Auction> 사용자경매목록조회(@PathVariable int id){
 		// TODO 
-		return null;
+		List<Auction> result = new ArrayList<Auction>();
+		for(Auction a : auctionService.경매목록조회())
+			if(a.get경매생성자id() == id)
+				result.add(a);
+		return result;
 	}
 
 }
