@@ -8,7 +8,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card shadow-sm">
-                            <div class="card-header"><strong>{{ tx.hash }}</strong></div>
+                            <div class="card-header"><strong>{{ tx.txHash }}</strong></div>
                             <table class="table">
                                 <tbody>
                                     <tr>
@@ -17,7 +17,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>블록 넘버</th>
-                                        <td>{{ tx.blockNumber }}</td>
+                                        <td>{{ tx.blockId }}</td>
                                     </tr>
                                     <tr>
                                         <th>날짜</th>
@@ -25,15 +25,15 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>송신자 주소</th>
-                                        <td><router-link :to="{ name: 'address', params: { address: tx.from }}">{{ tx.from }}</router-link></td>
+                                        <td><router-link :to="{ name: 'explorer.tx.detail.from', params: { address: tx.from }}">{{ tx.from }}</router-link></td>
                                     </tr>
                                     <tr>
                                         <th>수신자 주소</th>
-                                        <td><router-link :to="{ name: 'address', params: { address: tx.to }}">{{ tx.to }}</router-link></td>
+                                        <td><router-link :to="{ name: 'explorer.tx.detail.to', params: { address: tx.to }}">{{ tx.to }}</router-link></td>
                                     </tr>
                                     <tr>
                                         <th>전송한 이더</th>
-                                        <td>{{ tx.value }} Ether</td>
+                                        <td>{{ tx.amount }} Ether</td>
                                     </tr>
                                     <tr>
                                         <th>Gas</th>
@@ -68,9 +68,6 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
         }
     },
     mounted: async function () {
-        /**
-         *  TODO 트랜잭션 해시로 트랜잭션 상세 정보를 조회합니다.
-         */
         var hash = this.$route.params.hash; // 조회할 트랜잭션 해시를 초기화합니다. 
 
         if (hash) {
@@ -79,6 +76,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
              */
             var tn = (tran) => {
                 this.tx = tran;
+                console.log(this.tx);
                 
                 var blockNumber = this.tx.blockNumber;
                 var next = parseInt(blockNumber, 16); 
