@@ -445,7 +445,8 @@ public class FabricCCService implements IFabricCCService {
 
 		logger.info("Work " + rec.getString("assetID") + " by Owner " + rec.getString("owner") + ": "
 				+ rec.getString("createdAt") + " ~ " + rec.getString("expiredAt"));
-
+		System.out.println("asset : " +asset);
+		
 		return asset;
 	}
 
