@@ -28,6 +28,54 @@ var explorerTxDetailToView = Vue.component('ExplorerTxDetailToView', {
                         </div>
                     </div>
                 </div>
+                <br>
+                <div class="card shadow-sm">
+                <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Txn Hash</th>
+                    <th scope="col">Block</th>
+                    <th style="color:blue;" scope="col">Age</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">[Txn Fee]</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <div v-for="item in transactions">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                  </tr>
+                </div>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                  </tr>
+                </tbody>
+              </table>
+                </div>
+                <br>
             </div>
         </div>
     `,
@@ -38,6 +86,9 @@ var explorerTxDetailToView = Vue.component('ExplorerTxDetailToView', {
                 addr: "-"
                 
             },
+            transactions: [
+                addr: "-"
+            ],
             timestamp:""
         }
     },

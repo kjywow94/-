@@ -17,7 +17,7 @@ public class Transaction {
     private String value;
     private String gasPrice;
     private String gas;
-    private String input;
+    private String input;    
     private String creates;
     private String publicKey;
     private String raw;
