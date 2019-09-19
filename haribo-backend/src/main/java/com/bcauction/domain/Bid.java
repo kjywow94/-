@@ -71,4 +71,10 @@ public class Bid
 	{
 		this.낙찰여부 = 낙찰여부;
 	}
+
+	@Override
+	public String toString() {
+		return "Bid [id=" + id + ", 경매참여자id=" + 경매참여자id + ", 경매id=" + 경매id + ", 입찰일시=" + 입찰일시 + ", 입찰금액=" + 입찰금액
+				+ ", 낙찰여부=" + 낙찰여부 + "]";
+	}
 }

@@ -281,5 +281,4 @@ public class EthereumService implements IEthereumService {
 		return result;
 	}
 
-
 }

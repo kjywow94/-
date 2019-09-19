@@ -86,7 +86,7 @@ public class EthereumController {
     public Address 주소검색(@PathVariable String addr)
     {
         Address 주소 = this.explorerService.주소검색(addr);
-
+        
         if(주소 == null)
             throw new NotFoundException(addr + " 주소 정보를 찾을 수 없습니다.");
 

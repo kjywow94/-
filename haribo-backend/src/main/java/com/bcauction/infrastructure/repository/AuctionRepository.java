@@ -89,7 +89,8 @@ public class AuctionRepository implements IAuctionRepository
 			paramMap.put("종료일시", 경매.get종료일시());
 			paramMap.put("최저가", 경매.get최저가());
 			paramMap.put("컨트랙트주소", 경매.get컨트랙트주소());
-
+			System.out.println("옥션 생성 DB 인풋 확인");
+			System.out.println(경매.toString());
 			this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
 					.withTableName("경매")
 					.usingGeneratedKeyColumns("id");
@@ -105,7 +106,7 @@ public class AuctionRepository implements IAuctionRepository
 	public int 수정(final Auction 경매)
 	{
 		StringBuilder sbSql =  new StringBuilder("UPDATE 경매 ");
-		sbSql.append("SET 상태=? AND 종료일시=? ");
+		sbSql.append("SET 상태=? , 종료일시=? ");
 		sbSql.append("where id=? AND 경매생성자id=? AND 경매작품id=?");
 		try {
 			return this.jdbcTemplate.update(sbSql.toString(),

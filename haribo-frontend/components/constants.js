@@ -2,7 +2,7 @@
 const API_BASE_URL = "http://localhost:8080";
 
 // 배포한 옥션 컨트랙트 주소를 지정합니다. 
-const AUCTION_CONTRACT_ADDRESS = "0x9ce61dd32ee5ff3e42d6f2b96d9a5f68d1a04cd5";
+const AUCTION_CONTRACT_ADDRESS = "0xcE8A0663BB3fB942C6415D49099696a51C1dc7a8";
 // 이더리움 블록체인 네트워크의 URL을 설정합니다. 
 const BLOCKCHAIN_URL = "http://52.79.176.64:3300";
 // AuctionFactory.sol의 ABI를 설정합니다.
@@ -34,20 +34,6 @@ const AUCTION_FACTORY_CONTRACT_ABI = [
 				"type": "address"
 			}
 		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -123,23 +109,6 @@ const AUCTION_FACTORY_CONTRACT_ABI = [
 		"type": "event"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipTransferred",
-		"type": "event"
-	},
-	{
 		"constant": true,
 		"inputs": [],
 		"name": "allAuctions",
@@ -171,20 +140,6 @@ const AUCTION_FACTORY_CONTRACT_ABI = [
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ];
 // Auction.sol의 ABI를 설정합니다.
@@ -207,48 +162,20 @@ const AUCTION_CONTRACT_ABI = [
 		"constant": false,
 		"inputs": [],
 		"name": "bid",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "withdraw",
 		"outputs": [
 			{
 				"name": "",
 				"type": "bool"
 			}
 		],
-		"payable": false,
-		"stateMutability": "nonpayable",
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
 		"constant": true,
 		"inputs": [],
 		"name": "auctionEndTime",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "getPendingReturnsBy",
 		"outputs": [
 			{
 				"name": "",
@@ -354,20 +281,6 @@ const AUCTION_CONTRACT_ABI = [
 	},
 	{
 		"constant": false,
-		"inputs": [
-			{
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
 		"inputs": [],
 		"name": "endAuction",
 		"outputs": [],
@@ -414,6 +327,11 @@ const AUCTION_CONTRACT_ABI = [
 				"indexed": false,
 				"name": "amount",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
 		"name": "HighestBidIncereased",
@@ -431,6 +349,16 @@ const AUCTION_CONTRACT_ABI = [
 				"indexed": false,
 				"name": "amount",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "digitalWorkId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
 		"name": "AuctionEnded",
@@ -440,17 +368,34 @@ const AUCTION_CONTRACT_ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
+				"indexed": false,
+				"name": "digitalWorkId",
+				"type": "uint256"
 			},
 			{
-				"indexed": true,
-				"name": "newOwner",
-				"type": "address"
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
-		"name": "OwnershipTransferred",
+		"name": "AuctionCanceled",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "highestBid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "thisBalance",
+				"type": "uint256"
+			}
+		],
+		"name": "getBalance",
 		"type": "event"
 	}
 ];
