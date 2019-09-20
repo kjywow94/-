@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -151,8 +152,12 @@ public class FabricService implements IFabricService
 	public List<FabricAsset> 작품이력조회(final long id){
 		List<FabricAsset> history = this.fabricCCService.queryHistory(id);
 		// TODO
-		history.remove(0);
-		return history;
+		List<FabricAsset> result = new ArrayList<FabricAsset>();
+		for(int i = 0 ;  i < history.size() ; i++) {
+			if(i%2 == 1) result.add(history.get(i));
+		}
+		
+		return result;
 	}
 
 	/**

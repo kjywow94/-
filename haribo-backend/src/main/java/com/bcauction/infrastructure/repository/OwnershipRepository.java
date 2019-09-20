@@ -86,7 +86,7 @@ public class OwnershipRepository implements IOwnershipRepository
 	public Ownership 조회(final long 소유자id, final long 작품id)
 	{
 		logger.info("조회 (소유자id, 작품id) = (" + 소유자id + ", " + 작품id + ")");
-		StringBuilder sbSql =  new StringBuilder("SELECT * FROM 작품소유 WHERE 소유자id=? AND 작품id=?");
+		StringBuilder sbSql =  new StringBuilder("select * from 작품소유 where id = (select max(id) from 작품소유 where 소유자id=? and 작품id=?)");
 		try {
 			Ownership o = this.jdbcTemplate.queryForObject(sbSql.toString(),
 			                                        new Object[] { 소유자id, 작품id }, (rs, rowNum) -> OwnershipFactory.생성(rs) );
