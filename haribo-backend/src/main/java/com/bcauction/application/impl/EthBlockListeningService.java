@@ -52,7 +52,7 @@ public class EthBlockListeningService
 	public void listen()
 	{
 		// TODO
-		log.info("New Block Subscribed Here");
+		log.info("New Block Subscribed Here");                                      
 		
 		try {
 			latestBlockHeight = this.web3j.ethBlockNumber().sendAsync().get().getBlockNumber();		

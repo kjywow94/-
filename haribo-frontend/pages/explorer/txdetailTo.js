@@ -42,37 +42,19 @@ var explorerTxDetailToView = Vue.component('ExplorerTxDetailToView', {
                     <th scope="col">[Txn Fee]</th>
                   </tr>
                 </thead>
+                <div v-for="tran in transactions">
                 <tbody>
-                <div v-for="item in transactions">
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                    <th scope="row"> tran.txHash </th>
+                    <td scope="row"> tran.blockId </td>
+                    <td scope="row"> tran.timestamp </td>
+                    <td scope="row"> tran.from </td>
+                    <td scope="row"> tran.to </td>
+                    <td scope="row"> tran.value</td>
+                    <td scope="row"> tran.tax </td>
                   </tr>
-                </div>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                  </tr>
-                </tbody>
+                  </tbody>
+                  </div>
               </table>
                 </div>
                 <br>
@@ -87,7 +69,24 @@ var explorerTxDetailToView = Vue.component('ExplorerTxDetailToView', {
                 
             },
             transactions: [
-                addr: "-"
+                {
+                    txHash : 1,
+                    blockId : 2,
+                    timestamp : 1,
+                    from : 1,
+                    to : 1,
+                    value : 2,
+                    tax : 1
+                },
+                {
+                    txHash : 1,
+                    blockId : 2,
+                    timestamp : 1,
+                    from : 1,
+                    to : 1,
+                    value : 2,
+                    tax : 1
+                }
             ],
             timestamp:""
         }
