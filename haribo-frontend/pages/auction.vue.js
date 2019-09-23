@@ -26,9 +26,7 @@ var auctionView = Vue.component('AuctionView', {
                         <nav class="bottom-pagination">
                             <ul class="pagination">
                                 <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
-                                
                                     <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
-                                </v-for>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                             </ul>
                         </nav>
@@ -98,7 +96,6 @@ var auctionView = Vue.component('AuctionView', {
                     break;
                 this.pageArr.push(this.page + i);
             }
-
             
         }
     },
@@ -116,6 +113,7 @@ var auctionView = Vue.component('AuctionView', {
                     if(scope.auctions.length % 8 > 0)
                         scope.maxPage += 1; 
                     scope.movePage(scope.page);
+                    console.log(scope.auctions)
                 } else {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
