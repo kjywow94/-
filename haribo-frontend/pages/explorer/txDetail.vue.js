@@ -79,20 +79,18 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
              */
             var tn = (tran) => {
                 this.tx = tran;
-                console.log(this.tx);
-                
                 var blockNumber = this.tx.blockNumber;1
                 var next = parseInt(blockNumber, 16); 
 
                var bn = (block) => {
                    this.blocks = block;
                    this.tx.timestamp = timeSince(this.blocks.timeStamp); 
+                   this.number = String(this.tx.amount);
+                   this.tx.amount = web3.utils.fromWei(this.number, "ether");
                }
                ethereumService.findbyBlock(next, bn);
            } 
-
            await ethereumService.findbyTrans(hash, tn);   
-
         } else {
             this.isValid = false;
         }
