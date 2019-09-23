@@ -43,14 +43,14 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
                 </tr>
                 </thead>
                     <tbody>
-                        <tr v-for="tran in transactions">
-                            <th scope="row"> {{tran.txHash}} </th>
-                            <td scope="row"> {{tran.blockId}} </td>
-                            <td scope="row"> {{tran.timestamp}} </td>
-                            <td scope="row">{{ tran.from}} </td>
-                            <td scope="row"> {{tran.to}} </td>
-                            <td scope="row"> {{tran.value}}</td>
-                            <td scope="row"> {{tran.tax}} </td>
+                        <tr v-for="tran in trans">
+                            <th scope="row"> {{ tran.txHash | truncate(15) }} </th>
+                            <td scope="row"> {{ tran.blockNumber}} </td>
+                            <td scope="row"> {{ tran.timestamp}} </td>
+                            <td scope="row"> {{ tran.from | truncate(15) }} </td>
+                            <td scope="row"> {{ tran.to | truncate(15) }} </td>
+                            <td scope="row"> {{ tran.value}}</td>
+                            <td scope="row"> {{ tran.tax}} </td>
                         </tr>
                     </tbody>
                 </table>                    
@@ -66,34 +66,8 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
             fa: {
                 addr: "-"
             },
-            transactions: [
-                {
-                    txHash: 1,
-                    blockId: 2,
-                    timestamp: 1,
-                    from: 1,
-                    to: 1,
-                    value: 2,
-                    tax: 1
-                }, {
-                    txHash: 3,
-                    blockId: 3,
-                    timestamp: 3,
-                    from: 3,
-                    to: 3,
-                    value: 23,
-                    tax: 31
-                }, {
-                    txHash: 3,
-                    blockId: 3,
-                    timestamp: 3,
-                    from: 3,
-                    to: 3,
-                    value: 23,
-                    tax: 31
-                }
-            ],
-            timestamp: "",
+            transactions: [],
+            trans: [],
             count: 0
         }
     },
@@ -109,27 +83,49 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
              */
             var ta = (address) => {
                 this.fa = address;
-
-                console.log(this.fa.id);
-
+                var idx = 0;
+                var cnt = 0;
+       
+                this.fal = this.fa.trans.length;
+                
                 var tr = (tran) => {
                     var txView = {
                         hash: tran.txHash,
                         from: tran.from,
                         to: tran.to
                     }
-                    console.log(txView);
 
-                    this.$set(this.transactions, idx++, txView);
+                    this.$set(this.transactions, cnt++,  txView);
+      
                 }
 
                 ethereumService.findbyTrans(this.fa.id, tr);
 
-                // var trans = this ethereumService.findbyTrans() var blockNumber =
-                // this.tx.blockNumber; var next = parseInt(blockNumber, 16);    var bn =
-                // (block) => {        this.blocks = block;        this.tx.timestamp =
-                // timeSince(this.blocks.timeStamp);    }    ethereumService.findbyBlock(next,
-                // bn);
+                
+                for (var i = 0; i < this.fal; i++) {
+                    let hex = this.fa.trans[i].blockNumber; 
+                    let dec = parseInt(hex, 16);
+                    this.fa.trans[i].blockNumber = dec;
+                    var num = 0;
+
+                    var bn =  (blocks) => {
+                
+                        var timeView = {
+                            
+                            time: blocks.timeStamp
+                        }
+
+                        var time = timeSince(timeView.time);
+                        this.fa.trans[num].timestamp = time;
+                        num++;
+                    }
+
+                    ethereumService.findbyBlock(this.fa.trans[i].blockNumber, bn);
+                    
+                    this.$set(this.trans, idx++, this.fa.trans[i]);
+                }
+                
+                
             }
 
             await ethereumService.findByAddress(addr, ta);
