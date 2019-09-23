@@ -37,6 +37,17 @@ public class AuctionRepository implements IAuctionRepository
 			throw new RepositoryException(e, e.getMessage());
 		}
 	}
+	
+//	public List<Auction> 사용자목록조회(int id)
+//	{
+//		StringBuilder sbSql =  new StringBuilder("select * from 경매 inner join 작품 on 경매.경매생성자id = 작품.회원id 경매.경매생성자id = ?");
+//		try {
+//			return this.jdbcTemplate.query(sbSql.toString(),
+//					new Object[] { id }, (rs, rowNum) -> AuctionFactory.생성(rs));
+//		} catch (Exception e) {
+//			throw new RepositoryException(e, e.getMessage());
+//		}
+//	}
 
 	@Override
 	public Auction 조회(final long id)
@@ -78,7 +89,8 @@ public class AuctionRepository implements IAuctionRepository
 			paramMap.put("종료일시", 경매.get종료일시());
 			paramMap.put("최저가", 경매.get최저가());
 			paramMap.put("컨트랙트주소", 경매.get컨트랙트주소());
-
+			System.out.println("옥션 생성 DB 인풋 확인");
+			System.out.println(경매.toString());
 			this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
 					.withTableName("경매")
 					.usingGeneratedKeyColumns("id");
@@ -94,7 +106,7 @@ public class AuctionRepository implements IAuctionRepository
 	public int 수정(final Auction 경매)
 	{
 		StringBuilder sbSql =  new StringBuilder("UPDATE 경매 ");
-		sbSql.append("SET 상태=? AND 종료일시=? ");
+		sbSql.append("SET 상태=? , 종료일시=? ");
 		sbSql.append("where id=? AND 경매생성자id=? AND 경매작품id=?");
 		try {
 			return this.jdbcTemplate.update(sbSql.toString(),

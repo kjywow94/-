@@ -1,29 +1,26 @@
 package com.bcauction.application.impl;
 
-import com.bcauction.domain.EthInfo;
-import com.bcauction.domain.repository.IEthInfoRepository;
-import com.bcauction.domain.repository.ITransactionRepository;
+import java.math.BigInteger;
+
+import javax.annotation.PostConstruct;
+
+import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.methods.response.EthBlock;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 
-import javax.annotation.PostConstruct;
-import java.math.BigInteger;
-import java.util.concurrent.ExecutionException;
+import com.bcauction.domain.repository.IEthInfoRepository;
+import com.bcauction.domain.repository.ITransactionRepository;
 
 /**
- * EthBlockListeningService
- * 이더리움 네트워크의 새로 생성된 블록 정보로부터
- * 트랜잭션을 동기화하는 기능 포함
+ * EthBlockListeningService 이더리움 네트워크의 새로 생성된 블록 정보로부터 트랜잭션을 동기화하는 기능 포함
  */
 @Service
-public class EthBlockListeningService
-{
+public class EthBlockListeningService {
 	private static final Logger log = LoggerFactory.getLogger(EthBlockListeningService.class);
 
 	private BigInteger latestBlockHeight = BigInteger.valueOf(0);
@@ -32,14 +29,15 @@ public class EthBlockListeningService
 	private IEthInfoRepository ethInfoRepository;
 	private ITransactionRepository transactionRepository;
 
+	@Autowired
+	private EthereumService ethereumService;
+
 	@Value("${spring.web3j.client-address}")
 	private String ethUrl;
 
 	@Autowired
-	public EthBlockListeningService(Web3j web3j,
-									IEthInfoRepository ethInfoRepository,
-									ITransactionRepository transactionRepository)
-	{
+	public EthBlockListeningService(Web3j web3j, IEthInfoRepository ethInfoRepository,
+			ITransactionRepository transactionRepository) {
 		this.web3j = web3j;
 		this.ethInfoRepository = ethInfoRepository;
 		this.transactionRepository = transactionRepository;
@@ -49,21 +47,18 @@ public class EthBlockListeningService
 	 * 구축한 이더리움 네트워크로부터 신규 생성된 블록을 동기화한다.
 	 */
 	@PostConstruct
-	public void listen()
-	{
+	public void listen() {
 		// TODO
-		log.info("New Block Subscribed Here");                                      
-		
-		try {
-			latestBlockHeight = this.web3j.ethBlockNumber().sendAsync().get().getBlockNumber();		
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		String blockNumber = latestBlockHeight.toString();
-		
-		this.ethInfoRepository.put(ethUrl, blockNumber);
+
+		Subscription subscription = (Subscription) web3j
+				.replayPastAndFutureBlocksFlowable(DefaultBlockParameterName.LATEST, false).subscribe(block -> {
+					String blockNumber = String.valueOf(block.getBlock().getNumber());
+					this.ethInfoRepository.put(ethUrl, blockNumber);
+					this.ethereumService.updateTransactions(blockNumber);
+				});
+
+		System.out.println("listen, and subscription");
+
+		log.info("New Block Subscribed Here");
 	}
-	
 }

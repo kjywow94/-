@@ -39,20 +39,6 @@ const AUCTION_FACTORY_CONTRACT_ABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -123,23 +109,6 @@ const AUCTION_FACTORY_CONTRACT_ABI = [
 		"type": "event"
 	},
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipTransferred",
-		"type": "event"
-	},
-	{
 		"constant": true,
 		"inputs": [],
 		"name": "allAuctions",
@@ -171,20 +140,6 @@ const AUCTION_FACTORY_CONTRACT_ABI = [
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ];
 // Auction.sol의 ABI를 설정합니다.
@@ -207,48 +162,20 @@ const AUCTION_CONTRACT_ABI = [
 		"constant": false,
 		"inputs": [],
 		"name": "bid",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "withdraw",
 		"outputs": [
 			{
 				"name": "",
 				"type": "bool"
 			}
 		],
-		"payable": false,
-		"stateMutability": "nonpayable",
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
 		"constant": true,
 		"inputs": [],
 		"name": "auctionEndTime",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "getPendingReturnsBy",
 		"outputs": [
 			{
 				"name": "",
@@ -354,20 +281,6 @@ const AUCTION_CONTRACT_ABI = [
 	},
 	{
 		"constant": false,
-		"inputs": [
-			{
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
 		"inputs": [],
 		"name": "endAuction",
 		"outputs": [],
@@ -414,6 +327,11 @@ const AUCTION_CONTRACT_ABI = [
 				"indexed": false,
 				"name": "amount",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
 		"name": "HighestBidIncereased",
@@ -431,6 +349,16 @@ const AUCTION_CONTRACT_ABI = [
 				"indexed": false,
 				"name": "amount",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "digitalWorkId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
 		"name": "AuctionEnded",
@@ -440,17 +368,34 @@ const AUCTION_CONTRACT_ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
+				"indexed": false,
+				"name": "digitalWorkId",
+				"type": "uint256"
 			},
 			{
-				"indexed": true,
-				"name": "newOwner",
-				"type": "address"
+				"indexed": false,
+				"name": "blockNumber",
+				"type": "uint256"
 			}
 		],
-		"name": "OwnershipTransferred",
+		"name": "AuctionCanceled",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "highestBid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "thisBalance",
+				"type": "uint256"
+			}
+		],
+		"name": "getBalance",
 		"type": "event"
 	}
 ];

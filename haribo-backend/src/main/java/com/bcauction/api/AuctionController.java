@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -57,20 +58,15 @@ public class AuctionController
 
 	@RequestMapping(value = "/auctions/{id}", method = RequestMethod.GET)
 	public AuctionInfo 조회(@PathVariable long id) {
-		System.out.println("/auctions/id controller in !!, id : " + id);
 		Auction 경매 = this.auctionService.조회(id);
 		if (경매 == null){
-			System.out.println("경매  == null Error");
 			logger.error("NOT FOUND AUCTION: ", id);
 			throw new NotFoundException(id + " 해당 경매를 찾을 수 없습니다.");
 		}
-		System.out.println("경매주소 : " + 경매.get컨트랙트주소());
 		AuctionInfo 경매정보 = this.auctionContractService.경매정보조회(경매.get컨트랙트주소());
 		if(경매정보 == null){
-			System.out.println("경매 정보 == null Error");
 			throw new NotFoundException(id + " 해당 경매 컨트랙트를 찾을 수 없습니다.");
 		}
-		System.out.println(경매정보.toString());
 		경매정보.set경매시작시간(경매.get시작일시());
 		경매정보.set경매종료시간(경매.get종료일시());
 
@@ -101,8 +97,11 @@ public class AuctionController
 	 */
 	@RequestMapping(value = "/auctions/owner/{id}", method = RequestMethod.GET)
 	public List<Auction> 사용자경매목록조회(@PathVariable int id){
-		// TODO
-		return null;
+		// TODO 
+		List<Auction> result = new ArrayList<Auction>();
+		for(Auction a : auctionService.경매목록조회())
+			if(a.get경매생성자id() == id)
+				result.add(a);
+		return result;
 	}
-
 }

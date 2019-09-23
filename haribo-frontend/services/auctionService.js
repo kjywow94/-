@@ -22,7 +22,6 @@ var auctionService = {
     },
     findById: function (id, callback) {
         $.get(API_BASE_URL + "/api/auctions/" + id, function (data) {
-            console.log(data);
             callback(data);
         });
     },
@@ -44,6 +43,8 @@ var auctionService = {
     },
     // 경매 취소
     cancel: function (auctionId, bidderId, callback, whenError) {
+        if (!bidderId)
+            bidderId = 999;
         $.ajax({
             type: "DELETE",
             url: API_BASE_URL + "/api/auctions/" + auctionId + "/by/" + bidderId,

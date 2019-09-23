@@ -66,6 +66,8 @@ contract AuctionFactory is Ownable {
       emit NewAuction(newAuction, msg.sender, workId, minValue, startTime, endTime);
       emit AuctionCreated(newAuction, msg.sender, auctions.length, auctions);
       
+      return newAuction;
+      
     }
 
     /**
@@ -118,16 +120,19 @@ contract Auction is Ownable {
   // */
   function bid() public onlyNotOwner payable {
     // todo 
-    require(msg.sender!= owner);
-    require(msg.value >= minValue);
-    require(msg.value >= highestBid);
-    require(now <= auctionEndTime);
+    require(startTime<= now , "아직 시작되지 않은 경매입니다.");
+    require(now <= endTime, "이미 종료된 경매입니다.");
+    // require(msg.sender!= owner, "경매 출품자는 입찰할 수 없습니다.");
+    require(msg.sender!= highestBidder, "최고입찰자는 상위 입찰할 수 없습니다.")
+    require(msg.value >= minValue, "입찰액이 최저 입찰액보다 낮습니다.");
+    require(msg.value >= highestBid, "입찰액이 최고 입찰액보다 낮습니다.");
     
     if(!isBidders[msg.sender]){
         isBidders[msg.sender] = true;
         bidders.push(msg.sender);
     }
-    
+    // pendingReturns[highestBidder] = highestBid;
+
     if(highestBid != 0) {
         pendingReturns[highestBidder] += highestBid;
     }
@@ -139,18 +144,20 @@ contract Auction is Ownable {
 
   //**
   // * @dev 환불을 위한 함수입니다. 
-  // * 환불은 입찰 당사자가 해당 함수를 호출함으로써 가능합니다.
   //*/
   function withdraw() public returns (bool) {
-    // todo 
-    uint amount = pendingReturns[msg.sender];
-    if(amount > 0) {
-        pendingReturns[msg.sender] = 0;
-        
-        if(!msg.sender.send(amount)) {
-            pendingReturns[msg.sender] = amount;
-            return false;
+    for(uint i=0; i<bidders.length; i++) {
+
+      if(pendingReturns[bidders[i]]!=0){
+
+        pendingReturns[bidders[i]]=0
+        uint amount = pendingReturns[bidders[i]];
+
+        if(!bidders[i].send(amount)){
+          pendingReturns[bidders[i]] = amount;
+          return false;
         }
+      }
     }
     return true;
   }
@@ -169,9 +176,9 @@ contract Auction is Ownable {
     ended = true;
     emit AuctionEnded(highestBidder, highestBid);
     
-    for(uint i=0; i<bidders.length; i++) {
-        bidders[i].transfer(pendingReturns[bidders[i]]);
-    }
+    // for(uint i=0; i<bidders.length; i++) {
+    //     bidders[i].transfer(pendingReturns[bidders[i]]);
+    // }
 
     owner.transfer(highestBid);
   }
@@ -187,9 +194,9 @@ contract Auction is Ownable {
     
     ended = true;
     
-    for(uint i=0; i<bidders.length; i++) {
-        bidders[i].transfer(pendingReturns[bidders[i]]);
-    }
+    // for(uint i=0; i<bidders.length; i++) {
+    //     bidders[i].transfer(pendingReturns[bidders[i]]);
+    // }
     highestBidder.transfer(highestBid);
   }
 

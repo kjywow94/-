@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,7 +62,6 @@ public class FabricService implements IFabricService
 		소유권.set소유자id(소유자);
 		소유권.set작품id(작품id);
 		소유권.set소유시작일자(asset.getCreatedAt());
-
 		long result = this.ownershipRepository.생성(소유권);
 		if(result == 0)
 			return null;
@@ -151,9 +152,12 @@ public class FabricService implements IFabricService
 	public List<FabricAsset> 작품이력조회(final long id){
 		List<FabricAsset> history = this.fabricCCService.queryHistory(id);
 		// TODO
-		for(FabricAsset fa : history)
-		System.out.println(fa.toString());
-		return history;
+		List<FabricAsset> result = new ArrayList<FabricAsset>();
+		for(int i = 0 ;  i < history.size() ; i++) {
+			if(i%2 == 1) result.add(history.get(i));
+		}
+		
+		return result;
 	}
 
 	/**
@@ -167,6 +171,8 @@ public class FabricService implements IFabricService
 	{
 		// TODO
 		logger.error(this.ownershipRepository.소유자별목록조회(id).toString());
+		for(Ownership o :this.ownershipRepository.소유자별목록조회(id))
+			System.out.println(o.get작품id());
 		return this.ownershipRepository.소유자별목록조회(id);
 	}
 

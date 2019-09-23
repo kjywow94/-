@@ -68,9 +68,6 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
         }
     },
     mounted: async function () {
-        /**
-         *  TODO 트랜잭션 해시로 트랜잭션 상세 정보를 조회합니다.
-         */
         var hash = this.$route.params.hash; // 조회할 트랜잭션 해시를 초기화합니다. 
 
         if (hash) {

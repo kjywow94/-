@@ -82,14 +82,32 @@ var myArtworkView = Vue.component('MyArtworkView', {
     mounted: function(){
         var scope = this;
         var userId = this.sharedStates.user.id;
-
+        workService.findWorksByOwner(userId, function(data){
+                scope.artworks = data;
+        });
+        
         /**
          * TODO 1. 회원의 작품 목록을 가져옵니다.
          * Backend와 API 연동합니다.
          * 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
          */
          // 여기에 작성하세요.
-
+         auctionService.findAllByUser(userId,function(data){
+            var result = data;
+            // 각 경매별 작품 정보를 불러온다.
+            function fetchData(start, end){
+                if(start == end) {
+                    scope.auctions = result;
+                } else {
+                    var id = result[start]['경매작품id'];
+                    workService.findById(id, function(work){
+                        result[start]['작품정보'] = work;
+                        fetchData(start+1, end);
+                    });
+                }
+            }
+            fetchData(0, result.length);
+        });
         /**
          * TODO 2. 회원의 경매 목록을 가져옵니다.
          * Backend와 API 연동합니다.

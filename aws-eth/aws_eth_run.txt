@@ -1,15 +1,19 @@
-geth --networkid 30507 --datadir ~/eth00 --maxpeers 3 --port 8000 --rpc --rpcaddr "0.0.0.0" --rpcport 3300 --rpccorsdomain "*" --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,rpc" console 2>> ~/eth00/geth.log
-geth --networkid 30507 --maxpeers 3  --port 8001 --datadir ~/eth01 console 2>> ~/eth01/geth.log
-geth --networkid 30507 --maxpeers 3  --port 8002 --datadir ~/eth02 console 2>> ~/eth02/geth.log
+./geth --datadir ~/eth00 init ~/genesis.json
+./geth --datadir ~/eth01 init ~/genesis.json
+./geth --datadir ~/eth02 init ~/genesis.json
+
+./geth --networkid 30507 --datadir ~/eth00 --maxpeers 3 --port 8000 --rpc --rpcaddr "0.0.0.0" --rpcport 3300 --rpccorsdomain "*" --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,rpc" console 2>> ~/eth00/geth.log
+./geth --networkid 30507 --maxpeers 3  --port 8001 --datadir ~/eth01 console 2>> ~/eth01/geth.log
+./geth --networkid 30507 --maxpeers 3  --port 8002 --datadir ~/eth02 console 2>> ~/eth02/geth.log
 
 
 채굴노드 백그라운드 실행
-nohup geth --networkid 30507 --maxpeers 3  --port 8001 --datadir ~/eth01 --mine -minerthreads 1 --etherbase "0x70e53a511bbdf90203ebd028cdaf4ddeadc43ef4" & console 2>> ~/eth01/geth.log
-nohup geth --networkid 30507 --maxpeers 3  --port 8002 --datadir ~/eth02 --mine -minerthreads 1 --etherbase "0x70e53a511bbdf90203ebd028cdaf4ddeadc43ef4" & console 2>> ~/eth02/geth.log
+nohup ./geth --networkid 30507 --maxpeers 3  --port 8001 --datadir ~/eth01 --mine -minerthreads 1 --etherbase "0xdf664aba258eb9c0660421d2c9ce582202fd6717" & console 2>> ~/eth01/geth.log
+nohup ./geth --networkid 30507 --maxpeers 3  --port 8002 --datadir ~/eth02 --mine -minerthreads 1 --etherbase "0xdf664aba258eb9c0660421d2c9ce582202fd6717" & console 2>> ~/eth02/geth.log
 
 백그라운드 RPC 설정
 eth00
-nohup geth --networkid 30507 --datadir ~/eth00 --maxpeers 3 --port 8000 --allow-insecure-unlock --rpc --rpcaddr "0.0.0.0" --rpcport 3300 --rpccorsdomain "*" --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,rpc" & console 2>> ~/eth00/geth.log
+nohup ./geth --networkid 30507 --datadir ~/eth00 --maxpeers 3 --port 8000 --allow-insecure-unlock --rpc --rpcaddr "0.0.0.0" --rpcport 3300 --rpccorsdomain "*" --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,rpc" & console 2>> ~/eth00/geth.log
 eth01
 nohup geth --networkid 30507 --datadir ~/eth01 --maxpeers 3 --port 8001 --rpc --rpcaddr "0.0.0.0" --rpcport 3301 --rpccorsdomain "http://localhost" --rpcapi "admin,db,eth,debug,miner,net,shh,txpool,personal,web3,rpc" & console 2>> ~/eth01/geth.log
 eth02
@@ -20,7 +24,7 @@ ps ef | grep geth
 
 Geth 콘솔 접속
 eth00
-geth attach rpc:http://localhost:3300
+./geth attach rpc:http://localhost:3300
 eth01
 geth attach rpc:http://localhost:8546
 eth02
@@ -34,9 +38,8 @@ static-nodes.json
 
 eth00 URL : http://52.79.176.64:8545
 
-coinBase : "0x70e53a511bbdf90203ebd028cdaf4ddeadc43ef4"
-"0x093a0ed738b65ed34f2a37a2d44c5e3cd0d0dd45"
-"0x223971618f5ce58751e652184643108878d1ae3d"
+coinBase : "0xdf664aba258eb9c0660421d2c9ce582202fd6717"
+
 
 eth01 "0x223971618f5ce58751e652184643108878d1ae3d"
 eth02 "0x684fb90780e1aecb534d353bde9713ebafdd327b"
