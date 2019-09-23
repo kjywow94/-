@@ -10,7 +10,7 @@ var artworksView = Vue.component('artworksView', {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 artwork" v-for="item in artworks">
+                    <div class="col-md-3 artwork" v-for="item in pageArtworks">
                         <div class="card">
                             <div class="card-body">
                                 <img src="./assets/images/artworks/artwork1.jpg">
@@ -26,10 +26,11 @@ var artworksView = Vue.component('artworksView', {
                     <div class="col-md-12 text-center">
                         <nav class="bottom-pagination">
                             <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
-                                // <v-for >
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                                <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="prevPage()">이전</a></li>
+                                
+                                    <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
+                                </v-for>
+                                <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="nextPage()">다음</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -42,6 +43,13 @@ var artworksView = Vue.component('artworksView', {
             artworks: [{
                 "이름": "",
                 "설명": ""
+            }],
+            maxPage: 0,
+            page: 1,
+            pageArr: [],
+            pageArtworks: [{
+                "이름": "",
+                "설명": ""
             }]
         }
     },
@@ -50,6 +58,46 @@ var artworksView = Vue.component('artworksView', {
 
         workService.findAll(function(data){
             scope.artworks = data;
-        });
+            scope.maxPage = parseInt(scope.artworks.length / 8);
+            if(scope.artworks.length % 8 > 0)
+                scope.maxPage += 1; 
+            scope.movePage(scope.page);
+            console.log(scope.maxPage);
+        }); 
+    },
+    methods:{
+        nextPage(){
+            this.page += 1;
+            this.movePage(this.page)
+        },
+        prevPage(){
+            this.page -= 1;
+            this.movePage(this.page)
+        },
+        movePage(p){
+            this.page = p;
+            var min = this.artworks.length;
+            if(min > 8 * this.page)
+                min = 8 * this.page;
+            this.pageArtworks = [];
+            for(var i = (this.page - 1) * 8 ; i < min ; i++){
+                this.pageArtworks.push({
+                    "이름": this.artworks[i]["이름"],
+                    "설명": this.artworks[i]["설명"]
+                }); 
+            }
+            this.pageArr = [];
+            for(var i = -5 ; i < 0 ; i++){
+                if(this.page + i > 0 )
+                    this.pageArr.push(this.page + i);
+            }
+            for(var i = 0 ; i < 5 ; i++){
+                if(this.page + i > this.maxPage )
+                    break;
+                this.pageArr.push(this.page + i);
+            }
+
+            
+        }
     }
 })
