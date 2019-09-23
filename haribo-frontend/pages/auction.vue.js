@@ -10,7 +10,7 @@ var auctionView = Vue.component('AuctionView', {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 auction" v-for="item in auctions">
+                    <div class="col-md-3 auction" v-for="item in pageAuctions">
                         <div class="card">
                             <div class="card-body">
                                 <img src="./assets/images/artworks/artwork1.jpg">
@@ -21,12 +21,29 @@ var auctionView = Vue.component('AuctionView', {
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <nav class="bottom-pagination">
+                            <ul class="pagination">
+                                <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
+                                
+                                    <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
+                                </v-for>
+                                <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     `,
     data() {
         return {
-            auctions: []
+            auctions: [],
+            maxPage: 0,
+            page: 1,
+            pageArr: [],
+            pageAuctions: []
         }
     },
     methods: {
@@ -52,6 +69,37 @@ var auctionView = Vue.component('AuctionView', {
 
                 return "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분";
             }
+        },
+        
+        nextPage(){
+            this.page += 1;
+            this.movePage(this.page)
+        },
+        prevPage(){
+            this.page -= 1;
+            this.movePage(this.page)
+        },
+        movePage(p){
+            this.page = p;
+            var min = this.auctions.length;
+            if(min > 8 * this.page)
+                min = 8 * this.page;
+            this.pageAuctions = [];
+            for(var i = (this.page - 1) * 8 ; i < min ; i++){
+                this.pageAuctions.push(this.auctions[i]); 
+            }
+            this.pageArr = [];
+            for(var i = -5 ; i < 0 ; i++){
+                if(this.page + i > 0 )
+                    this.pageArr.push(this.page + i);
+            }
+            for(var i = 0 ; i < 5 ; i++){
+                if(this.page + i > this.maxPage )
+                    break;
+                this.pageArr.push(this.page + i);
+            }
+
+            
         }
     },
     mounted: function () {
@@ -64,6 +112,10 @@ var auctionView = Vue.component('AuctionView', {
             function fetchData(start, end) {
                 if (start == end) {
                     scope.auctions = result;
+                    scope.maxPage = parseInt(scope.auctions.length / 8);
+                    if(scope.auctions.length % 8 > 0)
+                        scope.maxPage += 1; 
+                    scope.movePage(scope.page);
                 } else {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
@@ -73,6 +125,7 @@ var auctionView = Vue.component('AuctionView', {
                 }
             }
             fetchData(0, result.length);
+            
         });
     }
 });

@@ -107,7 +107,7 @@ public class AuctionService implements IAuctionService
 		auction.set상태("E");
 		this.auctionRepository.수정(auction);
 		// 소유권 이전 호출 추가 필요
-		
+		fabricService.소유권이전( auction.get경매생성자id(), bid.get경매참여자id(), auction.get경매작품id());
 		return auction;
 	}
 
