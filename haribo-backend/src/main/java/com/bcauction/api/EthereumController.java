@@ -4,6 +4,7 @@ import com.bcauction.application.IAuctionContractService;
 import com.bcauction.application.IEthereumService;
 import com.bcauction.domain.Address;
 import com.bcauction.domain.AuctionInfo;
+import com.bcauction.domain.Member;
 import com.bcauction.domain.wrapper.Block;
 import com.bcauction.domain.wrapper.EthereumTransaction;
 import com.bcauction.domain.wrapper.EthereumTransactionData;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import org.web3j.protocol.core.methods.response.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,5 +118,10 @@ public class EthereumController {
             throw new NotFoundException(addr + " 경매 정보를 찾을 수 없습니다.");
 
         return 경매정보;
+    }
+    
+    @RequestMapping(value = "/transaction", method = RequestMethod.POST)
+    public Transaction addTransaction(@RequestBody Transaction transaction) {
+        return null;
     }
 }

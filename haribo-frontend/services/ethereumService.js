@@ -29,4 +29,16 @@ var ethereumService = {
             callback(data);
         })
     },
+    pushTransaction: function(receipt){
+        $.ajax({
+            type: "POST",
+            url: API_BASE_URL + "/api/eth/transaction",
+            data: JSON.stringify(receipt),
+            headers: { 'Content-Type': 'application/json' },
+            success: function(response){
+                console.log("success");
+                console.log(response);
+            }
+        });
+    }
 }
