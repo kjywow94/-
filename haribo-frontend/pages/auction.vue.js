@@ -25,11 +25,11 @@ var auctionView = Vue.component('AuctionView', {
                     <div class="col-md-12 text-center">
                         <nav class="bottom-pagination">
                             <ul class="pagination">
-                                <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="prevPage()">이전</a></li>
+                                <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
                                 
                                     <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
                                 </v-for>
-                                <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="nextPage()">다음</a></li>
+                                <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                             </ul>
                         </nav>
                     </div>
