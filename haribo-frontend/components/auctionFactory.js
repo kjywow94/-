@@ -41,10 +41,6 @@ function createAuction(options, walletAddress, privateKey, onConfirm) {
      */
     web3.eth.accounts.signTransaction(tx, privateKey).then(response => {
         web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
-
-            console.log("경매 생성 recp");
-            console.log(response);
-
             contract.methods.allAuctions().call().then(response => {
                 var responseAddress = response[response.length - 1];
                 onConfirm(responseAddress);
@@ -73,10 +69,6 @@ function auction_bid(options, onConfirm) {
 
     web3.eth.accounts.signTransaction(tx, options.privateKey).then(response => {
         web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
-
-            console.log("경매 입찰 recp");
-            console.log(response);
-
             onConfirm(response);
         });
     });
@@ -100,10 +92,6 @@ function auction_close(options, onConfirm) {
 
     web3.eth.accounts.signTransaction(tx, options.privateKey).then(response => {
         web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
-
-            console.log("경매 종료 recp");
-            console.log(response);
-
             onConfirm(response);
         });
     });
@@ -128,10 +116,6 @@ function auction_cancel(options, onConfirm) {
 
     web3.eth.accounts.signTransaction(tx, options.privateKey).then(response => {
         web3.eth.sendSignedTransaction(response.rawTransaction).then(response => {
-
-            console.log("경매 취소 recp");
-            console.log(response);
-
             onConfirm(response);
         });
     });

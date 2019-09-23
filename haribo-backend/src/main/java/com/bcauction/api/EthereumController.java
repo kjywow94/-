@@ -119,9 +119,4 @@ public class EthereumController {
 
         return 경매정보;
     }
-    
-    @RequestMapping(value = "/transaction", method = RequestMethod.POST)
-    public Transaction addTransaction(@RequestBody Transaction transaction) {
-        return null;
-    }
 }
