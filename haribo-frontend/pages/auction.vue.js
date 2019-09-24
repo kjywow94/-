@@ -15,7 +15,7 @@ var auctionView = Vue.component('AuctionView', {
                             <div class="card-body">
                                 <img :src="item.imgData">
                                 <h4>{{ item['작품정보']['이름'] }}</h4>
-                                <p>{{ calculateDate(item['시작일시'],item['종료일시']) }}</p>
+                                <p>{{item['남은시간']}}</p>
                                 <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary">자세히보기</router-link>
                             </div>
                         </div>
@@ -26,9 +26,7 @@ var auctionView = Vue.component('AuctionView', {
                         <nav class="bottom-pagination">
                             <ul class="pagination">
                                 <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
-                                
                                     <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
-                                </v-for>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                             </ul>
                         </nav>
@@ -43,7 +41,9 @@ var auctionView = Vue.component('AuctionView', {
             maxPage: 0,
             page: 1,
             pageArr: [],
-            pageAuctions: []
+            pageAuctions: [],
+            test: 0,
+            interval: null
         }
     },
     methods: {
@@ -63,11 +63,20 @@ var auctionView = Vue.component('AuctionView', {
                 return "경매 마감";
             } else {
                 // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
-                var days = endDate.getDate() - now.getDate();
-                var hours = endDate.getHours() - now.getHours();
-                var minutes = endDate.getMinutes() - now.getMinutes();
+                var delta = Math.abs(endDate - now) / 1000;
 
-                return "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분";
+                var days = Math.floor(delta / 86400);
+                delta -= days * 86400;
+
+                var hours = Math.floor(delta / 3600) % 24;
+                delta -= hours * 3600;
+
+                var minutes = Math.floor(delta / 60) % 60;
+                delta -= minutes * 60;
+
+                var seconds = parseInt(delta % 60);
+                
+                return days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
             }
         },
         
@@ -80,6 +89,7 @@ var auctionView = Vue.component('AuctionView', {
             this.movePage(this.page)
         },
         movePage(p){
+            clearInterval(this.interval);
             this.page = p;
             var min = this.auctions.length;
             if(min > 8 * this.page)
@@ -87,7 +97,13 @@ var auctionView = Vue.component('AuctionView', {
             this.pageAuctions = [];
             for(var i = (this.page - 1) * 8 ; i < min ; i++){
                 this.pageAuctions.push(this.auctions[i]); 
-            }
+            }         
+            this.interval = setInterval(function () {
+                for(var i = 0 ; i < this.pageAuctions.length ; i++){
+                    this.pageAuctions[i]['남은시간'] = this.calculateDate(this.pageAuctions[i]['시작일시'], this.pageAuctions[i]['종료일시']); 
+                this.test += 1;
+                }
+            }.bind(this), 1000);             
             this.pageArr = [];
             for(var i = -5 ; i < 0 ; i++){
                 if(this.page + i > 0 )
@@ -98,7 +114,6 @@ var auctionView = Vue.component('AuctionView', {
                     break;
                 this.pageArr.push(this.page + i);
             }
-
             
         }
     },
@@ -120,6 +135,7 @@ var auctionView = Vue.component('AuctionView', {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
                         result[start]['작품정보'] = work;
+                        result[start]['남은시간'] = scope.calculateDate(result[start]['시작일시'], result[start]['종료일시']);
                         fetchData(start + 1, end);
                     });
                 }

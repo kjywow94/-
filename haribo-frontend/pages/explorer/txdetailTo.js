@@ -28,6 +28,35 @@ var explorerTxDetailToView = Vue.component('ExplorerTxDetailToView', {
                         </div>
                     </div>
                 </div>
+                <br>
+                <div class="card shadow-sm">
+                <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Txn Hash</th>
+                    <th scope="col">Block</th>
+                    <th style="color:blue;" scope="col">Age</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">[Txn Fee]</th>
+                  </tr>
+                </thead>
+                <tbody v-for="tran in transactions">
+                    <tr>
+                        <th scope="row"> {{tran.txHash}} </th>
+                        <td scope="row"> {{tran.blockId}} </td>
+                        <td scope="row"> {{tran.timestamp}} </td>
+                        <td scope="row">{{tran.from}} </td>
+                        <td scope="row"> {{tran.to}} </td>
+                        <td scope="row"> {{tran.value}}</td>
+                        <td scope="row"
+                        v> tran.tax </td>
+                    </tr>
+                  </tbody>
+              </table>
+                </div>
+                <br>
             </div>
         </div>
     `,
@@ -38,6 +67,26 @@ var explorerTxDetailToView = Vue.component('ExplorerTxDetailToView', {
                 addr: "-"
                 
             },
+            transactions: [
+                {
+                    txHash : 1,
+                    blockId : 2,
+                    timestamp : 1,
+                    from : 1,
+                    to : 1,
+                    value : 2,
+                    tax : 1
+                },
+                {
+                    txHash : 1,
+                    blockId : 2,
+                    timestamp : 1,
+                    from : 1,
+                    to : 1,
+                    value : 2,
+                    tax : 1
+                }
+            ],
             timestamp:""
         }
     },

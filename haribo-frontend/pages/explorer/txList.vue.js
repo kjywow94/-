@@ -69,7 +69,11 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                     await ethereumService.findbyTrans(this.block.trans[i].txHash, tx);
                 }
             }
-            await ethereumService.findbyBlock(this.lastReadBlock, bn);
+
+            await ethereumService.findbyBlock("57212", bn);
+            // 1437
+            // await ethereumService.findbyBlock(this.lastReadBlock, bn);
+
 
             
         }
