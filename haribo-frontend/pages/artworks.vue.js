@@ -13,7 +13,7 @@ var artworksView = Vue.component('artworksView', {
                     <div class="col-md-3 artwork" v-for="item in pageArtworks">
                         <div class="card">
                             <div class="card-body">
-                                <img src="./assets/images/artworks/artwork1.jpg">
+                                <img :src="item.imgData">
                                 <h4>{{ item["이름"] }}</h4>
                                 <p v-if="item['설명'] != null">{{ item["설명"] }}</p>
                                 <p v-if="item['설명'] == null">-</p>
@@ -44,62 +44,56 @@ var artworksView = Vue.component('artworksView', {
         return {
             artworks: [{
                 "이름": "",
-                "설명": ""
+                "설명": "",
+                "imgData": "./assets/images/artworks/artwork1.jpg"
             }],
             maxPage: 0,
             page: 1,
             pageArr: [],
-            pageArtworks: [{
-                "이름": "",
-                "설명": ""
-            }]
+            pageArtworks: []
         }
     },
-    mounted: function(){
+    mounted: function () {
         var scope = this;
 
-        workService.findAll(function(data){
+        workService.findAll(function (data) {
             scope.artworks = data;
             scope.maxPage = parseInt(scope.artworks.length / 8);
-            if(scope.artworks.length % 8 > 0)
-                scope.maxPage += 1; 
+            if (scope.artworks.length % 8 > 0)
+                scope.maxPage += 1;
             scope.movePage(scope.page);
-            console.log(scope.maxPage);
         }); 
     },
-    methods:{
-        nextPage(){
+    methods: {
+        nextPage() {
             this.page += 1;
             this.movePage(this.page)
         },
-        prevPage(){
+        prevPage() {
             this.page -= 1;
             this.movePage(this.page)
         },
-        movePage(p){
+        movePage(p) {
             this.page = p;
             var min = this.artworks.length;
-            if(min > 8 * this.page)
+            if (min > 8 * this.page)
                 min = 8 * this.page;
             this.pageArtworks = [];
             for(var i = (this.page - 1) * 8 ; i < min ; i++){
-                this.pageArtworks.push({
-                    "이름": this.artworks[i]["이름"],
-                    "설명": this.artworks[i]["설명"]
-                }); 
+                this.pageArtworks.push(this.artworks[i]); 
             }
             this.pageArr = [];
-            for(var i = -5 ; i < 0 ; i++){
-                if(this.page + i > 0 )
+            for (var i = -5; i < 0; i++) {
+                if (this.page + i > 0)
                     this.pageArr.push(this.page + i);
             }
-            for(var i = 0 ; i < 5 ; i++){
-                if(this.page + i > this.maxPage )
+            for (var i = 0; i < 5; i++) {
+                if (this.page + i > this.maxPage)
                     break;
                 this.pageArr.push(this.page + i);
             }
 
-            
+
         }
     }
 })
