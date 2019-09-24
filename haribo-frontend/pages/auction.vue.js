@@ -13,7 +13,7 @@ var auctionView = Vue.component('AuctionView', {
                     <div class="col-md-3 auction" v-for="item in pageAuctions">
                         <div class="card">
                             <div class="card-body">
-                                <img src="./assets/images/artworks/artwork1.jpg">
+                                <img :src="item.imgData">
                                 <h4>{{ item['작품정보']['이름'] }}</h4>
                                 <p>{{item['남은시간']}}</p>
                                 <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary">자세히보기</router-link>

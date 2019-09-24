@@ -1,6 +1,9 @@
 package com.bcauction.application;
 
 import com.bcauction.domain.DigitalWork;
+import com.bcauction.domain.DigitalWorkWithImg;
+import com.bcauction.domain.WorksImage;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -19,4 +22,6 @@ public interface IDigitalWorkService
 
 	@Transactional
 	DigitalWork 작품삭제(long id);
+	WorksImage uploadImage(WorksImage image);
+	List<DigitalWorkWithImg> DigitalWorkslist(List<DigitalWork> 목록);
 }
