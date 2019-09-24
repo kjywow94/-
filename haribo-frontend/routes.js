@@ -103,11 +103,7 @@ const routes = [{
     path: '/explorer/txes/:hash',
     component: explorerTxDetailView
 },{
-    name: "explorer.tx.detail.from",
+    name: "explorer.tx.detail.fromto",
     path: '/explorer/address/:address',
-    component: explorerTxDetailFromView
-},{
-    name: "explorer.tx.detail.to",
-    path: '/explorer/address/:address',
-    component: explorerTxDetailToView
+    component: explorerTxDetailFromToView
 }];
