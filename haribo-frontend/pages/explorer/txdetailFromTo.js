@@ -51,7 +51,7 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                             <td v-else scope="row"><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: tran.from }}" class="block-number">{{ tran.from | truncate(15) }}</router-link></td>
                             <td v-if="fa.id === tran.to" scope="row"> {{ tran.to | truncate(15) }}</td>
                             <td v-else scope="row"><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: tran.to }}" class="block-number">{{ tran.to | truncate(15) }}</router-link></td>
-                            <td scope="row"> {{ tran.amount}} ether</td>
+                            <td scope="row"> 111 ether</td>
                             <td scope="row"> {{ tran.gas}} ether </td>
                         </tr>
                     </tbody>
@@ -95,20 +95,20 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                     let hex = this.fa.trans[i].blockNumber;
                     let getgas = this.fa.trans[i].gas;
                     
-                    console.log(this.fa.trans[i].amount);
                     
+                    console.log(this.fa.trans[i].amount);
                     let dec = parseInt(hex, 16);
                     let gass = parseInt(getgas, 16);
                     
-
+                    
                     this.fa.trans[i].blockNumber = dec;
                     this.fa.trans[i].gas = gass;
 
                     this.number = String(this.fa.trans[i].gas);
                     this.fa.trans[i].gas = web3.utils.fromWei(this.number, "ether");
                   
-                    this.value = String(this.fa.trans[i].amount);
-                    this.fa.trans[i].amount = web3.utils.fromWei(this.value, "ether");
+                    // this.value = String(this.fa.trans[i].amount);
+                    // this.fa.trans[i].amount = web3.utils.fromWei(this.value, "ether");
 
                     var len = this.fa.trans.length;
                     var num = len -1;
