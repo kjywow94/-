@@ -74,9 +74,4 @@ public class WalletController {
 		System.out.println(address);
 		return this.walletService.충전(address);
 	}
-	
-	@RequestMapping(value = "/withdraw/{address}", method = RequestMethod.GET)
-	public boolean doWithdraw(@PathVariable String address) {
-		return auctionContractService.doWithdraw(address);
-	}
 }

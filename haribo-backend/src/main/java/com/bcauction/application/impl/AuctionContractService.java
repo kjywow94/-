@@ -154,9 +154,4 @@ public class AuctionContractService implements IAuctionContractService {
 		// TODO
 		return null;
 	}
-
-	public boolean doWithdraw(String address) {
-		// 아직 테스트중 프론트에서 실험후 안되면 백단으로
-		return false;
-	}
 }

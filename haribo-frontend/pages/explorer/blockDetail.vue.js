@@ -74,6 +74,8 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
             var findblock = (blocks) => {
                     this.block = blocks;
                     this.block.timeStamp = timeSince(this.block.timeStamp);
+                    console.log(this.block);
+                    
                 };
 
             await ethereumService.findbyBlock(blockNumber, findblock);
