@@ -131,7 +131,7 @@ public class AuctionContractService implements IAuctionContractService {
 	@Override
 	public BigInteger 현재최고가(final String 컨트랙트주소)
 	{
-//		// TODO
+		// TODO
 		AuctionInfo auctionInfo = this.경매정보조회(컨트랙트주소);
 		return auctionInfo.get최고입찰액();
 	}
@@ -182,6 +182,5 @@ public class AuctionContractService implements IAuctionContractService {
 		}
 		
 		return contractAddressList;
-
 	}
 }
