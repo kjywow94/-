@@ -94,7 +94,7 @@
 
                     userService.login(
                     sessionID,
-                    sessionPW,
+                    hashingService.SHA256(sessionPW),
                     function(data){
                         store.state.isSigned = true;
                         store.state.user.id = data.id;
@@ -117,6 +117,7 @@
                         },
                         function(error){
                             alert(error);
+                            console.log(error)
                         }
                     );
 
