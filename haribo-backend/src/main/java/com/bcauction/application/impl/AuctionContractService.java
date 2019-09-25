@@ -170,7 +170,7 @@ public class AuctionContractService implements IAuctionContractService {
 			List<org.web3j.abi.datatypes.Address> addressList = auctionFactoryContract.allAuctions().sendAsync().get().getValue();
 			
 			for(int idx = 0 ; idx<addressList.size() ; idx++) {
-				contractAddressList.add(addressList.get(idx).getTypeAsString());
+				contractAddressList.add(addressList.get(idx).getValue());
 			}
 			
 		} catch (InterruptedException e) {
