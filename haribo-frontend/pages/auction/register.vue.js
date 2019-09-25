@@ -146,8 +146,6 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                 if (isValid) {
                     var sDate = new Date(scope.before.input.startDate+" "+scope.before.input.startTime);
                     var eDate = new Date(scope.before.input.untilDate+" "+scope.before.input.untilTime);
-                    console.log(sDate.getTime()/1000)
-                    console.log(eDate.getTime()/1000)
                     createAuction({
                         workId: scope.before.selectedWork,
                         minValue: scope.before.input.minPrice,
