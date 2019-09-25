@@ -51,6 +51,7 @@ a {
 #auction-list .auction img,
 #artwork-list .artwork img {
     width: 100%;
+    height: 200px;
 }
 
 #auction-list .auction h4,
@@ -98,6 +99,8 @@ a {
     margin: 20px 0;
 }
 
+.art
+
 /* 마이페이지 > 내 지갑 정보 스타일 시트 */
 .card .table {
     padding: 0;
@@ -144,3 +147,9 @@ nav.bottom-pagination {
     visibility: hidden;
     position: absolute;
   }
+
+.text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
+}

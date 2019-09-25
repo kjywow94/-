@@ -13,36 +13,70 @@ var myArtworkView = Vue.component('MyArtworkView', {
                 <div id="my-artwork" class="row">
                     <div class="col-md-12 mt-5">
                         <h4>보유 중</h4>
-                        <div class="row">
-                            <div class="col-md-3 artwork" v-for="item in artworks" v-if="artworks.length > 0">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img :src="item.imgData">
-                                        <h4>{{ item["이름"] }}</h4>
-                                        <p v-if="item['설명'] != null">{{ item["설명"] }}</p>
-                                        <p v-if="item['설명'] == null">-</p>
-                                        <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary">자세히보기</router-link>
+                        <div v-if="ownPageArtworks.length > 0">
+                            <div class="row">
+                                <div class="col-md-3 artwork" v-for="item in ownPageArtworks">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img :src="item.imgData">
+                                            <h4 class="text-overflow">{{ item["이름"] }}</h4>
+                                            <p v-if="item['설명'] != null" class="text-overflow">{{ item["설명"] }}</p>
+                                            <p v-if="item['설명'] == null">-</p>
+                                            <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary">자세히보기</router-link>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-sm-12 col-md-8 mt-3" v-if="ownPageArtworks.length == 0">
+                                    <div class="alert alert-warning">보유중인 작품이 없습니다.</div>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-8 mt-3" v-if="artworks.length == 0">
-                                <div class="alert alert-warning">보유중인 작품이 없습니다.</div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <nav class="bottom-pagination">
+                                        <ul class="pagination">
+                                            <li class="page-item" v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
+                                            <li class="page-item"v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
+                                            <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: ownPage == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
+                                            <li class="page-item"v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage)">맨 뒤</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 mt-5">
                         <h4>경매 중</h4>
-                        <div class="row">
-                            <div class="col-md-3 artwork" v-for="item in auctions" v-if="auctions.length > 0">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img :src="item.imgData">
-                                        <h4>{{ item['작품정보']['이름'] }}</h4>
-                                        <span class="badge badge-success">경매 진행중</span>
-                                        <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary mt-3">자세히보기</router-link>
+                        <div v-if="auctions.length > 0">
+                            <div class="row">
+                                <div class="col-md-3 artwork" v-for="item in auctions">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img :src="item.imgData">
+                                            <h4>{{ item['작품정보']['이름'] }}</h4>
+                                            <span class="badge badge-success">경매 진행중</span>
+                                            <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary mt-3">자세히보기</router-link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <nav class="bottom-pagination">
+                                        <ul class="pagination">
+                                            <li class="page-item" v-bind:class="{disabled: auctionPage == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
+                                            <li class="page-item"v-bind:class="{disabled: auctionPage == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
+                                            <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: auctionPage == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
+                                            <li class="page-item"v-bind:class="{disabled: auctionPage == ownMaxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: auctionPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage)">맨 뒤</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">    
                             <div class="col-sm-12 col-md-8 mt-3" v-if="auctions.length == 0">
                                 <div class="alert alert-warning">진행중인 경매 목록이 없습니다.</div>
                             </div>
@@ -56,7 +90,15 @@ var myArtworkView = Vue.component('MyArtworkView', {
         return {
             sharedStates: store.state,
             artworks: [],
-            auctions: []
+            auctions: [],
+            ownPage: 1,
+            ownMaxPage: 0,
+            ownPageArr: [],
+            ownPageArtworks: [],
+            auctionPage: 1,
+            auctionMaxPage: 0,
+            auctionPageArr: [],
+            auctionPageArtworks: []
         }
     },
     methods: {
@@ -77,6 +119,34 @@ var myArtworkView = Vue.component('MyArtworkView', {
 
                 return "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분";
             }
+        },
+        nextpage() {
+            this.ownPage += 1;
+            this.movePage(this.ownPage);
+        },
+        prevPage() {
+            this.ownPage -= 1;
+            this.movePage(this.ownPage);
+        },
+        movePage(p) {
+            this.ownPage = p;
+            let min = this.artworks.length;
+            if (min > 4 * this.ownPage)
+                min = 4 * this.ownPage;
+            this.ownPageArtworks = [];
+            for(var i = (this.ownPage - 1) * 4 ; i < min ; i++){
+                this.ownPageArtworks.push(this.artworks[i]); 
+            }
+            this.ownPageArr = [];
+            for (var i = -5; i < 0; i++) {
+                if (this.ownPage + i > 0)
+                    this.ownPageArr.push(this.ownPage + i);
+            }
+            for (var i = 0; i < 5; i++) {
+                if (this.ownPage + i > this.ownMaxPage)
+                    break;
+                this.ownPageArr.push(this.ownPage + i);
+            }
         }
     },
     mounted: function () {
@@ -84,6 +154,10 @@ var myArtworkView = Vue.component('MyArtworkView', {
         var userId = this.sharedStates.user.id;
         workService.findWorksByOwner(userId, function (data) {
             scope.artworks = data;
+            scope.ownMaxPage = parseInt(scope.artworks.length / 4);
+            if (scope.artworks.length % 4 > 0)
+                scope.ownMaxPage += 1;
+            scope.movePage(scope.ownPage);
         });
 
         /**

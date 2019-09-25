@@ -30,7 +30,7 @@ var artworksView = Vue.component('artworksView', {
                                 <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
                                 
                                     <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
-                                </v-for>
+                                
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                             </ul>
