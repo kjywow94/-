@@ -70,11 +70,11 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                                     </tr>
                                     <tr>
                                         <th>시작일시</th>
-                                        <td>{{ before.input.startDate }}</td>
+                                        <td>{{ before.input.startDate +" "+before.input.startTime}}</td>
                                     </tr>
                                     <tr>
                                         <th>종료일시</th>
-                                        <td>{{ before.input.untilDate }}</td>
+                                        <td>{{ before.input.untilDate +" "+before.input.untilTime}}</td>
                                     </tr>
                                     <tr>
                                         <th>컨트랙트 주소</th>
@@ -144,24 +144,27 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
             // 비밀키 확인
             walletService.isValidPrivateKey(this.sharedStates.user.id, scope.before.input.privateKey, (isValid, walletAddress) => {
                 if (isValid) {
+                    var sDate = new Date(scope.before.input.startDate+" "+scope.before.input.startTime);
+                    var eDate = new Date(scope.before.input.untilDate+" "+scope.before.input.untilTime);
+                    console.log(sDate.getTime()/1000)
+                    console.log(eDate.getTime()/1000)
                     createAuction({
                         workId: scope.before.selectedWork,
                         minValue: scope.before.input.minPrice,
-                        startTime: (new Date(scope.before.input.startDate).getTime()) / 1000,
-                        endTime: (new Date(scope.before.input.untilDate).getTime()) / 1000
+                        startTime: sDate.getTime() / 1000,
+                        endTime: eDate.getTime() / 1000
                     }, walletAddress, scope.before.input.privateKey, function (responseAddress) {
                         var contractAddress = responseAddress;
                         var data = {
                             "경매생성자id": scope.sharedStates.user.id,
                             "경매작품id": scope.before.selectedWork,
-                            "시작일시": new Date(scope.before.input.startDate+"T"+scope.before.input.startTime),
-                            "종료일시": new Date(scope.before.input.untilDate+"T"+scope.before.input.untilTime),
+                            "시작일시": sDate,
+                            "종료일시": eDate,
                             "최저가": Number(scope.before.input.minPrice),
                             "컨트랙트주소": contractAddress,
                         }
                         data.시작일시.setHours(data.시작일시.getHours() + 9);
                         data.종료일시.setHours(data.종료일시.getHours() + 9);
-
                         // 3. 선택한 작업 정보를 가져옵니다.
                         workService.findById(scope.before.selectedWork, function (result) {
                             scope.after.work = result;

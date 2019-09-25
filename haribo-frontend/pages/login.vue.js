@@ -46,7 +46,14 @@ var loginView = Vue.component('LoginView', {
                             alert("Unexpected status code : " + response.status);
                         }
                     });
+                    if (window.sessionStorage) {
 
+                        sessionStorage.setItem('ID', scope.user.email);
+                        sessionStorage.setItem('PW', scope.user.password);
+                    }
+        
+        
+        
                     scope.$router.push('/');
                 },
                 function (error) {

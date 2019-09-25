@@ -298,17 +298,14 @@ public class EthereumService implements IEthereumService {
 			trans.get(idx).getTimestamp();
 			트랜잭션.setFrom(trans.get(idx).getFrom());
 			트랜잭션.setTo(trans.get(idx).getTo());
-<<<<<<< HEAD
 	        String value = "0";
-	         if(trans.get(idx).getAmount()!=null) {
+	        if(trans.get(idx).getAmount()!=null) {
 	            value = String.valueOf(trans.get(idx).getAmount());   
 	        }
-=======
-			String value = "0";
-			if(trans.get(idx).getAmount()!=null) {
-				value = String.valueOf(trans.get(idx).getAmount());	
-			}
->>>>>>> 322b0bf07b370670f4b3f2f29786d84be06df934
+	        BigInteger num = new BigInteger("100000000000000000000000");
+	        else if(trans.get(idx).getAmount().compareTo(num) == 0) {
+	        	System.out.println("111");
+	        }
 	        트랜잭션.setValue(value);
 			트랜잭션.setGas(trans.get(idx).getGas());
 			트랜잭션.setGasPrice(trans.get(idx).getGasPrice());
