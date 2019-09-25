@@ -105,6 +105,17 @@ public class DigitalWorkController {
 
 		return digitalWorkService.DigitalWorkslist(목록);
 	}
+	
+	@RequestMapping(value = "/worksInfo/owner/{id}", method = RequestMethod.GET)
+	public List<DigitalWork> 작품정보등록(@PathVariable int id) {
+		List<DigitalWork> 목록 = digitalWorkService.사용자작품목록조회(id);
+
+		if (목록 == null || 목록.isEmpty())
+			throw new EmptyListException("사용자 소유의 작품이 없습니다.");
+
+		return digitalWorkService.사용자작품목록조회(id);
+	}
+	
 
 	/**
 	 * 협업과제 협업과제 week. 4-7 mission. 3 Req. 1-2

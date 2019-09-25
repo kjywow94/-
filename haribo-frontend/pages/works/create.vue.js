@@ -71,8 +71,8 @@ var worksCreateView = Vue.component("worksCreateView", {
                 "상태": this.work.status ? "Y" : "N",
                 "회원id": this.sharedStates.user.id
             },
-                function () {
-                    workService.findWorksByOwner(scope.sharedStates.user.id, (workList) => {
+                function (response) {
+                    workService.findWorksInfoByOwner(scope.sharedStates.user.id, (workList) => {
                         var workId = workList[workList.length - 1].id;
 
                         var filename = scope.work.imgName;
