@@ -22,8 +22,8 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                                         <p class="tx-timestamp">{{ item.timeSince }}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p><label class="text-secondary">From</label> <router-link :to="{ name: 'explorer.tx.detail.from', params: { address: item.from }}">{{ item.from | truncate(10) }}</router-link></p>
-                                        <p><label class="text-secondary">To</label> <router-link :to="{ name: 'explorer.tx.detail.to', params: { address: item.to }}">{{ item.to | truncate(10) }}</router-link></p>
+                                        <p><label class="text-secondary">From</label> <router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: item.from }}">{{ item.from | truncate(10) }}</router-link></p>
+                                        <p><label class="text-secondary">To</label> <router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: item.to }}">{{ item.to | truncate(10) }}</router-link></p>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
             }
 
             await ethereumService.findbyBlock("57212", bn);
-            // 1437
+            // 1437 57212
             // await ethereumService.findbyBlock(this.lastReadBlock, bn);
 
 

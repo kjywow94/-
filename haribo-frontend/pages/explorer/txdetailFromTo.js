@@ -1,4 +1,4 @@
-var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
+var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
     template: `
         <div>
             <v-nav></v-nav>
@@ -31,7 +31,7 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
                 <br>
                 <div class="card shadow-sm">
                 <table class="table">
-                <thead>
+                <thead class="thead-light">
                 <tr>
                   <th scope="col">Txn Hash</th>
                   <th scope="col">Block</th>
@@ -44,13 +44,15 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
                 </thead>
                     <tbody>
                         <tr v-for="tran in trans">
-                            <th scope="row"> {{ tran.txHash | truncate(15) }} </th>
-                            <td scope="row"> {{ tran.blockNumber}} </td>
-                            <td scope="row"> {{ tran.timestamp}} </td>
-                            <td scope="row"> {{ tran.from | truncate(15) }} </td>
-                            <td scope="row"> {{ tran.to | truncate(15) }} </td>
-                            <td scope="row"> {{ tran.value}}</td>
-                            <td scope="row"> {{ tran.tax}} </td>
+                            <th scope="row"><router-link :to="{name: 'explorer.tx.detail', params: { hash:tran.txHash }}" class="tx-number">{{ tran.txHash | truncate(15) }}</router-link></th>
+                            <td scope="row"><router-link :to="{name:'explorer.block.detail', params: {blockNumber:tran.blockNumber}}" class="block-number">{{ tran.blockNumber }}</router-link></td>
+                            <td scope="row">{{ tran.timestamp }}</td>
+                            <td v-if="fa.id === tran.from" scope="row"> {{ tran.from | truncate(15) }}</td>
+                            <td v-else scope="row"><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: tran.from }}" class="block-number">{{ tran.from | truncate(15) }}</router-link></td>
+                            <td v-if="fa.id === tran.to" scope="row"> {{ tran.to | truncate(15) }}</td>
+                            <td v-else scope="row"><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: tran.to }}" class="block-number">{{ tran.to | truncate(15) }}</router-link></td>
+                            <td scope="row"> {{ tran.amount }} ether</td>
+                            <td scope="row"> {{ tran.gas}} ether </td>
                         </tr>
                     </tbody>
                 </table>                    
@@ -81,32 +83,38 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
             /**
              * 트랜잭션 해시값으로 트랜잭션 정보를 가져옵니다.
              */
+
             var ta = (address) => {
                 this.fa = address;
                 var idx = 0;
                 var cnt = 0;
-       
+                console.log(this.fa);
+                
                 this.fal = this.fa.trans.length;
                 
-                var tr = (tran) => {
-                    var txView = {
-                        hash: tran.txHash,
-                        from: tran.from,
-                        to: tran.to
-                    }
-
-                    this.$set(this.transactions, cnt++,  txView);
-      
-                }
-
-                ethereumService.findbyTrans(this.fa.id, tr);
-
-                
-                for (var i = 0; i < this.fal; i++) {
-                    let hex = this.fa.trans[i].blockNumber; 
+                for (var i = this.fal -1; i >= 0; --i) {
+                    let hex = this.fa.trans[i].blockNumber;
+                    let getgas = this.fa.trans[i].gas;
+                    
+                    
+                    console.log(this.fa.trans[i].amount);
                     let dec = parseInt(hex, 16);
+                    let gass = parseInt(getgas, 16);
+                    
+                    
                     this.fa.trans[i].blockNumber = dec;
-                    var num = 0;
+                    this.fa.trans[i].gas = gass;
+
+                    this.number = String(this.fa.trans[i].gas);
+                    this.fa.trans[i].gas = web3.utils.fromWei(this.number, "ether");
+                  
+                    console.log(this.fa.trans[i].amount);
+                    
+                    this.value = String(this.fa.trans[i].amount);
+                    this.fa.trans[i].amount = web3.utils.fromWei(this.value, "ether");
+                    
+                    var len = this.fa.trans.length;
+                    var num = len -1;
 
                     var bn =  (blocks) => {
                 
@@ -114,18 +122,15 @@ var explorerTxDetailFromView = Vue.component('ExplorerTxDetailFromView', {
                             
                             time: blocks.timeStamp
                         }
-
-                        var time = timeSince(timeView.time);
+                        var time = timeSince(timeView.time);   
                         this.fa.trans[num].timestamp = time;
-                        num++;
+                        
+                        num--;
                     }
-
                     ethereumService.findbyBlock(this.fa.trans[i].blockNumber, bn);
                     
                     this.$set(this.trans, idx++, this.fa.trans[i]);
                 }
-                
-                
             }
 
             await ethereumService.findByAddress(addr, ta);
