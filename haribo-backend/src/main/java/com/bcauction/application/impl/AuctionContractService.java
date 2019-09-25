@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.datetime.joda.LocalDateTimeParser;
 import org.springframework.stereotype.Service;
+import org.web3j.abi.datatypes.DynamicArray;
 import org.web3j.abi.datatypes.Uint;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
@@ -31,8 +32,10 @@ import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.concurrent.ExecutionException;
 
 /**
  * AuctionContractService
@@ -119,6 +122,7 @@ public class AuctionContractService implements IAuctionContractService {
 		return auctionInfo;
 	}
 
+	
 	/**
 	 * 이더리움 컨트랙트 주소를 이용하여 해당 경매의 현재 최고 입찰가를 조회한다.
 	 * @param 컨트랙트주소
@@ -127,9 +131,9 @@ public class AuctionContractService implements IAuctionContractService {
 	@Override
 	public BigInteger 현재최고가(final String 컨트랙트주소)
 	{
-		// TODO
-		return BigInteger.ZERO;
-		
+//		// TODO
+		AuctionInfo auctionInfo = this.경매정보조회(컨트랙트주소);
+		return auctionInfo.get최고입찰액();
 	}
 
 	/**
@@ -141,7 +145,8 @@ public class AuctionContractService implements IAuctionContractService {
 	public String 현재최고입찰자주소(final String 컨트랙트주소)
 	{
 		// TODO
-		return null;
+		AuctionInfo auctionInfo = this.경매정보조회(컨트랙트주소);
+		return Long.toString(auctionInfo.get최고입찰자id());
 	}
 
 	/**
@@ -152,6 +157,31 @@ public class AuctionContractService implements IAuctionContractService {
 	public List<String> 경매컨트랙트주소리스트()
 	{
 		// TODO
-		return null;
+		try {
+			credentials = WalletUtils.loadCredentials(PASSWORD, WALLET_RESOURCE);
+		} catch (IOException | CipherException e) {
+			e.printStackTrace();
+		}
+		AuctionFactoryContract auctionFactoryContract = AuctionFactoryContract.load(AUCTION_FACTORY_CONTRACT, web3j, credentials, contractGasProvider);
+		
+		List<String> contractAddressList = new ArrayList<String>();
+		
+		try {
+			List<org.web3j.abi.datatypes.Address> addressList = auctionFactoryContract.allAuctions().sendAsync().get().getValue();
+			
+			for(int idx = 0 ; idx<addressList.size() ; idx++) {
+				contractAddressList.add(addressList.get(idx).getValue());
+			}
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return contractAddressList;
+
 	}
 }
