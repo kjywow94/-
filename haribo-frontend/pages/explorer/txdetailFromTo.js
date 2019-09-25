@@ -70,7 +70,7 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
             },
             transactions: [],
             trans: [],
-            count: 0
+            count: 0,
         }
     },
     mounted: async function () {
@@ -116,7 +116,6 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                     
                     var len = this.fa.trans.length;
                     var num = len -1;
-
                     var bn =  (blocks) => {
                 
                         var timeView = {
@@ -129,7 +128,7 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                         num--;
                     }
                     ethereumService.findbyBlock(this.fa.trans[i].blockNumber, bn);
-                    
+
                     this.$set(this.trans, idx++, this.fa.trans[i]);
                 }
             }
@@ -139,5 +138,19 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
         } else {
             this.isValid = false;
         }
+    },
+    beforeRouteEnter (to, from, next) {
+       
+        next()
+    },
+    beforeRouteUpdate (to, from, next) {
+        this.$router.go()
+        
+        next()
+    },
+    beforeRouteLeave (to, from, next) {
+    
+     
+    next()
     }
 })
