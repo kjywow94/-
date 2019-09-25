@@ -17,7 +17,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
                             <div class="col-md-3 artwork" v-for="item in artworks" v-if="artworks.length > 0">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img src="./assets/images/artworks/artwork1.jpg">
+                                        <img :src="item.imgData">
                                         <h4>{{ item["이름"] }}</h4>
                                         <p v-if="item['설명'] != null">{{ item["설명"] }}</p>
                                         <p v-if="item['설명'] == null">-</p>
@@ -36,7 +36,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
                             <div class="col-md-3 artwork" v-for="item in auctions" v-if="auctions.length > 0">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img src="./assets/images/artworks/artwork1.jpg">
+                                        <img :src="item.imgData">
                                         <h4>{{ item['작품정보']['이름'] }}</h4>
                                         <span class="badge badge-success">경매 진행중</span>
                                         <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary mt-3">자세히보기</router-link>
@@ -52,7 +52,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
             </div>
         </div>
     `,
-    data(){
+    data() {
         return {
             sharedStates: store.state,
             artworks: [],
@@ -66,7 +66,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
             var diff = endDate.getTime() - now.getTime();
 
             // 만약 종료일자가 지났다면 "경매 마감"을 표시한다.
-            if(diff < 0) {
+            if (diff < 0) {
                 return "경매 마감";
             } else {
                 // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
@@ -79,30 +79,30 @@ var myArtworkView = Vue.component('MyArtworkView', {
             }
         }
     },
-    mounted: function(){
+    mounted: function () {
         var scope = this;
         var userId = this.sharedStates.user.id;
-        workService.findWorksByOwner(userId, function(data){
-                scope.artworks = data;
+        workService.findWorksByOwner(userId, function (data) {
+            scope.artworks = data;
         });
-        
+
         /**
          * TODO 1. 회원의 작품 목록을 가져옵니다.
          * Backend와 API 연동합니다.
          * 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
          */
-         // 여기에 작성하세요.
-         auctionService.findAllByUser(userId,function(data){
+        // 여기에 작성하세요.
+        auctionService.findAllByUser(userId, function (data) {
             var result = data;
             // 각 경매별 작품 정보를 불러온다.
-            function fetchData(start, end){
-                if(start == end) {
+            function fetchData(start, end) {
+                if (start == end) {
                     scope.auctions = result;
                 } else {
                     var id = result[start]['경매작품id'];
-                    workService.findById(id, function(work){
+                    workService.findById(id, function (work) {
                         result[start]['작품정보'] = work;
-                        fetchData(start+1, end);
+                        fetchData(start + 1, end);
                     });
                 }
             }
@@ -113,7 +113,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
          * Backend와 API 연동합니다.
          * 경매 중인 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
          */
-         // 여기에 작성하세요.
+        // 여기에 작성하세요.
 
     }
 })

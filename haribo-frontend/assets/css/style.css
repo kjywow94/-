@@ -139,3 +139,8 @@ nav.bottom-pagination {
     padding: 0;
     margin: 0;
 }
+
+.file {
+    visibility: hidden;
+    position: absolute;
+  }

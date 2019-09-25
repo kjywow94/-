@@ -38,15 +38,14 @@ var registerView = Vue.component('RegisterView', {
         }
     },
     methods: {
-        register: function() {
+        register: function () {
             var scope = this;
-
-            if(this.user.password === this.user.passwordConfirm) {
+            if (this.user.password === this.user.passwordConfirm) {
                 userService.signUp(
                     this.user.email,
                     this.user.name,
-                    this.user.password,
-                    function(response){
+                    hashingService.SHA256(this.user.password),
+                    function (response) {
                         alert("회원가입이 완료되었습니다.");
                         scope.$router.push('/');
                     }

@@ -28,20 +28,19 @@ var loginView = Vue.component('LoginView', {
         }
     },
     methods: {
-        login: function() {
+        login: function () {
             var scope = this;
-
             userService.login(
                 this.user.email,
-                this.user.password,
-                function(data){
+                hashingService.SHA256(this.user.password),
+                function (data) {
                     store.state.isSigned = true;
                     store.state.user.id = data.id;
 
-                    walletService.findById(store.state.user.id, function(response){
-                        if(response.status == 204) {
+                    walletService.findById(store.state.user.id, function (response) {
+                        if (response.status == 204) {
                             store.state.user.hasWallet = false;
-                        } else if(response.status == 200) {
+                        } else if (response.status == 200) {
                             store.state.user.hasWallet = true;
                         } else {
                             alert("Unexpected status code : " + response.status);
@@ -57,7 +56,7 @@ var loginView = Vue.component('LoginView', {
         
                     scope.$router.push('/');
                 },
-                function(error){
+                function (error) {
                     alert("유저 이메일 혹은 비밀번호가 일치하지 않습니다.");
                 }
             );
