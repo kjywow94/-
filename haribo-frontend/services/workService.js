@@ -9,6 +9,11 @@ var workService = {
             callback(data);
         });
     },
+    findWorksInfoByOwner: function (userId, callback) {
+        $.get(API_BASE_URL + '/api/worksInfo/owner/' + userId, function (data) {
+            callback(data);
+        });
+    },
     findById: function (workId, callback) {
         $.get(API_BASE_URL + "/api/works/" + workId, function (data) {
             callback(data);
