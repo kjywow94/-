@@ -303,9 +303,9 @@ public class EthereumService implements IEthereumService {
 	            value = String.valueOf(trans.get(idx).getAmount());   
 	        }
 	        BigInteger num = new BigInteger("100000000000000000000000");
-	        else if(trans.get(idx).getAmount().compareTo(num) == 0) {
-	        	System.out.println("111");
-	        }
+//	        else if(trans.get(idx).getAmount().compareTo(num) == 0) {
+//	        	System.out.println("111");
+//	        }
 	        트랜잭션.setValue(value);
 			트랜잭션.setGas(trans.get(idx).getGas());
 			트랜잭션.setGasPrice(trans.get(idx).getGasPrice());
