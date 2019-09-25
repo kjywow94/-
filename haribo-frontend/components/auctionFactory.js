@@ -120,3 +120,34 @@ function auction_cancel(options, onConfirm) {
         });
     });
 }
+
+
+function auction_list(onConfirm) {
+    var web3 = createWeb3();
+    var contract = createFactoryContract(web3);
+    var allAuctionsCall = contract.methods.allAuctions();
+
+    allAuctionsCall.call().then(response => {
+        onConfirm(response);
+    })
+}
+
+
+function auction_detail(contractAddress, onConfirm) {
+    var web3 = createWeb3();
+    var contract = createAuctionContract(web3, contractAddress);
+    var highestBidCall = contract.methods.highestBid();
+    var highestBidderCall = contract.methods.highestBidder();
+    var endedCall = contract.methods.ended();
+    var auctionEndTimeCall = contract.methods.auctionEndTime();
+
+    highestBidCall.call().then(bid => {
+        highestBidderCall.call().then(bidder => {
+            endedCall.call().then(ended => {
+                auctionEndTimeCall.call().then(auctionEndTime => {
+                    onConfirm(ended, bid, bidder, auctionEndTime);
+                })
+            })
+        })
+    })
+}

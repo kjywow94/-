@@ -38,17 +38,38 @@ var explorerAuctionView = Vue.component('ExplorerView', {
         </div>
     </div>
     `,
-    data(){
+    data() {
         return {
             contracts: [],
             items: []
         }
     },
-    mounted: async function(){
+    mounted: async function () {
         /**
          * TODO 
          * 1. AuctionFactory 컨트랙트로부터 경매컨트랙트 주소 리스트를 가져옵니다.
          * 2. 각 컨트랙트 주소로부터 경매의 상태(state) 정보를 가져옵니다. 
-         * */ 
+         * */
+        var web3 = createWeb3();
+        var scope = this;
+        auction_list(response => {
+            var len = response.length;
+            scope.contracts = response.slice(len - 20, len);
+
+            len = scope.contracts.length;
+
+            var newitems = [];
+            for (var idx = len - 1; idx >= 0; idx--) {
+                auction_detail(scope.contracts[idx], (ended, bid, bidder, auctionEndTime) => {
+                    newitems.push({
+                        ended: ended,
+                        higestBid: web3.utils.fromWei(bid, 'ether'),
+                        higestBidder: bidder,
+                        endTime: new Date(auctionEndTime * 1000)
+                    })
+                })
+            }
+            scope.items = newitems;
+        });
     }
 })
