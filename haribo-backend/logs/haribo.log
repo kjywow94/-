@@ -649,3 +649,293 @@
 2019-09-25 14:32:08 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2019-09-25 14:32:08 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2019-09-25 14:32:08 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2019-09-25 14:33:55 [restartedMain] INFO  com.bcauction.Application - Starting Application on DESKTOP-KVCQHCD with PID 14020 (C:\workspace\blockchain-sub3\haribo-backend\target\classes started by multicampus in C:\workspace\blockchain-sub3\haribo-backend)
+2019-09-25 14:33:55 [restartedMain] DEBUG com.bcauction.Application - Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-09-25 14:33:55 [restartedMain] INFO  com.bcauction.Application - No active profile set, falling back to default profiles: default
+2019-09-25 14:33:55 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-25 14:33:55 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-25 14:33:56 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-09-25 14:33:56 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-09-25 14:33:56 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-09-25 14:33:56 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-09-25 14:33:56 [restartedMain] DEBUG o.s.web.context.ContextLoader - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2019-09-25 14:33:56 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 983 ms
+2019-09-25 14:33:56 [restartedMain] INFO  c.b.a.impl.EthBlockListeningService - New Block Subscribed Here
+2019-09-25 14:33:56 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**/favicon.ico] onto ResourceHttpRequestHandler [class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], ServletContext resource [/], class path resource []]
+2019-09-25 14:33:56 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/**/favicon.ico] in 'faviconHandlerMapping'
+2019-09-25 14:33:57 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-25 14:33:57 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.AuctionController:
+	{POST /api/auctions}: 생성(Auction)
+	{GET /api/auctions}: 목록조회()
+	{GET /api/auctions/{id}}: 조회(long)
+	{DELETE /api/auctions/{aid}/by/{mid}}: 경매취소(long,long)
+	{PUT /api/auctions/{aid}/by/{mid}}: 경매종료(long,long)
+	{PUT /api/auctions/bid}: 입찰(Bid)
+	{GET /api/auctions/owner/{id}}: 사용자경매목록조회(int)
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.DigitalWorkController:
+	{GET /api/works}: 목록조회()
+	{GET /api/works/{id}}: 조회(int)
+	{PUT /api/works}: 수정(DigitalWork)
+	{DELETE /api/works/{id}}: 삭제(int)
+	{POST /api/worksImage}: uploadImage(WorksImage)
+	{POST /api/works}: 등록(DigitalWork)
+	{GET /api/works/history/{id}}: 작품이력조회(int)
+	{GET /api/works/owner/{id}}: 사용자별작품목록조회(int)
+	{GET /api/worksInfo/owner/{id}}: 작품정보등록(int)
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.EthereumController:
+	{GET /api/eth/block/{id}}: 블록검색(String)
+	{GET /api/eth/address/{addr}}: 주소검색(String)
+	{GET /api/eth/auctions/{addr}}: 경매검색(String)
+	{GET /api/eth/auctions}: 경매목록조회()
+	{GET /api/eth/txes}: 최근트랜잭션조회()
+	{GET /api/eth/blocks}: 최근블록조회()
+	{GET /api/eth/txes/{id}}: 트랜잭션검색(String)
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.MemberController:
+	{GET /api/members}: 목록조회()
+	{GET /api/members/{id}}: 조회(int)
+	{PUT /api/members}: 수정(Member)
+	{DELETE /api/members/{id}}: 삭제(int)
+	{POST /api/members}: 추가(Member)
+	{POST /api/members/login}: 로그인(Member)
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.WalletController:
+	{GET /api/wallets}: 목록조회()
+	{GET /api/wallets/{address}}: 조회(String)
+	{POST /api/wallets}: 등록(Wallet)
+	{PUT /api/wallets/{address}}: 충전(String)
+	{GET /api/wallets/of/{mid}}: 조회By소유자(long)
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	c.b.a.h.GlobalExceptionHandler:
+	
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2019-09-25 14:33:57 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 36 mappings in 'requestMappingHandlerMapping'
+2019-09-25 14:33:57 [restartedMain] DEBUG o.s.w.s.h.BeanNameUrlHandlerMapping - Detected 0 mappings in 'beanNameHandlerMapping'
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/webjars/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/webjars/"]
+2019-09-25 14:33:57 [restartedMain] TRACE o.s.w.s.h.SimpleUrlHandlerMapping - Mapped [/**] onto ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2019-09-25 14:33:57 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2019-09-25 14:33:57 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2019-09-25 14:33:57 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2019-09-25 14:33:57 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-25 14:33:57 [restartedMain] INFO  com.bcauction.Application - Started Application in 2.202 seconds (JVM running for 2.872)
+2019-09-25 14:34:03 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:03 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.multipart.support.StandardServletMultipartResolver@1dd242fc
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No LocaleResolver 'localeResolver': using default [AcceptHeaderLocaleResolver]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No ThemeResolver 'themeResolver': using default [FixedThemeResolver]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No RequestToViewNameTranslator 'viewNameTranslator': using default [DefaultRequestToViewNameTranslator]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No FlashMapManager 'flashMapManager': using default [SessionFlashMapManager]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2019-09-25 14:34:03 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:03 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - OPTIONS "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:03 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-25 14:34:03 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:03 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-25 14:34:03 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:03 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-09-25 14:34:03 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2019-09-25 14:34:03 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.bcauction.domain.Member@153bc4b0]
+2019-09-25 14:34:03 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.Member@153bc4b0]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2019-09-25 14:34:03 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:03 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@15722abc]
+2019-09-25 14:34:03 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:03 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:03 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/of/10", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:03 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회By소유자(long)
+2019-09-25 14:34:03 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [10]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 3
+	이름: 갓히어로
+	설명: 갓작품들
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 41
+	이름: 비너스
+	설명: 비너스
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]]
+2019-09-25 14:34:03 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:03 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:03 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:03 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@5d3c9fd1]
+2019-09-25 14:34:03 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:03 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:03 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/0x3c70e02eE5168A63293C435BB480faE984E21D6F", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:03 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회(java.lang.String)
+2019-09-25 14:34:03 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0x3c70e02eE5168A63293C435BB480faE984E21D6F]
+2019-09-25 14:34:03 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:03 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@48edca5b]
+2019-09-25 14:34:03 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:03 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:05 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:05 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-25 14:34:05 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-25 14:34:05 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:05 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 3
+	이름: 갓히어로
+	설명: 갓작품들
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 41
+	이름: 비너스
+	설명: 비너스
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]]
+2019-09-25 14:34:05 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:05 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:06 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/history/41", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:06 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/41", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:06 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-09-25 14:34:06 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.FabricAsset> com.bcauction.api.DigitalWorkController.작품이력조회(int)
+2019-09-25 14:34:06 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [41]
+2019-09-25 14:34:06 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [41]
+2019-09-25 14:34:06 [http-nio-8080-exec-8] WARN  o.h.fabric.sdk.helper.Config - Failed to load any configuration from: config.properties. Using toolkit defaults
+2019-09-25 14:34:06 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:06 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 41
+	이름: 비너스
+	설명: 비너스
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-09-25 14:34:06 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:06 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:06 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/10", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:06 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-25 14:34:06 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [10]
+2019-09-25 14:34:06 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:06 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@6d6bd6a0]
+2019-09-25 14:34:06 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:06 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:07 [http-nio-8080-exec-8] INFO  com.bcauction.domain.CommonUtil - file| url=file:/C:/workspace/blockchain-sub3/haribo-backend/target/classes/fabric-ca.pem
+2019-09-25 14:34:07 [http-nio-8080-exec-8] INFO  com.bcauction.domain.CommonUtil - C:\workspace\blockchain-sub3\haribo-backend\target\classes\fabric-ca.pem
+2019-09-25 14:34:07 [http-nio-8080-exec-8] WARN  o.h.fabric_ca.sdk.helper.Config - Failed to load any configuration from: config.properties. Using toolkit defaults
+2019-09-25 14:34:08 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - OPTIONS "/api/works/41", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:08 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.삭제(int)
+2019-09-25 14:34:08 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:08 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:08 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - DELETE "/api/works/41", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:08 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.삭제(int)
+2019-09-25 14:34:08 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [41]
+2019-09-25 14:34:08 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleException(java.lang.Exception)
+2019-09-25 14:34:08 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [java.lang.NullPointerException]
+2019-09-25 14:34:08 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.NullPointerException]
+2019-09-25 14:34:08 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:08 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR, headers={masked}
+2019-09-25 14:34:08 [http-nio-8080-exec-8] INFO  org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: auctionchannel001} eventThread started shutdown: false  thread: null 
+2019-09-25 14:34:08 [http-nio-8080-exec-8] INFO  c.b.application.impl.FabricCCService - Work 41 by Owner 10: FALSE ~ FALSE
+2019-09-25 14:34:08 [http-nio-8080-exec-8] INFO  c.b.application.impl.FabricCCService - Work 41 by Owner 10: 2019-09-25 05:30:34 ~ FALSE
+2019-09-25 14:34:08 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:08 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[FabricAsset [assetID=41, owner=10, createdAt=2019-09-25T05:30:34, expiredAt=null, formatter=Value(YearOfEra,4,19,EXCEEDS_PAD)'-'Value(MonthOfYear,2)'-'Value(DayOfMonth,2)' 'Value(HourOfDay,2)':'Value(MinuteOfHour,2)':'Value(SecondOfMinute,2)]]]
+2019-09-25 14:34:08 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:08 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:09 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/10", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:09 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-09-25 14:34:09 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [10]
+2019-09-25 14:34:09 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:09 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@18842b0a]
+2019-09-25 14:34:09 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:09 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:11 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - DELETE "/api/works/41", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:11 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.삭제(int)
+2019-09-25 14:34:11 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [41]
+2019-09-25 14:34:12 [http-nio-8080-exec-2] INFO  c.b.application.impl.FabricCCService - Work 41 by Owner 10: 2019-09-25 05:30:34 ~ 2019-09-25 05:34:11
+2019-09-25 14:34:12 [http-nio-8080-exec-2] INFO  c.b.i.repository.OwnershipRepository - 조회 (소유자id, 작품id) = (10, 41)
+2019-09-25 14:34:12 [http-nio-8080-exec-2] INFO  c.b.i.repository.OwnershipRepository - true
+2019-09-25 14:34:12 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:12 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 41
+	이름: 비너스
+	설명: 비너스
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-09-25 14:34:12 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:12 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:34:14 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-09-25 14:34:14 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-09-25 14:34:14 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-09-25 14:34:14 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-09-25 14:34:14 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 3
+	이름: 갓히어로
+	설명: 갓작품들
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }]]
+2019-09-25 14:34:14 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-09-25 14:34:14 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-09-25 14:35:43 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-09-25 14:35:43 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-25 14:35:43 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2019-09-25 14:35:43 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
