@@ -133,7 +133,7 @@ function auction_list(onConfirm) {
 }
 
 
-function auction_detail(contractAddress, onConfirm) {
+function auction_info(contractAddress, onConfirm) {
     var web3 = createWeb3();
     var contract = createAuctionContract(web3, contractAddress);
     var highestBidCall = contract.methods.highestBid();
@@ -151,3 +151,29 @@ function auction_detail(contractAddress, onConfirm) {
         })
     })
 }
+
+function auction_detail(contractAddress, onConfirm) {
+    var web3 = createWeb3();
+    var contract = createAuctionContract(web3, contractAddress);
+    var highestBidCall = contract.methods.highestBid();
+    var highestBidderCall = contract.methods.highestBidder();
+    var endedCall = contract.methods.ended();
+    var auctionEndTimeCall = contract.methods.auctionEndTime();
+    var auctionStartTimeCall = contract.methods.auctionStartTime();
+    var digitalWorkIdCall = contract.methods.digitalWorkId();
+
+    highestBidCall.call().then(highestBid => {
+        highestBidderCall.call().then(highestBidder => {
+            endedCall.call().then(ended => {
+                auctionEndTimeCall.call().then(auctionEndTime => {
+                    auctionStartTimeCall.call().then(auctionStartTime => {
+                        digitalWorkIdCall.call().then(digitalWorkId => {
+                            onConfirm(contractAddress, digitalWorkId, ended, auctionStartTime, auctionEndTime, highestBid, highestBidder);
+                        })
+                    })
+                })
+            })
+        })
+    })
+}
+

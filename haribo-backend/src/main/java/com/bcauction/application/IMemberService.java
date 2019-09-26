@@ -1,6 +1,8 @@
 package com.bcauction.application;
 
 import com.bcauction.domain.Member;
+import com.bcauction.domain.Wallet;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,4 +20,7 @@ public interface IMemberService {
 
     @Transactional
     void 삭제(long id);
+    
+    @Transactional
+	Member findUserByWallet(String walletAddress);
 }
