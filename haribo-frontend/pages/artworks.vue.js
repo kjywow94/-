@@ -14,8 +14,8 @@ var artworksView = Vue.component('artworksView', {
                         <div class="card">
                             <div class="card-body">
                                 <img :src="item.imgData">
-                                <h4>{{ item["이름"] }}</h4>
-                                <p v-if="item['설명'] != null">{{ item["설명"] }}</p>
+                                <h4 class="text-overflow">{{ item["이름"] }}</h4>
+                                <p v-if="item['설명'] != null" class="text-overflow">{{ item["설명"] }}</p>
                                 <p v-if="item['설명'] == null">-</p>
                                 <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary">이력보기</router-link>
                             </div>
@@ -30,7 +30,7 @@ var artworksView = Vue.component('artworksView', {
                                 <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
                                 
                                     <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
-                                
+                                </v-for>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                             </ul>
@@ -75,7 +75,7 @@ var artworksView = Vue.component('artworksView', {
         },
         movePage(p) {
             this.page = p;
-            var min = this.artworks.length;
+            let min = this.artworks.length;
             if (min > 8 * this.page)
                 min = 8 * this.page;
             this.pageArtworks = [];

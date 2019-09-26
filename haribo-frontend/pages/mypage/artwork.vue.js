@@ -35,11 +35,9 @@ var myArtworkView = Vue.component('MyArtworkView', {
                                 <div class="col-md-12 text-center">
                                     <nav class="bottom-pagination">
                                         <ul class="pagination">
-                                            <li class="page-item" v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
-                                            <li class="page-item"v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
-                                            <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: ownPage == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
-                                            <li class="page-item"v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
-                                            <li class="page-item" v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage)">맨 뒤</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="movePage(1, '보유')">맨 앞</a></li>
+                                            <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: ownPage == p}"><a class="page-link" @click="movePage(p, '보유')">{{p}}</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage, '보유')">맨 뒤</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -48,13 +46,13 @@ var myArtworkView = Vue.component('MyArtworkView', {
                     </div>
                     <div class="col-md-12 mt-5">
                         <h4>경매 중</h4>
-                        <div v-if="auctions.length > 0">
+                        <div v-if="auctionPageArtworks.length > 0">
                             <div class="row">
-                                <div class="col-md-3 artwork" v-for="item in auctions">
+                                <div class="col-md-3 artwork" v-for="item in auctionPageArtworks">
                                     <div class="card">
                                         <div class="card-body">
                                             <img :src="item.imgData">
-                                            <h4>{{ item['작품정보']['이름'] }}</h4>
+                                            <h4 class="text-overflow">{{ item['작품정보']['이름'] }}</h4>
                                             <span class="badge badge-success">경매 진행중</span>
                                             <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary mt-3">자세히보기</router-link>
                                         </div>
@@ -65,11 +63,9 @@ var myArtworkView = Vue.component('MyArtworkView', {
                                 <div class="col-md-12 text-center">
                                     <nav class="bottom-pagination">
                                         <ul class="pagination">
-                                            <li class="page-item" v-bind:class="{disabled: auctionPage == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
-                                            <li class="page-item"v-bind:class="{disabled: auctionPage == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
-                                            <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: auctionPage == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
-                                            <li class="page-item"v-bind:class="{disabled: auctionPage == ownMaxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
-                                            <li class="page-item" v-bind:class="{disabled: auctionPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage)">맨 뒤</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: auctionPage == 1}"><a class="page-link" @click="movePage(1, '경매')">맨 앞</a></li>
+                                            <li v-for = "p in auctionPageArr" class="page-item" v-bind:class="{active: auctionPage == p}"><a class="page-link" @click="movePage(p, '경매')">{{p}}</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: auctionPage == auctionMaxPage}"><a class="page-link" @click="movePage(auctionMaxPage, '경매')">맨 뒤</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -77,7 +73,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
                         </div>
 
                         <div class="row">    
-                            <div class="col-sm-12 col-md-8 mt-3" v-if="auctions.length == 0">
+                            <div class="col-sm-12 col-md-8 mt-3" v-if="auctionPageArtworks.length == 0">
                                 <div class="alert alert-warning">진행중인 경매 목록이 없습니다.</div>
                             </div>
                         </div>
@@ -90,11 +86,12 @@ var myArtworkView = Vue.component('MyArtworkView', {
         return {
             sharedStates: store.state,
             artworks: [],
-            auctions: [],
             ownPage: 1,
             ownMaxPage: 0,
             ownPageArr: [],
             ownPageArtworks: [],
+
+            auctions: [],
             auctionPage: 1,
             auctionMaxPage: 0,
             auctionPageArr: [],
@@ -120,44 +117,56 @@ var myArtworkView = Vue.component('MyArtworkView', {
                 return "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분";
             }
         },
-        nextpage() {
-            this.ownPage += 1;
-            this.movePage(this.ownPage);
-        },
-        prevPage() {
-            this.ownPage -= 1;
-            this.movePage(this.ownPage);
-        },
-        movePage(p) {
-            this.ownPage = p;
-            let min = this.artworks.length;
-            if (min > 4 * this.ownPage)
-                min = 4 * this.ownPage;
-            this.ownPageArtworks = [];
-            for(var i = (this.ownPage - 1) * 4 ; i < min ; i++){
-                this.ownPageArtworks.push(this.artworks[i]); 
+        movePage(p, kind) {
+            let page = p;
+            let pageArr = [];
+            let curPageArr = [];
+            let min, maxPage, data;
+            if(kind == '보유') {
+                min = this.artworks.length;
+                maxPage = this.ownMaxPage;
+                data = this.artworks;
+            }else {
+                min = this.auctions.length;
+                maxPage = this.auctionMaxPage;
+                data = this.auctions;
             }
-            this.ownPageArr = [];
+
+            if (min > 4 * page)
+                min = 4 * page;       
+
+            for(var i = (page - 1) * 4 ; i < min ; i++){
+                pageArr.push(data[i]); 
+            }
             for (var i = -5; i < 0; i++) {
-                if (this.ownPage + i > 0)
-                    this.ownPageArr.push(this.ownPage + i);
+                if (page + i > 0)
+                    curPageArr.push(page + i);
             }
             for (var i = 0; i < 5; i++) {
-                if (this.ownPage + i > this.ownMaxPage)
+                if (page + i > maxPage)
                     break;
-                this.ownPageArr.push(this.ownPage + i);
+                curPageArr.push(page + i);
+            }
+            if(kind == '보유') {
+                this.ownPageArtworks = pageArr;
+                this.ownPageArr = curPageArr;
+                this.ownPage = page;
+            }else {
+                this.auctionPageArtworks = pageArr;
+                this.auctionPageArr = curPageArr;
+                this.auctionPage = page;
             }
         }
     },
     mounted: function () {
-        var scope = this;
-        var userId = this.sharedStates.user.id;
+        let scope = this;
+        let userId = this.sharedStates.user.id;
         workService.findWorksByOwner(userId, function (data) {
             scope.artworks = data;
             scope.ownMaxPage = parseInt(scope.artworks.length / 4);
             if (scope.artworks.length % 4 > 0)
                 scope.ownMaxPage += 1;
-            scope.movePage(scope.ownPage);
+            scope.movePage(scope.ownPage, '보유');
         });
 
         /**
@@ -172,6 +181,10 @@ var myArtworkView = Vue.component('MyArtworkView', {
             function fetchData(start, end) {
                 if (start == end) {
                     scope.auctions = result;
+                    scope.auctionMaxPage = parseInt(scope.auctions.length / 4);
+                    if(scope.auctions.length % 4 > 0)
+                        scope.auctionMaxPage += 1;
+                    scope.movePage(scope.auctionPage, '경매');
                 } else {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
