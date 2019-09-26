@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.bcauction.application.AuctionContractServiceTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 6.252 s <<< FAILURE! - in com.bcauction.application.AuctionContractServiceTest
-test경매정보조회(com.bcauction.application.AuctionContractServiceTest)  Time elapsed: 1.04 s  <<< FAILURE!
-java.lang.AssertionError
-	at com.bcauction.application.AuctionContractServiceTest.test경매정보조회(AuctionContractServiceTest.java:42)
-

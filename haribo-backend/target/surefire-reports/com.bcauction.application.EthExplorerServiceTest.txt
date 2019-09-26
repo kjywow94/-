@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.bcauction.application.EthExplorerServiceTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.338 s <<< FAILURE! - in com.bcauction.application.EthExplorerServiceTest
-test트랜잭션검색(com.bcauction.application.EthExplorerServiceTest)  Time elapsed: 0.016 s  <<< ERROR!
-java.lang.NullPointerException
-	at com.bcauction.application.EthExplorerServiceTest.test트랜잭션검색(EthExplorerServiceTest.java:54)
-

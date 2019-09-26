@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.bcauction.infrastructure.repository.OwnershipRepositoryTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! - in com.bcauction.infrastructure.repository.OwnershipRepositoryTest
-test조회w소유자idand작품id(com.bcauction.infrastructure.repository.OwnershipRepositoryTest)  Time elapsed: 0.015 s  <<< FAILURE!
-java.lang.AssertionError
-	at com.bcauction.infrastructure.repository.OwnershipRepositoryTest.test조회w소유자idand작품id(OwnershipRepositoryTest.java:25)
-
