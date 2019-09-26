@@ -9,4 +9,5 @@ public interface ITransactionRepository {
     Transaction 조회(String hash);
     List<Transaction> 조회By주소(String 주소);
     long 추가(Transaction 트랜잭션);
+	List<Transaction> 최근목록조회();
 }

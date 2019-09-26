@@ -98,4 +98,20 @@ public class TransactionRepository implements ITransactionRepository {
             throw new RepositoryException(e, e.getMessage());
         }
     }
+    
+    
+    /**
+     * 임의생성 메소드
+     * @return 최근 10개 트랜잭션 조회하기
+     */
+    @Override
+    public List<Transaction> 최근목록조회() {
+        StringBuilder sbSql =  new StringBuilder("SELECT * FROM 트랜잭션 ORDER BY id DESC LIMIT 0,10");
+        try {
+            return this.jdbcTemplate.query(sbSql.toString(),
+                    new Object[]{}, (rs, rowNum) -> TransactionFactory.생성(rs));
+        } catch (Exception e) {
+            throw new RepositoryException(e, e.getMessage());
+        }
+    }
 }
