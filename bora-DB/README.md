@@ -74,9 +74,9 @@
   - 사용자 아이디와 비번 = haribo/haribo
 
   - pull
-    
+  
 - sudo docker pull emblockit/haribo-mysql
-    
+  
   - 컨테이너 실행
   
   - sudo docker run -d -p 3306:3306 --name haribo-mysql emblockit/haribo-mysql
@@ -96,6 +96,7 @@
   
   - 컨테이너를 제거하면 데이터도 함께 제거된다.
 - 그래서 컨테이너의 데이터를 호스트 OS에 저장하기
+  
   - 도커는 컨테이너를 docker run 명령어로 생성할 때 컨테이너의 특정 디렉터리와 호스트 OS의 특정 디렉터리를 서로 공유할 수 있도록 -v [호스트의 디렉터리]:[컨테이너의 디렉터리] (또는 --volume)옵션을 제공
   
 - aws 우분투에 폴더만들고, 기존 컨테이너를 종료 후 -v 옵션을 추가해 마운트 시킨다.( 컨테이너와 호스트가 디렉터리를 공유한다 라는 말이 맞을 수 있지만 그보다는 호스트의 특정 디렉터리(지정해준)를 컨테이너의 특정 경로에 마운트 시킨다 라고 할 수 있다.)
@@ -223,9 +224,9 @@
 
   
 # 백엔드, 프론트엔드 배포
-  
+
 ## 백엔드 배포
-  
+
 - 자바 JAR File 이란?
   
     - 일종의 자바 프로젝트 압축 파일
@@ -250,7 +251,7 @@
 - docker run -d -p 8080:8080 boracoinjar:0.1
   
 ## 프론트엔드 배포
-  
+
 - Nginx로 실행
   
   - 트래픽이 많은 웹사이트를 위해 확장성을 위해 설계한 비동기 이벤트 기반구조의 웹서버 소프트웨어
@@ -283,9 +284,15 @@
   - docker cp /home/ubuntu/boraCoin/worksImage 5f72dd244e8b:/
     - 참고 : https://www.reddit.com/r/docker/comments/6xvk7o/how_do_we_copy_a_folder_from_host_to_container/ 
 - *주의할 점 : 도커 컨테이너 안에 도커 이미지 폴더에 이미지가 추가되므로 DB에는 연동되지만, 우리 개발 환경의 도커 이미지 폴더에는 연동되지않음!
+- 백엔드 에러남, 
+  - 로그 찍어서 확인해봄. 근데 블록이 계속 생성되서 너무 빨리 올라가서 타이밍 잘 맞춰야함.
+    - docker logs 5f72dd244e8b
+  - admin.wallet 파일을 AWS 폴더에 옮겨놓고.
+  - docker cp /home/ubuntu/boraCoin/backEnd_jar/admin.wallet 5f72dd244e8b:/
 
 ## 프론트엔드 재배포
 
 - 프론트엔드는 컨테이너 중지시킨 후,  프론트엔드 폴더만 AWS에 바꿔주고 다시 재시작
   - docker stop '이미지ID'
   - docker restart '이미지ID' 
+
