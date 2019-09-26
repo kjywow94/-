@@ -17,8 +17,8 @@ var artworksView = Vue.component('artworksView', {
                         <div class="card">
                             <div class="card-body">
                                 <img :src="item.imgData">
-                                <h4>{{ item["이름"] }}</h4>
-                                <p v-if="item['설명'] != null">{{ item["설명"] }}</p>
+                                <h4 class="text-overflow">{{ item["이름"] }}</h4>
+                                <p v-if="item['설명'] != null" class="text-overflow">{{ item["설명"] }}</p>
                                 <p v-if="item['설명'] == null">-</p>
                                 <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary">이력보기</router-link>
                             </div>
@@ -80,7 +80,7 @@ var artworksView = Vue.component('artworksView', {
         },
         movePage(p) {
             this.page = p;
-            var min = this.artworks.length;
+            let min = this.artworks.length;
             if (min > 8 * this.page)
                 min = 8 * this.page;
             this.pageArtworks = [];

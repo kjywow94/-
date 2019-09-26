@@ -58,7 +58,7 @@ var explorerAuctionDetailView = Vue.component('ExplorerDetailView', {
         </div>
     </div>
     `,
-    data(){
+    data() {
         return {
             contractAddress: "",
             contract: null,
@@ -67,9 +67,28 @@ var explorerAuctionDetailView = Vue.component('ExplorerDetailView', {
             }
         }
     },
-    mounted: async function(){
+    mounted: async function () {
         /**
          * TODO 경매 컨트랙트로부터 경매 정보를 가져옵니다. 
          */
+        var web3 = createWeb3();
+        var scope = this;
+
+        this.contractAddress = this.$route.params.contractAddress;
+
+        auction_detail(this.contractAddress, (contractAddress, digitalWorkId, ended, auctionStartTime, auctionEndTime, highestBid, highestBidder) => {
+
+            scope.contract = {
+                ended: ended,
+                startTime: new Date(auctionStartTime * 1000),
+                endTime: new Date(auctionEndTime * 1000),
+                highestBid: web3.utils.fromWei(highestBid, 'ether'),
+                highestBidder: highestBidder
+            }
+
+            workService.findById(digitalWorkId, work => {
+                scope.work = work;
+            })
+        })
     }
 })

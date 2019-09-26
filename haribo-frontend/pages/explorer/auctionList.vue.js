@@ -38,22 +38,54 @@ var explorerAuctionView = Vue.component('ExplorerView', {
         </div>
     </div>
     `,
-    data(){
+    data() {
         return {
             contracts: [],
             items: []
         }
     },
-    mounted: async function(){
+    mounted: async function () {
         /**
          * TODO 
          * 1. AuctionFactory 컨트랙트로부터 경매컨트랙트 주소 리스트를 가져옵니다.
          * 2. 각 컨트랙트 주소로부터 경매의 상태(state) 정보를 가져옵니다. 
-         * */ 
+         * */
+        let web3 = createWeb3();
+        let scope = this;
+        auction_list(response => {
+            let len = response.length;
+            scope.contracts = response.slice(len - 20, len).reverse();
 
-         
+            len = scope.contracts.length;
+            let newitems = new Map();
+            for (let idx = len - 1; idx >= 0; idx--) {
+                auction_info(scope.contracts[idx], (ended, bid, bidder, auctionEndTime) => {
 
-        
+                    let inputItem = {
+                        ended: ended,
+                        higestBid: web3.utils.fromWei(bid, 'ether'),
+                        higestBidder: bidder,
+                        endTime: new Date(auctionEndTime * 1000)
+                    }
 
+                    // userService.findByWallet(bidder, response => {
+                    //     inputItem.higestBidder = response.이메일;
+
+                    //     newitems.set(scope.contracts[idx], inputItem);
+                    //     let serializeMap = [];
+                    //     for (let key of scope.contracts) {
+                    //         serializeMap.push(newitems.get(key));
+                    //     }
+                    //     scope.items = serializeMap;
+                    // })
+                    newitems.set(scope.contracts[idx], inputItem);
+                    let serializeMap = [];
+                    for (let key of scope.contracts) {
+                        serializeMap.push(newitems.get(key));
+                    }
+                    scope.items = serializeMap;
+                })
+            }
+        });
     }
 })
