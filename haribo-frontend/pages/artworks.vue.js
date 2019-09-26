@@ -9,7 +9,10 @@ var artworksView = Vue.component('artworksView', {
                         <router-link to="/works/create" class="btn btn-outline-secondary">내 작품 등록하기</router-link>
                     </div>
                 </div>
-                <div class="row">
+                <div class="col-sm-12 col-md-12 mt-3" v-if="artworks.length == 0">
+                                <div class="alert alert-warning">등록된 작품이 없습니다. 가장 먼저 작품을 등록해 보세요!</div>
+                            </div>
+                <div class="row" v-if="artworks.length > 0">
                     <div class="col-md-3 artwork" v-for="item in pageArtworks">
                         <div class="card">
                             <div class="card-body">
@@ -25,12 +28,11 @@ var artworksView = Vue.component('artworksView', {
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <nav class="bottom-pagination">
-                            <ul class="pagination">
+                            <ul class="pagination" v-if="maxPage > 0">
                                 <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
                                 <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
                                 
                                     <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
-                                </v-for>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                             </ul>
@@ -58,6 +60,9 @@ var artworksView = Vue.component('artworksView', {
 
         workService.findAll(function (data) {
             scope.artworks = data;
+            if(scope.artworks == undefined){
+                scope.artworks = [];
+            }
             scope.maxPage = parseInt(scope.artworks.length / 8);
             if (scope.artworks.length % 8 > 0)
                 scope.maxPage += 1;

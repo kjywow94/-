@@ -111,7 +111,8 @@
                                 sessionStorage.setItem('ID', sessionID);
                                 sessionStorage.setItem('PW', sessionPW);
                             }
-                            router.push('/');
+                            if(to.path != '/')
+                                router.push('/');
                         },
                         function(error){
                             alert(error);
