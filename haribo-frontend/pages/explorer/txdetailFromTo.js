@@ -86,9 +86,9 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
 
             var ta = (address) => {
                 this.fa = address;
-                var idx = 0;
+                var idx = 0;           
                 var cnt = 0;
-                console.log(this.fa);
+     
                 
                 this.fal = this.fa.trans.length;
                 
@@ -107,10 +107,7 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                     this.number = String(this.fa.trans[i].gas);
                     this.fa.trans[i].gas = web3.utils.fromWei(this.number, "ether");
                   
-                    console.log("amount : ",this.fa.trans[i].amount);
-                    
                     this.value = String(this.fa.trans[i].amount);
-                    console.log("value : ",this.value.length);
                     
                     this.fa.trans[i].amount = web3.utils.fromWei(""+(this.value/'100'), 'ether')*'100';
                     
@@ -138,19 +135,5 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
         } else {
             this.isValid = false;
         }
-    },
-    beforeRouteEnter (to, from, next) {
-       
-        next()
-    },
-    beforeRouteUpdate (to, from, next) {
-        this.$router.go()
-        
-        next()
-    },
-    beforeRouteLeave (to, from, next) {
-    
-     
-    next()
     }
 })

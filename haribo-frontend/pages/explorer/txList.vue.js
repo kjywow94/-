@@ -33,7 +33,8 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
             lastReadBlock: 0,
             transactions: [],
             block: {},
-            txl: 0
+            txl: 0,
+            strtime: 0
         };
     },
     methods: {
@@ -41,24 +42,25 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
             /**
              * TODO 최근 블록에 포함된 트랜잭션 리스트를 반환합니다. 
              */
+            await ethereumService.findTransDeca(
+                (tran) => {
+                    for (let i = 0; i < tran.length; i++) {
+                        var blockNumber = tran[i].blockNumber;
+                        var next = parseInt(blockNumber, 16);
 
-            
-            var setTrans = (tran) => {
-                console.log(tran);
-                for(var i =0; i< tran.length ; i++){
+                        ethereumService.findbyBlock(next, (block) => {
+                            this.blocks = block;
 
-                    var inputinfo = {
-                        hash : tran[i].txHash,
-                        timeSince : tran[i].timestamp,
-                        from : tran[i].from,
-                        to : tran[i].to
+                            var inputinfo = {
+                                hash: tran[i].txHash,
+                                timeSince: timeSince(this.blocks.timeStamp),
+                                from: tran[i].from,
+                                to: tran[i].to
+                            }
+                            this.$set(this.transactions, i, inputinfo);
+                        });
                     }
-
-                    this.$set(this.transactions,i ,inputinfo);  
-                }
-                console.log(this.transactions);                                                                                     
-            };
-            await ethereumService.findTransDeca(setTrans);
+                });
 
             // console.log(this.transactions);
 
@@ -67,10 +69,10 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
             // var idx = 0;
             // var bn = async (blocks) => {
             //     this.block = blocks;
-               
+
             //     this.txl = this.block.trans.length;
 
-                
+
             //     var tx = (tran) => { 
             //         var txView = {
             //             hash : tran.txHash,
@@ -80,7 +82,7 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
             //         }
             //         this.$set(this.transactions, idx++, txView);   
             //     }
-                
+
             //     for (var i = 0; i < this.txl; i++) {
             //         await ethereumService.findbyTrans(this.block.trans[i].txHash, tx);
             //     }
