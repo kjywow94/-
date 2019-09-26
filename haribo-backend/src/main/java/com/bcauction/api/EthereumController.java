@@ -119,4 +119,19 @@ public class EthereumController {
 
         return 경매정보;
     }
+    
+    /**
+     * 임의생성 RestAPI
+     * @return 최근트랜잭션열개조회
+     */
+    @GetMapping("/txesdeca")
+    public List<EthereumTransaction> 최근트랜잭션열개조회()
+    {
+        List<EthereumTransaction> 목록 = this.explorerService.최근트랜잭션뿌리기();
+
+        if (목록 == null || 목록.isEmpty() )
+            throw new EmptyListException("NO DATA");
+
+        return 목록;
+    }
 }
