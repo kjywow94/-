@@ -13,8 +13,8 @@ var myArtworkView = Vue.component('MyArtworkView', {
                 <div id="my-artwork" class="row">
                     <div class="col-md-12 mt-5">
                         <h4>보유 중</h4>
-                        <div v-if="ownPageArtworks.length > 0">
-                            <div class="row">
+                        <div >
+                            <div class="row" v-if="ownPageArtworks.length > 0">
                                 <div class="col-md-3 artwork" v-for="item in ownPageArtworks">
                                     <div class="card">
                                         <div class="card-body">
@@ -26,15 +26,15 @@ var myArtworkView = Vue.component('MyArtworkView', {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-8 mt-3" v-if="ownPageArtworks.length == 0">
-                                    <div class="alert alert-warning">보유중인 작품이 없습니다.</div>
-                                </div>
+                                
                             </div>
-
+                            <div class="col-sm-12 col-md-8 mt-3" v-if="ownPageArtworks.length == 0">
+                            <div class="alert alert-warning">보유중인 작품이 없습니다.</div>
+                        </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
                                     <nav class="bottom-pagination">
-                                        <ul class="pagination">
+                                        <ul class="pagination" v-if="artworks.length > 0">
                                             <li class="page-item" v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="movePage(1, '보유')">맨 앞</a></li>
                                             <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: ownPage == p}"><a class="page-link" @click="movePage(p, '보유')">{{p}}</a></li>
                                             <li class="page-item" v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage, '보유')">맨 뒤</a></li>
@@ -163,6 +163,9 @@ var myArtworkView = Vue.component('MyArtworkView', {
         let userId = this.sharedStates.user.id;
         workService.findWorksByOwner(userId, function (data) {
             scope.artworks = data;
+            if(scope.artworks == undefined){
+                scope.artworks = [];
+            }
             scope.ownMaxPage = parseInt(scope.artworks.length / 4);
             if (scope.artworks.length % 4 > 0)
                 scope.ownMaxPage += 1;
