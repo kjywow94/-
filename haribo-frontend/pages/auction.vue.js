@@ -9,7 +9,10 @@ var auctionView = Vue.component('AuctionView', {
                         <router-link :to="{ name: 'auction.regsiter' }" class="btn btn-outline-secondary">경매 생성하기</router-link>
                     </div>
                 </div>
-                <div class="row">
+                <div class="col-sm-12 col-md-12 mt-3" v-if="auctions.length == 0">
+                                <div class="alert alert-warning">등록된 경매가 없습니다. 가장 먼저 경매를 등록해 보세요!</div>
+                            </div>
+                <div class="row" v-if="auctions.length > 0">
                     <div class="col-md-3 auction" v-for="item in pageAuctions">
                         <div class="card">
                             <div class="card-body">
@@ -24,7 +27,7 @@ var auctionView = Vue.component('AuctionView', {
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <nav class="bottom-pagination">
-                            <ul class="pagination">
+                            <ul class="pagination" v-if="auctions.length > 0">
                                 <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
                                     <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
                                 <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
@@ -122,7 +125,9 @@ var auctionView = Vue.component('AuctionView', {
 
         auctionService.findAll(function (data) {
             var result = data;
-
+            if(result == undefined){
+                result = [];
+            }
             // 각 경매별 작품 정보를 불러온다.
             function fetchData(start, end) {
                 if (start == end) {
