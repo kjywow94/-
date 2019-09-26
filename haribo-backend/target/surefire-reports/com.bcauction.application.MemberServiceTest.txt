@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.bcauction.application.MemberServiceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.249 s <<< FAILURE! - in com.bcauction.application.MemberServiceTest
+test수정(com.bcauction.application.MemberServiceTest)  Time elapsed: 0.05 s  <<< ERROR!
+com.bcauction.domain.exception.ApplicationException: 회원 정보를 찾을 수 없습니다.
+	at com.bcauction.application.MemberServiceTest.test수정(MemberServiceTest.java:60)
+
+test조회(com.bcauction.application.MemberServiceTest)  Time elapsed: 0.011 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.bcauction.application.MemberServiceTest.test조회(MemberServiceTest.java:47)
+
+test추가(com.bcauction.application.MemberServiceTest)  Time elapsed: 0.075 s  <<< ERROR!
+com.bcauction.domain.exception.RepositoryException: PreparedStatementCallback; Column '비밀번호' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column '비밀번호' cannot be null
+	at com.bcauction.application.MemberServiceTest.test추가(MemberServiceTest.java:28)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Column '비밀번호' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column '비밀번호' cannot be null
+	at com.bcauction.application.MemberServiceTest.test추가(MemberServiceTest.java:28)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column '비밀번호' cannot be null
+	at com.bcauction.application.MemberServiceTest.test추가(MemberServiceTest.java:28)
+

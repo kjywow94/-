@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.bcauction.application.AuctionServiceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.499 s <<< FAILURE! - in com.bcauction.application.AuctionServiceTest
+test경매생성(com.bcauction.application.AuctionServiceTest)  Time elapsed: 0.184 s  <<< ERROR!
+com.bcauction.domain.exception.RepositoryException: PreparedStatementCallback; Cannot add or update a child row: a foreign key constraint fails (`haribo`.`경매`, CONSTRAINT `FK_경매1` FOREIGN KEY (`경매생성자id`) REFERENCES `경매회원` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`haribo`.`경매`, CONSTRAINT `FK_경매1` FOREIGN KEY (`경매생성자id`) REFERENCES `경매회원` (`id`))
+	at com.bcauction.application.AuctionServiceTest.test경매생성(AuctionServiceTest.java:35)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Cannot add or update a child row: a foreign key constraint fails (`haribo`.`경매`, CONSTRAINT `FK_경매1` FOREIGN KEY (`경매생성자id`) REFERENCES `경매회원` (`id`)); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`haribo`.`경매`, CONSTRAINT `FK_경매1` FOREIGN KEY (`경매생성자id`) REFERENCES `경매회원` (`id`))
+	at com.bcauction.application.AuctionServiceTest.test경매생성(AuctionServiceTest.java:35)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`haribo`.`경매`, CONSTRAINT `FK_경매1` FOREIGN KEY (`경매생성자id`) REFERENCES `경매회원` (`id`))
+	at com.bcauction.application.AuctionServiceTest.test경매생성(AuctionServiceTest.java:35)
+
+test경매목록조회(com.bcauction.application.AuctionServiceTest)  Time elapsed: 0.044 s  <<< FAILURE!
+java.lang.AssertionError
+	at com.bcauction.application.AuctionServiceTest.test경매목록조회(AuctionServiceTest.java:44)
+
