@@ -51,6 +51,7 @@ a {
 #auction-list .auction img,
 #artwork-list .artwork img {
     width: 100%;
+    height: 200px;
 }
 
 #auction-list .auction h4,
@@ -144,3 +145,9 @@ nav.bottom-pagination {
     visibility: hidden;
     position: absolute;
   }
+
+.text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
+}

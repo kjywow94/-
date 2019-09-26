@@ -25,7 +25,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
                             </tr>
                             <tr>
                                 <th>Miner</th>
-                                <td><a href="#">{{ block.miner }}</a></td>
+                                <td><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: block.miner }}" class="block-number">{{ block.miner }}</router-link></td>
                             </tr>
                             <tr>
                                 <th>Nonce</th>
