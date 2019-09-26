@@ -85,6 +85,8 @@ public class EthereumTransaction {
         tx.gas = transaction.getGas();
         tx.gasPrice = transaction.getGasPrice();
         tx.blockNumber = transaction.getBlockNumber();
+        
+        tx.timestamp = transaction.get저장일시();
 
         return tx;
     }
