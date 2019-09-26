@@ -29,4 +29,10 @@ var ethereumService = {
             callback(data);
         })
     },
+
+    findTransDeca: function(callback){
+        $.get(API_BASE_URL + '/api/eth/txesdeca',function(data){
+            callback(data);
+        })
+    }
 }
