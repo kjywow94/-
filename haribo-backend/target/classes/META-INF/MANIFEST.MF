@@ -3,11 +3,7 @@ Implementation-Title: haribo
 Implementation-Version: 1.0.0
 Built-By: multicampus
 Implementation-Vendor-Id: com.bcauction
-<<<<<<< HEAD
 Build-Jdk: 1.8.0_211
-=======
-Build-Jdk: 1.8.0_181
->>>>>>> 755ee5a3bfdf365f0e16438b2b4ce2233dd5c0ca
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/haribo
 Created-By: Maven Integration for Eclipse
