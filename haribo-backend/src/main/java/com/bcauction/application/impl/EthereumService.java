@@ -312,4 +312,20 @@ public class EthereumService implements IEthereumService {
 			this.transactionRepository.추가(트랜잭션);
 		}
 	}
+	
+	
+	/**
+	 * 임의생성 메소드
+	 * @return 최근트랜잭션10개뿌리기
+	 */
+	@Override
+	public List<EthereumTransaction> 최근트랜잭션뿌리기() {
+		List<com.bcauction.domain.Transaction> trans = this.transactionRepository.최근목록조회();
+		List<EthereumTransaction> tarnsactions = new ArrayList<EthereumTransaction>();
+		for (int idx = 0; idx < trans.size(); idx++) {
+			EthereumTransaction ethTran = EthereumTransaction.convertTransaction(trans.get(idx));
+			tarnsactions.add(ethTran);
+		}
+		return tarnsactions;
+	}
 }

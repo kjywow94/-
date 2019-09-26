@@ -112,7 +112,7 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                     this.value = String(this.fa.trans[i].amount);
                     console.log("value : ",this.value.length);
                     
-                    this.fa.trans[i].amount = web3.utils.fromWei(""+(this.value/'1000.0'), 'ether')*'1000.0';
+                    this.fa.trans[i].amount = web3.utils.fromWei(""+(this.value/'100'), 'ether')*'100';
                     
                     var len = this.fa.trans.length;
                     var num = len -1;

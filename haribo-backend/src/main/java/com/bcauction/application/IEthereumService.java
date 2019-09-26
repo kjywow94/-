@@ -20,4 +20,5 @@ public interface IEthereumService {
     Address 주소검색(String 주소);
 	BigInteger getBalance(String address);
 	void updateTransactions(String 블록No);
+	List<EthereumTransaction> 최근트랜잭션뿌리기();
 }
