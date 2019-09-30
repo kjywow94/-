@@ -4174,9 +4174,12 @@ input[type="button"].btn-block {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 1rem;
-  font-size: 1.25rem;
+  font-size: 25px;
   line-height: inherit;
   white-space: nowrap;
+  font-family: 'Righteous', cursive;
+  font-family: 'Francois One', sans-serif;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
@@ -6508,7 +6511,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #007bff !important;
+  background-color: #6f42c1 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,

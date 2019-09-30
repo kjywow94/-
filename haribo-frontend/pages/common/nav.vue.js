@@ -2,12 +2,12 @@ var navVue = Vue.component("v-nav", {
     props: ["isSigned"],
     template: `
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-            <div class="container">
-                <router-link class="navbar-brand" to="/">Auction | HARIBO</router-link>
+            <div class="container"> 
+                <router-link class="navbar-brand" to="/"><img src="assets/images/coinbbora.png" wight=35px height=35px style="margin-top:-5px"/>ORACOIN</router-link>
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/artworks">Artworks</router-link>
+                            <router-link class="nav-link" to="/artworks">Artworks</router-link> 
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" to="/auction">경매참여하기</router-link>
