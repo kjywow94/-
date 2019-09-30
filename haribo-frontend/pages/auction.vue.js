@@ -18,7 +18,7 @@ var auctionView = Vue.component('AuctionView', {
                             <div class="card-body">
                                 <img :src="item.imgData">
                                 <h4 class="text-overflow">{{ item['작품정보']['이름'] }}</h4>
-                                <p>{{item['남은시간']}}</p>
+                                <p v-bind:class="{'text-danger': item['종료임박']}">{{item['남은시간']}}</p>
                                 <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary">자세히보기</router-link>
                             </div>
                         </div>
@@ -40,13 +40,14 @@ var auctionView = Vue.component('AuctionView', {
     `,
     data() {
         return {
-            auctions: [],
+            auctions: [{'종료임박': false}],
             maxPage: 0,
             page: 1,
             pageArr: [],
             pageAuctions: [],
             test: 0,
-            interval: null
+            interval: null,
+            isRed: false
         }
     },
     methods: {
@@ -67,6 +68,9 @@ var auctionView = Vue.component('AuctionView', {
             } else {
                 // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
                 var delta = Math.abs(endDate - now) / 1000;
+                if(Math.floor(delta) < 3600){
+                    this.isRed = true;
+                }
 
                 var days = Math.floor(delta / 86400);
                 delta -= days * 86400;
@@ -104,7 +108,12 @@ var auctionView = Vue.component('AuctionView', {
             this.interval = setInterval(function () {
                 for(var i = 0 ; i < this.pageAuctions.length ; i++){
                     this.pageAuctions[i]['남은시간'] = this.calculateDate(this.pageAuctions[i]['시작일시'], this.pageAuctions[i]['종료일시']); 
-                this.test += 1;
+                    this.pageAuctions[i]['종료임박'] = false;
+                    if(this.isRed){
+                        this.pageAuctions[i]['종료임박'] = true;
+                        this.isRed = false;
+                    }
+                    this.test += 1;
                 }
             }.bind(this), 1000);             
             this.pageArr = [];
