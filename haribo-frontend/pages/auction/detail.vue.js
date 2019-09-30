@@ -69,7 +69,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                         <button v-if="bidder.id" type="button" class="btn btn-sm btn-primary" v-on:click="closeAuction" v-bind:disabled="isCanceling || isClosing">{{ isClosing ? "낙찰중" : "낙찰하기" }}</button>
                                         <button type="button" class="btn btn-sm btn-danger" v-on:click="cancelAuction" v-bind:disabled="isCanceling || isClosing">{{ isCanceling ? "취소하는 중" : "경매취소하기" }}</button>
                                     </div>
-                                    <div class="col-md-6 text-right" v-if="sharedStates.user.id != work['회원id'] && auction['종료'] != true">
+                                    <div class="col-md-6 text-right" v-if="sharedStates.user.id != work['회원id'] && auction['종료'] != true && !isExpired">
                                         <router-link :to="{ name: 'auction.bid', params: { id: this.$route.params.id } }" class="btn btn-sm btn-primary">입찰하기</router-link>
                                     </div>
                                 </div>
@@ -88,7 +88,8 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             sharedStates: store.state,
             bidder: {},
             isCanceling: false,
-            isClosing: false
+            isClosing: false,
+            isExpired: false
         }
     },
     methods: {
@@ -193,6 +194,9 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             }
 
             scope.auction = auction;
+            if(new Date(scope.auction['경매종료시간']).getTime() < new Date().getTime())
+                scope.isExpired = true;
+
         });
     }
 });
