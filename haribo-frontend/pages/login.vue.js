@@ -51,10 +51,8 @@ var loginView = Vue.component('LoginView', {
                         sessionStorage.setItem('ID', scope.user.email);
                         sessionStorage.setItem('PW', scope.user.password);
                     }
-        
-        
-        
                     scope.$router.push('/');
+                    pushService.storeToken();       
                 },
                 function (error) {
                     alert("유저 이메일 혹은 비밀번호가 일치하지 않습니다.");
