@@ -53,6 +53,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
                 </div>
             </div>
         </div>
+        <v-foot-nav></v-foot-nav>
     </div>
     `,
     data() {

@@ -80,6 +80,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
