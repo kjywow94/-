@@ -55,6 +55,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
