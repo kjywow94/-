@@ -1,6 +1,7 @@
 package com.bcauction.application;
 
 import com.bcauction.domain.Member;
+import com.bcauction.domain.Token;
 import com.bcauction.domain.Wallet;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -23,4 +24,6 @@ public interface IMemberService {
     
     @Transactional
 	Member findUserByWallet(String walletAddress);
+	long storeToken(Token tokenInfo);
+	List<Token> tokenList(long id);
 }

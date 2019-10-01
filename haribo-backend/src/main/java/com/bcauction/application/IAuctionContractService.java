@@ -11,4 +11,5 @@ public interface IAuctionContractService
 	BigInteger 현재최고가(String 컨트랙트주소);
 	String 현재최고입찰자주소(String 컨트랙트주소);
 	List<String> 경매컨트랙트주소리스트();
+	void eventListen(String contractAddress);
 }
