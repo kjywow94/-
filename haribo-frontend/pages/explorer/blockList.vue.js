@@ -27,7 +27,6 @@ var explorerBlockView = Vue.component('ExplorerBlockView', {
                 </div>
             </div>
         </div>
-        <v-foot-nav></v-foot-nav>
     </div>
     `,
     data(){
