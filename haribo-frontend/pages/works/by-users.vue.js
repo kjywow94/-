@@ -24,6 +24,7 @@ var worksByUserView = Vue.component('WorksByUserView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

@@ -15,6 +15,11 @@ var auctionView = Vue.component('AuctionView', {
                 <div class="row" v-if="auctions.length > 0">
                     <div class="col-md-3 auction" v-for="item in pageAuctions">
                         <div class="card">
+                        <div class = "text-left list-inline" style="position: absolute; padding-left:5px">
+                            <span v-if = "item['종료임박']" class="badge badge-warning">종료임박</span>
+                            <span v-if = "item['입찰횟수'] > 9" class="badge badge-danger">HOT</span>
+                            <span class="badge"><br></span>
+                        </div>
                             <div class="card-body">
                                 <img :src="item.imgData">
                                 <h4 class="text-overflow">{{ item['작품정보']['이름'] }}</h4>
@@ -36,21 +41,30 @@ var auctionView = Vue.component('AuctionView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
         return {
-            auctions: [{'종료임박': false}],
+            auctions: [{'종료임박': false, '입찰횟수': 11}],
             maxPage: 0,
             page: 1,
             pageArr: [],
             pageAuctions: [],
-            test: 0,
             interval: null,
             isRed: false
         }
     },
     methods: {
+        async countBid(){
+            let scope = this;
+            for(let i = 0 ; i < this.pageAuctions.length ; i++){
+                let idx = scope.pageAuctions[i]['id'];
+                auctionService.countBidById(idx , async function(result){
+                    scope.pageAuctions[i]['입찰횟수'] = result;
+                });
+            }
+        },
         calculateDate(start, end) {
             var now = new Date();
             var startDate = new Date(start);
@@ -104,16 +118,21 @@ var auctionView = Vue.component('AuctionView', {
             this.pageAuctions = [];
             for(var i = (this.page - 1) * 8 ; i < min ; i++){
                 this.pageAuctions.push(this.auctions[i]); 
-            }         
+                
+            }
+            this.countBid();
+            
+
             this.interval = setInterval(function () {
-                for(var i = 0 ; i < this.pageAuctions.length ; i++){
+                for(let i = 0 ; i < this.pageAuctions.length ; i++){
                     this.pageAuctions[i]['남은시간'] = this.calculateDate(this.pageAuctions[i]['시작일시'], this.pageAuctions[i]['종료일시']); 
                     this.pageAuctions[i]['종료임박'] = false;
+                    // this.pageAuctions[i]['입찰횟수'] = 0;
                     if(this.isRed){
+                        
                         this.pageAuctions[i]['종료임박'] = true;
                         this.isRed = false;
                     }
-                    this.test += 1;
                 }
             }.bind(this), 1000);             
             this.pageArr = [];
@@ -148,6 +167,7 @@ var auctionView = Vue.component('AuctionView', {
                 } else {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
+                        result[start]['입찰횟수'] = 0;
                         result[start]['작품정보'] = work;
                         result[start]['남은시간'] = scope.calculateDate(result[start]['시작일시'], result[start]['종료일시']);
                         fetchData(start + 1, end);

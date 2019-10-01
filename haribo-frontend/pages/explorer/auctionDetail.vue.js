@@ -56,6 +56,7 @@ var explorerAuctionDetailView = Vue.component('ExplorerDetailView', {
                 </div>
             </div>
         </div>
+        <v-foot-nav></v-foot-nav>
     </div>
     `,
     data() {

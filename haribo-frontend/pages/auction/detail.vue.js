@@ -82,6 +82,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
