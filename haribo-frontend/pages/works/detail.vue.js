@@ -65,6 +65,7 @@ var worksDetailView = Vue.component("WorkDetailView", {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data(){
