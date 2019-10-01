@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,8 @@ public class AuctionService implements IAuctionService {
 	private IBidRepository bidRepository;
 
 	@Autowired
-	public AuctionService(IAuctionContractService auctionContractService, IFabricService fabricService,
-			IAuctionRepository auctionRepository, IBidRepository bidRepository) {
+	public AuctionService(IFabricService fabricService, IAuctionRepository auctionRepository,
+			AuctionContractService auctionContractService, IBidRepository bidRepository) {
 		this.auctionContractService = auctionContractService;
 		this.fabricService = fabricService;
 		this.auctionRepository = auctionRepository;
@@ -174,5 +176,13 @@ public class AuctionService implements IAuctionService {
 			}
 		}
 		return listWithImg;
+	}
+
+	@Override
+	public void onAuctionEventListen() {
+		List<Auction> curList = 경매목록조회();
+		for (Auction auction : curList) {
+			auctionContractService.eventListen(auction.get컨트랙트주소());
+		}
 	}
 }

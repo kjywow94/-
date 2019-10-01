@@ -94,55 +94,57 @@
                     userService.login(
                     sessionID,
                     hashingService.SHA256(sessionPW),
-                    function(data){
+                    function (data) {
                         store.state.isSigned = true;
                         store.state.user.id = data.id;
 
-                        walletService.findById(store.state.user.id, function(response){
-                            if(response.status == 204) {
+                        walletService.findById(store.state.user.id, function (response) {
+                            if (response.status == 204) {
                                 store.state.user.hasWallet = false;
-                            } else if(response.status == 200) {
+                            } else if (response.status == 200) {
                                 store.state.user.hasWallet = true;
                             } else {
                                 alert("Unexpected status code : " + response.status);
                             }
                         });
-                            if (window.sessionStorage) {
+                        if (window.sessionStorage) {
 
-                                sessionStorage.setItem('ID', sessionID);
-                                sessionStorage.setItem('PW', sessionPW);
-                            }
-                            if(to.path != '/')
-                                router.push('/');
-                        },
-                        function(error){
-                            console.log(error)
+                            sessionStorage.setItem('ID', sessionID);
+                            sessionStorage.setItem('PW', sessionPW);
                         }
-                    );
+                        if (to.path != '/')
+                            router.push('/');
+                    },
+                    function (error) {
+                        alert(error);
+                        console.log(error)
+                    }
+                );
 
 
 
-                }
-                // 회원 가입도 하지 않았고 게스트에게 허용된 주소가 아니라면 로그인 화면으로 이동한다.
-                 if(!store.state.isSigned && !isAvailableToGuest) {
-                    alert("로그인을 하신 뒤에 사용이 가능합니다.");
-                    next('/login');
-                }else if(to.path == "/logout"){
-                    store.state.isSigned = false;
-                    store.state.user.id = null;
-                    sessionStorage.removeItem("ID");
-                    sessionStorage.removeItem("PW");
-                    alert("정상적으로 로그아웃 되었습니다.");
-                    next('/');
-                }
-                else {
-                    next();
-                }
-            });
+            }
+            // 회원 가입도 하지 않았고 게스트에게 허용된 주소가 아니라면 로그인 화면으로 이동한다.
+            if (!store.state.isSigned && !isAvailableToGuest) {
+                alert("로그인을 하신 뒤에 사용이 가능합니다.");
+                next('/login');
+            } else if (to.path == "/logout") {
+                store.state.isSigned = false;
+                store.state.user.id = null;
+                sessionStorage.removeItem("ID");
+                sessionStorage.removeItem("PW");
+                alert("정상적으로 로그아웃 되었습니다.");
+                next('/');
+            }
+            else {
+                next();
+            }
+        });
 
-            const app = new Vue({
-                router
-            }).$mount('#app');
-        </script>
-    </body>
+        const app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+</body>
+
 </html>

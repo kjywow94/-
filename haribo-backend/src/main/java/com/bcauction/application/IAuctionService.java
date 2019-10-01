@@ -31,5 +31,5 @@ public interface IAuctionService
 	Auction 경매취소(long 경매id, long 회원id); // 환불 후 옥션 끝내기
 	List<AuctionWithImg> auctionList(List<Auction> 목록);
 	long 입찰횟수(long id);
-
+	void onAuctionEventListen();
 }

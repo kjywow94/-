@@ -1,4 +1,7 @@
 solcjs AuctionContract.sol --bin --abi --optimize -o compile/
 
-./web3j solidity generate  --javaTypes --solidityTypes -a=AuctionContract_sol_AuctionFactory.abi -b=AuctionContract_sol_AuctionFactory.bin -o=. -p=com.bcauction.domain.wrapper
-./web3j solidity generate  --javaTypes --solidityTypes -a=AuctionContract_sol_Auction.abi -b=AuctionContract_sol_Auction.bin -o=. -p=com.bcauction.domain.wrapper
+./web3j solidity generate --javaTypes --solidityTypes --abiFile=AuctionContract_sol_AuctionFactory.abi --binFile=AuctionContract_sol_AuctionFactory.bin -o=. -p=com.bcauction.domain.wrapper
+./web3j solidity generate --javaTypes --solidityTypes -a=AuctionContract_sol_Auction.abi -b=AuctionContract_sol_Auction.bin -o=. -p=com.bcauction.domain.wrapper
+
+
+./web3j solidity generate --javaTypes --solidityTypes -a=AuctionContract_sol_AuctionFactory -b=AuctionContract_sol_AuctionFactory -o=. -p=com
