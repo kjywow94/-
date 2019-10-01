@@ -13,14 +13,14 @@ var artworksView = Vue.component('artworksView', {
                                 <div class="alert alert-warning">등록된 작품이 없습니다. 가장 먼저 작품을 등록해 보세요!</div>
                             </div>
                 <div class="row" v-if="artworks.length > 0">
-                    <div class="col-md-3 artwork" v-for="item in pageArtworks">
+                    <div class="col-sm-12 col-md-4 col-lg-3 artwork" v-for="item in pageArtworks">
                         <div class="card">
                             <div class="card-body">
                                 <img :src="item.imgData">
                                 <h4 class="text-overflow">{{ item["이름"] }}</h4>
                                 <p v-if="item['설명'] != null" class="text-overflow">{{ item["설명"] }}</p>
                                 <p v-if="item['설명'] == null">-</p>
-                                <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary">이력보기</router-link>
+                                <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block signaure-btn">이력보기</router-link>
                             </div>
                         </div>
                     </div>
@@ -68,6 +68,8 @@ var artworksView = Vue.component('artworksView', {
             if (scope.artworks.length % 8 > 0)
                 scope.maxPage += 1;
             scope.movePage(scope.page);
+
+            console.log(scope.artworks);
         }); 
     },
     methods: {
