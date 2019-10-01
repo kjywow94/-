@@ -10,7 +10,7 @@ public interface IAuctionRepository
 	List<Auction> 목록조회();
 	Auction 조회(long id);
 	Auction 조회(String 컨트랙트주소);
-
+	Auction 조회(long 경매id, String 상태);
 	@Transactional
 	long 생성(Auction 경매);
 
@@ -19,4 +19,5 @@ public interface IAuctionRepository
 
 	@Transactional
 	int 삭제(long id);
+
 }

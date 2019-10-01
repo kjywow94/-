@@ -51,6 +51,10 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                         <td>{{ bidder['이름'] }}({{ bidder['이메일'] }})</td>
                                     </tr>
                                     <tr>
+                                        <th>입찰 횟수</th>
+                                        <td>{{ bitCount }} ETH</td>
+                                    </tr>
+                                    <tr>
                                         <th>현재 최고 입찰액</th>
                                         <td>{{ auction['최고입찰액'] }} ETH</td>
                                     </tr>
@@ -89,7 +93,8 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             bidder: {},
             isCanceling: false,
             isClosing: false,
-            isExpired: false
+            isExpired: false,
+            bidCount: 0
         }
     },
     methods: {
@@ -164,7 +169,9 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
         var auctionId = this.$route.params.id;
         var scope = this;
         var web3 = createWeb3();
-
+        auctionService.countBidById(auctionId, function(result){
+            scope.bidCount = result;
+        });
         // 경매 정보 조회
         auctionService.findById(auctionId, function (auction) {
             var amount = Number(auction['최소금액']).toLocaleString().split(",").join("")
