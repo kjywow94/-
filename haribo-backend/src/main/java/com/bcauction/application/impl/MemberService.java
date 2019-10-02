@@ -2,6 +2,7 @@ package com.bcauction.application.impl;
 
 import com.bcauction.application.IMemberService;
 import com.bcauction.domain.Member;
+import com.bcauction.domain.Token;
 import com.bcauction.domain.Wallet;
 import com.bcauction.domain.exception.ApplicationException;
 import com.bcauction.domain.repository.IMemberRepository;
@@ -75,5 +76,21 @@ public class MemberService implements IMemberService {
 	public Member findUserByWallet(final String walletAddress) {
 		Long id = walletRepository.조회(walletAddress).get소유자id();
 		return memberRepository.조회(id);
+	}
+
+	@Override
+	public long storeToken(Token tokenInfo) {
+		List<Token> tokenList = memberRepository.tokenList(tokenInfo.getId());
+		for (Token token : tokenList) {
+			if (token.getToken().equals(tokenInfo.getToken())) {
+				return 0;
+			}
+		}
+		return memberRepository.storeToken(tokenInfo);
+	}
+
+	@Override
+	public List<Token> tokenList(long id) {
+		return memberRepository.tokenList(id);
 	}
 }

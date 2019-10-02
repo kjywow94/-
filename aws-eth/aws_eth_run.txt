@@ -8,8 +8,8 @@
 
 
 채굴노드 백그라운드 실행
-nohup ./geth --networkid 30507 --maxpeers 3  --port 8001 --datadir ~/eth01 --mine -minerthreads 1 --etherbase "0xdf664aba258eb9c0660421d2c9ce582202fd6717" & console 2>> ~/eth01/geth.log
-nohup ./geth --networkid 30507 --maxpeers 3  --port 8002 --datadir ~/eth02 --mine -minerthreads 1 --etherbase "0xdf664aba258eb9c0660421d2c9ce582202fd6717" & console 2>> ~/eth02/geth.log
+nohup ./geth --networkid 30507 --maxpeers 3  --port 8001 --datadir ~/eth01 --mine -minerthreads 1 --etherbase "0x71e4424d8e21626617d687b18e42c07d473bceb8" & console 2>> ~/eth01/geth.log
+nohup ./geth --networkid 30507 --maxpeers 3  --port 8002 --datadir ~/eth02 --mine -minerthreads 1 --etherbase "0x71e4424d8e21626617d687b18e42c07d473bceb8" & console 2>> ~/eth02/geth.log
 
 백그라운드 RPC 설정
 eth00
@@ -36,9 +36,17 @@ static-nodes.json
 "enode://f804f7f2f1ab86eb6657569df494845e5f526daee6522881522fcb03fd991b4561a5a3eec6812902082c99625734dfbfad8153bef6cbfcf28423e378b2280397@52.79.176.64:8002"
 ]
 
+geth 00 
+"enode://9966112c121704cceebe01ff9310fb4c97a72e80631b5aaff450d78abe64e10894c8c2b80390ec7b1b52e74c2ea50ad9c232f244bff8f985843c302c4289d83a@52.79.176.64:8000"
+geth 01
+"enode://e17d0b8b8baaa372462b9557014fe7a538e94a217edc6d6545d9b9228b9ff1b5a2c62e3540fef718c20a9dda6dd76e8e7143db42652624f7823b3869d5a86968@52.79.176.64:8001"
+geth 02
+"enode://60c93ee59694ed5d94374112e2545b318ec311b74c87b71b3d7250db5e230ff390ecc69c12a5e4d01a60b61bff68cea680af2bffee6a0bcdb52d1c50d6e76891@52.79.176.64:8002"
+
+
 eth00 URL : http://52.79.176.64:8545
 
-coinBase : "0xdf664aba258eb9c0660421d2c9ce582202fd6717"
+coinBase : "0x71e4424d8e21626617d687b18e42c07d473bceb8"
 
 
 eth01 "0x223971618f5ce58751e652184643108878d1ae3d"
@@ -48,7 +56,7 @@ eth02 "0x684fb90780e1aecb534d353bde9713ebafdd327b"
 test account : "0xcc07c613ac550c82b6d8041f194f5aa899a2938e"
 "0xa349961031ccb089526b5cf39d488d0af444b6aa"
 
-eth.sendTransaction({from:eth.accounts[0], to:"0xcc07c613ac550c82b6d8041f194f5aa899a2938e", value:web3.toWei(10,"ether")})
+eth.sendTransaction({from:eth.accounts[0], to:"0xA9CaeDe483D7bCfA77109cC95714ea91D971BFDB", value:web3.toWei(10,"ether")})
 
 
-eth.sendTransaction({from:eth.accounts[0], to:"0xa349961031ccb089526b5cf39d488d0af444b6aa", value:web3.toWei(10,"ether")})
+eth.sendTransaction({from:eth.accounts[0], to:eth.accounts[1], value:web3.toWei(10,"ether")})
