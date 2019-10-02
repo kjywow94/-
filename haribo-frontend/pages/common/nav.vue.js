@@ -3,7 +3,7 @@ var navVue = Vue.component("v-nav", {
     template: `
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container"> 
-                <router-link class="navbar-brand" to="/" style="color:#9430a0">Action<img src="assets/images/BoraCoin.png" wight=45px height=45px style="margin-top:-5px"/></router-link>
+                <router-link class="navbar-brand" to="/" style="color:#9430a0">Auction<img src="assets/images/BoraCoin.png" wight=45px height=45px style="margin-top:-5px"/></router-link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span><img src="assets/images/list-solid.png" wight=20px height=20px style="margin-top:-5px"/></span>
                 </button>
