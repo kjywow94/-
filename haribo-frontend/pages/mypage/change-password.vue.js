@@ -39,7 +39,6 @@ var myChangePasswordView = Vue.component('MyChangePasswordView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

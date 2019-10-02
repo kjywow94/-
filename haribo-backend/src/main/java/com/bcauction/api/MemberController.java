@@ -2,12 +2,14 @@ package com.bcauction.api;
 
 import com.bcauction.application.IMemberService;
 import com.bcauction.domain.Member;
+import com.bcauction.domain.Token;
 import com.bcauction.domain.exception.DomainException;
 import com.bcauction.domain.exception.EmptyListException;
 import com.bcauction.domain.exception.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,6 +69,16 @@ public class MemberController {
 		if (!회원.get비밀번호().equals(member.get비밀번호()))
 			throw new DomainException("비밀번호가 일치하지 않습니다.");
 		return 회원;
+	}
+
+	@RequestMapping(value = "/storeToken", method = RequestMethod.POST)
+	public long storeToken(@RequestBody Token tokenInfo) {
+		return memberService.storeToken(tokenInfo);
+	}
+
+	@RequestMapping(value = "/tokenList", method = RequestMethod.GET)
+	public List<Token> tokenList(@PathVariable long id) {
+		return memberService.tokenList(id);
 	}
 
 	@RequestMapping(value = "/members", method = RequestMethod.POST)

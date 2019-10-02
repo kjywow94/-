@@ -40,7 +40,6 @@ var walletCreateView = Vue.component('WalletCreateView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
