@@ -47,12 +47,12 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                 </table>
                                 <table class="table table-bordered mt-3" v-if="bidder.id">
                                     <tr>
-                                        <th width="20%">현재 최고 입찰자</th>
-                                        <td>{{ bidder['이름'] }}({{ bidder['이메일'] }})</td>
+                                        <th>입찰 횟수</th>
+                                        <td>{{ bitCount }}</td>
                                     </tr>
                                     <tr>
-                                        <th>입찰 횟수</th>
-                                        <td>{{ bitCount }} ETH</td>
+                                        <th width="20%">현재 최고 입찰자</th>
+                                        <td>{{ bidder['이름'] }}({{ bidder['이메일'] }})</td>
                                     </tr>
                                     <tr>
                                         <th>현재 최고 입찰액</th>

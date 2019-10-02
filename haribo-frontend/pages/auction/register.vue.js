@@ -86,7 +86,6 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
