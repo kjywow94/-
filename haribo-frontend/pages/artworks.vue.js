@@ -2,11 +2,13 @@ var artworksView = Vue.component('artworksView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다.">
+                <img src="assets/images/BoraCoin.png" wight=45px height=45px style="margin-top:-5px"/>
+            </v-breadcrumb>
             <div id="artwork-list" class="container">
                 <div class="row">
                     <div class="col-md-12 text-right">
-                        <router-link to="/works/create" class="btn btn-outline-secondary">내 작품 등록하기</router-link>
+                        <router-link to="/works/create" class="btn signaure-btn">작품 등록</router-link>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 mt-3" v-if="artworks.length == 0">
@@ -67,8 +69,6 @@ var artworksView = Vue.component('artworksView', {
             if (scope.artworks.length % 8 > 0)
                 scope.maxPage += 1;
             scope.movePage(scope.page);
-
-            console.log(scope.artworks);
         }); 
     },
     methods: {
