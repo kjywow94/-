@@ -30,7 +30,6 @@ var worksUpdateView = Vue.component("worksUpdateView", {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data(){

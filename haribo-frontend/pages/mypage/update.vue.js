@@ -35,7 +35,6 @@ var myUpdateView = Vue.component('MyUpdateView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data(){
