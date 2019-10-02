@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import com.bcauction.application.IAuctionContractService;
@@ -26,7 +27,7 @@ import com.bcauction.domain.repository.IAuctionRepository;
 import com.bcauction.domain.repository.IBidRepository;
 
 @Service
-public class AuctionService implements IAuctionService {
+public class AuctionService implements IAuctionService, CommandLineRunner {
 	public static final Logger logger = LoggerFactory.getLogger(AuctionService.class);
 
 	private IAuctionContractService auctionContractService;
@@ -173,7 +174,16 @@ public class AuctionService implements IAuctionService {
 	public void onAuctionEventListen() {
 		List<Auction> curList = 경매목록조회();
 		for (Auction auction : curList) {
+			System.out.println(auction.toString());
+		}
+		
+		for (Auction auction : curList) {
 			auctionContractService.eventListen(auction.get컨트랙트주소());
 		}
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		onAuctionEventListen();
 	}
 }

@@ -27,6 +27,7 @@ import com.bcauction.application.IDigitalWorkService;
 import com.bcauction.application.IMemberService;
 import com.bcauction.domain.AuctionInfo;
 import com.bcauction.domain.DigitalWork;
+import com.bcauction.domain.Member;
 import com.bcauction.domain.Token;
 import com.bcauction.domain.Wallet;
 import com.bcauction.domain.repository.IWalletRepository;
@@ -97,11 +98,11 @@ public class AuctionContractService implements IAuctionContractService {
 			auctionInfo.set경매컨트랙트주소(컨트랙트주소);
 
 			String 지갑주소 = auctionContract.highestBidder().sendAsync().get().getValue();
-			Wallet user = walletRepository.조회(지갑주소);
+			Wallet user = walletRepository.searchWallet(지갑주소);
 			if (user != null) {
 				auctionInfo.set최고입찰자id(user.get소유자id());
 			} else {
-				Wallet owner = walletRepository.조회(auctionContract.owner().sendAsync().get().getValue());
+				Wallet owner = walletRepository.searchWallet(auctionContract.owner().sendAsync().get().getValue());
 				auctionInfo.set최고입찰자id(owner.get소유자id());
 			}
 			Long response경매시작시간 = auctionContract.auctionStartTime().sendAsync().get().getValue().longValue();
@@ -194,6 +195,15 @@ public class AuctionContractService implements IAuctionContractService {
 
 	@Override
 	public void eventListen(String contractAddress) {
+		System.out.println("in eventListen");
+		System.out.println(contractAddress);
+		System.out.println();
+
+		try {
+			credentials = WalletUtils.loadCredentials(PASSWORD, WALLET_RESOURCE);
+		} catch (IOException | CipherException e) {
+			e.printStackTrace();
+		}
 		AuctionContract auctionContract = AuctionContract.load(contractAddress, web3j, credentials,
 				contractGasProvider);
 		auctionContract
@@ -206,12 +216,22 @@ public class AuctionContractService implements IAuctionContractService {
 					long workId = digitalWorkId.longValue();
 					DigitalWork work = digitalWorkService.조회(workId);
 
-					System.out.println("bidder : " + beforeBidder);
+					System.out.println("beforebidder : " + beforeBidder);
 					System.out.println("amount : " + amount);
-					long id = memberService.findUserByWallet(beforeBidder).getId();
-					List<Token> tokens = memberService.tokenList(id);
-					for (Token token : tokens) {
-						pushService.MessageSend(work.get이름(), token.getToken());
+					System.out.println("owner : " + owner);
+					System.out.println();
+
+					Member user = null;
+					if (!beforeBidder.equals("0x0000000000000000000000000000000000000000"))
+						user = memberService.findUserByWallet(beforeBidder);
+
+					if (user != null) {
+
+						long id = user.getId();
+						List<Token> tokens = memberService.tokenList(id);
+						for (Token token : tokens) {
+							pushService.MessageSend(work.get이름(), token.getToken());
+						}
 					}
 				});
 	}
