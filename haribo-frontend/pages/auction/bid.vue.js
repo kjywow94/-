@@ -120,7 +120,6 @@ var auctionBidView = Vue.component('AuctionBidView', {
                 scope.work = work;
             });
         });
-z
         // 내 지갑 정보 조회
         walletService.findById(scope.sharedStates.user.id, function (wallet) {
             wallet = wallet.responseJSON;

@@ -59,7 +59,6 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                 </div>
                 <br>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
 

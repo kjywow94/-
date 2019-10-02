@@ -15,9 +15,9 @@ var auctionView = Vue.component('AuctionView', {
                 <div class="row" v-if="auctions.length > 0">
                     <div class="col-md-3 auction" v-for="item in pageAuctions">
                         <div class="card">
-                        <div class = "text-left list-inline" style="position: absolute; padding-left:5px">
+                        <div class = "text-left list-inline" style="position: absolute; padding-left:15px; padding-top: 10px">
                             <span v-if = "item['종료임박']" class="badge badge-warning">종료임박</span>
-                            <span v-if = "item['입찰횟수'] > 9" class="badge badge-danger">HOT</span>
+                            <span v-if = "item['입찰횟수'] >= 10" class="badge badge-danger">HOT</span>
                             <span class="badge"><br></span>
                         </div>
                             <div class="card-body">
@@ -45,7 +45,7 @@ var auctionView = Vue.component('AuctionView', {
     `,
     data() {
         return {
-            auctions: [{'종료임박': false, '입찰횟수': 11}],
+            auctions: [{'종료임박': false, '입찰횟수': 0}],
             maxPage: 0,
             page: 1,
             pageArr: [],

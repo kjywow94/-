@@ -27,7 +27,6 @@ var walletInfoView = Vue.component('walletInfoView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
