@@ -42,6 +42,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                         <td>
                                                 <span class="badge badge-success" v-if="auction['종료'] == false">경매 진행중</span>
                                                 <span class="badge badge-danger" v-if="auction['종료'] == true">경매 종료</span>
+                                                <span class="badge badge-warn" v-if="auction['남은시간'] == '경매마감'">경매 마감</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -246,9 +247,10 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             scope.auction = auction;
             if(new Date(scope.auction['경매종료시간']).getTime() < new Date().getTime())
                 scope.isExpired = true;
-                scope.interval = setInterval(function () {
-                    scope.timeLeft = scope.calculateDate(new Date(), scope.auction['경매종료시간']); 
-                }.bind(scope), 1000);      
+            scope.timeLeft = scope.calculateDate(new Date(), scope.auction['경매종료시간']);
+            scope.interval = setInterval(function () {
+                scope.timeLeft = scope.calculateDate(new Date(), scope.auction['경매종료시간']); 
+            }.bind(scope), 1000);      
         });
 
 

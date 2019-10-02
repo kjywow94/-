@@ -13069,3 +13069,1899 @@
 2019-10-02 11:58:01 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
 2019-10-02 11:58:01 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
 2019-10-02 11:58:01 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:25 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:25 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-10-02 11:59:25 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.bcauction.domain.Member@66bdfbd9]
+2019-10-02 11:59:25 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.Member@66bdfbd9]
+2019-10-02 11:59:25 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:25 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@1dfbd8cb]
+2019-10-02 11:59:25 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:25 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:25 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:25 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 11:59:25 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 11:59:25 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:25 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 11:59:25 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 11:59:25 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:25 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 11:59:25 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:25 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:25 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/of/6", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:25 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회By소유자(long)
+2019-10-02 11:59:25 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [6]
+2019-10-02 11:59:25 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleNotFoundException(com.bcauction.domain.exception.NotFoundException)
+2019-10-02 11:59:25 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.exception.NotFoundException: 6 해당 회원의 주소 지갑을 찾을 수 없습니다.]
+2019-10-02 11:59:25 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:25 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["6 해당 회원의 주소 지갑을 찾을 수 없습니다."]
+2019-10-02 11:59:25 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.bcauction.domain.exception.NotFoundException: 6 해당 회원의 주소 지갑을 찾을 수 없습니다.]
+2019-10-02 11:59:25 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:25 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND, headers={masked}
+2019-10-02 11:59:27 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:27 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F, 최고입찰액=12000000000000000000, 작품id=50, 최고입찰자id=22, 경매시작시간=2019-10-01T17:46:12, 경매종료시간=2019-10-02T17:46:12, 최소금액=1000000000000000000, 종료=false]]
+2019-10-02 11:59:27 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:27 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:27 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:27 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 11:59:27 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 11:59:27 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/22", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:27 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-10-02 11:59:27 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [22]
+2019-10-02 11:59:27 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:27 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@44f86547]
+2019-10-02 11:59:27 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:27 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 11:59:27 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:27 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:27 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:27 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:27 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/7", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:27 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-10-02 11:59:27 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [7]
+2019-10-02 11:59:27 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:27 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@30cc8a5]
+2019-10-02 11:59:27 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:27 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:34 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:34 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 11:59:34 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 11:59:34 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:34 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 11:59:34 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:34 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:36 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:36 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 11:59:36 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 11:59:37 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:37 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 11:59:37 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:37 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:37 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:37 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 11:59:37 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 11:59:37 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:37 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 11:59:37 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:37 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:37 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:37 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 11:59:37 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 11:59:37 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:37 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 11:59:37 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:37 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:37 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:37 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:37 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 11:59:37 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 11:59:37 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 11:59:37 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 11:59:37 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:37 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 11:59:37 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:37 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:37 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:37 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 11:59:37 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:37 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:38 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:38 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 11:59:38 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 11:59:38 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:38 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 11:59:38 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:38 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:40 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:40 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 11:59:40 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 11:59:40 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:40 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 11:59:40 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:40 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:40 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:40 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 11:59:40 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 11:59:40 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:40 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 11:59:40 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:40 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:40 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:40 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 11:59:40 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 11:59:40 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:40 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 11:59:40 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:40 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:40 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:40 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:40 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 11:59:40 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 11:59:40 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 11:59:40 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 11:59:40 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:40 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 11:59:40 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:40 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:40 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:40 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 11:59:40 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:40 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:41 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:41 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:41 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 11:59:41 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 11:59:41 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 11:59:41 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 11:59:41 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:41 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 11:59:41 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:41 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:42 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:42 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79, 최고입찰액=null, 작품id=0, 최고입찰자id=0, 경매시작시간=2019-10-02T09:40:13, 경매종료시간=2019-10-02T09:43:13, 최소금액=null, 종료=false]]
+2019-10-02 11:59:42 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:42 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 11:59:42 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/0", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:42 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 11:59:42 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0]
+2019-10-02 11:59:42 [http-nio-8080-exec-4] ERROR c.b.api.DigitalWorkController - NOT FOUND ID: 
+2019-10-02 11:59:42 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleNotFoundException(com.bcauction.domain.exception.NotFoundException)
+2019-10-02 11:59:42 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 11:59:42 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:42 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["0 작품 정보를 찾을 수 없습니다."]
+2019-10-02 11:59:42 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 11:59:42 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:42 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND, headers={masked}
+2019-10-02 11:59:46 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 11:59:46 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 11:59:46 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 11:59:46 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 11:59:46 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 11:59:46 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 11:59:46 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:00:01 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:00:01 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:00:01 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:00:01 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:00:01 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:00:01 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:00:01 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:13 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:13 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:02:13 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:02:13 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:13 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:02:13 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:13 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:13 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:13 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:02:13 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:02:13 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:13 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:02:13 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:13 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:13 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:13 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:02:13 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:02:13 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:13 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:02:13 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:13 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:13 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:13 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:02:13 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:02:13 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:13 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:02:13 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:02:13 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:13 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:02:13 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:13 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:13 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:13 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:02:13 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:13 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:14 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:14 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:14 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:02:14 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 12:02:14 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:02:14 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:02:14 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:14 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:02:14 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:14 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:16 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:16 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79, 최고입찰액=null, 작품id=0, 최고입찰자id=0, 경매시작시간=2019-10-02T09:40:13, 경매종료시간=2019-10-02T09:43:13, 최소금액=null, 종료=false]]
+2019-10-02 12:02:16 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:16 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:16 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/0", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:16 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:02:16 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0]
+2019-10-02 12:02:16 [http-nio-8080-exec-2] ERROR c.b.api.DigitalWorkController - NOT FOUND ID: 
+2019-10-02 12:02:16 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleNotFoundException(com.bcauction.domain.exception.NotFoundException)
+2019-10-02 12:02:16 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:02:16 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:16 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["0 작품 정보를 찾을 수 없습니다."]
+2019-10-02 12:02:16 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:02:16 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:16 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND, headers={masked}
+2019-10-02 12:02:16 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:16 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:02:16 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:02:16 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:16 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:02:16 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:16 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:16 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:16 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:02:16 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:02:16 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:16 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:02:16 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:16 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:16 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:16 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:02:16 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:02:16 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:16 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:02:16 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:16 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:16 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:16 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:02:16 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:02:16 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:02:16 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:02:16 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:02:16 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:16 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:02:16 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:16 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:02:16 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:02:16 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:02:16 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:02:16 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:03:04 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:03:04 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:03:04 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:03:04 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:03:04 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 12:03:04 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:03:04 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:03:04 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:03:04 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:03:04 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:03:06 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:03:06 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F, 최고입찰액=12000000000000000000, 작품id=50, 최고입찰자id=22, 경매시작시간=2019-10-01T17:46:12, 경매종료시간=2019-10-02T17:46:12, 최소금액=1000000000000000000, 종료=false]]
+2019-10-02 12:03:06 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:03:06 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:03:06 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:03:06 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:03:06 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:03:06 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/22", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:03:06 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-10-02 12:03:06 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [22]
+2019-10-02 12:03:06 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:03:06 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@15567eed]
+2019-10-02 12:03:06 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:03:06 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:03:06 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:03:06 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:03:06 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:03:06 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:03:06 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/7", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:03:06 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-10-02 12:03:06 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [7]
+2019-10-02 12:03:06 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:03:06 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@3d4ef140]
+2019-10-02 12:03:06 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:03:06 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:04:05 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:04:05 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:04:05 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:04:05 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:04:05 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:04:05 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:04:05 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:17 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:17 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:05:17 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:05:17 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:17 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:05:17 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:17 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:17 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:17 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:17 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:05:17 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:17 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:05:17 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:17 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:17 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:17 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:17 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:05:17 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:17 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:05:17 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:17 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:17 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:17 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:17 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:17 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:17 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:05:17 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:17 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:17 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:05:17 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:17 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:17 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:17 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:05:17 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:17 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-10-02 12:05:20 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.bcauction.domain.Member@17719f09]
+2019-10-02 12:05:20 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.Member@17719f09]
+2019-10-02 12:05:20 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@3239ff9b]
+2019-10-02 12:05:20 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:05:20 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:05:20 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/of/6", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회By소유자(long)
+2019-10-02 12:05:20 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [6]
+2019-10-02 12:05:20 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:05:20 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:20 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:05:20 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:05:20 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@64d8e330]
+2019-10-02 12:05:20 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:20 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:05:20 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/0x649F762EE1575F0DBB47C782d0E0B11B31110e5E", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회(java.lang.String)
+2019-10-02 12:05:20 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0x649F762EE1575F0DBB47C782d0E0B11B31110e5E]
+2019-10-02 12:05:20 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:05:20 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:20 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:20 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:20 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:05:20 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:20 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:05:20 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:05:20 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:20 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:20 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@4061d0ac]
+2019-10-02 12:05:20 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:20 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:21 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:21 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:05:21 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:05:21 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:21 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:05:21 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:21 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:21 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:21 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:21 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:05:21 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:21 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:05:21 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:21 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:21 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:21 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:21 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:05:21 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:21 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:05:21 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:21 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:21 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:21 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:05:21 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:21 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:21 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:21 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:21 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:05:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:05:21 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:21 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:21 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:21 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:24 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:24 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:24 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:24 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 12:05:24 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:24 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:24 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:24 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:05:24 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:24 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:26 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:26 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79, 최고입찰액=null, 작품id=0, 최고입찰자id=0, 경매시작시간=2019-10-02T09:40:13, 경매종료시간=2019-10-02T09:43:13, 최소금액=null, 종료=false]]
+2019-10-02 12:05:26 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:26 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:26 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/0", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:26 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:26 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0]
+2019-10-02 12:05:26 [http-nio-8080-exec-1] ERROR c.b.api.DigitalWorkController - NOT FOUND ID: 
+2019-10-02 12:05:26 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleNotFoundException(com.bcauction.domain.exception.NotFoundException)
+2019-10-02 12:05:26 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:05:26 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:26 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["0 작품 정보를 찾을 수 없습니다."]
+2019-10-02 12:05:26 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:05:26 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:26 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND, headers={masked}
+2019-10-02 12:05:35 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:35 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:05:35 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:05:35 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:35 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:05:35 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:35 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:38 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:38 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:05:38 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:05:38 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:38 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:05:38 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:38 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:38 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:38 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:38 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:05:38 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:38 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:05:38 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:38 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:38 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:38 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:38 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:05:38 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:38 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:05:38 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:38 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:38 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:38 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:38 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:38 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:38 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:38 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:05:38 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:38 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:38 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:05:38 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:05:38 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:38 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:38 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:38 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:39 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:39 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:39 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 12:05:39 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:05:39 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:39 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:05:39 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:39 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:05:39 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:39 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:41 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:41 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79, 최고입찰액=null, 작품id=0, 최고입찰자id=0, 경매시작시간=2019-10-02T09:40:13, 경매종료시간=2019-10-02T09:43:13, 최소금액=null, 종료=false]]
+2019-10-02 12:05:41 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:41 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:05:41 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/0", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:05:41 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:05:41 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0]
+2019-10-02 12:05:41 [http-nio-8080-exec-9] ERROR c.b.api.DigitalWorkController - NOT FOUND ID: 
+2019-10-02 12:05:41 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleNotFoundException(com.bcauction.domain.exception.NotFoundException)
+2019-10-02 12:05:41 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:05:41 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:05:41 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["0 작품 정보를 찾을 수 없습니다."]
+2019-10-02 12:05:41 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:05:41 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:05:41 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND, headers={masked}
+2019-10-02 12:06:02 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:02 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:06:02 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:06:02 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:02 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:06:02 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:02 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:04 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:04 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:06:04 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:06:04 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:04 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:06:04 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:04 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:04 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:04 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:06:04 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:06:04 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:04 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:06:04 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:04 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:04 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:04 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:06:04 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:06:04 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:04 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:06:04 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:04 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:04 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:04 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:04 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:06:04 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:06:04 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:06:04 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:06:04 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:04 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:06:04 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:04 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:04 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:04 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:06:04 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:04 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:05 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:05 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:06:05 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:06:05 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:05 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 12:06:05 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:06:05 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:05 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:06:05 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:05 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:07 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:07 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F, 최고입찰액=12000000000000000000, 작품id=50, 최고입찰자id=22, 경매시작시간=2019-10-01T17:46:12, 경매종료시간=2019-10-02T17:46:12, 최소금액=1000000000000000000, 종료=false]]
+2019-10-02 12:06:07 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:07 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:07 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:07 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:06:07 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:06:07 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/22", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:07 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-10-02 12:06:07 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [22]
+2019-10-02 12:06:07 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:07 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:06:07 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:07 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/members/7", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:07 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.조회(int)
+2019-10-02 12:06:07 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [7]
+2019-10-02 12:06:07 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:07 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@3c035d30]
+2019-10-02 12:06:07 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:07 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:07 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:07 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@74c9778a]
+2019-10-02 12:06:07 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:07 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:22 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:22 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:06:22 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:06:22 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:22 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:06:22 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:22 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:22 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:22 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:06:22 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:06:22 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:22 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:06:22 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:22 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:22 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:22 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:06:22 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:06:22 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:22 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:06:22 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:22 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:22 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:22 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:06:22 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:22 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:06:22 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:06:22 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:06:22 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:22 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:06:22 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:22 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:22 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:22 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:06:22 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:22 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:23 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:23 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:23 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.AuctionInfo com.bcauction.api.AuctionController.조회(long)
+2019-10-02 12:06:23 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:06:23 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:06:23 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:06:23 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:23 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:06:23 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:23 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:24 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:24 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [AuctionInfo [경매컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79, 최고입찰액=null, 작품id=0, 최고입찰자id=0, 경매시작시간=2019-10-02T09:40:13, 경매종료시간=2019-10-02T09:43:13, 최소금액=null, 종료=false]]
+2019-10-02 12:06:24 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:24 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:24 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/0", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:24 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:06:24 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0]
+2019-10-02 12:06:24 [http-nio-8080-exec-9] ERROR c.b.api.DigitalWorkController - NOT FOUND ID: 
+2019-10-02 12:06:24 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler public java.lang.String com.bcauction.api.handler.GlobalExceptionHandler.handleNotFoundException(com.bcauction.domain.exception.NotFoundException)
+2019-10-02 12:06:24 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:06:24 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, text/plain, */*, application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:24 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["0 작품 정보를 찾을 수 없습니다."]
+2019-10-02 12:06:24 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [com.bcauction.domain.exception.NotFoundException: 0 작품 정보를 찾을 수 없습니다.]
+2019-10-02 12:06:24 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:24 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 404 NOT_FOUND, headers={masked}
+2019-10-02 12:06:31 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:31 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:06:31 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:06:31 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:06:31 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:06:31 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:31 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:43 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - OPTIONS "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:43 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.등록(com.bcauction.domain.DigitalWork)
+2019-10-02 12:06:43 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:06:43 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:06:43 [http-nio-8080-exec-6] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:06:43 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.등록(com.bcauction.domain.DigitalWork)
+2019-10-02 12:06:43 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [{ id: 0
+	이름: 나루토
+	설명: 진짜
+	공개여부: Y
+	상태: Y
+	회원id: 6 }]
+2019-10-02 12:06:43 [http-nio-8080-exec-6] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [{ id: 0
+	이름: 나루토
+	설명: 진짜
+	공개여부: Y
+	상태: Y
+	회원id: 6 }]
+2019-10-02 12:07:16 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:07:16 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:07:16 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:07:16 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:07:16 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:07:16 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:07:16 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:07:24 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:07:24 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.등록(com.bcauction.domain.DigitalWork)
+2019-10-02 12:07:24 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [{ id: 0
+	이름: 나루토
+	설명: 진짜
+	공개여부: Y
+	상태: Y
+	회원id: 6 }]
+2019-10-02 12:07:24 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [{ id: 0
+	이름: 나루토
+	설명: 진짜
+	공개여부: Y
+	상태: Y
+	회원id: 6 }]
+2019-10-02 12:08:01 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:01 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.AuctionWithImg> com.bcauction.api.AuctionController.목록조회()
+2019-10-02 12:08:01 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:08:01 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:01 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[Auction [id=48, 경매생성자id=7, 경매작품id=50, 생성일시=2019-10-01T17:46:30, 상태=V, 시작일시=2019-10-01T17:46:12, 종료일시=2019-10-02T17:46:12, 최저가=1, 컨트랙트주소=0xae94ee71E73a9b43020e042C9c4BF01981f2bC0F], Auction [id=55, 경매생성자id=10, 경매작품id=25, 생성일시=2019-10-02T09:40:28, 상태=V, 시작일시=2019-10-02T09:40:13, 종료일시=2019-10-02T09:43:13, 최저가=2, 컨트랙트주소=0xA3e80Ae4cFE707192042c8633935C31a611ddF79]]]
+2019-10-02 12:08:01 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:01 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:01 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/50", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:01 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:08:01 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [50]
+2019-10-02 12:08:01 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:01 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]
+2019-10-02 12:08:01 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:01 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:01 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works/25", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:01 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.조회(int)
+2019-10-02 12:08:01 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [25]
+2019-10-02 12:08:01 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:01 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{ id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }]
+2019-10-02 12:08:01 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:01 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:01 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/48", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:01 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/auctions/bid/55", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:01 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:08:01 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public long com.bcauction.api.AuctionController.입찰횟수(long)
+2019-10-02 12:08:01 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [55]
+2019-10-02 12:08:01 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [48]
+2019-10-02 12:08:01 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:01 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [1]
+2019-10-02 12:08:01 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:01 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:01 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:01 [http-nio-8080-exec-10] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [3]
+2019-10-02 12:08:01 [http-nio-8080-exec-10] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:01 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:03 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:03 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:08:03 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:08:03 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:03 [http-nio-8080-exec-1] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:08:03 [http-nio-8080-exec-1] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:03 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:10 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/members/login", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:10 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Member com.bcauction.api.MemberController.로그인(com.bcauction.domain.Member)
+2019-10-02 12:08:10 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.bcauction.domain.Member@702f62b6]
+2019-10-02 12:08:10 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [com.bcauction.domain.Member@702f62b6]
+2019-10-02 12:08:10 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:10 [http-nio-8080-exec-5] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Member@568122ff]
+2019-10-02 12:08:10 [http-nio-8080-exec-5] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:10 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:10 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:10 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:08:10 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:08:10 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/of/6", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:10 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회By소유자(long)
+2019-10-02 12:08:10 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [6]
+2019-10-02 12:08:10 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:10 [http-nio-8080-exec-7] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:08:10 [http-nio-8080-exec-7] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:10 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:10 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:10 [http-nio-8080-exec-4] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@74391bff]
+2019-10-02 12:08:10 [http-nio-8080-exec-4] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:10 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:10 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/0x649F762EE1575F0DBB47C782d0E0B11B31110e5E", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:10 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회(java.lang.String)
+2019-10-02 12:08:10 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [0x649F762EE1575F0DBB47C782d0E0B11B31110e5E]
+2019-10-02 12:08:10 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:10 [http-nio-8080-exec-8] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [com.bcauction.domain.Wallet@1c922748]
+2019-10-02 12:08:10 [http-nio-8080-exec-8] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:10 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:21 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public java.util.List<com.bcauction.domain.DigitalWorkWithImg> com.bcauction.api.DigitalWorkController.목록조회()
+2019-10-02 12:08:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: []
+2019-10-02 12:08:21 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2019-10-02 12:08:21 [http-nio-8080-exec-2] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[{ id: 1
+	이름: 커피마시는 로로
+	설명: 오늘의 고양이 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 2
+	이름: 윙크하는 로로
+	설명: 로로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 25
+	이름: 나루토
+	설명: 나선환
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 31
+	이름: 모나리자
+	설명: 사진업로드 테스트
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 36
+	이름: 자화상
+	설명: 반 고흐
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 37
+	이름: 모나리자
+	설명: 와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 38
+	이름: 천지창조
+	설명: 미켈란젤로
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 39
+	이름: 절규
+	설명: 몽크
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 40
+	이름: 비너스
+	설명: 보티첼리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 42
+	이름: 진주귀걸이를 한 고양이
+	설명: 진주귀걸이를 한 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 43
+	이름: 밤의 카페 테라스와 고양이
+	설명: 밤의 카페 테라스와 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 45
+	이름: 엄마고양이 아기고양이
+	설명: 엄마고양이 아기고양이
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 46
+	이름: 고양이들
+	설명: 고양이들
+	공개여부: Y
+	상태: Y
+	회원id: 8 }, { id: 48
+	이름: 고양이 거리
+	설명: 고양이 거리
+	공개여부: Y
+	상태: Y
+	회원id: 6 }, { id: 49
+	이름: 움직이는 작품
+	설명: 고양이
+	공개여부: Y
+	상태: Y
+	회원id: 10 }, { id: 50
+	이름: 마라의 죽음
+	설명: 테스트작품
+	공개여부: Y
+	상태: Y
+	회원id: 7 }]]
+2019-10-02 12:08:21 [http-nio-8080-exec-2] TRACE o.s.web.servlet.DispatcherServlet - No view rendering, null ModelAndView returned.
+2019-10-02 12:08:21 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK, headers={masked}
+2019-10-02 12:08:37 [http-nio-8080-exec-9] TRACE o.s.web.servlet.DispatcherServlet - POST "/api/works", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-02 12:08:37 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.DigitalWork com.bcauction.api.DigitalWorkController.등록(com.bcauction.domain.DigitalWork)
+2019-10-02 12:08:37 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [{ id: 0
+	이름: TEST ARTWORKS
+	설명: TEST 
+	공개여부: Y
+	상태: Y
+	회원id: 6 }]
+2019-10-02 12:08:37 [http-nio-8080-exec-9] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [{ id: 0
+	이름: TEST ARTWORKS
+	설명: TEST 
+	공개여부: Y
+	상태: Y
+	회원id: 6 }]
+2019-10-02 12:10:18 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2019-10-02 12:10:18 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-10-02 12:10:18 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2019-10-02 12:10:18 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
