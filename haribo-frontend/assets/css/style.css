@@ -8,6 +8,22 @@ a {
     text-decoration: none;
 }
 
+.signaure {
+    color: #9430a0;
+}
+
+.signaure-btn {
+    background-color: #9430a0;
+    border-color: #9430a0;
+    color: white;
+}
+
+.active {
+    background-color: #9430a0;
+    border-color: #9430a0;
+    color: white;
+}
+
 /* 메인 소개글 스타일 시트 */
 #main-overview {
     margin-top: 6px;
