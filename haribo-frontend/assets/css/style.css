@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     color: #293046;
-    font-family: 'NanumSquareRound', sans-serif;
+    background-color:white !important;
+    /* font-family: 'NanumSquareRound', sans-serif; */
 }
 
 @import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
@@ -16,6 +17,7 @@ a {
     text-decoration: none;
 }
 
+/* 시그니쳐 색 */
 .signaure {
     color: #9430a0;
 }
@@ -26,11 +28,20 @@ a {
     color: white;
 }
 
-.active {
+/* 회색 배경 색 */
+.bg-grey {
+    background: #fcfcfc;
+}
+
+/* 버튼 크기 */
+.btn-width {
+    width: 40%;
+}
+/* .active {
     background-color: #9430a0;
     border-color: #9430a0;
     color: white;
-}
+} */
 
 /* 메인 소개글 스타일 시트 */
 #main-overview {
@@ -54,6 +65,7 @@ a {
 
 .breadcrumb {
     padding-top: 100px;
+    background-color: #e9ecef6e;
 }
 
 #my-artwork .artwork {
@@ -63,13 +75,13 @@ a {
 /* 작품 리스트 스타일 시트 */
 #auction-list,
 #artwork-list {
-    padding: 50px 0;
+    padding: 25px 0;
 }
 
 #auction-list .auction,
 #artwork-list .artwork {
     padding: 20px 10px;
-    text-align: center;
+    text-align: left;
 }
 
 #auction-list .auction img,
@@ -80,7 +92,7 @@ a {
 
 #auction-list .auction h4,
 #artwork-list .artwork h4 {
-    padding-top: 40px;
+    padding-top: 0px;
 }
 
 #auction-list .auction p,
@@ -127,6 +139,7 @@ a {
 .card .table {
     padding: 0;
     margin: 0;
+    background: #fcfcfc;
 }
 
 nav.bottom-pagination {
