@@ -73,7 +73,6 @@ var artworksView = Vue.component('artworksView', {
             if (scope.artworks.length % 8 > 0)
                 scope.maxPage += 1;
             scope.movePage(scope.page);
-            console.log(scope.artworks);
         }); 
     },
     methods: {

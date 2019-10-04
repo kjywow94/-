@@ -1,21 +1,23 @@
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
 body {
     margin: 0;
     padding: 0;
     color: #293046;
     background-color:white !important;
-    /* font-family: 'NanumSquareRound', sans-serif; */
+    font-family: 'NanumSquareRound', sans-serif;
 }
 
-@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
-body        { font-family: 'NanumSquareRound', sans-serif; }
-.normal     { font-weight: 400 }
-.bold       { font-weight: 700 }
-.bolder     { font-weight: 800 }
-.light      { font-weight: 300 }
 
 a {
     text-decoration: none;
 }
+
+/* 글씨 크기 */
+.normal     { font-weight: 400 }
+.bold       { font-weight: 700 }
+.bolder     { font-weight: 800 }
+.light      { font-weight: 300 }
 
 /* 시그니쳐 색 */
 .signaure {
