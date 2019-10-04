@@ -3,12 +3,11 @@ var artworksView = Vue.component('artworksView', {
         <div>
             <v-nav></v-nav>
             <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다.">
-                <img src="assets/images/BoraCoin.png" wight=45px height=45px style="margin-top:-5px"/>
             </v-breadcrumb>
             <div id="artwork-list" class="container">
                 <div class="row">
                     <div class="col-md-12 text-right">
-                        <router-link to="/works/create" class="btn signaure-btn">작품 등록</router-link>
+                        <router-link to="/works/create" class="btn btn-secondary">작품 등록</router-link>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 mt-3" v-if="artworks.length == 0">
@@ -25,7 +24,7 @@ var artworksView = Vue.component('artworksView', {
                                 <p v-if="item['설명'] == null">-</p>
                                 <hr>
                                 <div align="right">
-                                    <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block signaure-btn btn-width">이력</router-link>
+                                    <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary btn-width">이력</router-link>
                                 </div>
                             </div>
                         </div>
