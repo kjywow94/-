@@ -18,6 +18,8 @@ var auctionView = Vue.component('AuctionView', {
                         <div class = "text-left list-inline" style="position: absolute; padding-left:15px; padding-top: 10px">
                             <span v-if = "item['종료임박']" class="badge badge-warning">종료임박</span>
                             <span v-if = "item['입찰횟수'] >= 10" class="badge badge-danger">HOT</span>
+                            <span v-if = "item['입찰횟수'] == 0 && item['남은시간'] != '경매 마감'" class="badge badge-info">입찰자없음</span>
+                            <span v-if = "item['입찰횟수'] == 0 && item['남은시간'] == '경매 마감'" class="badge badge-info">유찰</span>
                             <span class="badge"><br></span>
                         </div>
                             <div class="card-body">

@@ -53,7 +53,8 @@ var myArtworkView = Vue.component('MyArtworkView', {
                                         <div class="card-body">
                                             <img :src="item.imgData">
                                             <h4 class="text-overflow">{{ item['작품정보']['이름'] }}</h4>
-                                            <span class="badge badge-success">경매 진행중</span>
+                                            <span v-if="calculateDate(item['종료일시']) != '경매 마감'" class="badge badge-success">경매 진행중</span>
+                                            <span v-if="calculateDate(item['종료일시']) == '경매 마감'" class="badge badge-warning">경매 마감</span>
                                             <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary mt-3">자세히보기</router-link>
                                         </div>
                                     </div>
@@ -103,7 +104,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
             var now = new Date();
             var endDate = new Date(date);
             var diff = endDate.getTime() - now.getTime();
-
+            
             // 만약 종료일자가 지났다면 "경매 마감"을 표시한다.
             if (diff < 0) {
                 return "경매 마감";
@@ -130,6 +131,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
                 min = this.auctions.length;
                 maxPage = this.auctionMaxPage;
                 data = this.auctions;
+                console.log(data)
             }
 
             if (min > 4 * page)
@@ -204,6 +206,5 @@ var myArtworkView = Vue.component('MyArtworkView', {
          * 경매 중인 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
          */
         // 여기에 작성하세요.
-
     }
 })
