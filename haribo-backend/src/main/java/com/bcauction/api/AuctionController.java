@@ -1,5 +1,19 @@
 package com.bcauction.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.bcauction.application.IAuctionContractService;
 import com.bcauction.application.IAuctionService;
 import com.bcauction.domain.Auction;
@@ -9,15 +23,6 @@ import com.bcauction.domain.Bid;
 import com.bcauction.domain.exception.ApplicationException;
 import com.bcauction.domain.exception.EmptyListException;
 import com.bcauction.domain.exception.NotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -36,7 +41,6 @@ public class AuctionController {
 		this.auctionService = auctionService;
 		this.auctionContractService = auctionContractService;
 	}
-
 	@RequestMapping(value = "/auctions", method = RequestMethod.POST)
 	public Auction 생성(@RequestBody Auction auction) {
 		Auction 경매 = auctionService.생성(auction);
@@ -72,6 +76,16 @@ public class AuctionController {
 
 		return 경매정보;
 	}
+	
+	@RequestMapping(value = "/auctions/{id}/status/{status}", method = RequestMethod.GET)
+	public boolean 조회(@PathVariable long id, @PathVariable String status) {
+		Auction 경매 = this.auctionService.조회(id, status);
+		if (경매 == null) {
+			return true;
+		}
+
+		return false;
+	}
 
 	@RequestMapping(value = "/auctions/{aid}/by/{mid}", method = RequestMethod.DELETE)
 	public Auction 경매취소(@PathVariable long aid, @PathVariable long mid) {
@@ -86,6 +100,10 @@ public class AuctionController {
 	@RequestMapping(value = "/auctions/bid", method = RequestMethod.PUT)
 	public Bid 입찰(@RequestBody Bid bid) {
 		return auctionService.입찰(bid);
+	}
+	@RequestMapping(value = "/auctions/bid/{id}", method = RequestMethod.GET)
+	public long 입찰횟수(@PathVariable long id) {
+		return auctionService.입찰횟수(id);
 	}
 
 	/**

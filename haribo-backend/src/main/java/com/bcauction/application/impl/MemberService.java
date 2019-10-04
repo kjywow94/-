@@ -18,6 +18,8 @@ import java.util.List;
 public class MemberService implements IMemberService {
 
 	private IMemberRepository memberRepository;
+	
+	@Autowired
 	private IWalletRepository walletRepository;
 
 	@Autowired
@@ -73,8 +75,8 @@ public class MemberService implements IMemberService {
 	}
 
 	@Override
-	public Member findUserByWallet(final String walletAddress) {
-		Long id = walletRepository.조회(walletAddress).get소유자id();
+	public Member findUserByWallet(String walletAddress) {
+		Long id = walletRepository.searchWallet(walletAddress).get소유자id();
 		return memberRepository.조회(id);
 	}
 

@@ -26,6 +26,7 @@ import java.util.List;
 
 @Service
 public class DigitalWorkService implements IDigitalWorkService {
+
 	public static final Logger logger = LoggerFactory.getLogger(DigitalWorkService.class);
 
 	private IDigitalWorkRepository digitalWorkRepository;
@@ -134,7 +135,13 @@ public class DigitalWorkService implements IDigitalWorkService {
 
 			try {
 				File f = new File("worksImage/" + work.getId());
-				FileInputStream fis = new FileInputStream(f);
+				FileInputStream fis;
+				try {
+				fis = new FileInputStream(f);
+				}catch(FileNotFoundException e) {
+					f = new File("worksImage/artwork1.jpg");
+					fis = new FileInputStream(f);
+				}
 				byte byteArray[] = new byte[(int) f.length()];
 				fis.read(byteArray);
 				String encodeImg = "data:image/" + work.getId() + ";base64, "
