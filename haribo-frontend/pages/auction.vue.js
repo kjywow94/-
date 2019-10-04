@@ -51,7 +51,6 @@ var auctionView = Vue.component('AuctionView', {
             pageArr: [],
             pageAuctions: [],
             interval: null,
-            isRed: false
         }
     },
     methods: {
@@ -81,10 +80,6 @@ var auctionView = Vue.component('AuctionView', {
             } else {
                 // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
                 var delta = Math.abs(endDate - now) / 1000;
-                if(Math.floor(delta) < 3600){
-                    this.isRed = true;
-                }
-
                 var days = Math.floor(delta / 86400);
                 delta -= days * 86400;
 
@@ -121,16 +116,19 @@ var auctionView = Vue.component('AuctionView', {
             }
             this.countBid();
             
-
+            for(let i = 0 ; i < this.pageAuctions.length ; i++){
+                this.pageAuctions[i]['남은시간'] = this.calculateDate(this.pageAuctions[i]['시작일시'], this.pageAuctions[i]['종료일시']); 
+                this.pageAuctions[i]['종료임박'] = false;
+                if(this.pageAuctions[i]['남은시간'].startsWith("0일 0시간")){
+                    this.pageAuctions[i]['종료임박'] = true;
+                }
+            }
             this.interval = setInterval(function () {
                 for(let i = 0 ; i < this.pageAuctions.length ; i++){
                     this.pageAuctions[i]['남은시간'] = this.calculateDate(this.pageAuctions[i]['시작일시'], this.pageAuctions[i]['종료일시']); 
                     this.pageAuctions[i]['종료임박'] = false;
-                    // this.pageAuctions[i]['입찰횟수'] = 0;
-                    if(this.isRed){
-                        
+                    if(this.pageAuctions[i]['남은시간'].startsWith("0일 0시간")){
                         this.pageAuctions[i]['종료임박'] = true;
-                        this.isRed = false;
                     }
                 }
             }.bind(this), 1000);             
