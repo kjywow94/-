@@ -86,7 +86,6 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
@@ -94,7 +93,6 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
             isCreatingContract: false,
             registered: false,
             sharedStates: store.state,
-
             // 경매 등록전 입력값
             before: {
                 works: [],
@@ -112,6 +110,23 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
         }
     },
     methods: {
+        getWorks: async function (){
+            // 내 작품 목록 가져오기
+            var scope = this;
+            var tmp = [];
+            await workService.findWorksByOwner(this.sharedStates.user.id, async function (result) {
+                tmp = result;
+                for(let i = 0 ; i < tmp.length ; i++){
+                    await auctionService.findStatus(tmp[i], "V", function (isNotUsing){
+                        if(isNotUsing){
+                            scope.before.works.push(tmp[i]);
+                        }
+                        
+                    });
+    
+                }
+            });
+        },
         goBack: function () {
             this.$router.go(-1);
         },
@@ -212,11 +227,8 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
 
         scope.before.input.untilDate =  year + "-" + month + "-" + date;
         scope.before.input.untilTime =  hour + ":" + min + ":" + sec;
+        this.getWorks();
 
-
-        // 내 작품 목록 가져오기
-        workService.findWorksByOwner(this.sharedStates.user.id, function (result) {
-            scope.before.works = result;
-        });
+        
     }
 })

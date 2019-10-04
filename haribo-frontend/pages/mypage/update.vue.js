@@ -35,7 +35,6 @@ var myUpdateView = Vue.component('MyUpdateView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data(){
@@ -56,7 +55,7 @@ var myUpdateView = Vue.component('MyUpdateView', {
     methods: {
         update: function(){
             // 비밀번호가 회원의 비밀번호와 일치하는지 비교한다.
-            if(this.user.password !== this.input.password){
+            if(this.user.password !== hashingService.SHA256(this.input.password)){
                 alert("입력하신 비밀번호가 일치하지 않습니다.");
                 return;
             }

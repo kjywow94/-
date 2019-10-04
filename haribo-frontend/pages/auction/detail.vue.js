@@ -40,12 +40,23 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                     <tr>
                                         <th>상태</th>
                                         <td>
-                                            <span class="badge badge-success" v-if="auction['종료'] == false">경매 진행중</span>
-                                            <span class="badge badge-danger" v-if="auction['종료'] == true">경매 종료</span>
+                                                <span class="badge badge-success" v-if="auction['종료'] == false && timeLeft != '경매 마감'">경매 진행중</span>
+                                                <span class="badge badge-danger" v-if="auction['종료'] == true && timeLeft != '경매 마감'">경매 종료</span>
+                                                <span class="badge badge-warning" v-if="timeLeft == '경매 마감'">경매 마감</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>남은시간</th>
+                                        <td>
+                                        {{ timeLeft }}
                                         </td>
                                     </tr>
                                 </table>
                                 <table class="table table-bordered mt-3" v-if="bidder.id">
+                                    <tr>
+                                        <th>입찰 횟수</th>
+                                        <td>{{ bidCount }}</td>
+                                    </tr>
                                     <tr>
                                         <th width="20%">현재 최고 입찰자</th>
                                         <td>{{ bidder['이름'] }}({{ bidder['이메일'] }})</td>
@@ -66,10 +77,10 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                         <router-link :to="{ name: 'auction' }" class="btn btn-sm btn-outline-secondary">경매 리스트로 돌아가기</router-link>
                                     </div>
                                     <div class="col-md-6 text-right" v-if="sharedStates.user.id == work['회원id'] && auction['종료'] != true">
-                                        <button v-if="bidder.id" type="button" class="btn btn-sm btn-primary" v-on:click="closeAuction" v-bind:disabled="isCanceling || isClosing">{{ isClosing ? "낙찰중" : "낙찰하기" }}</button>
-                                        <button type="button" class="btn btn-sm btn-danger" v-on:click="cancelAuction" v-bind:disabled="isCanceling || isClosing">{{ isCanceling ? "취소하는 중" : "경매취소하기" }}</button>
+                                        <button v-if="bidder.id &&  timeLeft == '경매 마감'" type="button" class="btn btn-sm btn-primary" v-on:click="closeAuction" v-bind:disabled="isCanceling || isClosing">{{ isClosing ? "낙찰중" : "낙찰하기" }}</button>
+                                        <button type="button" class="btn btn-sm btn-danger" v-on:click="cancelAuction" v-bind:disabled="isCanceling || isClosing || bidCount > 0">{{ isCanceling ? "취소하는 중" : "경매취소하기" }}</button>
                                     </div>
-                                    <div class="col-md-6 text-right" v-if="sharedStates.user.id != work['회원id'] && auction['종료'] != true">
+                                    <div class="col-md-6 text-right" v-if="sharedStates.user.id != work['회원id'] && auction['종료'] != true && !isExpired">
                                         <router-link :to="{ name: 'auction.bid', params: { id: this.$route.params.id } }" class="btn btn-sm btn-primary">입찰하기</router-link>
                                     </div>
                                 </div>
@@ -78,7 +89,6 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
@@ -89,10 +99,48 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             sharedStates: store.state,
             bidder: {},
             isCanceling: false,
-            isClosing: false
+            isClosing: false,
+            isExpired: false,
+            bidCount: 0,
+            timeLeft: null
         }
     },
     methods: {
+        calculateDate(start, end) {
+            var now = new Date();
+            var startDate = new Date(start);
+            var endDate = new Date(end);
+
+            if (now < startDate) {
+                return "경매 대기";
+            }
+
+            var diff = (endDate - now);
+
+            // 만약 종료일자가 지났다면 "경매 마감"을 표시한다.
+            if (diff < 0) {
+                return "경매 마감";
+            } else {
+            // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
+            var delta = Math.abs(endDate - now) / 1000;
+            if(Math.floor(delta) < 3600){
+                this.isRed = true;
+            }
+
+            var days = Math.floor(delta / 86400);
+            delta -= days * 86400;
+
+            var hours = Math.floor(delta / 3600) % 24;
+            delta -= hours * 3600;
+
+            var minutes = Math.floor(delta / 60) % 60;
+            delta -= minutes * 60;
+
+            var seconds = parseInt(delta % 60);
+            
+            return days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
+        }
+    },
         closeAuction: function () {
             /**
              * 컨트랙트를 호출하여 경매를 종료하고
@@ -116,6 +164,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                         } else {
                             auctionService.close(this.$route.params.id, scope.creator.id, () => {
                                 alert("경매가 종료되었습니다.");
+                                scope.$router.go(-1);
                             }, () => {
                                 alert("경매 종료후 데이터베이스 갱신에 실패했습니다");
                             });
@@ -149,6 +198,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                         } else {
                             auctionService.cancel(this.$route.params.id, scope.bidder.id, () => {
                                 alert("경매가 취소되었습니다.");
+                                scope.$router.go(-1);
                             }, errorResponse => {
                                 alert("경매 취소후 데이터베이스 갱신에 실패했습니다");
                             });
@@ -164,7 +214,9 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
         var auctionId = this.$route.params.id;
         var scope = this;
         var web3 = createWeb3();
-
+        auctionService.countBidById(auctionId, function(result){
+            scope.bidCount = result;
+        });
         // 경매 정보 조회
         auctionService.findById(auctionId, function (auction) {
             var amount = Number(auction['최소금액']).toLocaleString().split(",").join("")
@@ -194,6 +246,14 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             }
 
             scope.auction = auction;
+            if(new Date(scope.auction['경매종료시간']).getTime() < new Date().getTime())
+                scope.isExpired = true;
+            scope.timeLeft = scope.calculateDate(new Date(), scope.auction['경매종료시간']);
+            scope.interval = setInterval(function () {
+                scope.timeLeft = scope.calculateDate(new Date(), scope.auction['경매종료시간']); 
+            }.bind(scope), 1000);      
         });
+
+
     }
 });

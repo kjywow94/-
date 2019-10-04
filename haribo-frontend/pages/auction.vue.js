@@ -15,10 +15,17 @@ var auctionView = Vue.component('AuctionView', {
                 <div class="row" v-if="auctions.length > 0">
                     <div class="col-md-3 auction" v-for="item in pageAuctions">
                         <div class="card">
+                        <div class = "text-left list-inline" style="position: absolute; padding-left:15px; padding-top: 10px">
+                            <span v-if = "item['종료임박']" class="badge badge-warning">종료임박</span>
+                            <span v-if = "item['입찰횟수'] >= 10" class="badge badge-danger">HOT</span>
+                            <span v-if = "item['입찰횟수'] == 0 && item['남은시간'] != '경매 마감'" class="badge badge-info">입찰자없음</span>
+                            <span v-if = "item['입찰횟수'] == 0 && item['남은시간'] == '경매 마감'" class="badge badge-info">유찰</span>
+                            <span class="badge"><br></span>
+                        </div>
                             <div class="card-body">
                                 <img :src="item.imgData">
                                 <h4 class="text-overflow">{{ item['작품정보']['이름'] }}</h4>
-                                <p>{{item['남은시간']}}</p>
+                                <p v-bind:class="{'text-danger': item['종료임박']}">{{item['남은시간']}}</p>
                                 <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary">자세히보기</router-link>
                             </div>
                         </div>
@@ -36,21 +43,28 @@ var auctionView = Vue.component('AuctionView', {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
         return {
-            auctions: [],
+            auctions: [{'종료임박': false, '입찰횟수': 0}],
             maxPage: 0,
             page: 1,
             pageArr: [],
             pageAuctions: [],
-            test: 0,
-            interval: null
+            interval: null,
         }
     },
     methods: {
+        async countBid(){
+            let scope = this;
+            for(let i = 0 ; i < this.pageAuctions.length ; i++){
+                let idx = scope.pageAuctions[i]['id'];
+                auctionService.countBidById(idx , async function(result){
+                    scope.pageAuctions[i]['입찰횟수'] = result;
+                });
+            }
+        },
         calculateDate(start, end) {
             var now = new Date();
             var startDate = new Date(start);
@@ -68,7 +82,6 @@ var auctionView = Vue.component('AuctionView', {
             } else {
                 // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
                 var delta = Math.abs(endDate - now) / 1000;
-
                 var days = Math.floor(delta / 86400);
                 delta -= days * 86400;
 
@@ -101,11 +114,24 @@ var auctionView = Vue.component('AuctionView', {
             this.pageAuctions = [];
             for(var i = (this.page - 1) * 8 ; i < min ; i++){
                 this.pageAuctions.push(this.auctions[i]); 
-            }         
+                
+            }
+            this.countBid();
+            
+            for(let i = 0 ; i < this.pageAuctions.length ; i++){
+                this.pageAuctions[i]['남은시간'] = this.calculateDate(this.pageAuctions[i]['시작일시'], this.pageAuctions[i]['종료일시']); 
+                this.pageAuctions[i]['종료임박'] = false;
+                if(this.pageAuctions[i]['남은시간'].startsWith("0일 0시간")){
+                    this.pageAuctions[i]['종료임박'] = true;
+                }
+            }
             this.interval = setInterval(function () {
-                for(var i = 0 ; i < this.pageAuctions.length ; i++){
+                for(let i = 0 ; i < this.pageAuctions.length ; i++){
                     this.pageAuctions[i]['남은시간'] = this.calculateDate(this.pageAuctions[i]['시작일시'], this.pageAuctions[i]['종료일시']); 
-                this.test += 1;
+                    this.pageAuctions[i]['종료임박'] = false;
+                    if(this.pageAuctions[i]['남은시간'].startsWith("0일 0시간")){
+                        this.pageAuctions[i]['종료임박'] = true;
+                    }
                 }
             }.bind(this), 1000);             
             this.pageArr = [];
@@ -140,6 +166,7 @@ var auctionView = Vue.component('AuctionView', {
                 } else {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
+                        result[start]['입찰횟수'] = 0;
                         result[start]['작품정보'] = work;
                         result[start]['남은시간'] = scope.calculateDate(result[start]['시작일시'], result[start]['종료일시']);
                         fetchData(start + 1, end);
