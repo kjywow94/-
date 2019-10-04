@@ -54,7 +54,7 @@ var homeView = Vue.component("Home", {
                                     </div>
                                 </div>
                                 </div>
-                                <div class="carousel-item" v-for="item in auctions">
+                                <div class="carousel-item" v-for="item in auctions" V-if="item.">
                                     <img :src="item.imgData" class="d-block w-100" alt="..."  style="max-width: 100%; height: auto;">
                                     <div class="carousel-caption2 d-none d-md-block">
                                     <div class="box2">
@@ -63,6 +63,7 @@ var homeView = Vue.component("Home", {
                                             <p style="font-size: 30px; margin-bottom: 0rem;">Introducing 2019 art works</p>
                                             <p style="margin-top: 1rem; margin-bottom: -1rem; font-size: 20px; color: #fd7e14;">
                                             2019년 등록된 작품을 구경해보세요.<br>
+                                            <p>{{item.상태}}<p>
                                             </p>
                                             <router-link v-if="sharedState.isSigned":to="{ name: 'artworks' }" class="btn btn-lg btn-orange">작품 둘러보기</router-link>
                                         </div>
@@ -95,7 +96,7 @@ var homeView = Vue.component("Home", {
     },
     mounted: function () {
         var scope = this;
-
+        let tempArr = [];
         auctionService.findAll(function (data) {
             var result = data;
 
@@ -107,16 +108,20 @@ var homeView = Vue.component("Home", {
             // 각 경매별 작품 정보를 불러온다.
             function fetchData(start, end) {
                 if (start == end) {
-                    scope.auctions = result;
-                    scope.maxPage = parseInt(scope.auctions.length / 8);
-                    console.log(scope.auctions.최저가);
-                    
-                } else {
+                  
+                    scope.auctions = tempArr;
+                }
+                 else {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
                         result[start]['작품정보'] = work;
+                        var now = new Date();
+                        var e = new Date(result[start]["종료일시"]);
+                        if(now < e)
+                        tempArr.push(result[start]);
                         fetchData(start + 1, end);
                     });
+               
                 }
             }
             fetchData(0, result.length);
