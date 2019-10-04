@@ -16,13 +16,17 @@ var artworksView = Vue.component('artworksView', {
                             </div>
                 <div class="row" v-if="artworks.length > 0">
                     <div class="col-sm-12 col-md-4 col-lg-3 artwork" v-for="item in pageArtworks">
-                        <div class="card">
+                        <div class="card bg-grey">
                             <div class="card-body">
                                 <img :src="item.imgData">
+                                <hr>
                                 <h4 class="text-overflow">{{ item["이름"] }}</h4>
                                 <p v-if="item['설명'] != null" class="text-overflow">{{ item["설명"] }}</p>
                                 <p v-if="item['설명'] == null">-</p>
-                                <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block signaure-btn">이력보기</router-link>
+                                <hr>
+                                <div align="right">
+                                    <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block signaure-btn btn-width">이력</router-link>
+                                </div>
                             </div>
                         </div>
                     </div>

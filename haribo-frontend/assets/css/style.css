@@ -1,21 +1,25 @@
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
 body {
     margin: 0;
     padding: 0;
     color: #293046;
-    /* font-family: 'NanumSquareRound', sans-serif; */
+    background-color:white !important;
+    font-family: 'NanumSquareRound', sans-serif;
 }
 
-@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
-body        { font-family: 'NanumSquareRound', sans-serif; }
-.normal     { font-weight: 400 }
-.bold       { font-weight: 700 }
-.bolder     { font-weight: 800 }
-.light      { font-weight: 300 }
 
 a {
     text-decoration: none;
 }
 
+/* 글씨 크기 */
+.normal     { font-weight: 400 }
+.bold       { font-weight: 700 }
+.bolder     { font-weight: 800 }
+.light      { font-weight: 300 }
+
+/* 시그니쳐 색 */
 .signaure {
     color: #9430a0;
 }
@@ -29,7 +33,7 @@ a {
 .active {
 
     color: white;
-}
+} */
 
 /* 메인 소개글 스타일 시트 */
 #main-overview {
@@ -53,6 +57,7 @@ a {
 
 .breadcrumb {
     padding-top: 100px;
+    background-color: #e9ecef6e;
 }
 
 #my-artwork .artwork {
@@ -62,13 +67,13 @@ a {
 /* 작품 리스트 스타일 시트 */
 #auction-list,
 #artwork-list {
-    padding: 50px 0;
+    padding: 25px 0;
 }
 
 #auction-list .auction,
 #artwork-list .artwork {
     padding: 20px 10px;
-    text-align: center;
+    text-align: left;
 }
 
 #auction-list .auction img,
@@ -79,7 +84,7 @@ a {
 
 #auction-list .auction h4,
 #artwork-list .artwork h4 {
-    padding-top: 40px;
+    padding-top: 0px;
 }
 
 #auction-list .auction p,
@@ -126,6 +131,7 @@ a {
 .card .table {
     padding: 0;
     margin: 0;
+    background: #fcfcfc;
 }
 
 nav.bottom-pagination {
