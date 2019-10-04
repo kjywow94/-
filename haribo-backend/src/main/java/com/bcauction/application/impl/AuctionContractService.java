@@ -18,7 +18,6 @@ import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.tx.gas.ContractGasProvider;
 import org.web3j.tx.gas.DefaultGasProvider;
 
@@ -26,8 +25,6 @@ import com.bcauction.application.IAuctionContractService;
 import com.bcauction.application.IDigitalWorkService;
 import com.bcauction.application.IMemberService;
 import com.bcauction.domain.AuctionInfo;
-import com.bcauction.domain.DigitalWork;
-import com.bcauction.domain.Token;
 import com.bcauction.domain.Wallet;
 import com.bcauction.domain.repository.IWalletRepository;
 import com.bcauction.domain.wrapper.AuctionContract;
@@ -57,6 +54,7 @@ public class AuctionContractService implements IAuctionContractService {
 
 	private IMemberService memberService;
 	private IDigitalWorkService digitalWorkService;
+	
 
 	@Autowired
 	private PushService pushService;
@@ -65,6 +63,10 @@ public class AuctionContractService implements IAuctionContractService {
 	private Web3j web3j;
 
 	private IWalletRepository walletRepository;
+
+	final String bid = " 경매에 새로운 입찰이 있습니다.";
+	final String cancel = " 경매가 취소되었습니다.";
+	final String win = " 경매에 낙찰되었습니다";
 
 	@Autowired
 	public AuctionContractService(IWalletRepository walletRepository, IMemberService memberService,
@@ -84,6 +86,7 @@ public class AuctionContractService implements IAuctionContractService {
 	 */
 	@Override
 	public AuctionInfo 경매정보조회(final String 컨트랙트주소) {
+		
 		// TODO
 		try {
 			credentials = WalletUtils.loadCredentials(PASSWORD, WALLET_RESOURCE);
@@ -91,17 +94,16 @@ public class AuctionContractService implements IAuctionContractService {
 			e.printStackTrace();
 		}
 		AuctionContract auctionContract = AuctionContract.load(컨트랙트주소, web3j, credentials, contractGasProvider);
-		System.out.println("auctionContract in");
 		AuctionInfo auctionInfo = new AuctionInfo();
 		try {
 			auctionInfo.set경매컨트랙트주소(컨트랙트주소);
 
 			String 지갑주소 = auctionContract.highestBidder().sendAsync().get().getValue();
-			Wallet user = walletRepository.조회(지갑주소);
+			Wallet user = walletRepository.searchWallet(지갑주소);
 			if (user != null) {
 				auctionInfo.set최고입찰자id(user.get소유자id());
 			} else {
-				Wallet owner = walletRepository.조회(auctionContract.owner().sendAsync().get().getValue());
+				Wallet owner = walletRepository.searchWallet(auctionContract.owner().sendAsync().get().getValue());
 				auctionInfo.set최고입찰자id(owner.get소유자id());
 			}
 			Long response경매시작시간 = auctionContract.auctionStartTime().sendAsync().get().getValue().longValue();
@@ -121,7 +123,6 @@ public class AuctionContractService implements IAuctionContractService {
 			System.out.println("auctionContract error");
 			e.printStackTrace();
 		}
-		System.out.println(auctionInfo);
 		return auctionInfo;
 	}
 
@@ -186,33 +187,5 @@ public class AuctionContractService implements IAuctionContractService {
 		}
 
 		return contractAddressList;
-	}
-
-	public void offEventListen() {
-
-	}
-
-	@Override
-	public void eventListen(String contractAddress) {
-		AuctionContract auctionContract = AuctionContract.load(contractAddress, web3j, credentials,
-				contractGasProvider);
-		auctionContract
-				.highestBidIncereasedEventFlowable(DefaultBlockParameterName.EARLIEST, DefaultBlockParameterName.LATEST)
-				.subscribe(event -> {
-					final String beforeBidder = event.beforeBidder.getValue();
-					final String owner = event.owner.getValue();
-					final BigInteger amount = event.amount.getValue();
-					final BigInteger digitalWorkId = event.digitalWorkId.getValue();
-					long workId = digitalWorkId.longValue();
-					DigitalWork work = digitalWorkService.조회(workId);
-
-					System.out.println("bidder : " + beforeBidder);
-					System.out.println("amount : " + amount);
-					long id = memberService.findUserByWallet(beforeBidder).getId();
-					List<Token> tokens = memberService.tokenList(id);
-					for (Token token : tokens) {
-						pushService.MessageSend(work.get이름(), token.getToken());
-					}
-				});
 	}
 }

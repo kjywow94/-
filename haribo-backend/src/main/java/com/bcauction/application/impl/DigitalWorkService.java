@@ -26,6 +26,7 @@ import java.util.List;
 
 @Service
 public class DigitalWorkService implements IDigitalWorkService {
+
 	public static final Logger logger = LoggerFactory.getLogger(DigitalWorkService.class);
 
 	private IDigitalWorkRepository digitalWorkRepository;
