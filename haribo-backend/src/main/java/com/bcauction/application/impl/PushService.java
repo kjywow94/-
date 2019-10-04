@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PushService {
-	public void MessageSend(String work, String token) throws Exception {
-		final String apiKey = "AAAAYSTsZDs:APA91bF1Xh2qqDYi48-QLnwH-TOi0pt-r0WGFW50jWMzgrs11kVF1zEzFBe-_XuYiWk3-_FXXCxCyUGHh7ST49pc_f7AC5JhJdWZHPjm8p2NTzAGMvb2924GpvCwS8of9Qs__f7EqFSs";
+	public void MessageSend(String work, String token, String msg) throws Exception {
+		final String apiKey = "AAAAySG2Uzs:APA91bGWcNCQCAN3mz2enFFmSdjIL5iinXa6XyPSuDIbnK596MEhQY5IZ3z7B53bkXvNVp-i5xbF8WQN43cHGd0MC25x74mPOjqIZTQvJ_OjlduClzKC9FmtNw5GzrZSomG5bO8jtufc";
 		URL url = new URL("https://fcm.googleapis.com/fcm/send");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		String iconURL = "https://item.kakaocdn.net/do/ece533cdf7d604ac0440418f8cad3028f43ad912ad8dd55b04db6a64cddaf76d";
@@ -24,7 +24,7 @@ public class PushService {
 		conn.setDoOutput(true);
 
 		String input = "{\"notification\" : {\"title\" : \" 옥션 B \",\"icon\" : \"" + iconURL + "\", \"body\" : \""
-				+ work + "에 새로운 입찰이 있습니다.\"}, \"to\":\"" + token + "\"}";
+				+ work + msg + "\"}, \"to\":\"" + token + "\"}";
 
 		OutputStream os = conn.getOutputStream();
 
