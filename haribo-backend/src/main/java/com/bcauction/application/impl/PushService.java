@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PushService {
-	public void MessageSend(String work, String token) throws Exception {
+	public void MessageSend(String work, String token, String msg) throws Exception {
 		final String apiKey = "AAAAySG2Uzs:APA91bGWcNCQCAN3mz2enFFmSdjIL5iinXa6XyPSuDIbnK596MEhQY5IZ3z7B53bkXvNVp-i5xbF8WQN43cHGd0MC25x74mPOjqIZTQvJ_OjlduClzKC9FmtNw5GzrZSomG5bO8jtufc";
 		URL url = new URL("https://fcm.googleapis.com/fcm/send");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -24,7 +24,7 @@ public class PushService {
 		conn.setDoOutput(true);
 
 		String input = "{\"notification\" : {\"title\" : \" 옥션 B \",\"icon\" : \"" + iconURL + "\", \"body\" : \""
-				+ work + "에 새로운 입찰이 있습니다.\"}, \"to\":\"" + token + "\"}";
+				+ work + msg + "\"}, \"to\":\"" + token + "\"}";
 
 		OutputStream os = conn.getOutputStream();
 
