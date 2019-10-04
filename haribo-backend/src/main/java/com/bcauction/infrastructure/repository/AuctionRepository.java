@@ -62,7 +62,19 @@ public class AuctionRepository implements IAuctionRepository
 			throw new RepositoryException(e, e.getMessage());
 		}
 	}
-
+	@Override
+	public Auction 조회(final long 작품id, final String 상태)
+	{
+		StringBuilder sbSql =  new StringBuilder("SELECT * FROM 경매 WHERE 경매작품id=? and 상태=?");
+		try {
+			return this.jdbcTemplate.queryForObject(sbSql.toString(),
+			                                        new Object[] { 작품id, 상태 }, (rs, rowNum) -> AuctionFactory.생성(rs) );
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
 	@Override
 	public Auction 조회(final String 컨트랙트주소)
 	{
