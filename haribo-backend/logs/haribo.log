@@ -1,0 +1,3 @@
+2019-10-04 17:06:02 [http-nio-8080-exec-3] TRACE o.s.web.servlet.DispatcherServlet - GET "/api/wallets/of/6", parameters={}, headers={masked} in DispatcherServlet 'dispatcherServlet'
+2019-10-04 17:06:02 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to public com.bcauction.domain.Wallet com.bcauction.api.WalletController.조회By소유자(long)
+2019-10-04 17:06:02 [http-nio-8080-exec-3] TRACE o.s.w.s.m.m.a.ServletInvocableHandlerMethod - Arguments: [6]
