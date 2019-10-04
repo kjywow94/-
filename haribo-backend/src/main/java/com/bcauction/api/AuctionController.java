@@ -72,6 +72,16 @@ public class AuctionController {
 
 		return 경매정보;
 	}
+	
+	@RequestMapping(value = "/auctions/{id}/status/{status}", method = RequestMethod.GET)
+	public boolean 조회(@PathVariable long id, @PathVariable String status) {
+		Auction 경매 = this.auctionService.조회(id, status);
+		if (경매 == null) {
+			return true;
+		}
+
+		return false;
+	}
 
 	@RequestMapping(value = "/auctions/{aid}/by/{mid}", method = RequestMethod.DELETE)
 	public Auction 경매취소(@PathVariable long aid, @PathVariable long mid) {
@@ -86,6 +96,10 @@ public class AuctionController {
 	@RequestMapping(value = "/auctions/bid", method = RequestMethod.PUT)
 	public Bid 입찰(@RequestBody Bid bid) {
 		return auctionService.입찰(bid);
+	}
+	@RequestMapping(value = "/auctions/bid/{id}", method = RequestMethod.GET)
+	public long 입찰횟수(@PathVariable long id) {
+		return auctionService.입찰횟수(id);
 	}
 
 	/**

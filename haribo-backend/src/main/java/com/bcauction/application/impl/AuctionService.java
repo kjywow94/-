@@ -57,6 +57,10 @@ public class AuctionService implements IAuctionService {
 	public Auction 조회(final String 컨트랙트주소) {
 		return this.auctionRepository.조회(컨트랙트주소);
 	}
+	@Override
+	public Auction 조회(final long 경매id, final String 상태) {
+		return this.auctionRepository.조회(경매id, 상태);
+	}
 
 	@Override
 	public Auction 생성(final Auction 경매) {
@@ -82,6 +86,11 @@ public class AuctionService implements IAuctionService {
 	public Bid 입찰(Bid 입찰) {
 		long id = this.bidRepository.생성(입찰);
 		return this.bidRepository.조회(id);
+	}
+	
+	@Override
+	public long 입찰횟수(final long id) {
+		return this.bidRepository.입찰횟수(id);
 	}
 
 	@Override
