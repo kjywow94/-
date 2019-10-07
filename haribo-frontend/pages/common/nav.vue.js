@@ -28,6 +28,9 @@ var navVue = Vue.component("v-nav", {
                         <li class="nav-item" v-if="!sharedState.isSigned">
                             <router-link class="nav-link" to="/register">회원가입</router-link>
                         </li>
+                        <li class="nav-item" v-if="auth == 1">
+                            <router-link class="nav-link" to="/admin/user_manage">관리자페이지</router-link>
+                        </li>
                         <li class="nav-item" v-if="sharedState.isSigned">
                             <router-link class="nav-link" to="/logout">로그아웃</router-link>
                         </li>
@@ -38,7 +41,8 @@ var navVue = Vue.component("v-nav", {
     `,
     data() {
         return {
-            sharedState: store.state
+            sharedState: store.state,
+            auth: sessionStorage.getItem('Auth')
         }
     }
 })

@@ -106,4 +106,12 @@ const routes = [{
     name: "explorer.tx.detail.fromto",
     path: '/explorer/address/:address',
     component: explorerTxDetailFromToView
+},{
+    name: "admin.user_manage",
+    path: '/admin/user_manage',
+    component: adminUserManageView
+},{
+    name: "admin.artwork_manage",
+    path: '/admin/artwork_manage',
+    component: adminArtworkManageView
 }];

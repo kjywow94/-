@@ -71,6 +71,12 @@
     <script type="text/javascript" src="./pages/explorer/txDetail.vue.js"></script>
     <script type="text/javascript" src="./pages/explorer/txList.vue.js"></script>
     <script type="text/javascript" src="./pages/explorer/txdetailFromTo.js"></script>
+
+    <!--관리자 화면-->
+    <script type="text/javascript" src="./pages/admin/user_manage.vue.js"></script>
+    <script type="text/javascript" src="./pages/admin/artwork_manage.vue.js"></script>
+    <script type="text/javascript" src="./pages/admin/admin-nav.vue.js"></script>
+
 </head>
 <body>
     <div id="app" v-cloak>
@@ -87,6 +93,7 @@
         });
         var sessionID = sessionStorage.getItem("ID");
         var sessionPW = sessionStorage.getItem("PW");
+        var sessionAuth = sessionStorage.getItem("Auth");
         if (sessionID != null)
             store.state.isSigned = true;
         router.beforeEach((to, from, next) => {
@@ -112,9 +119,10 @@
                             }
                         });
                             if (window.sessionStorage) {
-
+                                //sessionStorage.setItem('Auth', scope.user.authority);
                                 sessionStorage.setItem('ID', sessionID);
                                 sessionStorage.setItem('PW', sessionPW);
+                                sessionStorage.setItem('Auth', sessionAuth);
                             }
                             if(to.path != '/')
                                 router.push('/');
@@ -124,8 +132,6 @@
                             console.log(error)
                         }
                     );
-
-
 
                 }
                 // 회원 가입도 하지 않았고 게스트에게 허용된 주소가 아니라면 로그인 화면으로 이동한다.
@@ -137,6 +143,7 @@
                     store.state.user.id = null;
                     sessionStorage.removeItem("ID");
                     sessionStorage.removeItem("PW");
+                    sessionStorage.removeItem("Auth");
                     alert("정상적으로 로그아웃 되었습니다.");
                     next('/');
                 }
