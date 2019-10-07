@@ -126,6 +126,19 @@ public class MemberRepository implements IMemberRepository {
 			throw new RepositoryException(e, e.getMessage());
 		}
 	}
+	
+	@Override
+	public int 권한수정(long id, long auth) {
+		StringBuilder sbSql = new StringBuilder("UPDATE 경매회원 ");
+		sbSql.append("SET authority=? ");
+		sbSql.append("WHERE id=?");
+		try {
+			return this.jdbcTemplate.update(sbSql.toString(),
+					new Object[] { auth, id });
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
 
 	@Override
 	public int 삭제(long id) {

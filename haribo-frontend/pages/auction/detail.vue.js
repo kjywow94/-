@@ -78,7 +78,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                     </div>
                                     <div class="col-md-6 text-right" v-if="sharedStates.user.id == work['회원id'] && auction['종료'] != true">
                                         <button v-if="bidder.id &&  timeLeft == '경매 마감'" type="button" class="btn btn-sm btn-primary" v-on:click="closeAuction" v-bind:disabled="isCanceling || isClosing">{{ isClosing ? "낙찰중" : "낙찰하기" }}</button>
-                                        <button type="button" class="btn btn-sm btn-danger" v-on:click="cancelAuction" v-bind:disabled="isCanceling || isClosing || bidCount > 0">{{ isCanceling ? "취소하는 중" : "경매취소하기" }}</button>
+                                        <button type="button" class="btn btn-sm btn-danger" v-on:click="cancelAuction" v-bind:disabled="isCanceling || isClosing ">{{ isCanceling ? "취소하는 중" : "경매취소하기" }}</button>
                                     </div>
                                     <div class="col-md-6 text-right" v-if="sharedStates.user.id != work['회원id'] && auction['종료'] != true && !isExpired">
                                         <router-link :to="{ name: 'auction.bid', params: { id: this.$route.params.id } }" class="btn btn-sm btn-primary">입찰하기</router-link>

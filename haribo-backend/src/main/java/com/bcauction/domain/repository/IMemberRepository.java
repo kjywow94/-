@@ -14,4 +14,5 @@ public interface IMemberRepository {
     int 삭제(long id);
 	Long storeToken(Token tokenInfo);
 	List<Token> tokenList(long id);
+	int 권한수정(long id, long auth);
 }

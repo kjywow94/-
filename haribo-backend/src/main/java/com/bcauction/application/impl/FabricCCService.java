@@ -348,7 +348,6 @@ public class FabricCCService implements IFabricCCService {
 		} catch (ProposalException e) {
 			e.printStackTrace();
 		}
-		channel.sendTransaction(response);
 		boolean result = false;
 		try {
 			result = tmp.get().isValid();
@@ -392,7 +391,6 @@ public class FabricCCService implements IFabricCCService {
 			e.printStackTrace();
 		}
 		ArrayList<FabricAsset> list = new ArrayList<FabricAsset>();
-		System.out.println(ja.size());
 		for (int i = 0; i < ja.size(); i++) {
 			JsonObject jo = (JsonObject) ja.get(i);
 			FabricAsset fa = getAssetRecord(jo);
