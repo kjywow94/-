@@ -66,13 +66,14 @@ var myUpdateView = Vue.component('MyUpdateView', {
                 return;
             }
 
-            userService.update({
+            let scope = this;
+            userService.update({                
                 "이메일": this.user.email,
                 "이름": this.input.name, // 신규 이름
                 "비밀번호": this.user.password
             }, function(data){
                 alert("이름이 변경되었습니다.");
-                this.$router.go(-1);
+                scope.$router.go(-1);
             });
         },
         goBack: function(){

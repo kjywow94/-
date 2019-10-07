@@ -15,6 +15,7 @@ public class MemberFactory {
         회원.set이메일(rs.getString("이메일"));
         회원.set비밀번호(rs.getString("비밀번호"));
         회원.set등록일시(rs.getTimestamp("등록일시").toLocalDateTime());
+        회원.setAuthority(rs.getLong("authority"));
 
         return 회원;
     }
