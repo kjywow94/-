@@ -6,7 +6,7 @@ var myChangePasswordView = Vue.component('MyChangePasswordView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="비밀번호 변경" description="비밀번호를 변경 할 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="비밀번호 변경" description="비밀번호를 변경 할 수 있습니다." titleImg="assets/images/mypage_title.gif"></v-breadcrumb>
             <div class="container">
                 <v-mypage-nav></v-mypage-nav>
                 <div class="row">

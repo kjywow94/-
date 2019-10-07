@@ -2,7 +2,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
     template: `
     <div>
         <v-nav></v-nav>
-        <v-breadcrumb title="Block Explorer" description="블록체인에서 생성된 블록내역을 보여줍니다."></v-breadcrumb>
+        <v-breadcrumb title="Block Explorer" description="블록체인에서 생성된 블록내역을 보여줍니다." titleImg="assets/images/explorer_title.jpg"></v-breadcrumb>
         <div class="container">
             <explorer-nav></explorer-nav>
             <div class="row">
