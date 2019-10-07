@@ -2,12 +2,12 @@ var artworksView = Vue.component('artworksView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다.">
+            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다." titleImg="assets/images/artwork_title.gif">
             </v-breadcrumb>
             <div id="artwork-list" class="container">
                 <div class="row">
                     <div class="col-md-12 text-right">
-                        <router-link to="/works/create" class="btn btn-secondary">작품 등록</router-link>
+                        <router-link to="/works/create" class="btn btn-outline-secondary">작품 등록</router-link>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 mt-3" v-if="artworks.length == 0">

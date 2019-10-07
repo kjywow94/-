@@ -2,7 +2,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="경매 작품 상세 정보" description="선택하신 경매 작품의 상세 정보를 보여줍니다."></v-breadcrumb>
+            <v-breadcrumb title="경매 작품 상세 정보" description="선택하신 경매 작품의 상세 정보를 보여줍니다." :titleImg="work.imgData"></v-breadcrumb>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">

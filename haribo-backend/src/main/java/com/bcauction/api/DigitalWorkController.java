@@ -64,8 +64,8 @@ public class DigitalWorkController {
 	}
 
 	@RequestMapping(value = "/works/{id}", method = RequestMethod.GET)
-	public DigitalWork 조회(@PathVariable int id) {
-		DigitalWork 작품 = digitalWorkService.조회(id);
+	public DigitalWorkWithImg 조회(@PathVariable int id) {
+		DigitalWorkWithImg 작품 = digitalWorkService.조회(id);
 		if (작품 == null) {
 			logger.error("NOT FOUND ID: ", id);
 			throw new NotFoundException(id + " 작품 정보를 찾을 수 없습니다.");
