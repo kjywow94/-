@@ -35,7 +35,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                                     </tr>
                                     <tr>
                                         <th>컨트랙트 주소</th>
-                                        <td><a href="#">{{ auction['경매컨트랙트주소'] }}</a></td>
+                                        <td><router-link :to="{name: 'explorer.tx.detail.fromto', params: { address:  auction['경매컨트랙트주소']  }}" class="tx-number">{{ auction['경매컨트랙트주소'] }}</router-link></td>
                                     </tr>
                                     <tr>
                                         <th>상태</th>
@@ -223,7 +223,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             auction['최소금액'] = web3.utils.fromWei(amount, 'ether');
 
             var workId = auction['작품id'];
-
+    
             // 작품 정보 조회
             workService.findById(workId, function (work) {
                 scope.work = work;

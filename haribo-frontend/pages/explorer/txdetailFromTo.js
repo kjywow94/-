@@ -86,6 +86,7 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
 
             var ta = (address) => {
                 this.fa = address;
+
                 var idx = 0;           
                 var cnt = 0;
      
@@ -95,11 +96,11 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                 for (var i = this.fal -1; i >= 0; --i) {
                     let hex = this.fa.trans[i].blockNumber;
                     let getgas = this.fa.trans[i].gas;
-                    
-
+         
                     let dec = parseInt(hex, 16);
                     let gass = parseInt(getgas, 16);
-                    
+                    this.fa.trans[i].timestamp = timeFormat(this.fa.trans[i].timestamp);
+              
                     
                     this.fa.trans[i].blockNumber = dec;
                     this.fa.trans[i].gas = gass;
@@ -113,19 +114,7 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
                     
                     var len = this.fa.trans.length;
                     var num = len -1;
-                    var bn =  (blocks) => {
-                
-                        var timeView = {
-                            
-                            time: blocks.timeStamp
-                        }
-                        var time = timeSince(timeView.time);   
-                        this.fa.trans[num].timestamp = time;
-                        
-                        num--;
-                    }
-                    ethereumService.findbyBlock(this.fa.trans[i].blockNumber, bn);
-
+            
                     this.$set(this.trans, idx++, this.fa.trans[i]);
                 }
             }

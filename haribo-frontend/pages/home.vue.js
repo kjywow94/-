@@ -18,7 +18,8 @@ var homeView = Vue.component("Home", {
                                 </ol>
                                 <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="assets/images/11.jpg" class="d-block w-100" alt="..."  style="max-width: 100%; height: auto;">
+                                    <div class="">
+                                        <img src="assets/images/11.jpg" class="d-block w-100" alt="..."  style="max-width: 100%; height: 100%;">
                                         <div class="carousel-caption1 d-none d-md-block">
                                             <div class="box1">
                                                 <div style="padding:20px;">
@@ -36,8 +37,9 @@ var homeView = Vue.component("Home", {
                                                 </div>
                                                 <router-link v-if="!sharedState.isSigned":to="{ name: 'register' }" class="btn btn-lg btn-orange">회원가입</router-link>
                                                 <router-link v-if="sharedState.isSigned":to="{ name: 'auction' }" class="btn btn-lg btn-orange">경매 시작하기</router-link>
-                                            </div>
+                                              </div>
                                         </div>
+                                    </div>
                                 </div>
                                 <div class="carousel-item">
                                     <img src="assets/images/12.jpg" class="d-block w-100" alt="..."  style="max-width: 100%; height: auto;">
@@ -63,7 +65,6 @@ var homeView = Vue.component("Home", {
                                             <p style="font-size: 30px; margin-bottom: 0rem;">Introducing 2019 art works</p>
                                             <p style="margin-top: 1rem; margin-bottom: -1rem; font-size: 20px; color: #fd7e14;">
                                             2019년 등록된 작품을 구경해보세요.<br>
-                                            <p>{{item.상태}}<p>
                                             </p>
                                             <router-link v-if="sharedState.isSigned":to="{ name: 'artworks' }" class="btn btn-lg btn-orange">작품 둘러보기</router-link>
                                         </div>

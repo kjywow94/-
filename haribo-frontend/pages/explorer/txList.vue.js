@@ -47,10 +47,10 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                     for (let i = 0; i < tran.length; i++) {
                         var blockNumber = tran[i].blockNumber;
                         var next = parseInt(blockNumber, 16);
-
+                        
                         ethereumService.findbyBlock(next, (block) => {
                             this.blocks = block;
-
+                            
                             var inputinfo = {
                                 hash: tran[i].txHash,
                                 timeSince: timeSince(this.blocks.timeStamp),
@@ -61,37 +61,6 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                         });
                     }
                 });
-
-            // console.log(this.transactions);
-
-            // this.lastReadBlock = await fetchLatestBlock();
-
-            // var idx = 0;
-            // var bn = async (blocks) => {
-            //     this.block = blocks;
-
-            //     this.txl = this.block.trans.length;
-
-
-            //     var tx = (tran) => { 
-            //         var txView = {
-            //             hash : tran.txHash,
-            //             timeSince : timeSince(this.block.timeStamp),
-            //             from : tran.from,
-            //             to : tran.to
-            //         }
-            //         this.$set(this.transactions, idx++, txView);   
-            //     }
-
-            //     for (var i = 0; i < this.txl; i++) {
-            //         await ethereumService.findbyTrans(this.block.trans[i].txHash, tx);
-            //     }
-            // }
-
-            // await ethereumService.findbyBlock("57212", bn);
-            // // 1437 57212
-            // // await ethereumService.findbyBlock(this.lastReadBlock, bn);
-
         }
     },
     mounted: function () {
