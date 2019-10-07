@@ -31,6 +31,10 @@ const routes = [{
     path: '/register',
     component: registerView
 },{
+    name: "manage",
+    path: '/manage',
+    component: manageView
+},{
     name: "mypage.wallet.create",
     path: '/mypage/wallet_create',
     component: walletCreateView

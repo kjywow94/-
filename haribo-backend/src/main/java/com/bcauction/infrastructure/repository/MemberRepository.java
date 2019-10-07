@@ -117,7 +117,7 @@ public class MemberRepository implements IMemberRepository {
 	@Override
 	public int 수정(Member 회원) {
 		StringBuilder sbSql = new StringBuilder("UPDATE 경매회원 ");
-		sbSql.append("SET 이름=?, 이메일=?, 비밀번호=? ");
+		sbSql.append("SET 이름=?, 이메일=?, 비밀번호=?, 권한=?");
 		sbSql.append("WHERE id=?");
 		try {
 			return this.jdbcTemplate.update(sbSql.toString(),

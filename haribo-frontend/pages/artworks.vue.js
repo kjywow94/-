@@ -9,8 +9,8 @@ var artworksView = Vue.component('artworksView', {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <input type="text" v-model="search" @keydown="keyEvt" v-on:keyup.enter="searchFcn(search)" class="form-control" placeholder="작품명 입력">
-                                <button class="btn signaure-btn" type="button" @click="searchFcn(search)">검색</button>
+                            <input type="text" v-model="search" @keydown="keyEvt" v-on:keyup.enter="searchFcn()" class="form-control" placeholder="작품명 입력">
+                                <button class="btn signaure-btn" type="button" @click="searchFcn()">검색</button>
                             <span class="col-md-4 text-right">
                             <router-link to="/works/create" class="btn signaure-btn">작품 등록</router-link>
                         </span>
@@ -21,7 +21,7 @@ var artworksView = Vue.component('artworksView', {
                 <div class="col-sm-12 col-md-12 mt-3" v-if="artworks.length == 0">
                     <div v-if="isSearching" class="alert alert-warning">등록된 작품이 없습니다. 가장 먼저 작품을 등록해 보세요!</div>
                     <div v-if="!isSearching" class="alert alert-warning">검색된 작품이 없습니다.
-                        <button class="btn signaure-btn"type="button" @click="searchFcn('')">전체 목록 조회</button>
+                        <button class="btn signaure-btn pull-right"type="button" @click="showAll"> 전체 목록 조회</button>
                     </div>
 
                 </div>
@@ -70,28 +70,14 @@ var artworksView = Vue.component('artworksView', {
             page: 1,
             pageArr: [],
             pageArtworks: [],
-            search: null,
+            search: "",
             isSearching: false
         }
     },
     mounted: function () {
         var scope = this;
-<<<<<<< HEAD
-        this.searchFcn("");
+        this.searchFcn();
         
-=======
-
-        workService.findAll(function (data) {
-            scope.artworks = data;
-            if(scope.artworks == undefined){
-                scope.artworks = [];
-            }
-            scope.maxPage = parseInt(scope.artworks.length / 8);
-            if (scope.artworks.length % 8 > 0)
-                scope.maxPage += 1;
-            scope.movePage(scope.page);
-        }); 
->>>>>>> 5af6a3a93260054a75fb7d8453af29c037803dd0
     },
     methods: {
         nextPage() {
@@ -125,17 +111,18 @@ var artworksView = Vue.component('artworksView', {
 
         },
         keyEvt(){
+            //추천검색어 출력을 위한 메소드 작성중
             let scope = this;
-            console.log(scope.artworks)
+            
             for(let i = 0 ; i < scope.artworks.length ; i++){
-                if(scope.artworks[i]['이름'].indexOf(scope.search) >= 0){
+                if(scope.artworks[i]['이름'].replace(/(\s*)/g, "").indexOf(scope.search) >= 0){
 
-                    console.log(scope.artworks[i]['이름'])
 
                 }
             }
         },
-        searchFcn(key){
+        searchFcn(){
+            let keyword = this.search.replace(/(\s*)/g, "") ;
             let scope = this;
             workService.findAll(function (data) {
                 scope.artworks = data;
@@ -144,7 +131,7 @@ var artworksView = Vue.component('artworksView', {
                 }
                 let tmp = [];
                 for(let i = 0 ; i < scope.artworks.length ; i++){
-                    if(scope.artworks[i]['이름'].indexOf(key) >= 0){
+                    if(scope.artworks[i]['이름'].replace(/(\s*)/g, "").indexOf(keyword) >= 0){
                         tmp.push(scope.artworks[i]);
                     }
                 }
@@ -153,12 +140,16 @@ var artworksView = Vue.component('artworksView', {
                 if (scope.artworks.length % 8 > 0)
                     scope.maxPage += 1;
                 scope.movePage(scope.page);
-                if(key == ""){
+                if(keyword == ""){
                     this.isSearching = false;
                 }else{
                     this.isSearching = true;
                 }
             }); 
+        },
+        showAll(){
+            this.search="";
+            this.searchFcn();
         }
     }
 })
