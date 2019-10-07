@@ -6,7 +6,7 @@ var myUpdateView = Vue.component('MyUpdateView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="개인정보수정" description="개인정보를 수정할 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="개인정보수정" description="개인정보를 수정할 수 있습니다." titleImg="assets/images/mypage_title.gif"></v-breadcrumb>
             <div class="container">
                 <v-mypage-nav></v-mypage-nav>
                 <div class="row">

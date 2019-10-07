@@ -2,7 +2,7 @@ var myArtworkView = Vue.component('MyArtworkView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="마이페이지" description="지갑을 생성하거나 작품을 업로드 할 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="마이페이지" description="지갑을 생성하거나 작품을 업로드 할 수 있습니다." titleImg="assets/images/mypage_title.gif"></v-breadcrumb>
             <div class="container">
                 <v-mypage-nav></v-mypage-nav>
                 <div class="row">
@@ -131,7 +131,6 @@ var myArtworkView = Vue.component('MyArtworkView', {
                 min = this.auctions.length;
                 maxPage = this.auctionMaxPage;
                 data = this.auctions;
-                console.log(data)
             }
 
             if (min > 4 * page)

@@ -49,8 +49,35 @@ public class DigitalWorkService implements IDigitalWorkService {
 	}
 
 	@Override
-	public DigitalWork 조회(final long id) {
-		return this.digitalWorkRepository.조회(id);
+	public DigitalWorkWithImg 조회(final long id) {
+		DigitalWorkWithImg dww = null;
+		DigitalWork work = this.digitalWorkRepository.조회(id);
+		try {
+			File f = new File("worksImage/" + work.getId());
+			FileInputStream fis;
+			try {
+				fis = new FileInputStream(f);
+			} catch (FileNotFoundException e) {
+				f = new File("worksImage/artwork1.jpg");
+				fis = new FileInputStream(f);
+			}
+			byte byteArray[] = new byte[(int) f.length()];
+			fis.read(byteArray);
+			String encodeImg = "data:image/" + work.getId() + ";base64, "
+					+ Base64.getEncoder().encodeToString(byteArray);
+			dww = new DigitalWorkWithImg(encodeImg);
+			fis.close();
+			dww.setId(work.getId());
+			dww.set공개여부(work.get공개여부());
+			dww.set상태(work.get상태());
+			dww.set설명(work.get설명());
+			dww.set이름(work.get이름());
+			dww.set회원id(work.get회원id());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dww;
 	}
 
 	/**
@@ -137,8 +164,8 @@ public class DigitalWorkService implements IDigitalWorkService {
 				File f = new File("worksImage/" + work.getId());
 				FileInputStream fis;
 				try {
-				fis = new FileInputStream(f);
-				}catch(FileNotFoundException e) {
+					fis = new FileInputStream(f);
+				} catch (FileNotFoundException e) {
 					f = new File("worksImage/artwork1.jpg");
 					fis = new FileInputStream(f);
 				}

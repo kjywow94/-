@@ -2,7 +2,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="Transaction Explorer" description="블록체인에서 생성된 거래내역을 보여줍니다."></v-breadcrumb>
+            <v-breadcrumb title="Transaction Explorer" description="블록체인에서 생성된 거래내역을 보여줍니다." titleImg="assets/images/explorer_title.jpg"></v-breadcrumb>
             <div class="container">
                 <explorer-nav></explorer-nav>
                 <div class="row">

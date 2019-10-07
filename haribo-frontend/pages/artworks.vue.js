@@ -2,7 +2,7 @@ var artworksView = Vue.component('artworksView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다.">
+            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다." titleImg="assets/images/artwork_title.gif">
             </v-breadcrumb>
             <div id="artwork-list" class="container">
             
@@ -12,7 +12,7 @@ var artworksView = Vue.component('artworksView', {
                             <input type="text" v-model="search" @keydown="keyEvt" v-on:keyup.enter="searchFcn()" class="form-control" placeholder="작품명 입력">
                                 <button class="btn signaure-btn" type="button" @click="searchFcn()">검색</button>
                             <span class="col-md-4 text-right">
-                            <router-link to="/works/create" class="btn signaure-btn">작품 등록</router-link>
+                            <router-link to="/works/create" class="btn btn-outline-secondary">작품 등록</router-link>
                         </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
@@ -138,7 +138,7 @@ var artworksView = Vue.component('artworksView', {
                 scope.maxPage = parseInt(scope.artworks.length / 8);
                 if (scope.artworks.length % 8 > 0)
                     scope.maxPage += 1;
-                scope.movePage(scope.page);
+                scope.movePage(1);
                 if(keyword == ""){
                     this.isSearching = false;
                 }else{

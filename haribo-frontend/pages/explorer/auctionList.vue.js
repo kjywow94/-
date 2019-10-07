@@ -2,7 +2,7 @@ var explorerAuctionView = Vue.component('ExplorerView', {
     template: `
     <div>
         <v-nav></v-nav>
-        <v-breadcrumb title="Auction Explorer" description="블록체인에 기록된 경매내역을 보여줍니다."></v-breadcrumb>
+        <v-breadcrumb title="Auction Explorer" description="블록체인에 기록된 경매내역을 보여줍니다." titleImg="assets/images/explorer_title.jpg"></v-breadcrumb>
         <div class="container">
             <explorer-nav></explorer-nav>
             <div class="row">

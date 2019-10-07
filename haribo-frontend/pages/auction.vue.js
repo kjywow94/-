@@ -2,7 +2,7 @@ var auctionView = Vue.component('AuctionView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="경매 참여하기" description="경매 중인 작품을 보여줍니다."></v-breadcrumb>
+            <v-breadcrumb title="경매 참여하기" description="경매 중인 작품을 보여줍니다." titleImg="assets/images/auction_title.gif"></v-breadcrumb>
             <div id="auction-list" class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -190,7 +190,7 @@ var auctionView = Vue.component('AuctionView', {
                         scope.maxPage = parseInt(scope.auctions.length / 8);
                         if(scope.auctions.length % 8 > 0)
                             scope.maxPage += 1; 
-                        scope.movePage(scope.page);
+                        scope.movePage(1);
                     } else {
                         
                         var id = result[start]['경매작품id'];
