@@ -76,8 +76,7 @@ var artworksView = Vue.component('artworksView', {
     },
     mounted: function () {
         var scope = this;
-        this.searchFcn();
-        
+        this.searchFcn();    
     },
     methods: {
         nextPage() {

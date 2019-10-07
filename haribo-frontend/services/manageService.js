@@ -1,4 +1,4 @@
-var auctionService = {
+var manageService = {
     
     // 전체 경매 내역 조회
     findAll: function (callback) {
@@ -6,14 +6,22 @@ var auctionService = {
             callback(data);
         });
     },
-    findStatus: function (work, status, callback) {
-        $.get(API_BASE_URL + '/api/auctions/' + work.id + '/status/' + status, function (data) {
-            callback(data);
+    modifyAuth: function (data, callback) {
+        $.ajax({
+            type: "PUT",
+            url: API_BASE_URL + "/api/member/auth",
+            data: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+            success: callback
         });
     },
-    findAllByUser: function (userId, callback) {
-        $.get(API_BASE_URL + '/api/auctions/owner/' + userId, function (data) {
-            callback(data);
+    DeleteUser: function (userId, callback) {
+        $.ajax({
+            type: "PUT",
+            url: API_BASE_URL + "/api/members/" + userId,
+            data: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' },
+            success: callback
         });
     },
     // 경매 생성

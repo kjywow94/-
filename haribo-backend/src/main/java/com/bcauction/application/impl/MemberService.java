@@ -68,6 +68,21 @@ public class MemberService implements IMemberService {
 
 		return this.memberRepository.조회(회원.getId());
 	}
+	
+	@Override
+	public Member 권한수정(long id, long auth) {
+
+		Member found = this.memberRepository.조회(id);
+		if (found == null)
+			throw new ApplicationException("회원 정보를 찾을 수 없습니다.");
+
+
+		int affected = this.memberRepository.권한수정(id, auth);
+		if (affected == 0)
+			throw new ApplicationException("작품정보수정 처리가 반영되지 않았습니다.");
+
+		return this.memberRepository.조회(id);
+	}
 
 	@Override
 	public void 삭제(long id) {

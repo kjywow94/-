@@ -117,11 +117,24 @@ public class MemberRepository implements IMemberRepository {
 	@Override
 	public int 수정(Member 회원) {
 		StringBuilder sbSql = new StringBuilder("UPDATE 경매회원 ");
-		sbSql.append("SET 이름=?, 이메일=?, 비밀번호=?, 권한=?");
+		sbSql.append("SET 이름=?, 이메일=?, 비밀번호=? ");
 		sbSql.append("WHERE id=?");
 		try {
 			return this.jdbcTemplate.update(sbSql.toString(),
 					new Object[] { 회원.get이름(), 회원.get이메일(), 회원.get비밀번호(), 회원.getId() });
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
+	
+	@Override
+	public int 권한수정(long id, long auth) {
+		StringBuilder sbSql = new StringBuilder("UPDATE 경매회원 ");
+		sbSql.append("SET authority=? ");
+		sbSql.append("WHERE id=?");
+		try {
+			return this.jdbcTemplate.update(sbSql.toString(),
+					new Object[] { auth, id });
 		} catch (Exception e) {
 			throw new RepositoryException(e, e.getMessage());
 		}
