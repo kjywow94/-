@@ -14,7 +14,7 @@ var auctionView = Vue.component('AuctionView', {
                             </div>
                 <div class="row" v-if="auctions.length > 0">
                     <div class="col-md-3 auction" v-for="item in pageAuctions">
-                        <div class="card">
+                        <div class="card bg-grey">
                         <div class = "text-left list-inline" style="position: absolute; padding-left:15px; padding-top: 10px">
                             <span v-if = "item['종료임박']" class="badge badge-warning">종료임박</span>
                             <span v-if = "item['입찰횟수'] >= 10" class="badge badge-danger">HOT</span>
@@ -24,8 +24,10 @@ var auctionView = Vue.component('AuctionView', {
                         </div>
                             <div class="card-body">
                                 <img :src="item.imgData">
+                                <hr>
                                 <h4 class="text-overflow">{{ item['작품정보']['이름'] }}</h4>
                                 <p v-bind:class="{'text-danger': item['종료임박']}">{{item['남은시간']}}</p>
+                                <hr>
                                 <router-link :to="{ name: 'auction.detail', params: { id: item['id'] }}" class="btn btn-block btn-secondary">자세히보기</router-link>
                             </div>
                         </div>

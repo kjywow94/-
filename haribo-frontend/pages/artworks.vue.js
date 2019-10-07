@@ -3,7 +3,6 @@ var artworksView = Vue.component('artworksView', {
         <div>
             <v-nav></v-nav>
             <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다.">
-                <img src="assets/images/BoraCoin.png" wight=45px height=45px style="margin-top:-5px"/>
             </v-breadcrumb>
             <div id="artwork-list" class="container">
             
@@ -37,7 +36,7 @@ var artworksView = Vue.component('artworksView', {
                                 <p v-if="item['설명'] == null">-</p>
                                 <hr>
                                 <div align="right">
-                                    <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block signaure-btn btn-width">이력</router-link>
+                                    <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary btn-width">이력</router-link>
                                 </div>
                             </div>
                         </div>
@@ -77,8 +76,22 @@ var artworksView = Vue.component('artworksView', {
     },
     mounted: function () {
         var scope = this;
+<<<<<<< HEAD
         this.searchFcn("");
         
+=======
+
+        workService.findAll(function (data) {
+            scope.artworks = data;
+            if(scope.artworks == undefined){
+                scope.artworks = [];
+            }
+            scope.maxPage = parseInt(scope.artworks.length / 8);
+            if (scope.artworks.length % 8 > 0)
+                scope.maxPage += 1;
+            scope.movePage(scope.page);
+        }); 
+>>>>>>> 5af6a3a93260054a75fb7d8453af29c037803dd0
     },
     methods: {
         nextPage() {
