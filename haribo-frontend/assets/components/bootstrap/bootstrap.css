@@ -4,7 +4,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ :root {
   --blue: #9430a0;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -109,6 +109,15 @@ address {
   font-style: normal;
   line-height: inherit;
 }
+
+footer { 
+  left:0px; 
+  bottom:0px; 
+  width:100%; 
+  background:black; 
+  color: white; 
+}
+
 
 ol,
 ul,
@@ -2411,7 +2420,7 @@ textarea.form-control {
 }
 
 .btn:hover {
-  color: #212529;
+  color: orange;
   text-decoration: none;
 }
 
@@ -4582,6 +4591,21 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 
+.card1 {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  margin-bottom: 48px;
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -6258,6 +6282,7 @@ a.close.disabled {
   display: none;
   float: left;
   width: 100%;
+  height: 90vh;
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -6455,7 +6480,7 @@ a.close.disabled {
 .box2 {
   background-color: black;
   width: 47%;
-  height: 200px;
+  height: 220px;
   opacity: 0.8;
   color: white;
 }
