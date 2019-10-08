@@ -9,9 +9,9 @@ var artworksView = Vue.component('artworksView', {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
-                            <input type="text" v-model="search" @keydown="keyEvt" v-on:keyup.enter="searchFcn()" class="form-control" placeholder="작품명 입력">
+                            <input type="text" v-model="search" @keydown="keyEvt" v-on:keyup.enter="searchFcn()" class="form-control col-md-4" placeholder="작품명 입력">
                                 <button class="btn signaure-btn" type="button" @click="searchFcn()">검색</button>
-                            <span class="col-md-4 text-right">
+                            <span class="col-md-8 text-right">
                             <router-link to="/works/create" class="btn btn-outline-secondary">작품 등록</router-link>
                         </span>
                     </div><!-- /input-group -->
