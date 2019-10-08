@@ -12,9 +12,7 @@ var homeView = Vue.component("Home", {
                                 <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                                <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
-                                <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+                                <li data-target="#carouselExampleCaptions" v-for="item in auctions" data-slide-to="item+2"></li>
                                 </ol>
                                 <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -42,7 +40,7 @@ var homeView = Vue.component("Home", {
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="assets/images/12.jpg" class="d-block w-100" alt="..."  style="max-width: 100%; height: auto;">
+                                    <img src="assets/images/12.jpg" class="d-block w-100" alt="..."  style="max-width: 100%; height: 100%;">
                                     <div class="carousel-caption2 d-none d-md-block">
                                     <div class="box2">
                                         <div style="padding:20px;">
@@ -61,12 +59,13 @@ var homeView = Vue.component("Home", {
                                     <div class="carousel-caption2 d-none d-md-block">
                                     <div class="box2">
                                         <div style="padding:20px;">
-                                            <p style="margin-bottom: -0.9rem;">2019 작품소개</p>
-                                            <p style="font-size: 30px; margin-bottom: 0rem;">Introducing 2019 art works</p>
+                                            <p style="margin-bottom: -0.9rem;">현재 경매중인 작품</p>
+                                            <p style="font-size: 30px; margin-bottom: 0rem;">2019 Action art works</p>
                                             <p style="margin-top: 1rem; margin-bottom: -1rem; font-size: 20px; color: #fd7e14;">
-                                            2019년 등록된 작품을 구경해보세요.<br>
+                                            제목 : {{ item.작품정보.이름 }}<br>
+                                            남은시간 : {{ item['남은시간'] }}
                                             </p>
-                                            <router-link v-if="sharedState.isSigned":to="{ name: 'artworks' }" class="btn btn-lg btn-orange">작품 둘러보기</router-link>
+                                            <router-link v-if="sharedState.isSigned" :to="{ name: 'auction.detail', params: { id: item.id }}" class="btn btn-lg btn-orange">경매 하러가기</router-link>
                                         </div>
                                     </div>
                                     </div>
@@ -95,38 +94,81 @@ var homeView = Vue.component("Home", {
             auctions: []
         }
     },
+    methods: {
+        calculateDate(start, end) {
+            var now = new Date();
+            var startDate = new Date(start);
+            var endDate = new Date(end);
+
+            if (now < startDate) {
+                return "경매 대기";
+            }
+
+            var diff = (endDate - now);
+
+            // 만약 종료일자가 지났다면 "경매 마감"을 표시한다.
+            if (diff < 0) {
+                return "경매 마감";
+            } else {
+                // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
+                var delta = Math.abs(endDate - now) / 1000;
+                var days = Math.floor(delta / 86400);
+                delta -= days * 86400;
+
+                var hours = Math.floor(delta / 3600) % 24;
+                delta -= hours * 3600;
+
+                var minutes = Math.floor(delta / 60) % 60;
+                delta -= minutes * 60;
+
+                var seconds = parseInt(delta % 60);
+                
+                return days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
+            }
+        }
+    },
     mounted: function () {
         var scope = this;
         let tempArr = [];
         auctionService.findAll(function (data) {
             var result = data;
 
-            
-            
-            if(result == undefined){
+
+
+            if (result == undefined) {
                 result = [];
             }
             // 각 경매별 작품 정보를 불러온다.
             function fetchData(start, end) {
                 if (start == end) {
-                  
                     scope.auctions = tempArr;
+                    setInterval(function () {
+                        for(let i = 0 ; i < scope.auctions.length ; i++){
+
+                            scope.auctions[i]['남은시간'] = scope.calculateDate( scope.auctions[i]['시작일시'],scope.auctions[i]['종료일시']); 
+                            console.log(scope.auctions[i]['남은시간'])
+                        }
+                    }.bind(scope), 1000);    
                 }
-                 else {
+                else {
                     var id = result[start]['경매작품id'];
                     workService.findById(id, function (work) {
                         result[start]['작품정보'] = work;
+                        result[start]['남은시간'] = scope.calculateDate( result[start]['시작일시'],result[start]['종료일시']); 
                         var now = new Date();
                         var e = new Date(result[start]["종료일시"]);
-                        if(now < e)
-                        tempArr.push(result[start]);
+                        if (now < e)
+                            tempArr.push(result[start]);
                         fetchData(start + 1, end);
                     });
-               
+
+                    console.log(result);
+                    
                 }
+                
             }
             fetchData(0, result.length);
-            
+
         });
     }
 })

@@ -6,7 +6,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card" style="margin-bottom: 15px;">
                             <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
@@ -89,6 +89,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

@@ -7,7 +7,7 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                 <explorer-nav></explorer-nav>
                 <div class="row">
                     <div id="transactions" class="col-md-8 mx-auto">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" style="margin-bottom: 15px;">
                             <div class="card-header">Transactions</div>
                             <div class="card-body">
                                 <div class="row tx-info" v-for="item in transactions">
@@ -26,6 +26,7 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

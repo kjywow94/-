@@ -9,7 +9,7 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
             <v-breadcrumb title="경매 등록하기" description="새로운 경매를 등록합니다."></v-breadcrumb>
             <div class="row">
                 <div class="col-md-6 mx-auto">
-                    <div class="card">
+                    <div class="card" style="margin-bottom: 15px;">
                         <div class="card-header">신규 경매 등록하기</div>
                         <div class="card-body">
                             <div v-if="!registered">
@@ -86,6 +86,7 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

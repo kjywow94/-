@@ -7,7 +7,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
             <explorer-nav></explorer-nav>
             <div class="row">
                 <div class="col-md-12">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm" style="margin-bottom: 15px;">
                     <div class="card-header">블록 <strong># {{ block.blockNo }}</strong></div>
                     <table class="table">
                         <tbody>
@@ -53,6 +53,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
                 </div>
             </div>
         </div>
+        <v-foot-nav></v-foot-nav>
     </div>
     `,
     data() {

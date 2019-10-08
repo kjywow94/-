@@ -6,7 +6,7 @@ var worksDetailView = Vue.component("WorkDetailView", {
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 mx-auto">
-                        <div class="card">
+                        <div class="card" style="margin-bottom: 15px;">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label id="user" class="text-secondary">출품자</label>
@@ -65,6 +65,7 @@ var worksDetailView = Vue.component("WorkDetailView", {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
