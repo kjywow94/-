@@ -6,7 +6,7 @@ var worksCreateView = Vue.component("worksCreateView", {
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 mx-auto">
-                        <div class="card">
+                        <div class="card" style="margin-bottom: 15px;">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label id="name">작품 이름</label>
@@ -45,6 +45,7 @@ var worksCreateView = Vue.component("worksCreateView", {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-mav>
         </div>
     `,
     data() {

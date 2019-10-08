@@ -77,3 +77,54 @@ function timeSince(date) {
   }
   return Math.floor(seconds) + " seconds ago";
 }
+
+//저장일시 형식변환
+function timeFormat(day){
+
+  var today = new Date();
+
+  var year = day.substring(0,4);
+  year*=1;
+  var month = day.substring(5,7);
+  month*=1;
+  var date = day.substring(8,10);
+  date*=1;
+  var hour = day.substring(11,13);
+  hour*=1;
+  var minute = day.substring(14,16);
+  minute*=1;
+  var second = day.substring(17,19);
+  second*=1;
+
+  var yearData = today.getUTCFullYear()-year;
+  var monthData = today.getUTCMonth()+1-month;
+  var dateData = today.getUTCDate()-date;
+  var hourData = today.getUTCHours()+9-hour;
+  var minuteData = today.getUTCMinutes()-minute;
+  var secondData = today.getUTCSeconds()-second;
+
+  var seconds = secondData + (minuteData*60) +(hourData*3600) + (dateData*86400)+ (monthData*2592000)+(yearData*31536000);
+
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years ago";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months ago";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days ago";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours ago";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes ago";
+  }
+  return Math.floor(seconds) + " seconds ago";
+}

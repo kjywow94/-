@@ -11,7 +11,7 @@ var myUpdateView = Vue.component('MyUpdateView', {
                 <v-mypage-nav></v-mypage-nav>
                 <div class="row">
                     <div class="col-md-6 mx-auto mt-5">
-                        <div class="card">
+                        <div class="card1">
                             <div class="card-header">개인정보수정</div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -35,6 +35,7 @@ var myUpdateView = Vue.component('MyUpdateView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data(){
