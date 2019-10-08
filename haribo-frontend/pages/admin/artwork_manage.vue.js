@@ -23,7 +23,7 @@ var adminArtworkManageView = Vue.component('AdminArtWorkManageView', {
                                     </thead>
                                     <tbody>
                                         <tr v-for="item in pageArtworks">
-                                            <td class="text-overflow">{{item['이름']}}</td>
+                                            <td class="text-overflow"><router-link :to="{ name: 'work.detail', params: { id: item['id'] } }">{{item['이름']}}</router-link></td>
                                             <td class="text-overflow">{{item['설명']}}</td>
                                             <td class="text-center">{{item['회원id']}}</td>
                                             <td class="text-center">{{item['공개여부']}}</td>
