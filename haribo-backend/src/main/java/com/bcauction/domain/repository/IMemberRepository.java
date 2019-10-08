@@ -15,4 +15,5 @@ public interface IMemberRepository {
 	Long storeToken(Token tokenInfo);
 	int updateToken(Token tokenInfo);
 	Token selectToken(long user_id);
+	int 권한수정(long id, long auth);
 }

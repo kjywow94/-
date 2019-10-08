@@ -90,6 +90,11 @@ public class MemberController {
 	public Member 수정(@RequestBody Member member) {
 		return memberService.수정(member);
 	}
+	
+	@RequestMapping(value = "/member/auth", method = RequestMethod.PUT)
+	public Member 권한수정(@RequestBody Member member) {
+		return memberService.권한수정(member.getId(), member.getAuthority());
+	}
 
 	@RequestMapping(value = "/members/{id}", method = RequestMethod.DELETE)
 	public void 삭제(@PathVariable int id) {

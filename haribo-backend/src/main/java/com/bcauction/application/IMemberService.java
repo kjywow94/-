@@ -26,4 +26,5 @@ public interface IMemberService {
 	Member findUserByWallet(String walletAddress);
 	long storeToken(Token tokenInfo);
 	Token selectToken(long id);
+	Member 권한수정(long id, long auth);
 }

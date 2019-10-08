@@ -5,12 +5,23 @@ var auctionView = Vue.component('AuctionView', {
             <v-breadcrumb title="경매 참여하기" description="경매 중인 작품을 보여줍니다." titleImg="assets/images/auction_title.gif"></v-breadcrumb>
             <div id="auction-list" class="container">
                 <div class="row">
-                    <div class="col-md-12 text-right">
-                        <router-link :to="{ name: 'auction.regsiter' }" class="btn btn-outline-secondary">경매 생성하기</router-link>
+                    <div class="col-md-12">
+                    <div class="input-group">
+                            <input type="text" v-model="search" @keydown="keyEvt" v-on:keyup.enter="searchFcn()" class="form-control" placeholder="작품명 입력">
+                                <button class="btn signaure-btn" type="button" @click="searchFcn()">검색</button>
+                            <span class="col-md-4 text-right">
+                            <router-link :to="{ name: 'auction.regsiter' }" class="btn btn-outline-secondary">경매 생성하기</router-link>
+
+                        </span>
+                    </div><!-- /input-group -->
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 mt-3" v-if="auctions.length == 0">
-                                <div class="alert alert-warning">등록된 경매가 없습니다. 가장 먼저 경매를 등록해 보세요!</div>
+                <div v-if="loading" class="alert alert-warning">데이터를 불러오는 중입니다...</div>
+                    <div v-if="isSearching && !loading" class="alert alert-warning">등록된 경매가 없습니다. 가장 먼저 경매를 등록해 보세요!</div>
+                    <div v-if="!isSearching && !loading" class="alert alert-warning">검색된 경매가 없습니다.
+                        <button class="btn signaure-btn pull-right"type="button" @click="showAll"> 전체 목록 조회</button>
+                    </div>
                             </div>
                 <div class="row" v-if="auctions.length > 0">
                     <div class="col-md-3 auction" v-for="item in pageAuctions">
@@ -49,20 +60,23 @@ var auctionView = Vue.component('AuctionView', {
     `,
     data() {
         return {
-            auctions: [{'종료임박': false, '입찰횟수': 0}],
+            auctions: [],
             maxPage: 0,
             page: 1,
             pageArr: [],
             pageAuctions: [],
             interval: null,
+            search: "",
+            isSearching: false,
+            loading: false
         }
     },
     methods: {
-        async countBid(){
+        countBid(){
             let scope = this;
             for(let i = 0 ; i < this.pageAuctions.length ; i++){
                 let idx = scope.pageAuctions[i]['id'];
-                auctionService.countBidById(idx , async function(result){
+                auctionService.countBidById(idx , function(result){
                     scope.pageAuctions[i]['입찰횟수'] = result;
                 });
             }
@@ -147,36 +161,74 @@ var auctionView = Vue.component('AuctionView', {
                 this.pageArr.push(this.page + i);
             }
             
+        },
+        keyEvt(){
+            //추천검색어 출력을 위한 메소드 작성중
+            let scope = this;
+            
+            for(let i = 0 ; i < scope.auctions.length ; i++){
+                if(scope.auctions[i]['작품정보']['이름'].replace(/(\s*)/g, "").indexOf(scope.search) >= 0){
+
+
+                }
+            }
+        },
+        searchFcn(){
+            this.loading = true;
+            let keyword = this.search.replace(/(\s*)/g, "") ;
+            let scope = this;
+            auctionService.findAll(function (data) {
+                let tmp = [];
+                var result = data;
+                if(result == undefined){
+                    result = [];
+                }
+                // 각 경매별 작품 정보를 불러온다.
+                function fetchData(start, end) {
+                    if (start == end) {
+                        this.loading = false;
+                        scope.maxPage = parseInt(scope.auctions.length / 8);
+                        if(scope.auctions.length % 8 > 0)
+                            scope.maxPage += 1; 
+                        scope.movePage(1);
+                    } else {
+                        
+                        var id = result[start]['경매작품id'];
+                        workService.findById(id, function (work) {
+                            result[start]['입찰횟수'] = 0;
+                            result[start]['작품정보'] = work;
+                            result[start]['남은시간'] = scope.calculateDate(result[start]['시작일시'], result[start]['종료일시']);
+                            if(result[start]['작품정보']['이름'].replace(/(\s*)/g, "").indexOf(keyword) >= 0){
+                                scope.auctions.push(result[start]);
+                            }
+                            fetchData(start + 1, end);
+                        });
+                    }
+                }
+                scope.auctions = [];
+                fetchData(0, result.length);
+                
+            });
+            
+            scope.maxPage = parseInt(scope.auctions.length / 8);
+                if (scope.auctions.length % 8 > 0)
+                    scope.maxPage += 1;
+                scope.movePage(1);
+            if(keyword == ""){
+                this.isSearching = false;
+            }else{
+                this.isSearching = true;
+            }
+            
+        },
+        showAll(){
+            this.search="";
+            this.searchFcn();
         }
     },
     mounted: function () {
-        var scope = this;
-
-        auctionService.findAll(function (data) {
-            var result = data;
-            if(result == undefined){
-                result = [];
-            }
-            // 각 경매별 작품 정보를 불러온다.
-            function fetchData(start, end) {
-                if (start == end) {
-                    scope.auctions = result;
-                    scope.maxPage = parseInt(scope.auctions.length / 8);
-                    if(scope.auctions.length % 8 > 0)
-                        scope.maxPage += 1; 
-                    scope.movePage(scope.page);
-                } else {
-                    var id = result[start]['경매작품id'];
-                    workService.findById(id, function (work) {
-                        result[start]['입찰횟수'] = 0;
-                        result[start]['작품정보'] = work;
-                        result[start]['남은시간'] = scope.calculateDate(result[start]['시작일시'], result[start]['종료일시']);
-                        fetchData(start + 1, end);
-                    });
-                }
-            }
-            fetchData(0, result.length);
-            
-        });
+        this.showAll();
+        
+        
     }
 });
