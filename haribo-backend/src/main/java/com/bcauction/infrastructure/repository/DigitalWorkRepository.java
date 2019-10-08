@@ -132,4 +132,15 @@ public class DigitalWorkRepository implements IDigitalWorkRepository
 
 	}
 
+	@Override
+	public List<DigitalWork> 전체조회() {
+		StringBuilder sbSql =  new StringBuilder("SELECT * FROM 작품");
+		try {
+			return this.jdbcTemplate.query(sbSql.toString(),
+							    (rs, rowNum) -> DigitalWorkFactory.생성(rs));
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
+
 }

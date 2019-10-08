@@ -42,6 +42,11 @@ public class DigitalWorkService implements IDigitalWorkService {
 	public List<DigitalWork> 목록조회() {
 		return this.digitalWorkRepository.목록조회();
 	}
+	
+	@Override
+	public List<DigitalWork> 전체조회() {
+		return this.digitalWorkRepository.전체조회();
+	}
 
 	@Override
 	public List<DigitalWork> 사용자작품목록조회(final long id) {
