@@ -11,7 +11,6 @@ var auctionView = Vue.component('AuctionView', {
                                 <button class="btn signaure-btn" type="button" @click="searchFcn()">검색</button>
                             <span class="col-md-4 text-right">
                             <router-link :to="{ name: 'auction.regsiter' }" class="btn btn-outline-secondary">경매 생성하기</router-link>
-
                         </span>
                     </div><!-- /input-group -->
                     </div>

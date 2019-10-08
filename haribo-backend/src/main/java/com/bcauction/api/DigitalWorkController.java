@@ -62,6 +62,15 @@ public class DigitalWorkController {
 		}
 		return digitalWorkService.DigitalWorkslist(목록);
 	}
+	
+	@RequestMapping(value= "/allWorks", method = RequestMethod.GET)
+	public List<DigitalWork> 전체조회() {
+		List<DigitalWork> 목록 = digitalWorkService.전체조회();
+		if(목록 == null || 목록.isEmpty()) {
+			throw new EmptyListException("NO DATA");
+		}
+		return 목록;
+	}
 
 	@RequestMapping(value = "/works/{id}", method = RequestMethod.GET)
 	public DigitalWorkWithImg 조회(@PathVariable int id) {
@@ -78,7 +87,7 @@ public class DigitalWorkController {
 		DigitalWork 수정된작품 = digitalWorkService.작품정보수정(work);
 		if (수정된작품 == null) {
 			logger.error("NOT FOUND WORK ID: ", work.getId());
-			throw new NotFoundException(work.getId() + " 작품 정보를 찾을 수 없습니다.");
+			throw new NotFoundException(work.getId() + "작품 정보를 찾을 수 없습니다.");
 		}
 
 		return 수정된작품;

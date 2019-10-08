@@ -77,8 +77,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/tokenList", method = RequestMethod.GET)
-	public List<Token> tokenList(@PathVariable long id) {
-		return memberService.tokenList(id);
+	public Token tokenList(@PathVariable long id) {
+		return memberService.selectToken(id);
 	}
 
 	@RequestMapping(value = "/members", method = RequestMethod.POST)

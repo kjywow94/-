@@ -163,7 +163,7 @@ var auctionDetailView = Vue.component('AuctionDetailView', {
                         if (response.gasUsed == 3000000) {
                             alert("경매 종료중 오류가 발생했습니다.");
                         } else {
-                            auctionService.close(this.$route.params.id, scope.creator.id, () => {
+                            auctionService.close(this.$route.params.id, scope.bidder.id, () => {
                                 alert("경매가 종료되었습니다.");
                                 scope.$router.go(-1);
                             }, () => {

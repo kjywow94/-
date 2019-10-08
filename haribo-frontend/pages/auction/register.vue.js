@@ -6,7 +6,7 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="경매 등록하기" description="새로운 경매를 등록합니다."></v-breadcrumb>
+            <v-breadcrumb title="경매 등록하기" description="새로운 경매를 등록합니다." titleImg="assets/images/register_title.jpg"></v-breadcrumb>
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     <div class="card" style="margin-bottom: 15px;">

@@ -14,4 +14,5 @@ public interface IDigitalWorkRepository
 	int 삭제(long id);
 
 	List<DigitalWork> 사용자작품목록조회(long id);
+	List<DigitalWork> 전체조회();
 }
