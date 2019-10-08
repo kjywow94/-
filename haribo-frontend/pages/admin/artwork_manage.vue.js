@@ -2,7 +2,7 @@ var adminArtworkManageView = Vue.component('AdminArtWorkManageView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="관리자페이지" description="회원과 작품을 관리할 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="관리자페이지" description="회원과 작품을 관리할 수 있습니다." titleImg="assets/images/auction_title.gif"></v-breadcrumb>
             <div class="container">
                 <v-admin-nav></v-admin-nav>
                 <div id="my-artwork" class="row">
