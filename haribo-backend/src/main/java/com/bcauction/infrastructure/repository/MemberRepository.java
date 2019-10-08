@@ -41,10 +41,11 @@ public class MemberRepository implements IMemberRepository {
 	}
 
 	@Override
-	public List<Token> tokenList(long id) {
+	public Token selectToken(long user_id) {
 		StringBuilder sbSql = new StringBuilder("SELECT * FROM tokens where user_id=?");
 		try {
-			return this.jdbcTemplate.query(sbSql.toString(), new Object[] { id }, (rs, rowNum) -> TokenFactory.생성(rs));
+			return this.jdbcTemplate.queryForObject(sbSql.toString(), new Object[] { user_id },
+					(rs, rowNum) -> TokenFactory.생성(rs));
 		} catch (Exception e) {
 			throw new RepositoryException(e, e.getMessage());
 		}
@@ -100,7 +101,7 @@ public class MemberRepository implements IMemberRepository {
 	public Long storeToken(Token tokenInfo) {
 		try {
 			Map<String, Object> paramMap = new HashMap<>();
-			paramMap.put("user_id", tokenInfo.getId());
+			paramMap.put("user_id", tokenInfo.getUser_id());
 			paramMap.put("token", tokenInfo.getToken());
 
 			this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("tokens")
@@ -109,6 +110,19 @@ public class MemberRepository implements IMemberRepository {
 			Number newId = simpleJdbcInsert.executeAndReturnKey(paramMap);
 			return newId.longValue();
 
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
+
+	@Override
+	public int updateToken(Token tokenInfo) {
+		StringBuilder sbSql = new StringBuilder("UPDATE tokens ");
+		sbSql.append("SET token=? ");
+		sbSql.append("WHERE user_id=?");
+		try {
+			return this.jdbcTemplate.update(sbSql.toString(),
+					new Object[] { tokenInfo.getToken(), tokenInfo.getUser_id() });
 		} catch (Exception e) {
 			throw new RepositoryException(e, e.getMessage());
 		}

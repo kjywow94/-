@@ -17,7 +17,7 @@ var pushService = {
             if (permission === 'granted') {
                 messaging.getToken().then(response=> {
                     var data = {
-                        "id": store.state.user.id,
+                        "user_id": store.state.user.id,
                         "token": response
                     }
                     $.ajax({

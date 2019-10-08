@@ -62,7 +62,6 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                     }
                 });
 
-            // console.log(this.transactions);
 
             // this.lastReadBlock = await fetchLatestBlock();
 

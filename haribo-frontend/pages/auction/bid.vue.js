@@ -124,7 +124,6 @@ var auctionBidView = Vue.component('AuctionBidView', {
             workService.findById(workId, function (work) {
                 scope.work = work;
             });
-            console.log("auction", auction)
         });
         // 내 지갑 정보 조회
         walletService.findById(scope.sharedStates.user.id, function (wallet) {
