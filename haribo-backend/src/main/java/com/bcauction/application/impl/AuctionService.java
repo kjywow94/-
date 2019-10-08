@@ -72,6 +72,7 @@ public class AuctionService implements IAuctionService {
 	public Auction 조회(final String 컨트랙트주소) {
 		return this.auctionRepository.조회(컨트랙트주소);
 	}
+
 	@Override
 	public Auction 조회(final long 경매id, final String 상태) {
 		return this.auctionRepository.조회(경매id, 상태);
@@ -110,30 +111,26 @@ public class AuctionService implements IAuctionService {
 		if (lastBid != null) {
 			Long lastBidderId = lastBid.get경매참여자id();
 
-			List<Token> biderTokens = memberService.tokenList(lastBidderId);
-			for (Token token : biderTokens) {
-				try {
-					pushService.MessageSend(workName, token.getToken(), bid);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		List<Token> ownerTokens = memberService.tokenList(ownerId);
-		for (Token token : ownerTokens) {
+			Token token = memberService.selectToken(lastBidderId);
 			try {
 				pushService.MessageSend(workName, token.getToken(), bid);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+
+		Token ownerTokens = memberService.selectToken(ownerId);
+		try {
+			pushService.MessageSend(workName, ownerTokens.getToken(), bid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		long id = this.bidRepository.생성(입찰);
 		return this.bidRepository.조회(id);
 	}
-	
+
 	@Override
 	public long 입찰횟수(final long id) {
 		return this.bidRepository.입찰횟수(id);
@@ -147,13 +144,11 @@ public class AuctionService implements IAuctionService {
 
 		Auction auction = this.auctionRepository.조회(경매id);
 		DigitalWork work = digitarWorkService.조회(auction.get경매작품id());
-		List<Token> bidderTokens = memberService.tokenList(낙찰자id);
-		for (Token token : bidderTokens) {
-			try {
-				pushService.MessageSend(work.get이름(), token.getToken(), cancel);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		Token token = memberService.selectToken(낙찰자id);
+		try {
+			pushService.MessageSend(work.get이름(), token.getToken(), cancel);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return this.bidRepository.조회(경매id, 낙찰자id, 입찰최고가);
@@ -198,13 +193,11 @@ public class AuctionService implements IAuctionService {
 		DigitalWork work = digitarWorkService.조회(auction.get경매작품id());
 
 		if (회원id != 0) {
-			List<Token> bidderTokens = memberService.tokenList(회원id);
-			for (Token token : bidderTokens) {
-				try {
-					pushService.MessageSend(work.get이름(), token.getToken(), cancel);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			Token token = memberService.selectToken(회원id);
+			try {
+				pushService.MessageSend(work.get이름(), token.getToken(), cancel);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		auction.set상태("C");

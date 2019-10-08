@@ -25,5 +25,5 @@ public interface IMemberService {
     @Transactional
 	Member findUserByWallet(String walletAddress);
 	long storeToken(Token tokenInfo);
-	List<Token> tokenList(long id);
+	Token selectToken(long id);
 }

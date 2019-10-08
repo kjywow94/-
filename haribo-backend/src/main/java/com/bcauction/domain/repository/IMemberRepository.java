@@ -13,5 +13,6 @@ public interface IMemberRepository {
     int 수정(Member 회원);
     int 삭제(long id);
 	Long storeToken(Token tokenInfo);
-	List<Token> tokenList(long id);
+	int updateToken(Token tokenInfo);
+	Token selectToken(long user_id);
 }
