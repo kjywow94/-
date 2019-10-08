@@ -54,7 +54,7 @@ var auctionService = {
     // 경매 취소
     cancel: function (auctionId, bidderId, callback, whenError) {
         if (!bidderId)
-            bidderId = 999;
+            bidderId = 0;
         $.ajax({
             type: "DELETE",
             url: API_BASE_URL + "/api/auctions/" + auctionId + "/by/" + bidderId,
