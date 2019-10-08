@@ -142,8 +142,6 @@ var adminUserManageView = Vue.component('AdminUserManageView', {
             if(min > 10 * this.page)
                 min = 10 * this.page;
             this.pageUsers = [];
-            console.log((this.page - 1) * 10);
-            console.log(min)
             for(var i = (this.page - 1) * 10 ; i < min ; i++){
                 this.users[i]['등록일시'] = this.users[i]['등록일시'].replace("T", " ");
                 this.pageUsers.push(this.users[i]); 
