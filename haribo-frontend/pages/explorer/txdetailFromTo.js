@@ -88,34 +88,32 @@ var explorerTxDetailFromToView = Vue.component('ExplorerTxDetailFromToView', {
             var ta = (address) => {
                 this.fa = address;
 
-                var idx = 0;           
+                var idx = 0;
                 var cnt = 0;
-     
-                
+
+
                 this.fal = this.fa.trans.length;
-                
-                for (var i = this.fal -1; i >= 0; --i) {
+
+                for (var i = this.fal - 1; i >= 0; --i) {
                     let hex = this.fa.trans[i].blockNumber;
                     let getgas = this.fa.trans[i].gas;
-         
+
                     let dec = parseInt(hex, 16);
                     let gass = parseInt(getgas, 16);
+
                     this.fa.trans[i].timestamp = timeFormat(this.fa.trans[i].timestamp);
-              
-                    
+
                     this.fa.trans[i].blockNumber = dec;
                     this.fa.trans[i].gas = gass;
 
                     this.number = String(this.fa.trans[i].gas);
                     this.fa.trans[i].gas = web3.utils.fromWei(this.number, "ether");
-                  
                     this.value = String(this.fa.trans[i].amount);
-                    
-                    this.fa.trans[i].amount = web3.utils.fromWei(""+(this.value/'100'), 'ether')*'100';
-                    
+                    this.fa.trans[i].amount = web3.utils.fromWei("" + (this.value / '1000'), 'ether') * '1000';
+
                     var len = this.fa.trans.length;
-                    var num = len -1;
-            
+                    var num = len - 1;
+
                     this.$set(this.trans, idx++, this.fa.trans[i]);
                 }
             }

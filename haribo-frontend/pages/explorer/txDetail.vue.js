@@ -62,10 +62,12 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
         return {
             isValid: true,
             tx: {
+                from: "Loding...",
+                to: "Loding...",
                 hash: "-"
-                
+
             },
-            timestamp:""
+            timestamp: ""
         }
     },
     mounted: async function () {
@@ -77,19 +79,19 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
              */
             var tn = (tran) => {
                 this.tx = tran;
-                
-                var blockNumber = this.tx.blockNumber;
-                var next = parseInt(blockNumber, 16); 
 
-               var bn = (block) => {
-                   this.blocks = block;
-                   this.tx.timestamp = timeSince(this.blocks.timeStamp); 
-                   this.number = String(this.tx.amount);
-                   this.tx.amount = web3.utils.fromWei(this.number, "ether");
-               }
-               ethereumService.findbyBlock(next, bn);
-           } 
-           await ethereumService.findbyTrans(hash, tn);   
+                var blockNumber = this.tx.blockNumber;
+                var next = parseInt(blockNumber, 16);
+
+                var bn = (block) => {
+                    this.blocks = block;
+                    this.tx.timestamp = timeSince(this.blocks.timeStamp);
+                    this.number = String(this.tx.amount);
+                    this.tx.amount = web3.utils.fromWei(this.number, "ether");
+                }
+                ethereumService.findbyBlock(next, bn);
+            }
+            await ethereumService.findbyTrans(hash, tn);
         } else {
             this.isValid = false;
         }

@@ -32,7 +32,7 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
     data() {
         return {
             lastReadBlock: 0,
-            transactions: [],
+            transactions: [{ hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }, { hash: "loding...", from: "loding...", to: "loding..." }],
             block: {},
             txl: 0,
             strtime: 0
@@ -48,10 +48,10 @@ var explorerTxListView = Vue.component('ExplorerTxListView', {
                     for (let i = 0; i < tran.length; i++) {
                         var blockNumber = tran[i].blockNumber;
                         var next = parseInt(blockNumber, 16);
-                        
+
                         ethereumService.findbyBlock(next, (block) => {
                             this.blocks = block;
-                            
+
                             var inputinfo = {
                                 hash: tran[i].txHash,
                                 timeSince: timeSince(this.blocks.timeStamp),
