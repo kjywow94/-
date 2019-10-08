@@ -59,6 +59,7 @@ var adminUserManageView = Vue.component('AdminUserManageView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
