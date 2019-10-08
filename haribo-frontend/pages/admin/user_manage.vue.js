@@ -2,58 +2,55 @@ var adminUserManageView = Vue.component('AdminUserManageView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="관리자페이지" description="회원과 작품을 관리할 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="관리자페이지" description="회원과 작품을 관리할 수 있습니다." titleImg="assets/images/auction_title.gif"></v-breadcrumb>
             <div class="container">
                 <v-admin-nav></v-admin-nav>
                 <div id="my-artwork" class="row">
                     <div class="col-md-12 mt-5">
                         <h4>회원정보</h4>
                         <div>
-                            <div class="row" v-if="ownPageArtworks.length > 0">
-                            <table class="table table-bordered">
+                            <div class="row" v-if="pageUsers.length > 0">
+                            <table class="table table-bordered" style="table-layout:fixed;"> 
                                 <thead>
                                     <tr>
                                         <th scope="col">이름</th>
-                                        <th scope="col">이메일</th>
-                                        <th scope="col">가입일시</th>
-                                        <th scope="col">비밀번호</th>
+                                        <th scope="col" colspan="2">이메일</th>
+                                        <th scope="col" colspan="2">가입일시</th>
                                         <th scope="col">권한</th>
+                                        <th scope="col" colspan="2">기타</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
+                                    <tr v-for="user in pageUsers">
+                                        
+                                        <td>{{user['이름']}}</td>
+                                        <td class="text-overflow" colspan="2">{{user['이메일']}}</td>
+                                        <td colspan="2">{{user['등록일시']}}</td>
+                                        <td v-if="user['authority'] == 0">탈퇴됨</td>
+                                        <td v-if="user['authority'] == 1">관리자</td>
+                                        <td v-if="user['authority'] == 2">회원</td>
+                                        <td colspan="2">
+                                        <button v-if="user['authority'] == 2" class="btn btn-sm btn-outline-secondary" v-on:click="expireUser(user)">탈퇴</button>
+                                        <button v-if="user['authority'] == 0" class="btn btn-sm btn-outline-secondary" v-on:click="restoreUser(user)">복구</button>
+                                        <button v-if="user['authority'] != 0" class="btn btn-sm btn-outline-secondary" v-on:click="changeAuthUser(user)">권한변경</button>
+                                         
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                              
                                 
                             </div>
-                            <div class="col-sm-12 col-md-8 mt-3" v-if="ownPageArtworks.length == 0">
+                            <div class="col-sm-12 col-md-8 mt-3" v-if="pageUsers.length == 0">
                             <div class="alert alert-warning">보유중인 작품이 없습니다.</div>
                         </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
                                     <nav class="bottom-pagination">
-                                        <ul class="pagination" v-if="artworks.length > 0">
-                                            <li class="page-item" v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="movePage(1, '보유')">맨 앞</a></li>
-                                            <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: ownPage == p}"><a class="page-link" @click="movePage(p, '보유')">{{p}}</a></li>
-                                            <li class="page-item" v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage, '보유')">맨 뒤</a></li>
+                                        <ul class="pagination" v-if="pageUsers.length > 0">
+                                            <li class="page-item" v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
+                                            <li v-for = "p in pageArr" class="page-item" v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -66,126 +63,103 @@ var adminUserManageView = Vue.component('AdminUserManageView', {
     `,
     data() {
         return {
-            sharedStates: store.state,
-            artworks: [],
-            ownPage: 1,
-            ownMaxPage: 0,
-            ownPageArr: [],
-            ownPageArtworks: [],
-
-            auctions: [],
-            auctionPage: 1,
-            auctionMaxPage: 0,
-            auctionPageArr: [],
-            auctionPageArtworks: []
-        }
-    },
-    methods: {
-        calculateDate(date) {
-            var now = new Date();
-            var endDate = new Date(date);
-            var diff = endDate.getTime() - now.getTime();
-            
-            // 만약 종료일자가 지났다면 "경매 마감"을 표시한다.
-            if (diff < 0) {
-                return "경매 마감";
-            } else {
-                // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
-                var d = new Date(diff);
-                var days = d.getDate();
-                var hours = d.getHours();
-                var minutes = d.getMinutes();
-
-                return "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분";
-            }
-        },
-        movePage(p, kind) {
-            let page = p;
-            let pageArr = [];
-            let curPageArr = [];
-            let min, maxPage, data;
-            if(kind == '보유') {
-                min = this.artworks.length;
-                maxPage = this.ownMaxPage;
-                data = this.artworks;
-            }else {
-                min = this.auctions.length;
-                maxPage = this.auctionMaxPage;
-                data = this.auctions;
-                console.log(data)
-            }
-
-            if (min > 4 * page)
-                min = 4 * page;       
-
-            for(var i = (page - 1) * 4 ; i < min ; i++){
-                pageArr.push(data[i]); 
-            }
-            for (var i = -5; i < 0; i++) {
-                if (page + i > 0)
-                    curPageArr.push(page + i);
-            }
-            for (var i = 0; i < 5; i++) {
-                if (page + i > maxPage)
-                    break;
-                curPageArr.push(page + i);
-            }
-            if(kind == '보유') {
-                this.ownPageArtworks = pageArr;
-                this.ownPageArr = curPageArr;
-                this.ownPage = page;
-            }else {
-                this.auctionPageArtworks = pageArr;
-                this.auctionPageArr = curPageArr;
-                this.auctionPage = page;
-            }
+            users: [],
+            page: 1,
+            maxPage: 0,
+            pageArr: [],
+            pageUsers: [],
         }
     },
     mounted: function () {
         let scope = this;
-        let userId = this.sharedStates.user.id;
-        workService.findWorksByOwner(userId, function (data) {
-            scope.artworks = data;
-            if(scope.artworks == undefined){
-                scope.artworks = [];
-            }
-            scope.ownMaxPage = parseInt(scope.artworks.length / 4);
-            if (scope.artworks.length % 4 > 0)
-                scope.ownMaxPage += 1;
-            scope.movePage(scope.ownPage, '보유');
+
+        manageService.findAll(function (data) {
+            scope.users = data;
+            scope.sort();
+            scope.maxPage = parseInt(scope.users.length / 10);
+            if(scope.users.length % 10 > 0)
+                scope.maxPage += 1; 
+            scope.movePage(1);
         });
 
-        /**
-         * TODO 1. 회원의 작품 목록을 가져옵니다.
-         * Backend와 API 연동합니다.
-         * 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
-         */
-        // 여기에 작성하세요.
-        auctionService.findAllByUser(userId, function (data) {
-            var result = data;
-            // 각 경매별 작품 정보를 불러온다.
-            function fetchData(start, end) {
-                if (start == end) {
-                    scope.auctions = result;
-                    scope.auctionMaxPage = parseInt(scope.auctions.length / 4);
-                    if(scope.auctions.length % 4 > 0)
-                        scope.auctionMaxPage += 1;
-                    scope.movePage(scope.auctionPage, '경매');
-                } else {
-                    var id = result[start]['경매작품id'];
-                    workService.findById(id, function (work) {
-                        result[start]['작품정보'] = work;
-                        fetchData(start + 1, end);
+    },
+    methods: {
+        
+        sort(){
+            this.users.sort(function(a,b){
+                if(a.authority == b.authority) return 0;
+                if(a.authority == 0 || b.authority == 0) return 1;
+                return a.authority < b.authority ? -1 : a.authority > b.authority ? 1 : 0;  
+            })
+        },
+        changeAuthUser(user){
+            if(user['authority'] == 1){
+                if(confirm("해당 사용자의 권한을 관리자에서 회원으로 낮추시겠습니까?")){
+                    user['authority'] = 2;
+                    manageService.modifyAuth({"id" : user['id'], "authority" : 2}, function(data){
+                        alert("권한이 변경되었습니다.");
+                    });
+
+                }
+            }else if(user['authority'] == 2){
+                if(confirm("해당 사용자의 권한을 회원에서 관리자로 상승시키겠습니까?")){
+                    user['authority'] = 1;
+                    manageService.modifyAuth({"id" : user['id'], "authority" : 1}, function(data){
+                        alert("권한이 변경되었습니다.");
                     });
                 }
             }
-            fetchData(0, result.length);
-        });
-        /**
-         * TODO 2. 회원의 경매 목록을 가져옵니다.
-         * Backend와 API 연동합니다.
-         * 경매 중인 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
-         */
-        // 여기에 작성하세요.
-    }
+        },
+        expireUser(user){
+            if(confirm("해당 사용자를 탈퇴시키겠습니까?")){
+                user['authority'] = 0;
+                manageService.modifyAuth({"id" : user['id'], "authority" : 0}, function(data){
+                    alert("처리되었습니다.");
+                });
+
+            }
+        },
+        restoreUser(user){
+            if(confirm("해당 사용자를 복구시키겠습니까?")){
+                user['authority'] = 2;
+                manageService.modifyAuth({"id" : user['id'], "authority" : 2}, function(data){
+                    alert("처리되었습니다.");
+                });
+
+            }
+        },
+        nextPage(){
+            this.page += 1;
+            this.movePage(this.page)
+        },
+        prevPage(){
+            this.page -= 1;
+            this.movePage(this.page)
+        },
+        movePage(p){
+            this.page = p;
+            var min = this.users.length;
+            if(min > 10 * this.page)
+                min = 10 * this.page;
+            this.pageUsers = [];
+            console.log((this.page - 1) * 10);
+            console.log(min)
+            for(var i = (this.page - 1) * 10 ; i < min ; i++){
+                this.users[i]['등록일시'] = this.users[i]['등록일시'].replace("T", " ");
+                this.pageUsers.push(this.users[i]); 
+                
+            }
+            
+            this.pageArr = [];
+            for(var i = -5 ; i < 0 ; i++){
+                if(this.page + i > 0 )
+                    this.pageArr.push(this.page + i);
+            }
+            for(var i = 0 ; i < 5 ; i++){
+                if(this.page + i > this.maxPage )
+                    break;
+                this.pageArr.push(this.page + i);
+            }
+        
+    }}
 })
