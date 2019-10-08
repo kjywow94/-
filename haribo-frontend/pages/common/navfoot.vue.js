@@ -1,7 +1,7 @@
 var navFoot = Vue.component("v-foot-nav", {
     props: ["isSigned"],
     template: `
-        <footer class="page-footer font-small blue">
+        <footer class="page-footer font-small blue" style="margin-top: 50px;">
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2019 Copyright : 

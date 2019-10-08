@@ -10,9 +10,9 @@ var homeView = Vue.component("Home", {
                         <div class="bd-example">
                             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleCaptions" v-for="item in auctions" data-slide-to="item+2"></li>
+                                <li data-target="#carouselExampleCaptions" class="active"></li>
+                                <li data-target="#carouselExampleCaptions" ></li>
+                                <li data-target="#carouselExampleCaptions" v-for="item in auctions"></li>
                                 </ol>
                                 <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -21,7 +21,7 @@ var homeView = Vue.component("Home", {
                                         <div class="carousel-caption1 d-none d-md-block">
                                             <div class="box1">
                                                 <div style="padding:20px;">
-                                                    <p style="margin-bottom: -0.9rem;">2019 경매위탁</p>
+                                                    <p style="margin-bottom: -0.3rem;">2019 경매위탁</p>
                                                     <p style="font-size: 30px; margin-bottom: 0rem;">INVITATION TO CONSIGN</p>
                                                     <p style="margin-top: 1rem; margin-bottom: -1rem; font-size: 6px;">
                                                     <p style="color: #fd7e14; font-size: 20px;">애장품의 판매, 보라코인에서 도와드립니다.</p>
@@ -59,7 +59,7 @@ var homeView = Vue.component("Home", {
                                     <div class="carousel-caption2 d-none d-md-block">
                                     <div class="box2">
                                         <div style="padding:20px;">
-                                            <p style="margin-bottom: -0.9rem;">현재 경매중인 작품</p>
+                                            <p style="margin-bottom: -0.3rem;">현재 경매중인 작품</p>
                                             <p style="font-size: 30px; margin-bottom: 0rem;">2019 Action art works</p>
                                             <p style="margin-top: 1rem; margin-bottom: -1rem; font-size: 20px; color: #fd7e14;">
                                             제목 : {{ item.작품정보.이름 }}<br>
@@ -86,7 +86,7 @@ var homeView = Vue.component("Home", {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></<v-foot-nav>>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
@@ -147,7 +147,6 @@ var homeView = Vue.component("Home", {
                         for(let i = 0 ; i < scope.auctions.length ; i++){
 
                             scope.auctions[i]['남은시간'] = scope.calculateDate( scope.auctions[i]['시작일시'],scope.auctions[i]['종료일시']); 
-                            console.log(scope.auctions[i]['남은시간'])
                         }
                     }.bind(scope), 1000);    
                 }
@@ -162,9 +161,6 @@ var homeView = Vue.component("Home", {
                             tempArr.push(result[start]);
                         fetchData(start + 1, end);
                     });
-
-                    console.log(result);
-                    
                 }
                 
             }

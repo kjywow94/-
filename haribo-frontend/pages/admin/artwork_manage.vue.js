@@ -53,6 +53,7 @@ var adminArtworkManageView = Vue.component('AdminArtWorkManageView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
