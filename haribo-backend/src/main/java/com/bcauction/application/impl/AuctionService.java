@@ -2,6 +2,7 @@ package com.bcauction.application.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -156,7 +157,7 @@ public class AuctionService implements IAuctionService {
 	@Override
 	public Auction 경매종료(final long 경매id, final long 회원id) {
 		// TODO
-		
+
 		Auction auction = this.auctionRepository.조회(경매id);
 		DigitalWork work = digitarWorkService.조회(auction.get경매작품id());
 		Token token = memberService.selectToken(회원id);
@@ -212,7 +213,13 @@ public class AuctionService implements IAuctionService {
 
 			try {
 				File f = new File("worksImage/" + auction.get경매작품id());
-				FileInputStream fis = new FileInputStream(f);
+				FileInputStream fis;
+				try {
+					fis = new FileInputStream(f);
+				} catch (FileNotFoundException e) {
+					f = new File("worksImage/artwork1.jpg");
+					fis = new FileInputStream(f);
+				}
 				byte byteArray[] = new byte[(int) f.length()];
 				fis.read(byteArray);
 				String encodeImg = "data:image/" + auction.getId() + ";base64, "
