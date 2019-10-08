@@ -86,6 +86,7 @@ var homeView = Vue.component("Home", {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></<v-foot-nav>>
         </div>
     `,
     data() {
