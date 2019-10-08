@@ -10,7 +10,7 @@ var adminUserManageView = Vue.component('AdminUserManageView', {
                         <h4>회원정보</h4>
                         <div>
                             <div class="row" v-if="pageUsers.length > 0">
-                            <table class="table table-bordered" style="table-layout:fixed;"> 
+                            <table class="table table-bordered text-center" style="table-layout:fixed;"> 
                                 <thead>
                                     <tr>
                                         <th scope="col">이름</th>
@@ -87,8 +87,8 @@ var adminUserManageView = Vue.component('AdminUserManageView', {
         
         sort(){
             this.users.sort(function(a,b){
-                if(a.authority == b.authority) return 0;
-                if(a.authority == 0 || b.authority == 0) return 1;
+                if(a.authority == 0) {return 1;}
+                if(b.authority == 0) {return -1;}
                 return a.authority < b.authority ? -1 : a.authority > b.authority ? 1 : 0;  
             })
         },
