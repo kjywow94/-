@@ -18,7 +18,7 @@ import java.util.List;
 public class MemberService implements IMemberService {
 
 	private IMemberRepository memberRepository;
-	
+
 	@Autowired
 	private IWalletRepository walletRepository;
 
@@ -97,17 +97,18 @@ public class MemberService implements IMemberService {
 
 	@Override
 	public long storeToken(Token tokenInfo) {
-		List<Token> tokenList = memberRepository.tokenList(tokenInfo.getId());
-		for (Token token : tokenList) {
-			if (token.getToken().equals(tokenInfo.getToken())) {
-				return 0;
-			}
+		long result = 0;
+		try {
+			Token token = memberRepository.selectToken(tokenInfo.getUser_id());
+			memberRepository.updateToken(tokenInfo);
+		} catch (Exception e) {
+			return memberRepository.storeToken(tokenInfo);
 		}
-		return memberRepository.storeToken(tokenInfo);
+		return result;
 	}
 
 	@Override
-	public List<Token> tokenList(long id) {
-		return memberRepository.tokenList(id);
+	public Token selectToken(long id) {
+		return memberRepository.selectToken(id);
 	}
 }

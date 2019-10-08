@@ -57,8 +57,8 @@ a {
 
 .breadcrumb {
     padding-top: 80px;
-
-    background-color: #e9ecef6e;
+    background-image: url("../images/headerImg.jpg");
+    color:black;
 }
 
 #my-artwork .artwork {
@@ -186,10 +186,45 @@ nav.bottom-pagination {
 {
     padding-bottom: 10px; 
     height: 230px;
-    float: right;
 }
+
+.effect {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: 230px;
+    border: 10px solid #fff;
+    box-shadow: 0 0 4px #999;
+    transform: rotate(20deg); /* 전체 회전 */
+    overflow: hidden; /* 불필요한 부분 가리기 */
+    margin-left: 200px;
+}
+
 @media screen and (max-width: 770px){
     .titleimgstyle {
         display: none;
     }
+    .effect {
+        display: none;
+    }
 }
+.boldTitle{
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.boldP{
+    text-shadow: -1px 0 rgb(235, 235, 235), 0 1px rgb(235, 235, 235), 1px 0 rgb(235, 235, 235), 0 -1px rgb(235, 235, 235);
+    /* text-shadow: 0 0 2px white; */
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.headerTitle h4{
+    padding-top : 90px;
+    font-size: 40px;
+}
+.headerTitle p{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+

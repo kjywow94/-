@@ -2,7 +2,7 @@ var worksCreateView = Vue.component("worksCreateView", {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="작품 등록" description="새로운 작품을 등록합니다."></v-breadcrumb>
+            <v-breadcrumb title="작품 등록" description="새로운 작품을 등록합니다." titleImg="assets/images/register_title.jpg"></v-breadcrumb>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 mx-auto">
@@ -105,6 +105,7 @@ var worksCreateView = Vue.component("worksCreateView", {
             this.work.imgName = event.target.files[0].name;
             var reader = new FileReader();
             reader.readAsDataURL(event.target.files[0]);
+            
             reader.onload = e => {
                 this.work.img = e.target.result;
             };
