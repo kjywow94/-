@@ -7,7 +7,7 @@ var walletInfoView = Vue.component('walletInfoView', {
                 <v-mypage-nav></v-mypage-nav>
                 <div id="mywallet-info" class="row">
                     <div class="col-md-12 mt-5">
-                        <div class="card">
+                        <div class="card" style="margin-bottom:26px;">
                             <table class="table table-bordered">
                                 <tr>
                                     <th>총보유 ETH</th>
@@ -27,6 +27,7 @@ var walletInfoView = Vue.component('walletInfoView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

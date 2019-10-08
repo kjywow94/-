@@ -9,7 +9,7 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
             <v-breadcrumb title="경매 등록하기" description="새로운 경매를 등록합니다." titleImg="assets/images/register_title.jpg"></v-breadcrumb>
             <div class="row">
                 <div class="col-md-6 mx-auto">
-                    <div class="card">
+                    <div class="card" style="margin-bottom: 18px;">
                         <div class="card-header">신규 경매 등록하기</div>
                         <div class="card-body">
                             <div v-if="!registered">
@@ -46,7 +46,7 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                                     <input id="startDate" v-model="before.input.untilTime" type="time" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss, 예: 2019-04-21 21:00:00">
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-right: 0px;">
                                     <div class="col-md-6">
                                         <button class="btn btn-sm btn-primary" v-on:click="register" v-bind:disabled="isCreatingContract">{{ isCreatingContract ? "계약을 생성하는 중입니다." : "경매 등록하기" }}</button>
                                     </div>
@@ -86,6 +86,7 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

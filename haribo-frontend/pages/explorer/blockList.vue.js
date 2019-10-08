@@ -8,7 +8,7 @@ var explorerBlockView = Vue.component('ExplorerBlockView', {
             <div class="row">
                 <div class="col-md-12">
                     <div id="blocks" class="col-md-8 mx-auto">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" style="margin-bottom: 15px;">
                             <div class="card-header">Blocks</div>
                             <div class="card-body" v-if="isLoding" >
                                 <div class="row block-info" v-for="item in blocks">
@@ -27,6 +27,7 @@ var explorerBlockView = Vue.component('ExplorerBlockView', {
                 </div>
             </div>
         </div>
+        <v-foot-nav></v-foot-nav>
     </div>
     `,
     data(){
