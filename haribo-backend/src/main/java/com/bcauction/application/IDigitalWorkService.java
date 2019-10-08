@@ -24,4 +24,5 @@ public interface IDigitalWorkService
 	DigitalWork 작품삭제(long id);
 	WorksImage uploadImage(WorksImage image);
 	List<DigitalWorkWithImg> DigitalWorkslist(List<DigitalWork> 목록);
+	List<DigitalWork> 전체조회();
 }

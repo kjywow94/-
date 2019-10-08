@@ -9,51 +9,42 @@ var adminArtworkManageView = Vue.component('AdminArtWorkManageView', {
                     <div class="col-md-12 mt-5">
                         <h4>작품정보</h4>
                         <div>
-                            <div class="row" v-if="ownPageArtworks.length > 0">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">이름</th>
-                                        <th scope="col">이메일</th>
-                                        <th scope="col">가입일시</th>
-                                        <th scope="col">비밀번호</th>
-                                        <th scope="col">권한</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                             
-                                
+                            <div class="row" v-if="pageArtworks.length > 0">
+                                <table class="table table-bordered" style="word-break:break-all;table-layout:fixed;">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">작품명</th>
+                                            <th scope="col">작품설명</th>
+                                            <th scope="col">작품주인ID</th>
+                                            <th scope="col">작품공개</th>
+                                            <th scope="col">작품상태</th>
+                                            <th scope="col">기타</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in pageArtworks">
+                                            <td class="text-overflow">{{item['이름']}}</td>
+                                            <td class="text-overflow">{{item['설명']}}</td>
+                                            <td class="text-center">{{item['회원id']}}</td>
+                                            <td class="text-center">{{item['공개여부']}}</td>
+                                            <td class="text-center">{{item['상태']}}</td>
+                                            <td class="text-center">
+                                                <button v-if="(item.공개여부=='Y' && item.상태=='Y')" class="btn btn-sm btn-outline-secondary" v-on:click="deleteArtWork(item.id)">삭제</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-sm-12 col-md-8 mt-3" v-if="ownPageArtworks.length == 0"> 
-                            <div class="alert alert-warning">보유중인 작품이 없습니다.</div>
+                            <div class="col-sm-12 col-md-8 mt-3" v-if="pageArtworks.length == 0">
+                            <div class="alert alert-warning">작품이 없습니다.</div>
                         </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
                                     <nav class="bottom-pagination">
                                         <ul class="pagination" v-if="artworks.length > 0">
-                                            <li class="page-item" v-bind:class="{disabled: ownPage == 1}"><a class="page-link" @click="movePage(1, '보유')">맨 앞</a></li>
-                                            <li v-for = "p in ownPageArr" class="page-item" v-bind:class="{active: ownPage == p}"><a class="page-link" @click="movePage(p, '보유')">{{p}}</a></li>
-                                            <li class="page-item" v-bind:class="{disabled: ownPage == ownMaxPage}"><a class="page-link" @click="movePage(ownMaxPage, '보유')">맨 뒤</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
+                                            <li v-for = "p in pageArr" class="page-item" v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
+                                            <li class="page-item" v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -68,124 +59,79 @@ var adminArtworkManageView = Vue.component('AdminArtWorkManageView', {
         return {
             sharedStates: store.state,
             artworks: [],
-            ownPage: 1,
-            ownMaxPage: 0,
-            ownPageArr: [],
-            ownPageArtworks: [],
-
-            auctions: [],
-            auctionPage: 1,
-            auctionMaxPage: 0,
-            auctionPageArr: [],
-            auctionPageArtworks: []
+            page: 1,
+            maxPage: 0,
+            pageArr: [],
+            pageArtworks: []
         }
     },
     methods: {
-        calculateDate(date) {
-            var now = new Date();
-            var endDate = new Date(date);
-            var diff = endDate.getTime() - now.getTime();
-            
-            // 만약 종료일자가 지났다면 "경매 마감"을 표시한다.
-            if (diff < 0) {
-                return "경매 마감";
-            } else {
-                // UNIX Timestamp를 자바스크립트 Date객체로 변환한다.
-                var d = new Date(diff);
-                var days = d.getDate();
-                var hours = d.getHours();
-                var minutes = d.getMinutes();
-
-                return "남은시간: " + days + "일 " + hours + "시간 " + minutes + "분";
+        movePage(p) {
+            this.page = p;
+            let min = this.artworks.length;
+            if (min > 10 * this.page)
+                min = 10 * this.page;
+            this.pageArtworks = [];
+            for(var i = (this.page - 1) * 10 ; i < min ; i++){
+                this.pageArtworks.push(this.artworks[i]); 
             }
-        },
-        movePage(p, kind) {
-            let page = p;
-            let pageArr = [];
-            let curPageArr = [];
-            let min, maxPage, data;
-            if(kind == '보유') {
-                min = this.artworks.length;
-                maxPage = this.ownMaxPage;
-                data = this.artworks;
-            }else {
-                min = this.auctions.length;
-                maxPage = this.auctionMaxPage;
-                data = this.auctions;
-                console.log(data)
-            }
-
-            if (min > 4 * page)
-                min = 4 * page;       
-
-            for(var i = (page - 1) * 4 ; i < min ; i++){
-                pageArr.push(data[i]); 
-            }
+            this.pageArr = [];
             for (var i = -5; i < 0; i++) {
-                if (page + i > 0)
-                    curPageArr.push(page + i);
+                if (this.page + i > 0)
+                    this.pageArr.push(this.page + i);
             }
             for (var i = 0; i < 5; i++) {
-                if (page + i > maxPage)
+                if (this.page + i > this.maxPage)
                     break;
-                curPageArr.push(page + i);
+                this.pageArr.push(this.page + i);
             }
-            if(kind == '보유') {
-                this.ownPageArtworks = pageArr;
-                this.ownPageArr = curPageArr;
-                this.ownPage = page;
-            }else {
-                this.auctionPageArtworks = pageArr;
-                this.auctionPageArr = curPageArr;
-                this.auctionPage = page;
-            }
+        },
+        findAll(){
+            let scope = this;
+            //전체 작품 정보를 불러온다.
+            manageService.findAllArtwork(function(data){
+                scope.artworks = data;  
+                if(scope.artworks == undefined){
+                    scope.artworks = [];
+                }
+                scope.maxPage = parseInt(scope.artworks.length / 10);
+                if (scope.artworks.length % 10 > 0)
+                    scope.maxPage += 1;
+                scope.movePage(scope.page);
+            });
+        },
+        deleteArtWork: function(id){
+            var scope = this;
+            manageService.deleteArtwork(
+                id,
+                function(response){
+                    alert("작품이 삭제되었습니다.");
+                    scope.findAll();
+                },
+                function(error) {
+                    alert("작품을 삭제할 수 없습니다.");
+                }
+            );
+        },
+        restore: function (id, name, desc){
+            var scope = this;
+            manageService.restoreArtwork({
+                "id": id,
+                "이름": name,
+                "설명": desc,
+                "공개여부": "Y" ,
+                "상태": "Y"
+                },
+                function(){
+                    alert('작품이 복원되었습니다.');
+                    scope.findAll();
+                }, 
+                function(error){
+                    alert("작품 복원이 불가능합니다.");
+                });     
         }
     },
     mounted: function () {
-        let scope = this;
-        let userId = this.sharedStates.user.id;
-        workService.findWorksByOwner(userId, function (data) {
-            scope.artworks = data;
-            if(scope.artworks == undefined){
-                scope.artworks = [];
-            }
-            scope.ownMaxPage = parseInt(scope.artworks.length / 4);
-            if (scope.artworks.length % 4 > 0)
-                scope.ownMaxPage += 1;
-            scope.movePage(scope.ownPage, '보유');
-        });
-
-        /**
-         * TODO 1. 회원의 작품 목록을 가져옵니다.
-         * Backend와 API 연동합니다.
-         * 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
-         */
-        // 여기에 작성하세요.
-        auctionService.findAllByUser(userId, function (data) {
-            var result = data;
-            // 각 경매별 작품 정보를 불러온다.
-            function fetchData(start, end) {
-                if (start == end) {
-                    scope.auctions = result;
-                    scope.auctionMaxPage = parseInt(scope.auctions.length / 4);
-                    if(scope.auctions.length % 4 > 0)
-                        scope.auctionMaxPage += 1;
-                    scope.movePage(scope.auctionPage, '경매');
-                } else {
-                    var id = result[start]['경매작품id'];
-                    workService.findById(id, function (work) {
-                        result[start]['작품정보'] = work;
-                        fetchData(start + 1, end);
-                    });
-                }
-            }
-            fetchData(0, result.length);
-        });
-        /**
-         * TODO 2. 회원의 경매 목록을 가져옵니다.
-         * Backend와 API 연동합니다.
-         * 경매 중인 작품 마다 소유권 이력을 보여줄 수 있어야 합니다.
-         */
-        // 여기에 작성하세요.
+        this.findAll();
     }
 })
