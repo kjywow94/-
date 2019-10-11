@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.http.HttpService;
@@ -18,7 +20,14 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-public class DataSourceConfig {
+public class DataSourceConfig implements WebMvcConfigurer {
+	
+	@Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*");
+    }
+	
     @Value("${spring.web3j.client-address}")
     private String NETWORK_URL;
 

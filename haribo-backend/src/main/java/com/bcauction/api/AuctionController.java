@@ -24,6 +24,16 @@ import com.bcauction.domain.exception.ApplicationException;
 import com.bcauction.domain.exception.EmptyListException;
 import com.bcauction.domain.exception.NotFoundException;
 
+
+
+
+
+
+
+
+
+
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")

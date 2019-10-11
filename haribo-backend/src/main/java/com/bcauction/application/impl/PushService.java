@@ -23,7 +23,7 @@ public class PushService {
 
 		conn.setDoOutput(true);
 
-		String input = "{\"notification\" : {\"title\" : \" 옥션 B \",\"icon\" : \"" + iconURL + "\", \"body\" : \""
+		String input = "{\"notification\" : {\"title\" : \" Aution B \",\"icon\" : \"" + iconURL + "\", \"body\" : \""
 				+ work + msg + "\"}, \"to\":\"" + token + "\"}";
 
 		OutputStream os = conn.getOutputStream();

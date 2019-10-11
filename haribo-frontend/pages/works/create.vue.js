@@ -45,7 +45,7 @@ var worksCreateView = Vue.component("worksCreateView", {
                     </div>
                 </div>
             </div>
-            <v-foot-nav></v-foot-mav>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {

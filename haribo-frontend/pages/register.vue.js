@@ -46,6 +46,11 @@ var registerView = Vue.component('RegisterView', {
                     this.user.name,
                     hashingService.SHA256(this.user.password),
                     function (response) {
+                        manageService.modifyAuth({
+                            id: response['id'],
+                            authority: 2
+                        }, function(data){})
+                        console.log(response)
                         alert("회원가입이 완료되었습니다.");
                         scope.$router.push('/');
                     }
