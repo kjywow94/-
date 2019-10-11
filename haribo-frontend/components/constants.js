@@ -1,5 +1,5 @@
 // 웹서버 API URL을 지정합니다. 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://13.125.178.26";
 // 배포한 옥션 컨트랙트 주소를 지정합니다. 
 const AUCTION_CONTRACT_ADDRESS = "0xa7396738A85DE20AcBc94e3C41e2275a17Faf5F7";
 // 이더리움 블록체인 네트워크의 URL을 설정합니다. 

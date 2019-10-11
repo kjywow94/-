@@ -80,13 +80,14 @@ var myChangePasswordView = Vue.component('MyChangePasswordView', {
                 return;
             }
 
+            let scope = this;
             userService.update({
                 "이메일": this.user.email,
                 "이름": this.user.name,
                 "비밀번호": hashingService.SHA256(this.input.newPassword) // 신규 비밀번호
             }, function (data) {
                 alert("비밀번호가 변경되었습니다.");
-                this.$router.go(-1);
+                scope.$router.go(-1);
             });
         },
         goBack: function () {

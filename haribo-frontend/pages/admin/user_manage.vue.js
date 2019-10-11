@@ -26,7 +26,7 @@ var adminUserManageView = Vue.component('AdminUserManageView', {
                                         <td>{{user['이름']}}</td>
                                         <td class="text-overflow" colspan="2">{{user['이메일']}}</td>
                                         <td colspan="2">{{user['등록일시']}}</td>
-                                        <td v-if="user['authority'] == 0">탈퇴됨</td>
+                                        <td v-if="user['authority'] == 0">탈퇴</td>
                                         <td v-if="user['authority'] == 1">관리자</td>
                                         <td v-if="user['authority'] == 2">회원</td>
                                         <td colspan="2">

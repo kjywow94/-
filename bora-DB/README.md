@@ -167,37 +167,39 @@
   
   - 현재 실행중인 주피터 노트북을 종료.
   
-  - sudo netstat -nap | grep 8888
+      - sudo netstat -nap | grep 8888
   
-  - sudo kill -9 23465
+      - sudo kill -9 23465
   
   - mkdir ssl_jupyter
   
   - cd ssl
   
-  - sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout "cert.key" -out "cert.pem" -batch
+  - 사설 인증서를 만듦
   
-    - vi /root/.jupyter/jupyter_notebook_config.py
+      - sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout "cert.key" -out "cert.pem" -batch
   
-    - 내용추가
+      - vi /root/.jupyter/jupyter_notebook_config.py
+  
+      - 내용추가
         c.NotebookApp.certfile = u'/home/ubuntu/boraCoin/ssl_jupyter/cert.pem'
-      c.NotebookApp.keyfile = u'/home/ubuntu/boraCoin/ssl_jupyter/cert.key'
-  
-    - sudo jupyter-notebook --allow-root
+        c.NotebookApp.keyfile = u'/home/ubuntu/boraCoin/ssl_jupyter/cert.key'
 
-      - 사설인증서라서 크롬이 우리 인증서를 신뢰하지 못하는데, 그냥 무시하고 실행함.
-      이제 우리는 ssl이 적용된 상태로 우리의 서버에 접속할 수 있게 됨.
+      - sudo jupyter-notebook --allow-root
   
-      
+        - 사설인증서라서 크롬이 우리 인증서를 신뢰하지 못하는데, 그냥 무시하고 실행함.
+        이제 우리는 ssl이 적용된 상태로 우리의 서버에 접속할 수 있게 됨.
+  
+        
   
   - 쥬피터 노트북을 시스템 서비스로서 등록을 하고자 함.(이 부분은 넘어감)
       우리의 재부팅하면 노트북도 자동으로 종료가 되니까 다시 실행하는 명령어를 넣어줘야함.
     재부팅됐을때도 자동으로 이런한 쥬피터 노트북을 자동실행할 수 있도록 처리하기 위해서 시스템서비스로서 등록.
   
     - which jupyter-notebook //위치 확인
-  
-      - sudo vi/etc/systemd/system/system/jupyter.service //서비스 파일을 작성
 
+      - sudo vi/etc/systemd/system/system/jupyter.service //서비스 파일을 작성
+  
         [Unit]
         Description=Jupyter Notebook Server
   
@@ -248,7 +250,7 @@
   
   - docker build --tag boraCoint:0.1 ./
   
-- docker run -d -p 8080:8080 boracoinjar:0.1
+- docker run -d -p 8080:8080 brc:0.3
   
 ## 프론트엔드 배포
 
@@ -263,7 +265,7 @@
   - 참고블로그 : https://minimilab.tistory.com/8 
       - sudo docker pull nginx:latest
       - AWS에 폴더만들어서 프론트엔드 옮겨놓음
-      - docker run --name nginx-boraCoin -v /home/ubuntu/boraCoin/webFront/haribo-frontend:/usr/share/nginx/html:ro -d -p 80:80 nginx
+      - docker run --name nginx-boraCoin -v /home/ubuntu/boraCoin/webFront/haribo-frontend:/usr/share/nginx/html:ro -d -p 80:433 nginx
   
 - 주소 : 13.125.178.26:80
   
