@@ -38,7 +38,32 @@ public class BidRepository implements IBidRepository
 			throw new RepositoryException(e, e.getMessage());
 		}
 	}
-
+	
+	@Override
+	public Bid 최고입잘조회(final long id) {
+		StringBuilder sbSql =  new StringBuilder("select * from 경매입찰 where 경매id = ? order by 입찰금액 desc limit 1");
+		try {
+			return this.jdbcTemplate.queryForObject(sbSql.toString(),
+								new Object[] { id }, (rs, rowNum) -> BidFactory.생성(rs) );
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
+	@Override
+	public long 입찰횟수(final long id) {
+		StringBuilder sbSql =  new StringBuilder("SELECT count(*) FROM 경매입찰 WHERE 경매id=?");
+		try {
+			return this.jdbcTemplate.queryForObject(sbSql.toString(),
+								new Object[] { id }, (rs, rowNum) -> rs.getLong("count(*)") );
+		} catch (EmptyResultDataAccessException e) {
+			return -1;
+		} catch (Exception e) {
+			throw new RepositoryException(e, e.getMessage());
+		}
+	}
+	
 	@Override
 	public Bid 조회(final long id) {
 		StringBuilder sbSql =  new StringBuilder("SELECT * FROM 경매입찰 WHERE id=?");

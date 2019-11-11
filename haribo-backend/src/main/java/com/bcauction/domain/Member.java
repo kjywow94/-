@@ -8,6 +8,7 @@ public class Member {
     private String 이메일;
     private String 비밀번호;
     private LocalDateTime 등록일시;
+    private long authority;
 
     public long getId() {
         return id;
@@ -50,4 +51,12 @@ public class Member {
     {
         this.비밀번호 = 비밀번호;
     }
+
+	public long getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(long authority) {
+		this.authority = authority;
+	}
 }

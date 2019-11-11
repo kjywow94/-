@@ -1,6 +1,7 @@
 package com.bcauction.application;
 
 import com.bcauction.domain.Auction;
+import com.bcauction.domain.AuctionWithImg;
 import com.bcauction.domain.Bid;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,8 @@ public interface IAuctionService
 	List<Auction> 경매목록조회();
 	Auction 조회(long 경매id);
 	Auction 조회(String 컨트랙트주소);
-
+	Auction 조회(long 경매id, String 상태);
+	
 	@Transactional
 	Auction 생성(Auction 경매);
 
@@ -27,4 +29,6 @@ public interface IAuctionService
 
 	@Transactional
 	Auction 경매취소(long 경매id, long 회원id); // 환불 후 옥션 끝내기
+	List<AuctionWithImg> auctionList(List<Auction> 목록);
+	long 입찰횟수(long id);
 }

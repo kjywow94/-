@@ -54,9 +54,9 @@ public class WalletRepository implements IWalletRepository
 	}
 
 	@Override
-	public Wallet 조회(final String 지갑주소)
+	public Wallet searchWallet(String 지갑주소)
 	{
-		StringBuilder sbSql =  new StringBuilder("SELECT * FROM 지갑 WHERE 주소=?");
+		StringBuilder sbSql =  new StringBuilder("SELECT * FROM 지갑 WHERE LOWER(주소) LIKE LOWER(?)");
 		try {
 			return this.jdbcTemplate.queryForObject(sbSql.toString(),
 								new Object[] { 지갑주소 }, (rs, rowNum) -> WalletFactory.생성(rs) );

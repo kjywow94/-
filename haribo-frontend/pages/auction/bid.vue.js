@@ -1,7 +1,6 @@
 /**
- * 화면: 경매 입찰하기
- */
-
+* 화면: 경매 입찰하기
+*/
 var auctionBidView = Vue.component('AuctionBidView', {
     template: `
         <div>
@@ -32,8 +31,11 @@ var auctionBidView = Vue.component('AuctionBidView', {
                                         <div class="input-group-text">ETH</div>
                                     </div>
                                 </div><br>
-                                <div class="alert alert-warning" role="alert">
+                                <div v-if="bidCount == 0" class="alert alert-warning" role="alert">
                                     최소 입찰 금액은 {{ auction['최소금액'] }} ETH 입니다.
+                                </div>
+                                <div v-if="bidCount > 0" class="alert alert-warning" role="alert">
+                                    현재 최고 입찰 금액은 {{ auction['최고입찰액'] }} ETH 입니다.
                                 </div>
                             </div>
                             <div class="row">
@@ -50,7 +52,7 @@ var auctionBidView = Vue.component('AuctionBidView', {
             </div>
         </div>
     `,
-    data(){
+    data() {
         return {
             bidding: false,
             work: {},
@@ -60,14 +62,15 @@ var auctionBidView = Vue.component('AuctionBidView', {
                 price: 0
             },
             sharedStates: store.state,
-            wallet: {}
+            wallet: {},
+            bidCount: 0
         }
     },
     methods: {
-        goBack: function(){
+        goBack: function () {
             this.$router.go(-1);
         },
-        bid: function(){
+        bid: function () {
             /**
              * 컨트랙트를 호출하여 입찰하고
              * 입찰 정보 등록 API를 호출합니다. 
@@ -80,43 +83,56 @@ var auctionBidView = Vue.component('AuctionBidView', {
                 walletAddress: this.wallet['주소'],
                 privateKey: this.input.privateKey
             };
-            console.log(options);
-            this.bidding = true;
+            walletService.isValidPrivateKey(scope.sharedStates.user.id, this.input.privateKey, (isValid, walletAddress) => {
+                if(isValid){
+                    scope.bidding = true;
 
-            // 컨트랙트 bid 함수를 호출합니다.
-            // components/auctionFactory.js의 auction_bid 함수를 호출합니다.
-            // TODO auction_bid 함수의 내용을 완성합니다.             
-            auction_bid(options, function(receipt){
-                var bidder = scope.sharedStates.user.id;
-                var auctionId = scope.$route.params.id;
-                
-                // 입찰 정보 등록 요청 API를 호출합니다. 
-                auctionService.saveBid(bidder, auctionId, options.amount, function(result){
-                    alert("입찰이 완료되었습니다.");
-                    scope.bidding = false;
-                    scope.$router.go(-1);
-                });
+                    // 컨트랙트 bid 함수를 호출합니다.
+                    // components/auctionFactory.js의 auction_bid 함수를 호출합니다.
+                    auction_bid(options, function (receipt) {
+                        if (receipt.gasUsed != 3000000) {
+        
+                            var bidder = scope.sharedStates.user.id;
+                            var auctionId = scope.$route.params.id;
+        
+                            // 입찰 정보 등록 요청 API를 호출합니다. 
+                            auctionService.saveBid(bidder, auctionId, options.amount, function (result) {
+                                alert("입찰이 완료되었습니다.");
+                                scope.bidding = false;
+                                scope.$router.go(-1);
+                            });
+                        } else {
+                            alert("입찰에 실패했습니다. 새로고침을 눌러주세요");
+                        }
+                    });
+                }else{
+                    alert("비밀키를 다시 확인해주세요");
+                }
             });
         }
     },
-    mounted: function(){
+    mounted: function () {
         var scope = this;
         var auctionId = this.$route.params.id;
 
-        auctionService.findById(auctionId, function(auction){
-            auction['최소금액'] = Number(auction['최소금액']) / (10**18);
+        auctionService.findById(auctionId, function (auction) {
+            auction['최소금액'] = Number(auction['최소금액']) / (10 ** 18);
+            var amount = Number(auction['최고입찰액']).toLocaleString().split(",").join("")
+            auction['최고입찰액'] = web3.utils.fromWei(amount, 'ether');
             scope.auction = auction;
             var workId = auction['작품id'];
-
-            workService.findById(workId, function(work){
+            workService.findById(workId, function (work) {
                 scope.work = work;
             });
         });
-
         // 내 지갑 정보 조회
-        walletService.findById(scope.sharedStates.user.id, function(wallet){
-            wallet['잔액'] = Number(wallet['잔액']) / (10 ** 18);
+        walletService.findById(scope.sharedStates.user.id, function (wallet) {
+            wallet = wallet.responseJSON;
+            wallet['잔액'] = Number(wallet['잔액']);
             scope.wallet = wallet;
+        });
+        auctionService.countBidById(auctionId, function(result){
+            scope.bidCount = result;
         });
     }
 })

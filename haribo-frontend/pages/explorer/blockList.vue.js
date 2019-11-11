@@ -2,13 +2,13 @@ var explorerBlockView = Vue.component('ExplorerBlockView', {
     template: `
     <div>
         <v-nav></v-nav>
-        <v-breadcrumb title="Block Explorer" description="블록체인에서 생성된 블록내역을 보여줍니다."></v-breadcrumb>
+        <v-breadcrumb title="Block Explorer" description="블록체인에서 생성된 블록내역을 보여줍니다." titleImg="assets/images/explorer_title.jpg"></v-breadcrumb>
         <div class="container">
             <explorer-nav></explorer-nav>
             <div class="row">
                 <div class="col-md-12">
                     <div id="blocks" class="col-md-8 mx-auto">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm" style="margin-bottom: 15px;">
                             <div class="card-header">Blocks</div>
                             <div class="card-body" v-if="isLoding" >
                                 <div class="row block-info" v-for="item in blocks">
@@ -27,6 +27,7 @@ var explorerBlockView = Vue.component('ExplorerBlockView', {
                 </div>
             </div>
         </div>
+        <v-foot-nav></v-foot-nav>
     </div>
     `,
     data(){

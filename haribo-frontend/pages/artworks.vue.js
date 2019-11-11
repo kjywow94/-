@@ -2,22 +2,42 @@ var artworksView = Vue.component('artworksView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="Artworks" description="작품을 둘러볼 수 있습니다." titleImg="assets/images/artwork_title.gif">
+            </v-breadcrumb>
             <div id="artwork-list" class="container">
+            
                 <div class="row">
-                    <div class="col-md-12 text-right">
-                        <router-link to="/works/create" class="btn btn-outline-secondary">내 작품 등록하기</router-link>
-                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="text" v-model="search" @keydown="keyEvt" v-on:keyup.enter="searchFcn()" class="form-control col-md-4" placeholder="작품명 입력">
+                                <button class="btn signaure-btn" type="button" @click="searchFcn()">검색</button>
+                            <span class="col-md-8 text-right">
+                            <router-link to="/works/create" class="btn btn-outline-secondary">작품 등록</router-link>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                    
                 </div>
-                <div class="row">
-                    <div class="col-md-3 artwork" v-for="item in artworks">
-                        <div class="card">
+                <div class="col-sm-12 col-md-12 mt-3" v-if="artworks.length == 0">
+                    <div v-if="isSearching" class="alert alert-warning">등록된 작품이 없습니다. 가장 먼저 작품을 등록해 보세요!</div>
+                    <div v-if="!isSearching" class="alert alert-warning">검색된 작품이 없습니다.
+                        <button class="btn signaure-btn pull-right"type="button" @click="showAll"> 전체 목록 조회</button>
+                    </div>
+
+                </div>
+                <div class="row" v-if="artworks.length > 0">
+                    <div class="col-sm-12 col-md-4 col-lg-3 artwork" v-for="item in pageArtworks">
+                        <div class="card bg-grey">
                             <div class="card-body">
-                                <img src="./assets/images/artworks/artwork1.jpg">
-                                <h4>{{ item["이름"] }}</h4>
-                                <p v-if="item['설명'] != null">{{ item["설명"] }}</p>
+                                <img :src="item.imgData">
+                                <hr>
+                                <h4 class="text-overflow">{{ item["이름"] }}</h4>
+                                <p v-if="item['설명'] != null" class="text-overflow">{{ item["설명"] }}</p>
                                 <p v-if="item['설명'] == null">-</p>
-                                <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary">이력보기</router-link>
+                                <hr>
+                                <div align="right">
+                                    <router-link :to="{ name: 'work.detail', params: { id: item['id'] } }" class="btn btn-block btn-secondary btn-width">이력</router-link>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -25,39 +45,111 @@ var artworksView = Vue.component('artworksView', {
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <nav class="bottom-pagination">
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                                <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                            <ul class="pagination" v-if="maxPage > 0">
+                                <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="movePage(1)">맨 앞</a></li>
+                                <li class="page-item"v-bind:class="{disabled: page == 1}"><a class="page-link" @click="prevPage()" v-if="false">이전</a></li>
+                                
+                                    <li v-for = "p in pageArr" class="page-item"v-bind:class="{active: page == p}"><a class="page-link" @click="movePage(p)">{{p}}</a></li>
+                                <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="nextPage()" v-if="false">다음</a></li>
+                                <li class="page-item"v-bind:class="{disabled: page == maxPage}"><a class="page-link" @click="movePage(maxPage)">맨 뒤</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
         return {
             artworks: [{
                 "이름": "",
-                "설명": ""
-            }]
+                "설명": "",
+                "imgData": "./assets/images/artworks/artwork1.jpg"
+            }],
+            maxPage: 0,
+            page: 1,
+            pageArr: [],
+            pageArtworks: [],
+            search: "",
+            isSearching: false
         }
     },
-    mounted: function(){
+    mounted: function () {
         var scope = this;
+        this.searchFcn();    
+    },
+    methods: {
+        nextPage() {
+            this.page += 1;
+            this.movePage(this.page)
+        },
+        prevPage() {
+            this.page -= 1;
+            this.movePage(this.page)
+        },
+        movePage(p) {
+            this.page = p;
+            let min = this.artworks.length;
+            if (min > 8 * this.page)
+                min = 8 * this.page;
+            this.pageArtworks = [];
+            for(var i = (this.page - 1) * 8 ; i < min ; i++){
+                this.pageArtworks.push(this.artworks[i]); 
+            }
+            this.pageArr = [];
+            for (var i = -5; i < 0; i++) {
+                if (this.page + i > 0)
+                    this.pageArr.push(this.page + i);
+            }
+            for (var i = 0; i < 5; i++) {
+                if (this.page + i > this.maxPage)
+                    break;
+                this.pageArr.push(this.page + i);
+            }
 
-        workService.findAll(function(data){
-            scope.artworks = data;
-        });
+
+        },
+        keyEvt(){
+            //추천검색어 출력을 위한 메소드 작성중
+            let scope = this;
+            
+            for(let i = 0 ; i < scope.artworks.length ; i++){
+                if(scope.artworks[i]['이름'].replace(/(\s*)/g, "").indexOf(scope.search) >= 0){
+
+
+                }
+            }
+        },
+        searchFcn(){
+            let keyword = this.search.replace(/(\s*)/g, "") ;
+            let scope = this;
+            workService.findAll(function (data) {
+                scope.artworks = data;
+                if(scope.artworks == undefined){
+                    scope.artworks = [];
+                }
+                let tmp = [];
+                for(let i = 0 ; i < scope.artworks.length ; i++){
+                    if(scope.artworks[i]['이름'].replace(/(\s*)/g, "").indexOf(keyword) >= 0){
+                        tmp.push(scope.artworks[i]);
+                    }
+                }
+                scope.artworks = tmp;
+                scope.maxPage = parseInt(scope.artworks.length / 8);
+                if (scope.artworks.length % 8 > 0)
+                    scope.maxPage += 1;
+                scope.movePage(1);
+                if(keyword == ""){
+                    this.isSearching = false;
+                }else{
+                    this.isSearching = true;
+                }
+            }); 
+        },
+        showAll(){
+            this.search="";
+            this.searchFcn();
+        }
     }
 })

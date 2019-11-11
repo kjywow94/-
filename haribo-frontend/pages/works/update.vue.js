@@ -2,7 +2,7 @@ var worksUpdateView = Vue.component("worksUpdateView", {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="작품 등록" description="새로운 작품을 등록합니다."></v-breadcrumb>
+            <v-breadcrumb title="작품 등록" description="작품정보를 수정합니다."></v-breadcrumb>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 mx-auto">
@@ -24,7 +24,7 @@ var worksUpdateView = Vue.component("worksUpdateView", {
                                     <label id="status">상태</label><br>
                                     <input type="checkbox" id="status" v-model="work.status">
                                 </div>
-                                <button type="button" class="btn btn-primary" v-on:click="update">작품 등록하기</button>
+                                <button type="button" class="btn btn-primary" v-on:click="update">작품 수정하기</button>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ var worksUpdateView = Vue.component("worksUpdateView", {
             var workId = this.$route.params.id;
 
             workService.update({
-                "id": this.work.ownerId,
+                "id": this.$route.params.id,
                 "이름": this.work.name,
                 "설명": this.work.description,
                 "공개여부": this.work.isActive ? "Y" : "N",

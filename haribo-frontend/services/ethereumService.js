@@ -24,4 +24,15 @@ var ethereumService = {
             callback(data);
         });  
     },
+    findByAddress: function(addr, callback){
+        $.get(API_BASE_URL + '/api/eth/address/' + addr, function(data){
+            callback(data);
+        })
+    },
+
+    findTransDeca: function(callback){
+        $.get(API_BASE_URL + '/api/eth/txesdeca',function(data){
+            callback(data);
+        })
+    }
 }

@@ -6,10 +6,10 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="경매 등록하기" description="새로운 경매를 등록합니다."></v-breadcrumb>
+            <v-breadcrumb title="경매 등록하기" description="새로운 경매를 등록합니다." titleImg="assets/images/register_title.jpg"></v-breadcrumb>
             <div class="row">
                 <div class="col-md-6 mx-auto">
-                    <div class="card">
+                    <div class="card" style="margin-bottom: 18px;">
                         <div class="card-header">신규 경매 등록하기</div>
                         <div class="card-body">
                             <div v-if="!registered">
@@ -34,13 +34,19 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                                 </div>
                                 <div class="form-group">
                                     <label id="startDate">경매 시작일시</label>
-                                    <input id="startDate" v-model="before.input.startDate" type="text" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss, 예: 2019-04-21 21:00:00">
+                                    <div class="input-group">
+                                    <input id="startDate" v-model="before.input.startDate" type="date" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss, 예: 2019-04-21 21:00:00">
+                                    <input id="startDate" v-model="before.input.startTime" type="time" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss, 예: 2019-04-21 21:00:00">
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label id="untilDate">경매 종료일시</label>
-                                    <input id="untilDate" v-model="before.input.untilDate" type="text" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss, 예: 2019-05-03 12:00:00">
+                                    <div class="input-group">
+                                    <input id="startDate" v-model="before.input.untilDate" type="date" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss, 예: 2019-04-21 21:00:00">
+                                    <input id="startDate" v-model="before.input.untilTime" type="time" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss, 예: 2019-04-21 21:00:00">
+                                    </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-right: 0px;">
                                     <div class="col-md-6">
                                         <button class="btn btn-sm btn-primary" v-on:click="register" v-bind:disabled="isCreatingContract">{{ isCreatingContract ? "계약을 생성하는 중입니다." : "경매 등록하기" }}</button>
                                     </div>
@@ -64,11 +70,11 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                                     </tr>
                                     <tr>
                                         <th>시작일시</th>
-                                        <td>{{ before.input.startDate }}</td>
+                                        <td>{{ before.input.startDate +" "+before.input.startTime}}</td>
                                     </tr>
                                     <tr>
                                         <th>종료일시</th>
-                                        <td>{{ before.input.untilDate }}</td>
+                                        <td>{{ before.input.untilDate +" "+before.input.untilTime}}</td>
                                     </tr>
                                     <tr>
                                         <th>컨트랙트 주소</th>
@@ -80,14 +86,14 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
-    data(){
+    data() {
         return {
-            isCreatingContract:false,
+            isCreatingContract: false,
             registered: false,
             sharedStates: store.state,
-
             // 경매 등록전 입력값
             before: {
                 works: [],
@@ -105,63 +111,125 @@ var auctionRegisterView = Vue.component('AuctionRegisterView', {
         }
     },
     methods: {
-        goBack: function(){
+        getWorks: async function (){
+            // 내 작품 목록 가져오기
+            var scope = this;
+            var tmp = [];
+            await workService.findWorksByOwner(this.sharedStates.user.id, async function (result) {
+                tmp = result;
+                for(let i = 0 ; i < tmp.length ; i++){
+                    await auctionService.findStatus(tmp[i], "V", function (isNotUsing){
+                        if(isNotUsing){
+                            scope.before.works.push(tmp[i]);
+                        }
+                        
+                    });
+    
+                }
+            });
+        },
+        goBack: function () {
             this.$router.go(-1);
         },
-        register: function(){
-           /**
-             * 컨트랙트를 호출하여 경매를 생성하고
-             * 경매 정보 등록 API를 호출합니다. 
-             */
-            
+        register: function () {
+            /**
+              * 컨트랙트를 호출하여 경매를 생성하고
+              * 경매 정보 등록 API를 호출합니다. 
+              */
+
             var scope = this;
+            if(scope.before.input.privateKey == null){
+                alert("비밀키를 확인해 주세요.");
+                return;
+            }if(scope.before.input.privateKey.length < 10  || !scope.before.input.privateKey.startsWith("0x")){
+                alert("비밀키를 확인해 주세요.");
+                return;
+            }
+            if(scope.before.selectedWork == null){
+                alert("작품을 선택해 주세요.");
+                return;
+            }
+            if(scope.before.input.minPrice == null){
+                alert("경매 최저가를 입력해 주세요.");
+                return;
+            }if(new Date(scope.before.input.startDate+"T"+scope.before.input.startTime) >= new Date(scope.before.input.untilDate+"T"+scope.before.input.untilTime)){
+                alert("경매 시간이 올바르지 않습니다.");
+                return;
+            }
             this.isCreatingContract = true;
 
-            // 1. 내 지갑 주소를 가져옵니다.
-            walletService.findAddressById(this.sharedStates.user.id, function(walletAddress){
-                
-                // 2. 경매 컨트랙트를 블록체인에 생성합니다.
-                // components/auctionFactory.js의 createAuction 함수를 호출합니다.
-                // TODO createAuction 함수의 내용을 완성합니다. 
-                createAuction({
-                    workId: scope.before.selectedWork,
-                    minValue: scope.before.input.minPrice,
-                    startTime: new Date(scope.before.input.startDate).getTime(),
-                    endTime: new Date(scope.before.input.untilDate).getTime()
-                }, walletAddress, scope.before.input.privateKey, function(responseAddress){
-                    console.log(responseAddress);
-                    var contractAddress = responseAddress;
-                    var data = {
-                        "경매생성자id": scope.sharedStates.user.id,
-                        "경매작품id": scope.before.selectedWork,
-                        "시작일시": new Date(scope.before.input.startDate),
-                        "종료일시": new Date(scope.before.input.untilDate),
-                        "최저가": Number(scope.before.input.minPrice),
-                        "컨트랙트주소": contractAddress,
-                    }
+            // 비밀키 확인
+            walletService.isValidPrivateKey(this.sharedStates.user.id, scope.before.input.privateKey, (isValid, walletAddress) => {
+                if (isValid) {
+                    var sDate = new Date(scope.before.input.startDate+" "+scope.before.input.startTime);
+                    var eDate = new Date(scope.before.input.untilDate+" "+scope.before.input.untilTime);
+                    createAuction({
+                        workId: scope.before.selectedWork,
+                        minValue: scope.before.input.minPrice,
+                        startTime: sDate.getTime() / 1000,
+                        endTime: eDate.getTime() / 1000
+                    }, walletAddress, scope.before.input.privateKey, function (responseAddress) {
+                        var contractAddress = responseAddress;
+                        var data = {
+                            "경매생성자id": scope.sharedStates.user.id,
+                            "경매작품id": scope.before.selectedWork,
+                            "시작일시": sDate,
+                            "종료일시": eDate,
+                            "최저가": Number(scope.before.input.minPrice),
+                            "컨트랙트주소": contractAddress,
+                        }
+                        data.시작일시.setHours(data.시작일시.getHours() + 9);
+                        data.종료일시.setHours(data.종료일시.getHours() + 9);
+                        // 3. 선택한 작업 정보를 가져옵니다.
+                        workService.findById(scope.before.selectedWork, function (result) {
+                            scope.after.work = result;
+                        });
 
-                    // 3. 선택한 작업 정보를 가져옵니다.
-                    workService.findById(scope.before.selectedWork, function(result){
-                        scope.after.work = result;
-                    });
-                    
-                    // 4. 생성한 경매를 등록 요청 합니다.
-                    auctionService.register(data, function(result){
-                        alert("경매가 등록되었습니다.");
-                        scope.registered = true;
-                        scope.after.result = data;
+                        // 4. 생성한 경매를 등록 요청 합니다.
+                        auctionService.register(data, function (result) {
+                            alert("경매가 등록되었습니다.");
+                            scope.registered = true;
+                            scope.after.result = data;
+                            self.isCreatingContract = false;
+
+                        });
                     });
 
+                } else {
+                    alert("비밀키를 다시 확인해주세요.");
                     this.isCreatingContract = false;
-                }); 
+
+                }
             });
         }
     },
-    mounted: function(){
+    mounted: function () {
         var scope = this;
-        // 내 작품 목록 가져오기
-        workService.findWorksByOwner(this.sharedStates.user.id, function(result){
-            scope.before.works = result;
-        });
+        
+        var format = new Date();
+        var year = format.getFullYear();
+        var month = format.getMonth() + 1;
+        if(month<10) month = '0' + month;
+        var date = format.getDate();
+
+        if(date<10) date = '0' + date;
+        var hour = format.getHours();
+
+        if(hour<10) hour = '0' + hour;
+        var min = format.getMinutes();
+
+        if(min<10) min = '0' + min;
+        var sec = format.getSeconds();
+
+        if(sec<10) sec = '0' + sec;
+        
+        scope.before.input.startDate =  year + "-" + month + "-" + date;
+        scope.before.input.startTime =  hour + ":" + min + ":" + sec;
+
+        scope.before.input.untilDate =  year + "-" + month + "-" + date;
+        scope.before.input.untilTime =  hour + ":" + min + ":" + sec;
+        this.getWorks();
+
+        
     }
 })

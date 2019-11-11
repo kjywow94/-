@@ -2,12 +2,12 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
     template: `
     <div>
         <v-nav></v-nav>
-        <v-breadcrumb title="Block Explorer" description="블록체인에서 생성된 블록내역을 보여줍니다."></v-breadcrumb>
+        <v-breadcrumb title="Block Explorer" description="블록체인에서 생성된 블록내역을 보여줍니다." titleImg="assets/images/explorer_title.jpg"></v-breadcrumb>
         <div class="container">
             <explorer-nav></explorer-nav>
             <div class="row">
                 <div class="col-md-12">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm" style="margin-bottom: 15px;">
                     <div class="card-header">블록 <strong># {{ block.blockNo }}</strong></div>
                     <table class="table">
                         <tbody>
@@ -25,7 +25,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
                             </tr>
                             <tr>
                                 <th>Miner</th>
-                                <td><a href="#">{{ block.miner }}</a></td>
+                                <td><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: block.miner }}" class="block-number">{{ block.miner }}</router-link></td>
                             </tr>
                             <tr>
                                 <th>Nonce</th>
@@ -53,6 +53,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
                 </div>
             </div>
         </div>
+        <v-foot-nav></v-foot-nav>
     </div>
     `,
     data() {
@@ -74,6 +75,7 @@ var explorerBlockDetailView = Vue.component('ExplorerBlockDetailView', {
             var findblock = (blocks) => {
                     this.block = blocks;
                     this.block.timeStamp = timeSince(this.block.timeStamp);
+                    
                 };
 
             await ethereumService.findbyBlock(blockNumber, findblock);

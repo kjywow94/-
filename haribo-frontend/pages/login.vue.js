@@ -13,7 +13,10 @@ var loginView = Vue.component('LoginView', {
                             <label for="password">비밀번호</label>
                             <input type="password" class="form-control" id="password" v-model="user.password" placeholder="비밀번호" @keyup.enter="login">
                         </div>
-                        <button type="submit" class="btn btn-primary" v-on:click="login">로그인</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" v-on:click="login">로그인</button>   
+                            <router-link :to="{ name: 'register' }" class="btn btn-primary">회원가입</router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -28,29 +31,32 @@ var loginView = Vue.component('LoginView', {
         }
     },
     methods: {
-        login: function() {
+        login: function () {
             var scope = this;
-
             userService.login(
                 this.user.email,
-                this.user.password,
-                function(data){
+                hashingService.SHA256(this.user.password),
+                function (data) {
                     store.state.isSigned = true;
                     store.state.user.id = data.id;
-
-                    walletService.findById(store.state.user.id, function(response){
-                        if(response.status == 204) {
+                    walletService.findById(store.state.user.id, function (response) {
+                        if (response.status == 204) {
                             store.state.user.hasWallet = false;
-                        } else if(response.status == 200) {
+                        } else if (response.status == 200) {
                             store.state.user.hasWallet = true;
                         } else {
                             alert("Unexpected status code : " + response.status);
                         }
                     });
-
+                    if (window.sessionStorage) {
+                        sessionStorage.setItem('Auth', data.authority);
+                        sessionStorage.setItem('ID', scope.user.email);
+                        sessionStorage.setItem('PW', scope.user.password);
+                    }
                     scope.$router.push('/');
+                    pushService.storeToken();       
                 },
-                function(error){
+                function (error) {
                     alert("유저 이메일 혹은 비밀번호가 일치하지 않습니다.");
                 }
             );

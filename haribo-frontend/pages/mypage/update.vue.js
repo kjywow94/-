@@ -6,12 +6,12 @@ var myUpdateView = Vue.component('MyUpdateView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="개인정보수정" description="개인정보를 수정할 수 있습니다."></v-breadcrumb>
+            <v-breadcrumb title="개인정보수정" description="개인정보를 수정할 수 있습니다." titleImg="assets/images/mypage_title.gif"></v-breadcrumb>
             <div class="container">
                 <v-mypage-nav></v-mypage-nav>
                 <div class="row">
                     <div class="col-md-6 mx-auto mt-5">
-                        <div class="card">
+                        <div class="card1">
                             <div class="card-header">개인정보수정</div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -35,6 +35,7 @@ var myUpdateView = Vue.component('MyUpdateView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data(){
@@ -55,7 +56,7 @@ var myUpdateView = Vue.component('MyUpdateView', {
     methods: {
         update: function(){
             // 비밀번호가 회원의 비밀번호와 일치하는지 비교한다.
-            if(this.user.password !== this.input.password){
+            if(this.user.password !== hashingService.SHA256(this.input.password)){
                 alert("입력하신 비밀번호가 일치하지 않습니다.");
                 return;
             }
@@ -66,13 +67,14 @@ var myUpdateView = Vue.component('MyUpdateView', {
                 return;
             }
 
-            userService.update({
+            let scope = this;
+            userService.update({                
                 "이메일": this.user.email,
                 "이름": this.input.name, // 신규 이름
                 "비밀번호": this.user.password
             }, function(data){
                 alert("이름이 변경되었습니다.");
-                this.$router.go(-1);
+                scope.$router.go(-1);
             });
         },
         goBack: function(){

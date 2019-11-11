@@ -2,13 +2,13 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
     template: `
         <div>
             <v-nav></v-nav>
-            <v-breadcrumb title="Transaction Explorer" description="블록체인에서 생성된 거래내역을 보여줍니다."></v-breadcrumb>
+            <v-breadcrumb title="Transaction Explorer" description="블록체인에서 생성된 거래내역을 보여줍니다." titleImg="assets/images/explorer_title.jpg"></v-breadcrumb>
             <div class="container">
                 <explorer-nav></explorer-nav>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card shadow-sm">
-                            <div class="card-header"><strong>{{ tx.hash }}</strong></div>
+                        <div class="card shadow-sm" style="margin-bottom: 15px;">
+                            <div class="card-header"><strong>{{ tx.txHash }}</strong></div>
                             <table class="table">
                                 <tbody>
                                     <tr>
@@ -17,7 +17,7 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>블록 넘버</th>
-                                        <td>{{ tx.blockNumber }}</td>
+                                        <td>{{ tx.blockId }}</td>
                                     </tr>
                                     <tr>
                                         <th>날짜</th>
@@ -25,15 +25,15 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                                     </tr>
                                     <tr>
                                         <th>송신자 주소</th>
-                                        <td><router-link :to="{ name: 'address', params: { address: tx.from }}">{{ tx.from }}</router-link></td>
+                                        <td><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: tx.from }}">{{ tx.from }}</router-link></td>
                                     </tr>
                                     <tr>
                                         <th>수신자 주소</th>
-                                        <td><router-link :to="{ name: 'address', params: { address: tx.to }}">{{ tx.to }}</router-link></td>
+                                        <td><router-link :to="{ name: 'explorer.tx.detail.fromto', params: { address: tx.to }}">{{ tx.to }}</router-link></td>
                                     </tr>
                                     <tr>
                                         <th>전송한 이더</th>
-                                        <td>{{ tx.value }} Ether</td>
+                                        <td>{{ tx.amount }} Ether</td>
                                     </tr>
                                     <tr>
                                         <th>Gas</th>
@@ -55,22 +55,22 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
                     </div>
                 </div>
             </div>
+            <v-foot-nav></v-foot-nav>
         </div>
     `,
     data() {
         return {
             isValid: true,
             tx: {
+                from: "Loding...",
+                to: "Loding...",
                 hash: "-"
-                
+
             },
-            timestamp:""
+            timestamp: ""
         }
     },
     mounted: async function () {
-        /**
-         *  TODO 트랜잭션 해시로 트랜잭션 상세 정보를 조회합니다.
-         */
         var hash = this.$route.params.hash; // 조회할 트랜잭션 해시를 초기화합니다. 
 
         if (hash) {
@@ -79,19 +79,19 @@ var explorerTxDetailView = Vue.component('ExplorerTxDetailView', {
              */
             var tn = (tran) => {
                 this.tx = tran;
-                
+
                 var blockNumber = this.tx.blockNumber;
-                var next = parseInt(blockNumber, 16); 
+                var next = parseInt(blockNumber, 16);
 
-               var bn = (block) => {
-                   this.blocks = block;
-                   this.tx.timestamp = timeSince(this.blocks.timeStamp); 
-               }
-               ethereumService.findbyBlock(next, bn);
-           } 
-
-           await ethereumService.findbyTrans(hash, tn);   
-
+                var bn = (block) => {
+                    this.blocks = block;
+                    this.tx.timestamp = timeSince(this.blocks.timeStamp);
+                    this.number = String(this.tx.amount);
+                    this.tx.amount = web3.utils.fromWei(this.number, "ether");
+                }
+                ethereumService.findbyBlock(next, bn);
+            }
+            await ethereumService.findbyTrans(hash, tn);
         } else {
             this.isValid = false;
         }

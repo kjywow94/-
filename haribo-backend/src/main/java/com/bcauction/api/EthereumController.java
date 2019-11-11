@@ -4,6 +4,7 @@ import com.bcauction.application.IAuctionContractService;
 import com.bcauction.application.IEthereumService;
 import com.bcauction.domain.Address;
 import com.bcauction.domain.AuctionInfo;
+import com.bcauction.domain.Member;
 import com.bcauction.domain.wrapper.Block;
 import com.bcauction.domain.wrapper.EthereumTransaction;
 import com.bcauction.domain.wrapper.EthereumTransactionData;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import org.web3j.protocol.core.methods.response.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +88,7 @@ public class EthereumController {
     public Address 주소검색(@PathVariable String addr)
     {
         Address 주소 = this.explorerService.주소검색(addr);
-
+        
         if(주소 == null)
             throw new NotFoundException(addr + " 주소 정보를 찾을 수 없습니다.");
 
@@ -116,5 +118,20 @@ public class EthereumController {
             throw new NotFoundException(addr + " 경매 정보를 찾을 수 없습니다.");
 
         return 경매정보;
+    }
+    
+    /**
+     * 임의생성 RestAPI
+     * @return 최근트랜잭션열개조회
+     */
+    @GetMapping("/txesdeca")
+    public List<EthereumTransaction> 최근트랜잭션열개조회()
+    {
+        List<EthereumTransaction> 목록 = this.explorerService.최근트랜잭션뿌리기();
+
+        if (목록 == null || 목록.isEmpty() )
+            throw new EmptyListException("NO DATA");
+
+        return 목록;
     }
 }

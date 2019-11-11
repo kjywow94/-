@@ -5,6 +5,11 @@ var auctionService = {
             callback(data);
         });
     },
+    findStatus: function (work, status, callback) {
+        $.get(API_BASE_URL + '/api/auctions/' + work.id + '/status/' + status, function (data) {
+            callback(data);
+        });
+    },
     findAllByUser: function (userId, callback) {
         $.get(API_BASE_URL + '/api/auctions/owner/' + userId, function (data) {
             callback(data);
@@ -22,7 +27,11 @@ var auctionService = {
     },
     findById: function (id, callback) {
         $.get(API_BASE_URL + "/api/auctions/" + id, function (data) {
-            console.log(data);
+            callback(data);
+        });
+    },
+    countBidById: function (id, callback) {
+        $.get(API_BASE_URL + "/api/auctions/bid/" + id, function (data) {
             callback(data);
         });
     },
@@ -44,6 +53,8 @@ var auctionService = {
     },
     // 경매 취소
     cancel: function (auctionId, bidderId, callback, whenError) {
+        if (!bidderId)
+            bidderId = 0;
         $.ajax({
             type: "DELETE",
             url: API_BASE_URL + "/api/auctions/" + auctionId + "/by/" + bidderId,
